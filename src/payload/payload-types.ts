@@ -15,8 +15,9 @@ export interface Config {
     categories: Category;
     users: User;
     comments: Comment;
-    teamMember: TeamMember;
     listings: Listing;
+    teammates: Teammate;
+    involvementGroups: InvolvementGroup;
     redirects: Redirect;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -124,7 +125,7 @@ export interface Page {
           [k: string]: unknown;
         }[];
         populateBy?: ('collection' | 'selection') | null;
-        relationTo?: ('posts' | 'projects' | 'listings') | null;
+        relationTo?: ('posts' | 'projects' | 'listings' | 'teammates' | 'involvementGroups') | null;
         categories?: (number | Category)[] | null;
         limit?: number | null;
         selectedDocs?:
@@ -156,6 +157,10 @@ export interface Page {
               | {
                   relationTo: 'listings';
                   value: number | Listing;
+                }
+              | {
+                  relationTo: 'teammates';
+                  value: number | Teammate;
                 }
             )[]
           | null;
@@ -322,7 +327,7 @@ export interface Post {
           [k: string]: unknown;
         }[];
         populateBy?: ('collection' | 'selection') | null;
-        relationTo?: ('posts' | 'projects' | 'listings') | null;
+        relationTo?: ('posts' | 'projects' | 'listings' | 'teammates' | 'involvementGroups') | null;
         categories?: (number | Category)[] | null;
         limit?: number | null;
         selectedDocs?:
@@ -354,6 +359,10 @@ export interface Post {
               | {
                   relationTo: 'listings';
                   value: number | Listing;
+                }
+              | {
+                  relationTo: 'teammates';
+                  value: number | Teammate;
                 }
             )[]
           | null;
@@ -431,7 +440,7 @@ export interface Post {
               [k: string]: unknown;
             }[];
             populateBy?: ('collection' | 'selection') | null;
-            relationTo?: ('posts' | 'projects' | 'listings') | null;
+            relationTo?: ('posts' | 'projects' | 'listings' | 'teammates' | 'involvementGroups') | null;
             categories?: (number | Category)[] | null;
             limit?: number | null;
             selectedDocs?:
@@ -463,6 +472,10 @@ export interface Post {
                   | {
                       relationTo: 'listings';
                       value: number | Listing;
+                    }
+                  | {
+                      relationTo: 'teammates';
+                      value: number | Teammate;
                     }
                 )[]
               | null;
@@ -512,6 +525,15 @@ export interface Project {
   title: string;
   categories?: (number | Category)[] | null;
   publishedAt?: string | null;
+  address: string;
+  website?: string | null;
+  instagram?: string | null;
+  gallery?:
+    | {
+        image?: number | Media | null;
+        id?: string | null;
+      }[]
+    | null;
   hero: {
     type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact';
     richText: {
@@ -601,7 +623,7 @@ export interface Project {
           [k: string]: unknown;
         }[];
         populateBy?: ('collection' | 'selection') | null;
-        relationTo?: ('posts' | 'projects' | 'listings') | null;
+        relationTo?: ('posts' | 'projects' | 'listings' | 'teammates' | 'involvementGroups') | null;
         categories?: (number | Category)[] | null;
         limit?: number | null;
         selectedDocs?:
@@ -633,6 +655,10 @@ export interface Project {
               | {
                   relationTo: 'listings';
                   value: number | Listing;
+                }
+              | {
+                  relationTo: 'teammates';
+                  value: number | Teammate;
                 }
             )[]
           | null;
@@ -690,7 +716,6 @@ export interface Listing {
   areaOverview?: string | null;
   zoningType?: ('C' | 'r' | 'i') | null;
   tenancyType?: ('singleTenant' | 'multiTenant') | null;
-  agent?: (number | null) | TeamMember;
   yearBuilt?: number | null;
   occupancy?: number | null;
   meta?: {
@@ -704,21 +729,30 @@ export interface Listing {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "teamMember".
+ * via the `definition` "teammates".
  */
-export interface TeamMember {
+export interface Teammate {
   id: number;
-  name: string;
+  title: string;
   bio: string;
   profilePic: number | Media;
+  categories?: (number | Category)[] | null;
   strengths?: ('Residential Real Estate' | 'Commercial Real Estate')[] | null;
   yearsOfExperience: number;
   phoneNumber: string;
   email: string;
   slug?: string | null;
   instagram?: string | null;
+  Facebook?: string | null;
+  Linkedin?: string | null;
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    image?: number | Media | null;
+  };
   updatedAt: string;
   createdAt: string;
+  _status?: ('draft' | 'published') | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -733,6 +767,26 @@ export interface Comment {
   };
   doc?: (number | null) | Post;
   comment?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "involvementGroups".
+ */
+export interface InvolvementGroup {
+  id: number;
+  title: string;
+  slug?: string | null;
+  categories: number | Category;
+  bio: string;
+  image: number | Media;
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    image?: number | Media | null;
+  };
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;

@@ -10,7 +10,6 @@ export const LISTINGS = `
   }
 `
 
-// TODO: ADD BACK ADDRESS
 export const LISTING = `
 query Listings($slug: String) {
     Listings(where: { slug: { equals: $slug }}, limit: 1) {
@@ -18,6 +17,7 @@ query Listings($slug: String) {
         id
         slug
         title
+        address
         streetAddress
         latitude
         longitude
@@ -33,7 +33,6 @@ query Listings($slug: String) {
 `
 
 // Must have agentId input as an array (ex: { "agentIds": [2] })
-// TODO: ADD BACK ADDRESS
 export const LISTINGBYAGENT = `
 query ListingsByAgents($agentIds: [JSON]!, $limit: Int = 300) {
   Listings(limit: $limit, where: { agent: { in: $agentIds } }) {
@@ -41,6 +40,7 @@ query ListingsByAgents($agentIds: [JSON]!, $limit: Int = 300) {
       id
       slug
       title
+      address
       streetAddress
       latitude
       longitude

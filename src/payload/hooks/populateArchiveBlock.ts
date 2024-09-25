@@ -1,7 +1,7 @@
 import type { AfterReadHook } from 'payload/dist/collections/config/types'
 
 import { adminsOrPublished } from '../access/adminsOrPublished'
-import type { Page, Post, Listing, Project } from '../payload-types'
+import type { Page, Post, Listing, Project, Teammate } from '../payload-types'
 
 export const populateArchiveBlock: AfterReadHook = async ({ doc, context, req }) => {
   // pre-populate the archive block if `populateBy` is `collection`
@@ -15,14 +15,14 @@ export const populateArchiveBlock: AfterReadHook = async ({ doc, context, req })
       if (block.blockType === 'archive') {
         const archiveBlock = block as Extract<Page['layout'][0], { blockType: 'archive' }> & {
           populatedDocs: Array<{
-            relationTo: 'pages' | 'posts' | 'listings'
+            relationTo: 'pages' | 'posts' | 'listings' | 'teammates'
             value: string
           }>
         }
 
         if (archiveBlock.populateBy === 'collection' && !context.isPopulatingArchiveBlock) {
-          const res: { totalDocs: number; docs: (Post | Listing | Project)[] } = await payload.find(
-            {
+          const res: { totalDocs: number; docs: (Post | Listing | Project | Teammate)[] } =
+            await payload.find({
               collection: archiveBlock.relationTo,
               limit: archiveBlock.limit || 10,
               context: {
@@ -44,8 +44,7 @@ export const populateArchiveBlock: AfterReadHook = async ({ doc, context, req })
                 ...(typeof adminOrPublishedQuery === 'boolean' ? {} : adminOrPublishedQuery),
               },
               sort: '-publishedAt',
-            },
-          )
+            })
 
           return {
             ...block,

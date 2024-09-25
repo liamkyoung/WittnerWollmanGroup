@@ -7,6 +7,7 @@ import { PROJECT } from '../_graphql/projects'
 import { LISTING } from '../_graphql/listings'
 import { GRAPHQL_API_URL } from './shared'
 import { payloadToken } from './token'
+import { TEAMMATE } from '../_graphql/teammates'
 
 // INSERT SINGLUAR QUERIES FOR COLLECTIONS HERE
 const queryMap = {
@@ -25,6 +26,10 @@ const queryMap = {
   listings: {
     query: LISTING,
     key: 'Listings',
+  },
+  teammates: {
+    query: TEAMMATE,
+    key: 'Teammates',
   },
 }
 

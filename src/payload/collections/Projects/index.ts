@@ -11,6 +11,7 @@ import { slugField } from '../../fields/slug'
 import { populateArchiveBlock } from '../../hooks/populateArchiveBlock'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
 import { revalidateProject } from './hooks/revalidateProject'
+import { formatSocialMediaHandle } from '../../hooks/formatSocialMediaHandle'
 
 export const Projects: CollectionConfig = {
   slug: 'projects',
@@ -58,6 +59,48 @@ export const Projects: CollectionConfig = {
       admin: {
         position: 'sidebar',
       },
+    },
+    {
+      // Add in Google Map location later
+      name: 'address',
+      label: 'Property Address',
+      type: 'text',
+      required: true,
+      // admin: {
+      //   components: {
+      //     Field: AdminAddressSearch,
+      //   },
+      // },
+      // Able to get from map
+    },
+    {
+      name: 'website',
+      label: 'Project Website',
+      type: 'text',
+    },
+    {
+      name: 'instagram',
+      label: 'Instagram Username',
+      type: 'text',
+      admin: {
+        position: 'sidebar',
+      },
+      hooks: {
+        beforeChange: [formatSocialMediaHandle],
+      },
+    },
+    {
+      name: 'gallery',
+      label: 'Photo Gallery',
+      type: 'array',
+      minRows: 1,
+      fields: [
+        {
+          name: 'image',
+          type: 'upload',
+          relationTo: 'media',
+        },
+      ],
     },
     {
       type: 'tabs',

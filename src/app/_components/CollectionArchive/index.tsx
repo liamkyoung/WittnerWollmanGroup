@@ -3,7 +3,13 @@
 import React, { Fragment, useCallback, useEffect, useRef, useState } from 'react'
 import qs from 'qs'
 
-import type { Post, Project, Listing } from '../../../payload/payload-types'
+import type {
+  Post,
+  Project,
+  Listing,
+  Teammate,
+  InvolvementGroup,
+} from '../../../payload/payload-types'
 import type { ArchiveBlockProps } from '../../_blocks/ArchiveBlock/types'
 import { Card } from '../Card'
 import { Gutter } from '../Gutter'
@@ -13,7 +19,7 @@ import { Pagination } from '../Pagination'
 import classes from './index.module.scss'
 
 type Result = {
-  docs: (Post | Project | Listing | string)[]
+  docs: (Post | Project | Listing | Teammate | InvolvementGroup | string)[]
   hasNextPage: boolean
   hasPrevPage: boolean
   nextPage: number
@@ -31,7 +37,7 @@ export type Props = {
   populateBy?: 'collection' | 'selection'
   populatedDocs?: ArchiveBlockProps['populatedDocs']
   populatedDocsTotal?: ArchiveBlockProps['populatedDocsTotal']
-  relationTo?: 'posts' | 'projects' | 'listing'
+  relationTo?: 'posts' | 'projects' | 'listings' | 'teammates' | 'involvementGroups'
   selectedDocs?: ArchiveBlockProps['selectedDocs']
   showPageRange?: boolean
   sort?: string

@@ -26,7 +26,8 @@ import { Settings } from './globals/Settings'
 
 // Custom Collections
 import { Listings } from './collections/Listings'
-import { TeamMember } from './collections/TeamMembers'
+import { Teammates } from './collections/Teammates'
+import { InvolvementGroups } from './collections/InvolvementGroups'
 
 const generateTitle: GenerateTitle = () => {
   return 'Wittner Wollman Group'
@@ -70,7 +71,18 @@ export default buildConfig({
     },
   }),
   serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL,
-  collections: [Pages, Posts, Projects, Media, Categories, Users, Comments, TeamMember, Listings],
+  collections: [
+    Pages,
+    Posts,
+    Projects,
+    Media,
+    Categories,
+    Users,
+    Comments,
+    Listings,
+    Teammates,
+    InvolvementGroups,
+  ],
   globals: [Settings, Header, Footer],
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),
@@ -97,7 +109,7 @@ export default buildConfig({
       collections: ['categories'],
     }),
     seo({
-      collections: ['pages', 'posts', 'projects', 'listings'], // USED TO ADD "META" DETAILS
+      collections: ['pages', 'posts', 'projects', 'listings', 'teammates', 'involvementGroups'], // USED TO ADD "META" DETAILS for Card
       generateTitle,
       uploadsCollection: 'media',
     }), // TODO

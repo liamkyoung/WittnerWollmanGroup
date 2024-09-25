@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 
-import type { Page, Post, Project, Listing } from '../../payload/payload-types'
+import type { Page, Post, Project, Listing, Teammate } from '../../payload/payload-types'
 import { mergeOpenGraph } from './mergeOpenGraph'
 
 export const generateMeta = async (args: { doc: Page | Project | Post }): Promise<Metadata> => {
@@ -30,20 +30,20 @@ export const generateMeta = async (args: { doc: Page | Project | Post }): Promis
   }
 }
 
-// export const generateTeamMemberMetadata = async (args: { doc: TeamMember }): Promise<Metadata> => {
-//   const { doc } = args || {}
+export const generateTeammateMetadata = async (args: { doc: Teammate }): Promise<Metadata> => {
+  const { doc } = args || {}
 
-//   return {
-//     title: doc?.name,
-//     description: doc?.bio,
-//   }
-// }
+  return {
+    title: doc?.title,
+    description: doc?.bio,
+  }
+}
 
 export const generateListingMetadata = async (args: { doc: Listing }): Promise<Metadata> => {
   const { doc } = args || {}
 
   return {
-    title: `${doc?.name} | ${doc?.address}`,
+    title: `${doc?.title} | ${doc?.address}`,
     description: `Learn more about ${doc?.address}`,
   }
 }

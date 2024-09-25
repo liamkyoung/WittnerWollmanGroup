@@ -57,7 +57,7 @@ export const Listings: CollectionConfig = {
       admin: {
         position: 'sidebar',
       },
-    },
+    }, // TODO: Remove, currently here to be consistent with projects and posts.
     {
       name: 'address',
       label: 'Property Address',
@@ -264,12 +264,12 @@ export const Listings: CollectionConfig = {
         },
       ],
     },
-    {
-      name: 'agent',
-      label: 'Listing Agent',
-      type: 'relationship',
-      relationTo: 'teamMember',
-    },
+    // {
+    //   name: 'agent',
+    //   label: 'Listing Agent',
+    //   type: 'relationship',
+    //   relationTo: 'teamMember',
+    // },
     {
       name: 'yearBuilt',
       label: 'Year Built',

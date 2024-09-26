@@ -9,6 +9,9 @@ import type {
   Listing,
   Teammate,
   InvolvementGroup,
+  InvolvementEvent,
+  Testimonial,
+  Company,
 } from '../../../payload/payload-types'
 import type { ArchiveBlockProps } from '../../_blocks/ArchiveBlock/types'
 import { Card } from '../Card'
@@ -19,7 +22,17 @@ import { Pagination } from '../Pagination'
 import classes from './index.module.scss'
 
 type Result = {
-  docs: (Post | Project | Listing | Teammate | InvolvementGroup | string)[]
+  docs: (
+    | Post
+    | Project
+    | Listing
+    | Teammate
+    | InvolvementGroup
+    | InvolvementEvent
+    | Testimonial
+    | Company
+    | string
+  )[]
   hasNextPage: boolean
   hasPrevPage: boolean
   nextPage: number
@@ -37,7 +50,15 @@ export type Props = {
   populateBy?: 'collection' | 'selection'
   populatedDocs?: ArchiveBlockProps['populatedDocs']
   populatedDocsTotal?: ArchiveBlockProps['populatedDocsTotal']
-  relationTo?: 'posts' | 'projects' | 'listings' | 'teammates' | 'involvementGroups'
+  relationTo?:
+    | 'posts'
+    | 'projects'
+    | 'listings'
+    | 'teammates'
+    | 'involvementGroups'
+    | 'involvementEvents'
+    | 'testimonials'
+    | 'companies'
   selectedDocs?: ArchiveBlockProps['selectedDocs']
   showPageRange?: boolean
   sort?: string

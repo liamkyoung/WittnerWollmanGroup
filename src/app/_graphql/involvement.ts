@@ -17,3 +17,7 @@ export const INVOLVEMENT_GROUPS = `
 
 // TODO: Need to add query to return involvement by category type.
 // Is already being done by Payload when selecting a certain URL
+
+// TODO: Create queries for InvolvementEvents
+// - By Category
+// - Get All

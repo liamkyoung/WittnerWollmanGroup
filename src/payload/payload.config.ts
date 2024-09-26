@@ -28,6 +28,9 @@ import { Settings } from './globals/Settings'
 import { Listings } from './collections/Listings'
 import { Teammates } from './collections/Teammates'
 import { InvolvementGroups } from './collections/InvolvementGroups'
+import { InvolvementEvents } from './collections/InvolvementEvents'
+import { Testimonials } from './collections/Testimonials'
+import { Companies } from './collections/Companies'
 
 const generateTitle: GenerateTitle = () => {
   return 'Wittner Wollman Group'
@@ -82,6 +85,9 @@ export default buildConfig({
     Listings,
     Teammates,
     InvolvementGroups,
+    InvolvementEvents,
+    Testimonials,
+    Companies,
   ],
   globals: [Settings, Header, Footer],
   typescript: {
@@ -109,7 +115,17 @@ export default buildConfig({
       collections: ['categories'],
     }),
     seo({
-      collections: ['pages', 'posts', 'projects', 'listings', 'teammates', 'involvementGroups'], // USED TO ADD "META" DETAILS for Card
+      collections: [
+        'pages',
+        'posts',
+        'projects',
+        'listings',
+        'teammates',
+        'involvementGroups', // REMOVE EVENTUALLY
+        'involvementEvents', // REMOVE EVENTUALLY
+        'testimonials', // REMOVE EVENTUALLY
+        'companies', // REMOVE
+      ], // USED TO ADD "META" DETAILS for Card
       generateTitle,
       uploadsCollection: 'media',
     }), // TODO

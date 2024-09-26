@@ -1,7 +1,17 @@
 import type { AfterReadHook } from 'payload/dist/collections/config/types'
 
 import { adminsOrPublished } from '../access/adminsOrPublished'
-import type { Page, Post, Listing, Project, Teammate } from '../payload-types'
+import type {
+  Page,
+  Post,
+  Listing,
+  Project,
+  Teammate,
+  InvolvementEvent,
+  InvolvementGroup,
+  Testimonial,
+  Company,
+} from '../payload-types'
 
 export const populateArchiveBlock: AfterReadHook = async ({ doc, context, req }) => {
   // pre-populate the archive block if `populateBy` is `collection`
@@ -15,36 +25,55 @@ export const populateArchiveBlock: AfterReadHook = async ({ doc, context, req })
       if (block.blockType === 'archive') {
         const archiveBlock = block as Extract<Page['layout'][0], { blockType: 'archive' }> & {
           populatedDocs: Array<{
-            relationTo: 'pages' | 'posts' | 'listings' | 'teammates'
+            relationTo:
+              | 'pages'
+              | 'posts'
+              | 'listings'
+              | 'teammates'
+              | 'involvementGroups'
+              | 'involvementEvents'
+              | 'testimonials'
+              | 'companies'
             value: string
           }>
         }
 
         if (archiveBlock.populateBy === 'collection' && !context.isPopulatingArchiveBlock) {
-          const res: { totalDocs: number; docs: (Post | Listing | Project | Teammate)[] } =
-            await payload.find({
-              collection: archiveBlock.relationTo,
-              limit: archiveBlock.limit || 10,
-              context: {
-                isPopulatingArchiveBlock: true,
-              },
-              where: {
-                ...(archiveBlock?.categories?.length > 0
-                  ? {
-                      categories: {
-                        in: archiveBlock.categories
-                          .map(cat => {
-                            if (typeof cat === 'string' || typeof cat === 'number') return cat
-                            return cat.id
-                          })
-                          .join(','),
-                      },
-                    }
-                  : {}),
-                ...(typeof adminOrPublishedQuery === 'boolean' ? {} : adminOrPublishedQuery),
-              },
-              sort: '-publishedAt',
-            })
+          const res: {
+            totalDocs: number
+            docs: (
+              | Post
+              | Listing
+              | Project
+              | Teammate
+              | InvolvementEvent
+              | InvolvementGroup
+              | Testimonial
+              | Company
+            )[]
+          } = await payload.find({
+            collection: archiveBlock.relationTo,
+            limit: archiveBlock.limit || 10,
+            context: {
+              isPopulatingArchiveBlock: true,
+            },
+            where: {
+              ...(archiveBlock?.categories?.length > 0
+                ? {
+                    categories: {
+                      in: archiveBlock.categories
+                        .map(cat => {
+                          if (typeof cat === 'string' || typeof cat === 'number') return cat
+                          return cat.id
+                        })
+                        .join(','),
+                    },
+                  }
+                : {}),
+              ...(typeof adminOrPublishedQuery === 'boolean' ? {} : adminOrPublishedQuery),
+            },
+            sort: '-publishedAt',
+          })
 
           return {
             ...block,

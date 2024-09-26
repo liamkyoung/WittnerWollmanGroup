@@ -1,7 +1,16 @@
 import React, { Fragment } from 'react'
 import Link from 'next/link'
 
-import { InvolvementGroup, Listing, Post, Project, Teammate } from '../../../payload/payload-types'
+import {
+  InvolvementGroup,
+  Listing,
+  Post,
+  Project,
+  Teammate,
+  InvolvementEvent,
+  Testimonial,
+  Company,
+} from '../../../payload/payload-types'
 import { Media } from '../Media'
 
 import classes from './index.module.scss'
@@ -12,8 +21,24 @@ export const Card: React.FC<{
   showCategories?: boolean
   hideImagesOnMobile?: boolean
   title?: string
-  relationTo?: 'projects' | 'posts' | 'listings' | 'teammates' | 'involvementGroups'
-  doc?: Project | Post | Listing | Teammate | InvolvementGroup
+  relationTo?:
+    | 'projects'
+    | 'posts'
+    | 'listings'
+    | 'teammates'
+    | 'involvementGroups'
+    | 'involvementEvents'
+    | 'testimonials'
+    | 'company'
+  doc?:
+    | Project
+    | Post
+    | Listing
+    | Teammate
+    | InvolvementGroup
+    | InvolvementEvent
+    | Testimonial
+    | Company
   orientation?: 'horizontal' | 'vertical'
 }> = props => {
   const {

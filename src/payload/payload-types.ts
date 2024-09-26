@@ -18,6 +18,9 @@ export interface Config {
     listings: Listing;
     teammates: Teammate;
     involvementGroups: InvolvementGroup;
+    involvementEvents: InvolvementEvent;
+    testimonials: Testimonial;
+    companies: Company;
     redirects: Redirect;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -125,7 +128,17 @@ export interface Page {
           [k: string]: unknown;
         }[];
         populateBy?: ('collection' | 'selection') | null;
-        relationTo?: ('posts' | 'projects' | 'listings' | 'teammates' | 'involvementGroups') | null;
+        relationTo?:
+          | (
+              | 'posts'
+              | 'projects'
+              | 'listings'
+              | 'teammates'
+              | 'involvementGroups'
+              | 'involvementEvents'
+              | 'testimonials'
+            )
+          | null;
         categories?: (number | Category)[] | null;
         limit?: number | null;
         selectedDocs?:
@@ -141,6 +154,22 @@ export interface Page {
               | {
                   relationTo: 'listings';
                   value: number | Listing;
+                }
+              | {
+                  relationTo: 'teammates';
+                  value: number | Teammate;
+                }
+              | {
+                  relationTo: 'involvementGroups';
+                  value: number | InvolvementGroup;
+                }
+              | {
+                  relationTo: 'involvementEvents';
+                  value: number | InvolvementEvent;
+                }
+              | {
+                  relationTo: 'testimonials';
+                  value: number | Testimonial;
                 }
             )[]
           | null;
@@ -161,6 +190,18 @@ export interface Page {
               | {
                   relationTo: 'teammates';
                   value: number | Teammate;
+                }
+              | {
+                  relationTo: 'involvementGroups';
+                  value: number | InvolvementGroup;
+                }
+              | {
+                  relationTo: 'involvementEvents';
+                  value: number | InvolvementEvent;
+                }
+              | {
+                  relationTo: 'testimonials';
+                  value: number | Testimonial;
                 }
             )[]
           | null;
@@ -327,7 +368,17 @@ export interface Post {
           [k: string]: unknown;
         }[];
         populateBy?: ('collection' | 'selection') | null;
-        relationTo?: ('posts' | 'projects' | 'listings' | 'teammates' | 'involvementGroups') | null;
+        relationTo?:
+          | (
+              | 'posts'
+              | 'projects'
+              | 'listings'
+              | 'teammates'
+              | 'involvementGroups'
+              | 'involvementEvents'
+              | 'testimonials'
+            )
+          | null;
         categories?: (number | Category)[] | null;
         limit?: number | null;
         selectedDocs?:
@@ -343,6 +394,22 @@ export interface Post {
               | {
                   relationTo: 'listings';
                   value: number | Listing;
+                }
+              | {
+                  relationTo: 'teammates';
+                  value: number | Teammate;
+                }
+              | {
+                  relationTo: 'involvementGroups';
+                  value: number | InvolvementGroup;
+                }
+              | {
+                  relationTo: 'involvementEvents';
+                  value: number | InvolvementEvent;
+                }
+              | {
+                  relationTo: 'testimonials';
+                  value: number | Testimonial;
                 }
             )[]
           | null;
@@ -363,6 +430,18 @@ export interface Post {
               | {
                   relationTo: 'teammates';
                   value: number | Teammate;
+                }
+              | {
+                  relationTo: 'involvementGroups';
+                  value: number | InvolvementGroup;
+                }
+              | {
+                  relationTo: 'involvementEvents';
+                  value: number | InvolvementEvent;
+                }
+              | {
+                  relationTo: 'testimonials';
+                  value: number | Testimonial;
                 }
             )[]
           | null;
@@ -440,7 +519,17 @@ export interface Post {
               [k: string]: unknown;
             }[];
             populateBy?: ('collection' | 'selection') | null;
-            relationTo?: ('posts' | 'projects' | 'listings' | 'teammates' | 'involvementGroups') | null;
+            relationTo?:
+              | (
+                  | 'posts'
+                  | 'projects'
+                  | 'listings'
+                  | 'teammates'
+                  | 'involvementGroups'
+                  | 'involvementEvents'
+                  | 'testimonials'
+                )
+              | null;
             categories?: (number | Category)[] | null;
             limit?: number | null;
             selectedDocs?:
@@ -456,6 +545,22 @@ export interface Post {
                   | {
                       relationTo: 'listings';
                       value: number | Listing;
+                    }
+                  | {
+                      relationTo: 'teammates';
+                      value: number | Teammate;
+                    }
+                  | {
+                      relationTo: 'involvementGroups';
+                      value: number | InvolvementGroup;
+                    }
+                  | {
+                      relationTo: 'involvementEvents';
+                      value: number | InvolvementEvent;
+                    }
+                  | {
+                      relationTo: 'testimonials';
+                      value: number | Testimonial;
                     }
                 )[]
               | null;
@@ -476,6 +581,18 @@ export interface Post {
                   | {
                       relationTo: 'teammates';
                       value: number | Teammate;
+                    }
+                  | {
+                      relationTo: 'involvementGroups';
+                      value: number | InvolvementGroup;
+                    }
+                  | {
+                      relationTo: 'involvementEvents';
+                      value: number | InvolvementEvent;
+                    }
+                  | {
+                      relationTo: 'testimonials';
+                      value: number | Testimonial;
                     }
                 )[]
               | null;
@@ -623,7 +740,17 @@ export interface Project {
           [k: string]: unknown;
         }[];
         populateBy?: ('collection' | 'selection') | null;
-        relationTo?: ('posts' | 'projects' | 'listings' | 'teammates' | 'involvementGroups') | null;
+        relationTo?:
+          | (
+              | 'posts'
+              | 'projects'
+              | 'listings'
+              | 'teammates'
+              | 'involvementGroups'
+              | 'involvementEvents'
+              | 'testimonials'
+            )
+          | null;
         categories?: (number | Category)[] | null;
         limit?: number | null;
         selectedDocs?:
@@ -639,6 +766,22 @@ export interface Project {
               | {
                   relationTo: 'listings';
                   value: number | Listing;
+                }
+              | {
+                  relationTo: 'teammates';
+                  value: number | Teammate;
+                }
+              | {
+                  relationTo: 'involvementGroups';
+                  value: number | InvolvementGroup;
+                }
+              | {
+                  relationTo: 'involvementEvents';
+                  value: number | InvolvementEvent;
+                }
+              | {
+                  relationTo: 'testimonials';
+                  value: number | Testimonial;
                 }
             )[]
           | null;
@@ -659,6 +802,18 @@ export interface Project {
               | {
                   relationTo: 'teammates';
                   value: number | Teammate;
+                }
+              | {
+                  relationTo: 'involvementGroups';
+                  value: number | InvolvementGroup;
+                }
+              | {
+                  relationTo: 'involvementEvents';
+                  value: number | InvolvementEvent;
+                }
+              | {
+                  relationTo: 'testimonials';
+                  value: number | Testimonial;
                 }
             )[]
           | null;
@@ -756,6 +911,68 @@ export interface Teammate {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "involvementGroups".
+ */
+export interface InvolvementGroup {
+  id: number;
+  title: string;
+  slug?: string | null;
+  categories: number | Category;
+  bio: string;
+  image: number | Media;
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    image?: number | Media | null;
+  };
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "involvementEvents".
+ */
+export interface InvolvementEvent {
+  id: number;
+  title: string;
+  slug?: string | null;
+  categories: number | Category;
+  bio: string;
+  image: number | Media;
+  eventDate?: string | null;
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    image?: number | Media | null;
+  };
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "testimonials".
+ */
+export interface Testimonial {
+  id: number;
+  title: string;
+  slug?: string | null;
+  categories: number | Category;
+  bio: string;
+  image: number | Media;
+  jobTitle: string;
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    image?: number | Media | null;
+  };
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "comments".
  */
 export interface Comment {
@@ -773,14 +990,13 @@ export interface Comment {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "involvementGroups".
+ * via the `definition` "companies".
  */
-export interface InvolvementGroup {
+export interface Company {
   id: number;
   title: string;
   slug?: string | null;
   categories: number | Category;
-  bio: string;
   image: number | Media;
   meta?: {
     title?: string | null;

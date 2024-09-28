@@ -21,6 +21,7 @@ export interface Config {
     involvementEvents: InvolvementEvent;
     testimonials: Testimonial;
     companies: Company;
+    services: Service;
     redirects: Redirect;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -137,6 +138,7 @@ export interface Page {
               | 'involvementGroups'
               | 'involvementEvents'
               | 'testimonials'
+              | 'companies'
             )
           | null;
         categories?: (number | Category)[] | null;
@@ -171,6 +173,10 @@ export interface Page {
                   relationTo: 'testimonials';
                   value: number | Testimonial;
                 }
+              | {
+                  relationTo: 'companies';
+                  value: number | Company;
+                }
             )[]
           | null;
         populatedDocs?:
@@ -202,6 +208,10 @@ export interface Page {
               | {
                   relationTo: 'testimonials';
                   value: number | Testimonial;
+                }
+              | {
+                  relationTo: 'companies';
+                  value: number | Company;
                 }
             )[]
           | null;
@@ -377,6 +387,7 @@ export interface Post {
               | 'involvementGroups'
               | 'involvementEvents'
               | 'testimonials'
+              | 'companies'
             )
           | null;
         categories?: (number | Category)[] | null;
@@ -411,6 +422,10 @@ export interface Post {
                   relationTo: 'testimonials';
                   value: number | Testimonial;
                 }
+              | {
+                  relationTo: 'companies';
+                  value: number | Company;
+                }
             )[]
           | null;
         populatedDocs?:
@@ -442,6 +457,10 @@ export interface Post {
               | {
                   relationTo: 'testimonials';
                   value: number | Testimonial;
+                }
+              | {
+                  relationTo: 'companies';
+                  value: number | Company;
                 }
             )[]
           | null;
@@ -528,6 +547,7 @@ export interface Post {
                   | 'involvementGroups'
                   | 'involvementEvents'
                   | 'testimonials'
+                  | 'companies'
                 )
               | null;
             categories?: (number | Category)[] | null;
@@ -562,6 +582,10 @@ export interface Post {
                       relationTo: 'testimonials';
                       value: number | Testimonial;
                     }
+                  | {
+                      relationTo: 'companies';
+                      value: number | Company;
+                    }
                 )[]
               | null;
             populatedDocs?:
@@ -593,6 +617,10 @@ export interface Post {
                   | {
                       relationTo: 'testimonials';
                       value: number | Testimonial;
+                    }
+                  | {
+                      relationTo: 'companies';
+                      value: number | Company;
                     }
                 )[]
               | null;
@@ -749,6 +777,7 @@ export interface Project {
               | 'involvementGroups'
               | 'involvementEvents'
               | 'testimonials'
+              | 'companies'
             )
           | null;
         categories?: (number | Category)[] | null;
@@ -783,6 +812,10 @@ export interface Project {
                   relationTo: 'testimonials';
                   value: number | Testimonial;
                 }
+              | {
+                  relationTo: 'companies';
+                  value: number | Company;
+                }
             )[]
           | null;
         populatedDocs?:
@@ -814,6 +847,10 @@ export interface Project {
               | {
                   relationTo: 'testimonials';
                   value: number | Testimonial;
+                }
+              | {
+                  relationTo: 'companies';
+                  value: number | Company;
                 }
             )[]
           | null;
@@ -973,6 +1010,25 @@ export interface Testimonial {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "companies".
+ */
+export interface Company {
+  id: number;
+  title: string;
+  slug?: string | null;
+  categories: number | Category;
+  image: number | Media;
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    image?: number | Media | null;
+  };
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "comments".
  */
 export interface Comment {
@@ -990,14 +1046,15 @@ export interface Comment {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "companies".
+ * via the `definition` "services".
  */
-export interface Company {
+export interface Service {
   id: number;
   title: string;
   slug?: string | null;
+  iconSvg: string;
   categories: number | Category;
-  image: number | Media;
+  bio: string;
   meta?: {
     title?: string | null;
     description?: string | null;

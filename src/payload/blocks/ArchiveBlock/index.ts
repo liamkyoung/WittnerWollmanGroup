@@ -69,6 +69,10 @@ export const Archive: Block = {
           label: 'Companies',
           value: 'companies',
         },
+        {
+          label: 'Services',
+          value: 'services',
+        },
       ],
     },
     {
@@ -104,6 +108,7 @@ export const Archive: Block = {
         'involvementEvents',
         'testimonials',
         'companies',
+        'services',
       ],
       hasMany: true,
       admin: {
@@ -123,6 +128,7 @@ export const Archive: Block = {
         'involvementEvents',
         'testimonials',
         'companies',
+        'services',
       ],
       hasMany: true,
       admin: {

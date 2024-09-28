@@ -10,6 +10,7 @@ import {
   InvolvementEvent,
   Testimonial,
   Company,
+  Service,
 } from '../../../payload/payload-types'
 import { Media } from '../Media'
 
@@ -30,6 +31,7 @@ export const Card: React.FC<{
     | 'involvementEvents'
     | 'testimonials'
     | 'company'
+    | 'services'
   doc?:
     | Project
     | Post
@@ -39,6 +41,7 @@ export const Card: React.FC<{
     | InvolvementEvent
     | Testimonial
     | Company
+    | Service
   orientation?: 'horizontal' | 'vertical'
 }> = props => {
   const {

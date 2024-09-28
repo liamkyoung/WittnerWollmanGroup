@@ -12,6 +12,7 @@ import type {
   InvolvementEvent,
   Testimonial,
   Company,
+  Service,
 } from '../../../payload/payload-types'
 import type { ArchiveBlockProps } from '../../_blocks/ArchiveBlock/types'
 import { Card } from '../Card'
@@ -31,6 +32,7 @@ type Result = {
     | InvolvementEvent
     | Testimonial
     | Company
+    | Service
     | string
   )[]
   hasNextPage: boolean
@@ -59,6 +61,7 @@ export type Props = {
     | 'involvementEvents'
     | 'testimonials'
     | 'companies'
+    | 'services'
   selectedDocs?: ArchiveBlockProps['selectedDocs']
   showPageRange?: boolean
   sort?: string

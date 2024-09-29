@@ -12,7 +12,18 @@ export const TeammateCard: React.FC<{
 }> = props => {
   const { title: titleFromProps, doc } = props
 
-  const { slug, title, meta } = doc || {}
+  const {
+    slug,
+    title,
+    meta,
+    strengths,
+    instagram,
+    Facebook,
+    Linkedin,
+    email,
+    phoneNumber,
+    profilePic,
+  } = doc || {}
   const { description, image: metaImage } = meta || {}
 
   const titleToUse = titleFromProps || title
@@ -23,8 +34,8 @@ export const TeammateCard: React.FC<{
     <div className={``}>
       <Link href={href} className={``}>
         {!metaImage && <div className={``}>No image</div>}
-        {metaImage && typeof metaImage !== 'string' && (
-          <Media imgClassName={``} resource={metaImage} fill />
+        {profilePic && typeof metaImage !== 'string' && (
+          <Media imgClassName={``} resource={profilePic} />
         )}
       </Link>
       <div className={``}>
@@ -35,9 +46,15 @@ export const TeammateCard: React.FC<{
             </Link>
           </h4>
         )}
-        {description && (
+        <span>Strength:{strengths}</span>
+        <span>{phoneNumber}</span>
+        <span>Insta: {instagram}</span>
+        <span>Email: {email}</span>
+        <span>FB: {Facebook}</span>
+        <span>Linkedin: {Linkedin}</span>
+        {/* {description && (
           <div className={``}>{description && <p className={``}>{sanitizedDescription}</p>}</div>
-        )}
+        )} */}
       </div>
     </div>
   )

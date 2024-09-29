@@ -17,6 +17,11 @@ query Teammates($slug: String) {
         id
         title
         bio
+        phoneNumber
+        instagram
+        Facebook
+        Linkedin
+        email
         ${PROFILEPIC}
         strengths
         yearsOfExperience

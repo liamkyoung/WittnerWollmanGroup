@@ -65,7 +65,7 @@ EXCEPTION
 END $$;
 
 DO $$ BEGIN
- CREATE TYPE "enum_pages_blocks_archive_relation_to" AS ENUM('posts', 'projects');
+ CREATE TYPE "enum_pages_blocks_archive_relation_to" AS ENUM('posts', 'projects', 'listings');
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
@@ -137,7 +137,7 @@ EXCEPTION
 END $$;
 
 DO $$ BEGIN
- CREATE TYPE "enum__pages_v_blocks_archive_relation_to" AS ENUM('posts', 'projects');
+ CREATE TYPE "enum__pages_v_blocks_archive_relation_to" AS ENUM('posts', 'projects', 'listings');
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
@@ -209,7 +209,7 @@ EXCEPTION
 END $$;
 
 DO $$ BEGIN
- CREATE TYPE "enum_posts_blocks_archive_relation_to" AS ENUM('posts', 'projects');
+ CREATE TYPE "enum_posts_blocks_archive_relation_to" AS ENUM('posts', 'projects', 'listings');
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
@@ -281,7 +281,7 @@ EXCEPTION
 END $$;
 
 DO $$ BEGIN
- CREATE TYPE "enum__posts_v_blocks_archive_relation_to" AS ENUM('posts', 'projects');
+ CREATE TYPE "enum__posts_v_blocks_archive_relation_to" AS ENUM('posts', 'projects', 'listings');
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
@@ -353,7 +353,7 @@ EXCEPTION
 END $$;
 
 DO $$ BEGIN
- CREATE TYPE "enum_projects_blocks_archive_relation_to" AS ENUM('posts', 'projects');
+ CREATE TYPE "enum_projects_blocks_archive_relation_to" AS ENUM('posts', 'projects', 'listings');
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
@@ -425,7 +425,7 @@ EXCEPTION
 END $$;
 
 DO $$ BEGIN
- CREATE TYPE "enum__projects_v_blocks_archive_relation_to" AS ENUM('posts', 'projects');
+ CREATE TYPE "enum__projects_v_blocks_archive_relation_to" AS ENUM('posts', 'projects', 'listings');
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
@@ -450,6 +450,60 @@ END $$;
 
 DO $$ BEGIN
  CREATE TYPE "enum__comments_v_version_status" AS ENUM('draft', 'published');
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ CREATE TYPE "enum_team_member_strengths" AS ENUM('Residential Real Estate', 'Commercial Real Estate');
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ CREATE TYPE "enum_listings_property_type" AS ENUM('shoppingCenter', 'bizOpportunity', 'multiFamily', 'office', 'mixedUse');
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ CREATE TYPE "enum_listings_zoning_type" AS ENUM('C', 'r', 'i');
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ CREATE TYPE "enum_listings_tenancy_type" AS ENUM('singleTenant', 'multiTenant');
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ CREATE TYPE "enum_listings_status" AS ENUM('draft', 'published');
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ CREATE TYPE "enum__listings_v_version_property_type" AS ENUM('shoppingCenter', 'bizOpportunity', 'multiFamily', 'office', 'mixedUse');
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ CREATE TYPE "enum__listings_v_version_zoning_type" AS ENUM('C', 'r', 'i');
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ CREATE TYPE "enum__listings_v_version_tenancy_type" AS ENUM('singleTenant', 'multiTenant');
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ CREATE TYPE "enum__listings_v_version_status" AS ENUM('draft', 'published');
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
@@ -573,7 +627,8 @@ CREATE TABLE IF NOT EXISTS "pages_rels" (
 	"media_id" integer,
 	"categories_id" integer,
 	"posts_id" integer,
-	"projects_id" integer
+	"projects_id" integer,
+	"listings_id" integer
 );
 
 CREATE TABLE IF NOT EXISTS "_pages_v_version_hero_links" (
@@ -687,7 +742,8 @@ CREATE TABLE IF NOT EXISTS "_pages_v_rels" (
 	"media_id" integer,
 	"categories_id" integer,
 	"posts_id" integer,
-	"projects_id" integer
+	"projects_id" integer,
+	"listings_id" integer
 );
 
 CREATE TABLE IF NOT EXISTS "posts_populated_authors" (
@@ -800,7 +856,8 @@ CREATE TABLE IF NOT EXISTS "posts_rels" (
 	"pages_id" integer,
 	"media_id" integer,
 	"posts_id" integer,
-	"projects_id" integer
+	"projects_id" integer,
+	"listings_id" integer
 );
 
 CREATE TABLE IF NOT EXISTS "_posts_v_version_populated_authors" (
@@ -924,7 +981,8 @@ CREATE TABLE IF NOT EXISTS "_posts_v_rels" (
 	"users_id" integer,
 	"pages_id" integer,
 	"media_id" integer,
-	"projects_id" integer
+	"projects_id" integer,
+	"listings_id" integer
 );
 
 CREATE TABLE IF NOT EXISTS "projects_hero_links" (
@@ -1028,7 +1086,8 @@ CREATE TABLE IF NOT EXISTS "projects_rels" (
 	"pages_id" integer,
 	"media_id" integer,
 	"posts_id" integer,
-	"projects_id" integer
+	"projects_id" integer,
+	"listings_id" integer
 );
 
 CREATE TABLE IF NOT EXISTS "_projects_v_version_hero_links" (
@@ -1142,7 +1201,8 @@ CREATE TABLE IF NOT EXISTS "_projects_v_rels" (
 	"categories_id" integer,
 	"pages_id" integer,
 	"media_id" integer,
-	"posts_id" integer
+	"posts_id" integer,
+	"listings_id" integer
 );
 
 CREATE TABLE IF NOT EXISTS "media" (
@@ -1243,6 +1303,151 @@ CREATE TABLE IF NOT EXISTS "_comments_v_rels" (
 	"comments_id" integer,
 	"users_id" integer,
 	"posts_id" integer
+);
+
+CREATE TABLE IF NOT EXISTS "team_member_strengths" (
+	"order" integer NOT NULL,
+	"parent_id" integer NOT NULL,
+	"value" "enum_team_member_strengths",
+	"id" serial PRIMARY KEY NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS "team_member" (
+	"id" serial PRIMARY KEY NOT NULL,
+	"name" varchar NOT NULL,
+	"bio" varchar NOT NULL,
+	"years_of_experience" numeric NOT NULL,
+	"phone_number" varchar NOT NULL,
+	"email" varchar NOT NULL,
+	"slug" varchar,
+	"instagram" varchar,
+	"updated_at" timestamp(3) with time zone DEFAULT now() NOT NULL,
+	"created_at" timestamp(3) with time zone DEFAULT now() NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS "team_member_rels" (
+	"id" serial PRIMARY KEY NOT NULL,
+	"order" integer,
+	"parent_id" integer NOT NULL,
+	"path" varchar NOT NULL,
+	"media_id" integer
+);
+
+CREATE TABLE IF NOT EXISTS "listings_property_type" (
+	"order" integer NOT NULL,
+	"parent_id" integer NOT NULL,
+	"value" "enum_listings_property_type",
+	"id" serial PRIMARY KEY NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS "listings_image_gallery" (
+	"_order" integer NOT NULL,
+	"_parent_id" integer NOT NULL,
+	"id" varchar PRIMARY KEY NOT NULL,
+	"alt_text" varchar,
+	"caption" varchar
+);
+
+CREATE TABLE IF NOT EXISTS "listings" (
+	"id" serial PRIMARY KEY NOT NULL,
+	"title" varchar,
+	"slug" varchar,
+	"address" varchar,
+	"street_address" varchar,
+	"neighborhood" varchar,
+	"city" varchar,
+	"zip_code" varchar,
+	"county" varchar,
+	"state" varchar,
+	"latitude" numeric,
+	"longitude" numeric,
+	"price" numeric,
+	"sq_ft" numeric,
+	"sq_ft_land" numeric,
+	"bed_count" numeric,
+	"bathroom_count" numeric,
+	"overview" varchar,
+	"area_overview" varchar,
+	"zoningType" "enum_listings_zoning_type",
+	"tenancyType" "enum_listings_tenancy_type",
+	"year_built" numeric,
+	"occupancy" numeric,
+	"meta_title" varchar,
+	"meta_description" varchar,
+	"updated_at" timestamp(3) with time zone DEFAULT now() NOT NULL,
+	"created_at" timestamp(3) with time zone DEFAULT now() NOT NULL,
+	"_status" "enum_listings_status"
+);
+
+CREATE TABLE IF NOT EXISTS "listings_rels" (
+	"id" serial PRIMARY KEY NOT NULL,
+	"order" integer,
+	"parent_id" integer NOT NULL,
+	"path" varchar NOT NULL,
+	"categories_id" integer,
+	"media_id" integer,
+	"team_member_id" integer
+);
+
+CREATE TABLE IF NOT EXISTS "_listings_v_version_property_type" (
+	"order" integer NOT NULL,
+	"parent_id" integer NOT NULL,
+	"value" "enum__listings_v_version_property_type",
+	"id" serial PRIMARY KEY NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS "_listings_v_version_image_gallery" (
+	"_order" integer NOT NULL,
+	"_parent_id" integer NOT NULL,
+	"id" serial PRIMARY KEY NOT NULL,
+	"alt_text" varchar,
+	"caption" varchar,
+	"_uuid" varchar
+);
+
+CREATE TABLE IF NOT EXISTS "_listings_v" (
+	"id" serial PRIMARY KEY NOT NULL,
+	"version_title" varchar,
+	"version_slug" varchar,
+	"version_address" varchar,
+	"version_street_address" varchar,
+	"version_neighborhood" varchar,
+	"version_city" varchar,
+	"version_zip_code" varchar,
+	"version_county" varchar,
+	"version_state" varchar,
+	"version_latitude" numeric,
+	"version_longitude" numeric,
+	"version_price" numeric,
+	"version_sq_ft" numeric,
+	"version_sq_ft_land" numeric,
+	"version_bed_count" numeric,
+	"version_bathroom_count" numeric,
+	"version_overview" varchar,
+	"version_area_overview" varchar,
+	"version_zoningType" "enum__listings_v_version_zoning_type",
+	"version_tenancyType" "enum__listings_v_version_tenancy_type",
+	"version_year_built" numeric,
+	"version_occupancy" numeric,
+	"version_meta_title" varchar,
+	"version_meta_description" varchar,
+	"version_updated_at" timestamp(3) with time zone,
+	"version_created_at" timestamp(3) with time zone,
+	"version__status" "enum__listings_v_version_status",
+	"created_at" timestamp(3) with time zone DEFAULT now() NOT NULL,
+	"updated_at" timestamp(3) with time zone DEFAULT now() NOT NULL,
+	"latest" boolean
+);
+
+CREATE TABLE IF NOT EXISTS "_listings_v_rels" (
+	"id" serial PRIMARY KEY NOT NULL,
+	"order" integer,
+	"parent_id" integer NOT NULL,
+	"path" varchar NOT NULL,
+	"listings_id" integer,
+	"categories_id" integer,
+	"media_id" integer,
+	"team_member_id" integer
 );
 
 CREATE TABLE IF NOT EXISTS "redirects" (
@@ -1531,6 +1736,33 @@ CREATE INDEX IF NOT EXISTS "_comments_v_latest_idx" ON "_comments_v" ("latest");
 CREATE INDEX IF NOT EXISTS "_comments_v_rels_order_idx" ON "_comments_v_rels" ("order");
 CREATE INDEX IF NOT EXISTS "_comments_v_rels_parent_idx" ON "_comments_v_rels" ("parent_id");
 CREATE INDEX IF NOT EXISTS "_comments_v_rels_path_idx" ON "_comments_v_rels" ("path");
+CREATE INDEX IF NOT EXISTS "team_member_strengths_order_idx" ON "team_member_strengths" ("order");
+CREATE INDEX IF NOT EXISTS "team_member_strengths_parent_idx" ON "team_member_strengths" ("parent_id");
+CREATE INDEX IF NOT EXISTS "team_member_created_at_idx" ON "team_member" ("created_at");
+CREATE INDEX IF NOT EXISTS "team_member_rels_order_idx" ON "team_member_rels" ("order");
+CREATE INDEX IF NOT EXISTS "team_member_rels_parent_idx" ON "team_member_rels" ("parent_id");
+CREATE INDEX IF NOT EXISTS "team_member_rels_path_idx" ON "team_member_rels" ("path");
+CREATE INDEX IF NOT EXISTS "listings_property_type_order_idx" ON "listings_property_type" ("order");
+CREATE INDEX IF NOT EXISTS "listings_property_type_parent_idx" ON "listings_property_type" ("parent_id");
+CREATE INDEX IF NOT EXISTS "listings_image_gallery_order_idx" ON "listings_image_gallery" ("_order");
+CREATE INDEX IF NOT EXISTS "listings_image_gallery_parent_id_idx" ON "listings_image_gallery" ("_parent_id");
+CREATE INDEX IF NOT EXISTS "listings_created_at_idx" ON "listings" ("created_at");
+CREATE INDEX IF NOT EXISTS "listings__status_idx" ON "listings" ("_status");
+CREATE INDEX IF NOT EXISTS "listings_rels_order_idx" ON "listings_rels" ("order");
+CREATE INDEX IF NOT EXISTS "listings_rels_parent_idx" ON "listings_rels" ("parent_id");
+CREATE INDEX IF NOT EXISTS "listings_rels_path_idx" ON "listings_rels" ("path");
+CREATE INDEX IF NOT EXISTS "_listings_v_version_property_type_order_idx" ON "_listings_v_version_property_type" ("order");
+CREATE INDEX IF NOT EXISTS "_listings_v_version_property_type_parent_idx" ON "_listings_v_version_property_type" ("parent_id");
+CREATE INDEX IF NOT EXISTS "_listings_v_version_image_gallery_order_idx" ON "_listings_v_version_image_gallery" ("_order");
+CREATE INDEX IF NOT EXISTS "_listings_v_version_image_gallery_parent_id_idx" ON "_listings_v_version_image_gallery" ("_parent_id");
+CREATE INDEX IF NOT EXISTS "_listings_v_version_version_created_at_idx" ON "_listings_v" ("version_created_at");
+CREATE INDEX IF NOT EXISTS "_listings_v_version_version__status_idx" ON "_listings_v" ("version__status");
+CREATE INDEX IF NOT EXISTS "_listings_v_created_at_idx" ON "_listings_v" ("created_at");
+CREATE INDEX IF NOT EXISTS "_listings_v_updated_at_idx" ON "_listings_v" ("updated_at");
+CREATE INDEX IF NOT EXISTS "_listings_v_latest_idx" ON "_listings_v" ("latest");
+CREATE INDEX IF NOT EXISTS "_listings_v_rels_order_idx" ON "_listings_v_rels" ("order");
+CREATE INDEX IF NOT EXISTS "_listings_v_rels_parent_idx" ON "_listings_v_rels" ("parent_id");
+CREATE INDEX IF NOT EXISTS "_listings_v_rels_path_idx" ON "_listings_v_rels" ("path");
 CREATE INDEX IF NOT EXISTS "redirects_from_idx" ON "redirects" ("from");
 CREATE INDEX IF NOT EXISTS "redirects_created_at_idx" ON "redirects" ("created_at");
 CREATE INDEX IF NOT EXISTS "redirects_rels_order_idx" ON "redirects_rels" ("order");
@@ -1634,6 +1866,12 @@ EXCEPTION
 END $$;
 
 DO $$ BEGIN
+ ALTER TABLE "pages_rels" ADD CONSTRAINT "pages_rels_listings_fk" FOREIGN KEY ("listings_id") REFERENCES "listings"("id") ON DELETE cascade ON UPDATE no action;
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
  ALTER TABLE "_pages_v_version_hero_links" ADD CONSTRAINT "_pages_v_version_hero_links_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "_pages_v"("id") ON DELETE cascade ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
@@ -1707,6 +1945,12 @@ END $$;
 
 DO $$ BEGIN
  ALTER TABLE "_pages_v_rels" ADD CONSTRAINT "_pages_v_rels_projects_fk" FOREIGN KEY ("projects_id") REFERENCES "projects"("id") ON DELETE cascade ON UPDATE no action;
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ ALTER TABLE "_pages_v_rels" ADD CONSTRAINT "_pages_v_rels_listings_fk" FOREIGN KEY ("listings_id") REFERENCES "listings"("id") ON DELETE cascade ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
@@ -1802,6 +2046,12 @@ EXCEPTION
 END $$;
 
 DO $$ BEGIN
+ ALTER TABLE "posts_rels" ADD CONSTRAINT "posts_rels_listings_fk" FOREIGN KEY ("listings_id") REFERENCES "listings"("id") ON DELETE cascade ON UPDATE no action;
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
  ALTER TABLE "_posts_v_version_populated_authors" ADD CONSTRAINT "_posts_v_version_populated_authors_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "_posts_v"("id") ON DELETE cascade ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
@@ -1892,6 +2142,12 @@ EXCEPTION
 END $$;
 
 DO $$ BEGIN
+ ALTER TABLE "_posts_v_rels" ADD CONSTRAINT "_posts_v_rels_listings_fk" FOREIGN KEY ("listings_id") REFERENCES "listings"("id") ON DELETE cascade ON UPDATE no action;
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
  ALTER TABLE "projects_hero_links" ADD CONSTRAINT "projects_hero_links_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "projects"("id") ON DELETE cascade ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
@@ -1965,6 +2221,12 @@ END $$;
 
 DO $$ BEGIN
  ALTER TABLE "projects_rels" ADD CONSTRAINT "projects_rels_projects_fk" FOREIGN KEY ("projects_id") REFERENCES "projects"("id") ON DELETE cascade ON UPDATE no action;
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ ALTER TABLE "projects_rels" ADD CONSTRAINT "projects_rels_listings_fk" FOREIGN KEY ("listings_id") REFERENCES "listings"("id") ON DELETE cascade ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
@@ -2048,6 +2310,12 @@ EXCEPTION
 END $$;
 
 DO $$ BEGIN
+ ALTER TABLE "_projects_v_rels" ADD CONSTRAINT "_projects_v_rels_listings_fk" FOREIGN KEY ("listings_id") REFERENCES "listings"("id") ON DELETE cascade ON UPDATE no action;
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
  ALTER TABLE "categories_breadcrumbs" ADD CONSTRAINT "categories_breadcrumbs_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "categories"("id") ON DELETE cascade ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
@@ -2109,6 +2377,102 @@ END $$;
 
 DO $$ BEGIN
  ALTER TABLE "_comments_v_rels" ADD CONSTRAINT "_comments_v_rels_posts_fk" FOREIGN KEY ("posts_id") REFERENCES "posts"("id") ON DELETE cascade ON UPDATE no action;
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ ALTER TABLE "team_member_strengths" ADD CONSTRAINT "team_member_strengths_parent_fk" FOREIGN KEY ("parent_id") REFERENCES "team_member"("id") ON DELETE cascade ON UPDATE no action;
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ ALTER TABLE "team_member_rels" ADD CONSTRAINT "team_member_rels_parent_fk" FOREIGN KEY ("parent_id") REFERENCES "team_member"("id") ON DELETE cascade ON UPDATE no action;
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ ALTER TABLE "team_member_rels" ADD CONSTRAINT "team_member_rels_media_fk" FOREIGN KEY ("media_id") REFERENCES "media"("id") ON DELETE cascade ON UPDATE no action;
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ ALTER TABLE "listings_property_type" ADD CONSTRAINT "listings_property_type_parent_fk" FOREIGN KEY ("parent_id") REFERENCES "listings"("id") ON DELETE cascade ON UPDATE no action;
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ ALTER TABLE "listings_image_gallery" ADD CONSTRAINT "listings_image_gallery_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "listings"("id") ON DELETE cascade ON UPDATE no action;
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ ALTER TABLE "listings_rels" ADD CONSTRAINT "listings_rels_parent_fk" FOREIGN KEY ("parent_id") REFERENCES "listings"("id") ON DELETE cascade ON UPDATE no action;
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ ALTER TABLE "listings_rels" ADD CONSTRAINT "listings_rels_categories_fk" FOREIGN KEY ("categories_id") REFERENCES "categories"("id") ON DELETE cascade ON UPDATE no action;
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ ALTER TABLE "listings_rels" ADD CONSTRAINT "listings_rels_media_fk" FOREIGN KEY ("media_id") REFERENCES "media"("id") ON DELETE cascade ON UPDATE no action;
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ ALTER TABLE "listings_rels" ADD CONSTRAINT "listings_rels_team_member_fk" FOREIGN KEY ("team_member_id") REFERENCES "team_member"("id") ON DELETE cascade ON UPDATE no action;
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ ALTER TABLE "_listings_v_version_property_type" ADD CONSTRAINT "_listings_v_version_property_type_parent_fk" FOREIGN KEY ("parent_id") REFERENCES "_listings_v"("id") ON DELETE cascade ON UPDATE no action;
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ ALTER TABLE "_listings_v_version_image_gallery" ADD CONSTRAINT "_listings_v_version_image_gallery_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "_listings_v"("id") ON DELETE cascade ON UPDATE no action;
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ ALTER TABLE "_listings_v_rels" ADD CONSTRAINT "_listings_v_rels_parent_fk" FOREIGN KEY ("parent_id") REFERENCES "_listings_v"("id") ON DELETE cascade ON UPDATE no action;
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ ALTER TABLE "_listings_v_rels" ADD CONSTRAINT "_listings_v_rels_listings_fk" FOREIGN KEY ("listings_id") REFERENCES "listings"("id") ON DELETE cascade ON UPDATE no action;
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ ALTER TABLE "_listings_v_rels" ADD CONSTRAINT "_listings_v_rels_categories_fk" FOREIGN KEY ("categories_id") REFERENCES "categories"("id") ON DELETE cascade ON UPDATE no action;
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ ALTER TABLE "_listings_v_rels" ADD CONSTRAINT "_listings_v_rels_media_fk" FOREIGN KEY ("media_id") REFERENCES "media"("id") ON DELETE cascade ON UPDATE no action;
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ ALTER TABLE "_listings_v_rels" ADD CONSTRAINT "_listings_v_rels_team_member_fk" FOREIGN KEY ("team_member_id") REFERENCES "team_member"("id") ON DELETE cascade ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
@@ -2263,6 +2627,17 @@ DROP TABLE "comments";
 DROP TABLE "comments_rels";
 DROP TABLE "_comments_v";
 DROP TABLE "_comments_v_rels";
+DROP TABLE "team_member_strengths";
+DROP TABLE "team_member";
+DROP TABLE "team_member_rels";
+DROP TABLE "listings_property_type";
+DROP TABLE "listings_image_gallery";
+DROP TABLE "listings";
+DROP TABLE "listings_rels";
+DROP TABLE "_listings_v_version_property_type";
+DROP TABLE "_listings_v_version_image_gallery";
+DROP TABLE "_listings_v";
+DROP TABLE "_listings_v_rels";
 DROP TABLE "redirects";
 DROP TABLE "redirects_rels";
 DROP TABLE "payload_preferences";

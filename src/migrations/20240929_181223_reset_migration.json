@@ -1,5 +1,5 @@
 {
-  "id": "9d61934c-30c6-4377-bd49-064ecd472279",
+  "id": "bc092d65-9840-495c-ba34-687e03cf93a4",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "5",
   "dialect": "pg",
@@ -804,6 +804,12 @@
           "type": "integer",
           "primaryKey": false,
           "notNull": false
+        },
+        "listings_id": {
+          "name": "listings_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
         }
       },
       "indexes": {
@@ -901,6 +907,19 @@
           "tableTo": "projects",
           "columnsFrom": [
             "projects_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "pages_rels_listings_fk": {
+          "name": "pages_rels_listings_fk",
+          "tableFrom": "pages_rels",
+          "tableTo": "listings",
+          "columnsFrom": [
+            "listings_id"
           ],
           "columnsTo": [
             "id"
@@ -1793,6 +1812,12 @@
           "type": "integer",
           "primaryKey": false,
           "notNull": false
+        },
+        "listings_id": {
+          "name": "listings_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
         }
       },
       "indexes": {
@@ -1890,6 +1915,19 @@
           "tableTo": "projects",
           "columnsFrom": [
             "projects_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "_pages_v_rels_listings_fk": {
+          "name": "_pages_v_rels_listings_fk",
+          "tableFrom": "_pages_v_rels",
+          "tableTo": "listings",
+          "columnsFrom": [
+            "listings_id"
           ],
           "columnsTo": [
             "id"
@@ -2776,6 +2814,12 @@
           "type": "integer",
           "primaryKey": false,
           "notNull": false
+        },
+        "listings_id": {
+          "name": "listings_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
         }
       },
       "indexes": {
@@ -2886,6 +2930,19 @@
           "tableTo": "projects",
           "columnsFrom": [
             "projects_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "posts_rels_listings_fk": {
+          "name": "posts_rels_listings_fk",
+          "tableFrom": "posts_rels",
+          "tableTo": "listings",
+          "columnsFrom": [
+            "listings_id"
           ],
           "columnsTo": [
             "id"
@@ -3859,6 +3916,12 @@
           "type": "integer",
           "primaryKey": false,
           "notNull": false
+        },
+        "listings_id": {
+          "name": "listings_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
         }
       },
       "indexes": {
@@ -3969,6 +4032,19 @@
           "tableTo": "projects",
           "columnsFrom": [
             "projects_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "_posts_v_rels_listings_fk": {
+          "name": "_posts_v_rels_listings_fk",
+          "tableFrom": "_posts_v_rels",
+          "tableTo": "listings",
+          "columnsFrom": [
+            "listings_id"
           ],
           "columnsTo": [
             "id"
@@ -4780,6 +4856,12 @@
           "type": "integer",
           "primaryKey": false,
           "notNull": false
+        },
+        "listings_id": {
+          "name": "listings_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
         }
       },
       "indexes": {
@@ -4877,6 +4959,19 @@
           "tableTo": "projects",
           "columnsFrom": [
             "projects_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "projects_rels_listings_fk": {
+          "name": "projects_rels_listings_fk",
+          "tableFrom": "projects_rels",
+          "tableTo": "listings",
+          "columnsFrom": [
+            "listings_id"
           ],
           "columnsTo": [
             "id"
@@ -5769,6 +5864,12 @@
           "type": "integer",
           "primaryKey": false,
           "notNull": false
+        },
+        "listings_id": {
+          "name": "listings_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
         }
       },
       "indexes": {
@@ -5866,6 +5967,19 @@
           "tableTo": "posts",
           "columnsFrom": [
             "posts_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "_projects_v_rels_listings_fk": {
+          "name": "_projects_v_rels_listings_fk",
+          "tableFrom": "_projects_v_rels",
+          "tableTo": "listings",
+          "columnsFrom": [
+            "listings_id"
           ],
           "columnsTo": [
             "id"
@@ -6740,8 +6854,8 @@
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
-    "team_strengths": {
-      "name": "team_strengths",
+    "team_member_strengths": {
+      "name": "team_member_strengths",
       "schema": "",
       "columns": {
         "order": {
@@ -6758,7 +6872,7 @@
         },
         "value": {
           "name": "value",
-          "type": "enum_team_strengths",
+          "type": "enum_team_member_strengths",
           "primaryKey": false,
           "notNull": false
         },
@@ -6770,15 +6884,15 @@
         }
       },
       "indexes": {
-        "team_strengths_order_idx": {
-          "name": "team_strengths_order_idx",
+        "team_member_strengths_order_idx": {
+          "name": "team_member_strengths_order_idx",
           "columns": [
             "order"
           ],
           "isUnique": false
         },
-        "team_strengths_parent_idx": {
-          "name": "team_strengths_parent_idx",
+        "team_member_strengths_parent_idx": {
+          "name": "team_member_strengths_parent_idx",
           "columns": [
             "parent_id"
           ],
@@ -6786,10 +6900,10 @@
         }
       },
       "foreignKeys": {
-        "team_strengths_parent_fk": {
-          "name": "team_strengths_parent_fk",
-          "tableFrom": "team_strengths",
-          "tableTo": "team",
+        "team_member_strengths_parent_fk": {
+          "name": "team_member_strengths_parent_fk",
+          "tableFrom": "team_member_strengths",
+          "tableTo": "team_member",
           "columnsFrom": [
             "parent_id"
           ],
@@ -6803,8 +6917,8 @@
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
-    "team": {
-      "name": "team",
+    "team_member": {
+      "name": "team_member",
       "schema": "",
       "columns": {
         "id": {
@@ -6871,8 +6985,8 @@
         }
       },
       "indexes": {
-        "team_created_at_idx": {
-          "name": "team_created_at_idx",
+        "team_member_created_at_idx": {
+          "name": "team_member_created_at_idx",
           "columns": [
             "created_at"
           ],
@@ -6883,8 +6997,8 @@
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
-    "team_rels": {
-      "name": "team_rels",
+    "team_member_rels": {
+      "name": "team_member_rels",
       "schema": "",
       "columns": {
         "id": {
@@ -6919,22 +7033,22 @@
         }
       },
       "indexes": {
-        "team_rels_order_idx": {
-          "name": "team_rels_order_idx",
+        "team_member_rels_order_idx": {
+          "name": "team_member_rels_order_idx",
           "columns": [
             "order"
           ],
           "isUnique": false
         },
-        "team_rels_parent_idx": {
-          "name": "team_rels_parent_idx",
+        "team_member_rels_parent_idx": {
+          "name": "team_member_rels_parent_idx",
           "columns": [
             "parent_id"
           ],
           "isUnique": false
         },
-        "team_rels_path_idx": {
-          "name": "team_rels_path_idx",
+        "team_member_rels_path_idx": {
+          "name": "team_member_rels_path_idx",
           "columns": [
             "path"
           ],
@@ -6942,10 +7056,10 @@
         }
       },
       "foreignKeys": {
-        "team_rels_parent_fk": {
-          "name": "team_rels_parent_fk",
-          "tableFrom": "team_rels",
-          "tableTo": "team",
+        "team_member_rels_parent_fk": {
+          "name": "team_member_rels_parent_fk",
+          "tableFrom": "team_member_rels",
+          "tableTo": "team_member",
           "columnsFrom": [
             "parent_id"
           ],
@@ -6955,9 +7069,9 @@
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
-        "team_rels_media_fk": {
-          "name": "team_rels_media_fk",
-          "tableFrom": "team_rels",
+        "team_member_rels_media_fk": {
+          "name": "team_member_rels_media_fk",
+          "tableFrom": "team_member_rels",
           "tableTo": "media",
           "columnsFrom": [
             "media_id"
@@ -7114,14 +7228,20 @@
           "primaryKey": true,
           "notNull": true
         },
-        "name": {
-          "name": "name",
+        "title": {
+          "name": "title",
           "type": "varchar",
           "primaryKey": false,
           "notNull": false
         },
         "slug": {
           "name": "slug",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "address": {
+          "name": "address",
           "type": "varchar",
           "primaryKey": false,
           "notNull": false
@@ -7240,6 +7360,18 @@
           "primaryKey": false,
           "notNull": false
         },
+        "meta_title": {
+          "name": "meta_title",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "meta_description": {
+          "name": "meta_description",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
         "updated_at": {
           "name": "updated_at",
           "type": "timestamp(3) with time zone",
@@ -7309,14 +7441,20 @@
           "primaryKey": false,
           "notNull": true
         },
+        "categories_id": {
+          "name": "categories_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
         "media_id": {
           "name": "media_id",
           "type": "integer",
           "primaryKey": false,
           "notNull": false
         },
-        "team_id": {
-          "name": "team_id",
+        "team_member_id": {
+          "name": "team_member_id",
           "type": "integer",
           "primaryKey": false,
           "notNull": false
@@ -7359,6 +7497,19 @@
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
+        "listings_rels_categories_fk": {
+          "name": "listings_rels_categories_fk",
+          "tableFrom": "listings_rels",
+          "tableTo": "categories",
+          "columnsFrom": [
+            "categories_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
         "listings_rels_media_fk": {
           "name": "listings_rels_media_fk",
           "tableFrom": "listings_rels",
@@ -7372,12 +7523,12 @@
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
-        "listings_rels_team_fk": {
-          "name": "listings_rels_team_fk",
+        "listings_rels_team_member_fk": {
+          "name": "listings_rels_team_member_fk",
           "tableFrom": "listings_rels",
-          "tableTo": "team",
+          "tableTo": "team_member",
           "columnsFrom": [
-            "team_id"
+            "team_member_id"
           ],
           "columnsTo": [
             "id"
@@ -7537,14 +7688,20 @@
           "primaryKey": true,
           "notNull": true
         },
-        "version_name": {
-          "name": "version_name",
+        "version_title": {
+          "name": "version_title",
           "type": "varchar",
           "primaryKey": false,
           "notNull": false
         },
         "version_slug": {
           "name": "version_slug",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "version_address": {
+          "name": "version_address",
           "type": "varchar",
           "primaryKey": false,
           "notNull": false
@@ -7663,6 +7820,18 @@
           "primaryKey": false,
           "notNull": false
         },
+        "version_meta_title": {
+          "name": "version_meta_title",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "version_meta_description": {
+          "name": "version_meta_description",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
         "version_updated_at": {
           "name": "version_updated_at",
           "type": "timestamp(3) with time zone",
@@ -7777,14 +7946,20 @@
           "primaryKey": false,
           "notNull": false
         },
+        "categories_id": {
+          "name": "categories_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
         "media_id": {
           "name": "media_id",
           "type": "integer",
           "primaryKey": false,
           "notNull": false
         },
-        "team_id": {
-          "name": "team_id",
+        "team_member_id": {
+          "name": "team_member_id",
           "type": "integer",
           "primaryKey": false,
           "notNull": false
@@ -7840,6 +8015,19 @@
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
+        "_listings_v_rels_categories_fk": {
+          "name": "_listings_v_rels_categories_fk",
+          "tableFrom": "_listings_v_rels",
+          "tableTo": "categories",
+          "columnsFrom": [
+            "categories_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
         "_listings_v_rels_media_fk": {
           "name": "_listings_v_rels_media_fk",
           "tableFrom": "_listings_v_rels",
@@ -7853,12 +8041,12 @@
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
-        "_listings_v_rels_team_fk": {
-          "name": "_listings_v_rels_team_fk",
+        "_listings_v_rels_team_member_fk": {
+          "name": "_listings_v_rels_team_member_fk",
           "tableFrom": "_listings_v_rels",
-          "tableTo": "team",
+          "tableTo": "team_member",
           "columnsFrom": [
-            "team_id"
+            "team_member_id"
           ],
           "columnsTo": [
             "id"
@@ -8832,7 +9020,8 @@
       "name": "enum_pages_blocks_archive_relation_to",
       "values": {
         "posts": "posts",
-        "projects": "projects"
+        "projects": "projects",
+        "listings": "listings"
       }
     },
     "enum_pages_status": {
@@ -8922,7 +9111,8 @@
       "name": "enum__pages_v_blocks_archive_relation_to",
       "values": {
         "posts": "posts",
-        "projects": "projects"
+        "projects": "projects",
+        "listings": "listings"
       }
     },
     "enum__pages_v_version_status": {
@@ -9012,7 +9202,8 @@
       "name": "enum_posts_blocks_archive_relation_to",
       "values": {
         "posts": "posts",
-        "projects": "projects"
+        "projects": "projects",
+        "listings": "listings"
       }
     },
     "enum_posts_status": {
@@ -9102,7 +9293,8 @@
       "name": "enum__posts_v_blocks_archive_relation_to",
       "values": {
         "posts": "posts",
-        "projects": "projects"
+        "projects": "projects",
+        "listings": "listings"
       }
     },
     "enum__posts_v_version_status": {
@@ -9192,7 +9384,8 @@
       "name": "enum_projects_blocks_archive_relation_to",
       "values": {
         "posts": "posts",
-        "projects": "projects"
+        "projects": "projects",
+        "listings": "listings"
       }
     },
     "enum_projects_status": {
@@ -9282,7 +9475,8 @@
       "name": "enum__projects_v_blocks_archive_relation_to",
       "values": {
         "posts": "posts",
-        "projects": "projects"
+        "projects": "projects",
+        "listings": "listings"
       }
     },
     "enum__projects_v_version_status": {
@@ -9313,8 +9507,8 @@
         "published": "published"
       }
     },
-    "enum_team_strengths": {
-      "name": "enum_team_strengths",
+    "enum_team_member_strengths": {
+      "name": "enum_team_member_strengths",
       "values": {
         "Residential Real Estate": "Residential Real Estate",
         "Commercial Real Estate": "Commercial Real Estate"

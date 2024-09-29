@@ -29,6 +29,10 @@ import { Listings } from './collections/Listings'
 import { Teammates } from './collections/Teammates'
 import { Testimonials } from './collections/Testimonials'
 import { Services } from './collections/Services'
+import { Companies } from './collections/Companies'
+import { InvolvementEvents } from './collections/InvolvementEvents'
+import { InvolvementGroups } from './collections/InvolvementGroups'
+import { CommunityResources } from './collections/CommunityResources'
 
 const generateTitle: GenerateTitle = () => {
   return 'Wittner Wollman Group'
@@ -84,6 +88,10 @@ export default buildConfig({
     Listings,
     Testimonials,
     Services,
+    Companies,
+    InvolvementEvents,
+    InvolvementGroups,
+    CommunityResources,
   ],
   globals: [Settings, Header, Footer],
   typescript: {

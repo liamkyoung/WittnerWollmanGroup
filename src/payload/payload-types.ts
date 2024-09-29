@@ -19,6 +19,10 @@ export interface Config {
     listings: Listing;
     testimonials: Testimonial;
     services: Service;
+    companies: Company;
+    involvementEvents: InvolvementEvent;
+    involvementGroups: InvolvementGroup;
+    communityResources: CommunityResource;
     redirects: Redirect;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -774,6 +778,60 @@ export interface Service {
     description?: string | null;
     image?: number | Media | null;
   };
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "companies".
+ */
+export interface Company {
+  id: number;
+  name: string;
+  image: number | Media;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "involvementEvents".
+ */
+export interface InvolvementEvent {
+  id: number;
+  title: string;
+  description?: string | null;
+  image: number | Media;
+  eventDate?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "involvementGroups".
+ */
+export interface InvolvementGroup {
+  id: number;
+  title: string;
+  description: string;
+  image: number | Media;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "communityResources".
+ */
+export interface CommunityResource {
+  id: number;
+  title: string;
+  address: string;
+  description: string;
+  categories: number | Category;
+  image: number | Media;
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;

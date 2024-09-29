@@ -17,6 +17,7 @@ export interface Config {
     comments: Comment;
     teammates: Teammate;
     listings: Listing;
+    testimonials: Testimonial;
     redirects: Redirect;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -741,6 +742,20 @@ export interface Comment {
   };
   doc?: (number | null) | Post;
   comment?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "testimonials".
+ */
+export interface Testimonial {
+  id: number;
+  title: string;
+  quote: string;
+  image: number | Media;
+  jobTitle: string;
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;

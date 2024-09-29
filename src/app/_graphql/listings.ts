@@ -19,13 +19,21 @@ query Listings($slug: String) {
         slug
         title
         streetAddress
+        zipCode
         latitude
         longitude
         propertyType
         sqFt
+        neighborhood
+        sqFtLand
         bathroomCount
         bedCount
         price
+        yearBuilt
+        areaOverview
+        tenancyType
+        occupancy
+        zoningType
         ${COVERIMAGE}
       }
     }

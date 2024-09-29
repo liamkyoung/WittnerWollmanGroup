@@ -12,7 +12,7 @@ export const ListingCard: React.FC<{
 }> = props => {
   const { title: titleFromProps, doc, className } = props
 
-  const { slug, title, meta } = doc || {}
+  const { slug, title, meta, address, sqFt, bedCount, bathroomCount } = doc || {}
   const { description, image: metaImage } = meta || {}
 
   const titleToUse = titleFromProps || title
@@ -24,18 +24,18 @@ export const ListingCard: React.FC<{
       <Link href={href}>
         {!metaImage && <div className={``}>No image</div>}
         {metaImage && typeof metaImage !== 'string' && (
-          <Media imgClassName={``} resource={metaImage} fill />
+          <Media imgClassName={``} resource={metaImage} />
         )}
       </Link>
       <div>
-        <h1>THIS IS A LISTING CARD</h1>
-
         {titleToUse && (
           <h4>
             <Link href={href}>{titleToUse}</Link>
           </h4>
         )}
-        {description && <div>{description && <p className={``}>{sanitizedDescription}</p>}</div>}
+        {address}
+        <p>Beds:{bedCount}</p>
+        <p>Baths:{bathroomCount}</p>
       </div>
     </div>
   )

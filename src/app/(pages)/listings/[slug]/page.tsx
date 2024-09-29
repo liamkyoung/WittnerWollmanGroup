@@ -26,12 +26,30 @@ export default async function Page({ params: { slug } }) {
   if (!listing) {
     notFound()
   }
-  const { title, price, sqFt, coverImage } = listing
+  const {
+    title,
+    price,
+    sqFt,
+    streetAddress,
+    city,
+    address,
+    sqFtLand,
+    coverImage,
+    propertyType,
+    bedCount,
+    bathroomCount,
+    yearBuilt,
+    areaOverview,
+    tenancyType,
+    occupancy,
+    zoningType,
+    neighborhood,
+    latitude,
+    longitude,
+    zipCode,
+  } = listing
   return (
     <div>
-      <h1 className="text-3xl">Name: {title}</h1>
-      <p>${price}</p>
-      <p>{sqFt} sqft</p>
       {typeof coverImage !== 'number' && (
         <Image
           height={200}
@@ -41,6 +59,31 @@ export default async function Page({ params: { slug } }) {
           className="rounded-full"
         />
       )}
+      <h1 className="text-3xl">Name: {title}</h1>
+      <p>${price}</p>
+      <p>{city}</p>
+      <p>{streetAddress}</p>
+      <p>{zipCode}</p>
+      <p>
+        {latitude} LAT <b>MISSING</b>
+      </p>
+      <p>
+        {longitude} LONG <b>MISSING</b>
+      </p>
+      <p>Neighborhood {neighborhood}</p>
+      <p>{sqFt} sqft</p>
+      <p>{sqFtLand} land sqft</p>
+      <p>{propertyType}</p>
+      <p>Beds {bedCount}</p>
+      <p>Baths: {bathroomCount}</p>
+      <p>Year Built: {yearBuilt}</p>
+      <p>Area Overview: {areaOverview}</p>
+      <p>Tenancy Type: {tenancyType}</p>
+      <p>Occupancy: {occupancy}%</p>
+      <p>Zoning Type: {zoningType}</p>
+      <p>
+        Image Gallery <b>MISSING</b>
+      </p>
     </div>
   )
   //   return <div>This is a Listing {slug}</div>

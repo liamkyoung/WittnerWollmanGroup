@@ -18,6 +18,7 @@ export interface Config {
     teammates: Teammate;
     listings: Listing;
     testimonials: Testimonial;
+    services: Service;
     redirects: Redirect;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -662,7 +663,6 @@ export interface Listing {
   id: number;
   title: string;
   slug?: string | null;
-  categories?: (number | Category)[] | null;
   address: string;
   streetAddress?: string | null;
   neighborhood?: string | null;
@@ -691,7 +691,6 @@ export interface Listing {
   areaOverview?: string | null;
   zoningType?: ('C' | 'r' | 'i') | null;
   tenancyType?: ('singleTenant' | 'multiTenant') | null;
-  agent?: (number | null) | Teammate;
   yearBuilt?: number | null;
   occupancy?: number | null;
   meta?: {
@@ -699,6 +698,23 @@ export interface Listing {
     description?: string | null;
     image?: number | Media | null;
   };
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "comments".
+ */
+export interface Comment {
+  id: number;
+  user?: (number | null) | User;
+  populatedUser?: {
+    id?: string | null;
+    name?: string | null;
+  };
+  doc?: (number | null) | Post;
+  comment?: string | null;
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
@@ -731,23 +747,6 @@ export interface Teammate {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "comments".
- */
-export interface Comment {
-  id: number;
-  user?: (number | null) | User;
-  populatedUser?: {
-    id?: string | null;
-    name?: string | null;
-  };
-  doc?: (number | null) | Post;
-  comment?: string | null;
-  updatedAt: string;
-  createdAt: string;
-  _status?: ('draft' | 'published') | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "testimonials".
  */
 export interface Testimonial {
@@ -756,6 +755,25 @@ export interface Testimonial {
   quote: string;
   image: number | Media;
   jobTitle: string;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "services".
+ */
+export interface Service {
+  id: number;
+  title: string;
+  slug?: string | null;
+  iconSvg: string;
+  description: string;
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    image?: number | Media | null;
+  };
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;

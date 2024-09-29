@@ -50,15 +50,6 @@ export const Listings: CollectionConfig = {
       },
     },
     {
-      name: 'categories',
-      type: 'relationship',
-      relationTo: 'categories',
-      hasMany: true,
-      admin: {
-        position: 'sidebar',
-      },
-    },
-    {
       name: 'address',
       label: 'Property Address',
       type: 'text',
@@ -264,12 +255,12 @@ export const Listings: CollectionConfig = {
         },
       ],
     },
-    {
-      name: 'agent',
-      label: 'Listing Agent',
-      type: 'relationship',
-      relationTo: 'teammates',
-    },
+    // {
+    //   name: 'agent',
+    //   label: 'Listing Agent',
+    //   type: 'relationship',
+    //   relationTo: 'teamMember',
+    // },
     {
       name: 'yearBuilt',
       label: 'Year Built',

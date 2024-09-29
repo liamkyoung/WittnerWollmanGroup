@@ -141,6 +141,8 @@ export const CollectionArchive: React.FC<Props> = props => {
     if (populateBy === 'collection' && !isRequesting.current) {
       isRequesting.current = true
 
+      console.log('Categories ', categories)
+
       // hydrate the block with fresh content after first render
       // don't show loader unless the request takes longer than x ms
       // and don't show it during initial hydration

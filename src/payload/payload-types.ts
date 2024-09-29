@@ -1000,7 +1000,6 @@ export interface Teammate {
   title: string;
   bio: string;
   profilePic: number | Media;
-  categories?: (number | Category)[] | null;
   strengths?: ('Residential Real Estate' | 'Commercial Real Estate')[] | null;
   yearsOfExperience: number;
   phoneNumber: string;

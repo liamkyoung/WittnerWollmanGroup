@@ -2,80 +2,41 @@ import React, { Fragment } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import { Teammate, Testimonial } from '../../../payload/payload-types'
+import { Teammate } from '../../../payload/payload-types'
 import { Media } from '../../_components/Media'
-import classes from './index.module.scss'
 
 export const TeammateCard: React.FC<{
-  alignItems?: 'center'
   className?: string
-  showCategories?: boolean
-  hideImagesOnMobile?: boolean
   title?: string
   doc?: Teammate
-  orientation?: 'horizontal' | 'vertical'
 }> = props => {
-  const { showCategories, title: titleFromProps, doc, className, orientation = 'vertical' } = props
+  const { title: titleFromProps, doc } = props
 
-  const { slug, title, categories, meta } = doc || {}
+  const { slug, title, meta } = doc || {}
   const { description, image: metaImage } = meta || {}
 
-  const hasCategories = categories && Array.isArray(categories) && categories.length > 0
   const titleToUse = titleFromProps || title
   const sanitizedDescription = description?.replace(/\s/g, ' ') // replace non-breaking space with white space
-  const href = `/community-resource/${slug}`
+  const href = `/teammates/${slug}`
 
   return (
-    <div
-      className={[classes.card, className, orientation && classes[orientation]]
-        .filter(Boolean)
-        .join(' ')}
-    >
-      <Link href={href} className={classes.mediaWrapper}>
-        {!metaImage && <div className={classes.placeholder}>No image</div>}
+    <div className={``}>
+      <Link href={href} className={``}>
+        {!metaImage && <div className={``}>No image</div>}
         {metaImage && typeof metaImage !== 'string' && (
-          <Media imgClassName={classes.image} resource={metaImage} fill />
+          <Media imgClassName={``} resource={metaImage} fill />
         )}
       </Link>
-      <div className={classes.content}>
-        <h1>THIS IS A TESTIMONIAL CARD</h1>
-        {showCategories && hasCategories && (
-          <div className={classes.leader}>
-            {showCategories && hasCategories && (
-              <div>
-                {categories?.map((category, index) => {
-                  if (typeof category === 'object') {
-                    const { title: titleFromCategory } = category
-
-                    const categoryTitle = titleFromCategory || 'Untitled category'
-
-                    const isLast = index === categories.length - 1
-
-                    return (
-                      <Fragment key={index}>
-                        {categoryTitle}
-                        {!isLast && <Fragment>, &nbsp;</Fragment>}
-                      </Fragment>
-                    )
-                  }
-
-                  return null
-                })}
-              </div>
-            )}
-          </div>
-        )}
+      <div className={``}>
         {titleToUse && (
-          <h4 className={classes.title}>
-            <Link href={href} className={classes.titleLink}>
+          <h4 className={``}>
+            <Link href={href} className={``}>
               {titleToUse}
             </Link>
           </h4>
         )}
         {description && (
-          <div className={classes.body}>
-            {description && <p className={classes.description}>{sanitizedDescription}</p>}
-          </div>
+          <div className={``}>{description && <p className={``}>{sanitizedDescription}</p>}</div>
         )}
       </div>
     </div>

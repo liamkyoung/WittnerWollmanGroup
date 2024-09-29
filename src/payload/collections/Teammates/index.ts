@@ -52,15 +52,6 @@ export const Teammates: CollectionConfig = {
       required: true,
     },
     {
-      name: 'categories',
-      type: 'relationship',
-      relationTo: 'categories',
-      hasMany: true,
-      admin: {
-        position: 'sidebar',
-      },
-    }, // TODO: Remove, currently here to be consistent with projects and posts.
-    {
       name: 'strengths',
       label: 'Specializtion',
       type: 'select', // required

@@ -11,7 +11,7 @@ export const TestimonialCard: React.FC<{
 }> = props => {
   const { doc, className } = props
 
-  const { name, jobTitle, image, quote } = doc || {}
+  const { title, jobTitle, image, quote } = doc || {}
 
   //
   const sanitizedQuote = quote?.replace(/\s/g, ' ') // replace non-breaking space with white space
@@ -19,7 +19,7 @@ export const TestimonialCard: React.FC<{
   return (
     <div className={`${className}`}>
       <Media imgClassName={``} resource={image} fill />
-      <h2>{name}</h2>
+      <h2>{title}</h2>
       <h3>{jobTitle}</h3>
       <p>{sanitizedQuote}</p>
     </div>

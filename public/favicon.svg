@@ -1,15 +1,47 @@
-<svg width="260" height="260" viewBox="0 0 260 260" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <style>
-    path {
-      fill: #0F0F0F;
-    }
-
-    @media (prefers-color-scheme: dark) {
-      path {
-        fill: white;
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 700 700">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #722320;
       }
-    }
-  </style>
-	<path d="M120.59 8.5824L231.788 75.6142V202.829L148.039 251.418V124.203L36.7866 57.2249L120.59 8.5824Z" />
-	<path d="M112.123 244.353V145.073L28.2114 193.769L112.123 244.353Z" />
+
+      .cls-2 {
+        fill: #c67573;
+        stroke: #c67573;
+      }
+
+      .cls-2, .cls-3, .cls-4 {
+        stroke-miterlimit: 10;
+        stroke-width: 1.3px;
+      }
+
+      .cls-3 {
+        fill: #b63d37;
+        stroke: #b63d37;
+      }
+
+      .cls-4 {
+        fill: #fff;
+        stroke: #221f20;
+      }
+
+      .cls-5 {
+        display: none;
+        isolation: isolate;
+      }
+    </style>
+  </defs>
+  <!-- Generator: Adobe Illustrator 28.6.0, SVG Export Plug-In . SVG Version: 1.2.0 Build 709)  -->
+  <g>
+    <g id="Layer_1">
+      <image class="cls-5" width="1084" height="1082" transform="translate(2.5 3.1) scale(.6)" xlink:href="Screenshot 2024-08-14 at 10.17.06 AM.png"/>
+      <g>
+        <polygon class="cls-1" points="201.7 175 154.3 258 274.1 466.8 322.8 383.5 201.7 175"/>
+        <polygon class="cls-3" points="344.3 172.2 295.2 256.4 414.9 469.2 465.8 386.8 344.3 172.2"/>
+        <polygon class="cls-2" points="492.6 177.9 444.8 263 496.6 353.4 545.7 265.6 492.6 177.9"/>
+        <path class="cls-4" d="M270.4,393.2"/>
+      </g>
+    </g>
+  </g>
 </svg>

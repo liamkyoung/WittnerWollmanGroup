@@ -5,6 +5,8 @@ import { PAGE } from '../_graphql/pages'
 import { POST } from '../_graphql/posts'
 import { PROJECT } from '../_graphql/projects'
 import { LISTING } from '../_graphql/listings'
+import { TEAMMATE } from '../_graphql/teammates'
+
 import { GRAPHQL_API_URL } from './shared'
 import { payloadToken } from './token'
 
@@ -25,6 +27,10 @@ const queryMap = {
   listings: {
     query: LISTING,
     key: 'Listings',
+  },
+  teammates: {
+    query: TEAMMATE,
+    key: 'Teammates',
   },
 }
 

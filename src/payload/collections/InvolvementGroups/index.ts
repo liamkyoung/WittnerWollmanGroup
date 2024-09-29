@@ -48,5 +48,11 @@ export const InvolvementGroups: CollectionConfig = {
       relationTo: 'media',
       required: true,
     },
+    {
+      name: 'linkToGroupWebsite',
+      type: 'text',
+      label: 'Link To Group',
+      required: false,
+    },
   ],
 }

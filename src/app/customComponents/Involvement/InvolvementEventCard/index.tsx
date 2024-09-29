@@ -17,12 +17,12 @@ export const InvolvementEventCard: React.FC<{
 
   return (
     <div className={`${className}`}>
-      <Media imgClassName={``} resource={image} fill />
+      <Media imgClassName={``} resource={image} />
       <h2>{title}</h2>
       <p>{sanitizedDescription}</p>
 
       {/* Fix Date? */}
-      <p>{eventDate}</p>
+      <p>Date: {eventDate}</p>
     </div>
   )
 }

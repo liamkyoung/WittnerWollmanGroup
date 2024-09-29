@@ -11,15 +11,25 @@ export const InvolvementGroupCard: React.FC<{
 }> = props => {
   const { doc, className } = props
 
-  const { title, image, description } = doc || {}
+  const { title, image, description, linkToGroupWebsite } = doc || {}
 
   const sanitizedDescription = description?.replace(/\s/g, ' ') // replace non-breaking space with white space
 
   return (
     <div className={`${className}`}>
-      <Media imgClassName={``} resource={image} fill />
-      <h2>{title}</h2>
-      <p>{sanitizedDescription}</p>
+      {linkToGroupWebsite ? (
+        <Link href={linkToGroupWebsite}>
+          <Media imgClassName={``} resource={image} />
+          <h2>{title}</h2>
+          <p>{sanitizedDescription}</p>
+        </Link>
+      ) : (
+        <div>
+          <Media imgClassName={``} resource={image} />
+          <h2>{title}</h2>
+          <p>{sanitizedDescription}</p>
+        </div>
+      )}
     </div>
   )
 }

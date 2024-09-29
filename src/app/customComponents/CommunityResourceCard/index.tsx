@@ -11,15 +11,16 @@ export const CommunityResourceCard: React.FC<{
 }> = props => {
   const { doc, className } = props
 
-  const { title, categories, image, description } = doc || {}
+  const { title, categories, image, description, address } = doc || {}
 
   const hasCategories = categories && Array.isArray(categories) && categories.length > 0
   const sanitizedDescription = description?.replace(/\s/g, ' ') // replace non-breaking space with white space
 
   return (
     <div className={`${className}`}>
-      <Media imgClassName={``} resource={image} fill />
+      <Media imgClassName={``} resource={image} />
       <h2>{title}</h2>
+      <p>{address}</p>
       <p>{sanitizedDescription}</p>
       {hasCategories && <p>{categories.map(c => c)}</p>}
     </div>

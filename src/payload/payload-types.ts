@@ -15,7 +15,7 @@ export interface Config {
     categories: Category;
     users: User;
     comments: Comment;
-    teamMember: TeamMember;
+    teammates: Teammate;
     listings: Listing;
     redirects: Redirect;
     'payload-preferences': PayloadPreference;
@@ -690,7 +690,7 @@ export interface Listing {
   areaOverview?: string | null;
   zoningType?: ('C' | 'r' | 'i') | null;
   tenancyType?: ('singleTenant' | 'multiTenant') | null;
-  agent?: (number | null) | TeamMember;
+  agent?: (number | null) | Teammate;
   yearBuilt?: number | null;
   occupancy?: number | null;
   meta?: {
@@ -704,11 +704,11 @@ export interface Listing {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "teamMember".
+ * via the `definition` "teammates".
  */
-export interface TeamMember {
+export interface Teammate {
   id: number;
-  name: string;
+  title: string;
   bio: string;
   profilePic: number | Media;
   strengths?: ('Residential Real Estate' | 'Commercial Real Estate')[] | null;
@@ -717,8 +717,16 @@ export interface TeamMember {
   email: string;
   slug?: string | null;
   instagram?: string | null;
+  Facebook?: string | null;
+  Linkedin?: string | null;
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    image?: number | Media | null;
+  };
   updatedAt: string;
   createdAt: string;
+  _status?: ('draft' | 'published') | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

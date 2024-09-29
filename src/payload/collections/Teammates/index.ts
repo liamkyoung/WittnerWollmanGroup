@@ -1,17 +1,42 @@
 import type { CollectionConfig, FieldHook } from 'payload/types'
-import formatSlug from '../../../payload/utilities/formatSlug'
+import { admins } from '../../access/admins'
+import { adminsOrPublished } from '../../access/adminsOrPublished'
+import formatSlug from '../../utilities/formatSlug'
 
-export const TeamMember: CollectionConfig = {
-  slug: 'teamMember',
+import { populateArchiveBlock } from '../../hooks/populateArchiveBlock'
+import { populatePublishedAt } from '../../hooks/populatePublishedAt'
+
+import { revalidateTeammate } from './hooks/revalidateTeammate'
+import { formatSocialMediaHandle } from '../../../payload/hooks/formatSocialMediaHandle'
+
+export const Teammates: CollectionConfig = {
+  slug: 'teammates',
   admin: {
-    useAsTitle: 'name',
+    useAsTitle: 'title',
+    preview: doc => {
+      return `${process.env.PAYLOAD_PUBLIC_SERVER_URL}/next/preview?url=${encodeURIComponent(
+        `${process.env.PAYLOAD_PUBLIC_SERVER_URL}/teammates/${doc?.slug}`,
+      )}&secret=${process.env.PAYLOAD_PUBLIC_DRAFT_SECRET}`
+    },
+  },
+  versions: {
+    drafts: true,
   },
   access: {
-    read: () => true,
+    read: adminsOrPublished,
+    update: admins,
+    create: admins,
+    delete: admins,
+  },
+  hooks: {
+    beforeChange: [populatePublishedAt],
+    afterChange: [revalidateTeammate],
+    // afterRead: [populateArchiveBlock], // FIX FOR LATER TO SHOW DIFFERENT
   },
   fields: [
     {
-      name: 'name',
+      name: 'title',
+      label: 'Name',
       type: 'text',
       required: true,
     },
@@ -79,7 +104,7 @@ export const TeamMember: CollectionConfig = {
       label: 'Slug',
       type: 'text',
       hooks: {
-        beforeValidate: [formatSlug('name')],
+        beforeValidate: [formatSlug('title')],
       },
     },
     {
@@ -90,15 +115,23 @@ export const TeamMember: CollectionConfig = {
         position: 'sidebar',
       },
       hooks: {
-        beforeChange: [
-          ({ value }) => {
-            if (!value) return value // If the field is empty, return as is.
-            if (value.startsWith('@')) {
-              return value // If the username already starts with '@', return as is.
-            }
-            return `@${value}` // Prepend '@' to the username.
-          },
-        ],
+        beforeChange: [formatSocialMediaHandle],
+      },
+    },
+    {
+      name: 'Facebook',
+      label: 'Facebook Link',
+      type: 'text',
+      admin: {
+        position: 'sidebar',
+      },
+    },
+    {
+      name: 'Linkedin',
+      label: 'Linkedin Profile',
+      type: 'text',
+      admin: {
+        position: 'sidebar',
       },
     },
   ],

@@ -268,7 +268,7 @@ export const Listings: CollectionConfig = {
       name: 'agent',
       label: 'Listing Agent',
       type: 'relationship',
-      relationTo: 'teamMember',
+      relationTo: 'teammates',
     },
     {
       name: 'yearBuilt',

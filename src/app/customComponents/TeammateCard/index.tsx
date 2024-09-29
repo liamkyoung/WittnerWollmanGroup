@@ -1,40 +1,21 @@
 import React, { Fragment } from 'react'
+import Image from 'next/image'
 import Link from 'next/link'
 
-import {
-  InvolvementGroup,
-  Listing,
-  Post,
-  Project,
-  Teammate,
-  InvolvementEvent,
-  Testimonial,
-  Company,
-  Service,
-  CommunityResource,
-} from '../../../payload/payload-types'
-import { Media } from '../Media'
-
+import { Teammate, Testimonial } from '../../../payload/payload-types'
+import { Media } from '../../_components/Media'
 import classes from './index.module.scss'
 
-export const Card: React.FC<{
+export const TeammateCard: React.FC<{
   alignItems?: 'center'
   className?: string
   showCategories?: boolean
   hideImagesOnMobile?: boolean
   title?: string
-  relationTo?: 'projects' | 'posts'
-  doc?: Project | Post
+  doc?: Teammate
   orientation?: 'horizontal' | 'vertical'
 }> = props => {
-  const {
-    relationTo,
-    showCategories,
-    title: titleFromProps,
-    doc,
-    className,
-    orientation = 'vertical',
-  } = props
+  const { showCategories, title: titleFromProps, doc, className, orientation = 'vertical' } = props
 
   const { slug, title, categories, meta } = doc || {}
   const { description, image: metaImage } = meta || {}
@@ -42,7 +23,7 @@ export const Card: React.FC<{
   const hasCategories = categories && Array.isArray(categories) && categories.length > 0
   const titleToUse = titleFromProps || title
   const sanitizedDescription = description?.replace(/\s/g, ' ') // replace non-breaking space with white space
-  const href = `/${relationTo}/${slug}`
+  const href = `/community-resource/${slug}`
 
   return (
     <div
@@ -57,6 +38,7 @@ export const Card: React.FC<{
         )}
       </Link>
       <div className={classes.content}>
+        <h1>THIS IS A TESTIMONIAL CARD</h1>
         {showCategories && hasCategories && (
           <div className={classes.leader}>
             {showCategories && hasCategories && (

@@ -51,17 +51,7 @@ export const Services: CollectionConfig = {
       required: true,
     },
     {
-      // TODO: Remove?
-      name: 'categories',
-      type: 'relationship',
-      relationTo: 'categories',
-      admin: {
-        position: 'sidebar',
-      },
-      required: true,
-    },
-    {
-      name: 'bio',
+      name: 'description',
       label: 'Description',
       type: 'text',
       required: true,

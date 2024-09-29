@@ -27,30 +27,14 @@ export const InvolvementEvents: CollectionConfig = {
     {
       name: 'title',
       type: 'text',
+      label: 'Event Name',
       required: true,
     },
     {
-      // TODO: Remove?
-      name: 'slug',
-      label: 'Slug',
+      name: 'description',
+      label: 'Event Description',
       type: 'text',
-      hooks: {
-        beforeValidate: [formatSlug('title')],
-      },
-    },
-    {
-      name: 'categories',
-      type: 'relationship',
-      relationTo: 'categories',
-      admin: {
-        position: 'sidebar',
-      },
-      required: true,
-    },
-    {
-      name: 'bio',
-      type: 'text',
-      required: true,
+      required: false,
     },
     {
       name: 'image',

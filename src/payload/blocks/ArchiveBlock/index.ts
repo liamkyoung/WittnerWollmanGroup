@@ -73,6 +73,10 @@ export const Archive: Block = {
           label: 'Services',
           value: 'services',
         },
+        {
+          label: 'Community Resources',
+          value: 'communityResources',
+        },
       ],
     },
     {
@@ -109,6 +113,7 @@ export const Archive: Block = {
         'testimonials',
         'companies',
         'services',
+        'communityResources',
       ],
       hasMany: true,
       admin: {
@@ -129,6 +134,7 @@ export const Archive: Block = {
         'testimonials',
         'companies',
         'services',
+        'communityResources',
       ],
       hasMany: true,
       admin: {

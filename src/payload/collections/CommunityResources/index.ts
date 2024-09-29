@@ -4,8 +4,8 @@ import { adminsOrPublished } from '../../access/adminsOrPublished'
 import type { CollectionConfig, FieldHook } from 'payload/types'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
 
-export const Companies: CollectionConfig = {
-  slug: 'companies',
+export const CommunityResources: CollectionConfig = {
+  slug: 'communityResources',
   admin: {
     useAsTitle: 'title',
   },
@@ -25,15 +25,35 @@ export const Companies: CollectionConfig = {
   },
   fields: [
     {
-      name: 'name',
-      label: 'Company Name',
+      name: 'title',
       type: 'text',
+      required: true,
+    },
+    {
+      name: 'address',
+      type: 'text',
+      label: 'Address',
+      required: true,
+    },
+    {
+      name: 'description',
+      type: 'text',
+      label: 'Description',
+      required: true,
+    },
+    {
+      name: 'categories',
+      type: 'relationship',
+      relationTo: 'categories',
+      admin: {
+        position: 'sidebar',
+      },
       required: true,
     },
     {
       name: 'image',
       type: 'upload',
-      label: 'Company Image',
+      label: 'Image',
       relationTo: 'media',
       required: true,
     },

@@ -13,6 +13,7 @@ import type {
   Testimonial,
   Company,
   Service,
+  CommunityResource,
 } from '../../../payload/payload-types'
 import type { ArchiveBlockProps } from '../../_blocks/ArchiveBlock/types'
 import { Card } from '../Card'
@@ -21,6 +22,14 @@ import { PageRange } from '../PageRange'
 import { Pagination } from '../Pagination'
 
 import classes from './index.module.scss'
+import { CompanyComponent } from '@/app/customComponents/CompanyComponent'
+import { CommunityResourceCard } from '@/app/customComponents/CommunityResourceCard'
+import { ServiceCard } from '@/app/customComponents/ServiceCard'
+import { TestimonialCard } from '@/app/customComponents/TestimonialCard'
+import { InvolvementEventCard } from '@/app/customComponents/Involvement/InvolvementEventCard'
+import { InvolvementGroupCard } from '@/app/customComponents/Involvement/InvolvementGroupCard'
+import { TeammateCard } from '@/app/customComponents/TeammateCard'
+import { ListingCard } from '@/app/customComponents/Listings'
 
 type Result = {
   docs: (
@@ -33,6 +42,7 @@ type Result = {
     | Testimonial
     | Company
     | Service
+    | CommunityResource
     | string
   )[]
   hasNextPage: boolean
@@ -62,6 +72,7 @@ export type Props = {
     | 'testimonials'
     | 'companies'
     | 'services'
+    | 'communityResources'
   selectedDocs?: ArchiveBlockProps['selectedDocs']
   showPageRange?: boolean
   sort?: string
@@ -211,15 +222,43 @@ export const CollectionArchive: React.FC<Props> = props => {
             </div>
           </Gutter>
         )}
+        {/* {Cards for Collections} */}
         <Gutter>
           <div className={classes.grid}>
             {results.docs?.map((result, index) => {
               if (typeof result === 'object' && result !== null) {
-                return (
-                  <div className={classes.column} key={index}>
-                    <Card doc={result} relationTo={relationTo} showCategories />
-                  </div>
-                )
+                switch (relationTo) {
+                  case 'companies':
+                    return <CompanyComponent doc={result as Company} key={index} />
+                  case 'communityResources':
+                    return <CommunityResourceCard doc={result as CommunityResource} key={index} />
+                  case 'services':
+                    return <ServiceCard doc={result as Service} key={index} />
+                  case 'testimonials':
+                    return <TestimonialCard doc={result as Testimonial} key={index} />
+                  case 'listings':
+                    return <ListingCard doc={result as Listing} key={index} />
+                  case 'involvementEvents':
+                    return <InvolvementEventCard doc={result as InvolvementEvent} key={index} />
+                  case 'involvementGroups':
+                    return <InvolvementGroupCard doc={result as InvolvementGroup} key={index} />
+                  case 'teammates':
+                    return <TeammateCard doc={result as Teammate} key={index} />
+                  case 'posts':
+                    return (
+                      <div className={classes.column} key={index}>
+                        <Card doc={result as Post} relationTo={relationTo} showCategories />
+                      </div>
+                    )
+                  case 'projects':
+                    return (
+                      <div className={classes.column} key={index}>
+                        <Card doc={result as Project} relationTo={relationTo} showCategories />
+                      </div>
+                    )
+                  default:
+                    return <></>
+                }
               }
 
               return null

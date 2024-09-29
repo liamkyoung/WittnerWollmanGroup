@@ -32,27 +32,8 @@ export const Testimonials: CollectionConfig = {
       required: true,
     },
     {
-      // TODO: Remove?
-      name: 'slug',
-      label: 'Slug',
-      type: 'text',
-      hooks: {
-        beforeValidate: [formatSlug('title')],
-      },
-    },
-    {
-      name: 'categories',
-      type: 'relationship',
-      relationTo: 'categories',
-      admin: {
-        position: 'sidebar',
-      },
-      required: true,
-    },
-    {
-      // used as quote
-      name: 'bio',
-      label: 'quote',
+      name: 'quote',
+      label: 'Quote',
       type: 'text',
       required: true,
     },

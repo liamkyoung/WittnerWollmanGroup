@@ -22,6 +22,7 @@ export interface Config {
     testimonials: Testimonial;
     companies: Company;
     services: Service;
+    communityResources: CommunityResource;
     redirects: Redirect;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -139,6 +140,8 @@ export interface Page {
               | 'involvementEvents'
               | 'testimonials'
               | 'companies'
+              | 'services'
+              | 'communityResources'
             )
           | null;
         categories?: (number | Category)[] | null;
@@ -177,6 +180,14 @@ export interface Page {
                   relationTo: 'companies';
                   value: number | Company;
                 }
+              | {
+                  relationTo: 'services';
+                  value: number | Service;
+                }
+              | {
+                  relationTo: 'communityResources';
+                  value: number | CommunityResource;
+                }
             )[]
           | null;
         populatedDocs?:
@@ -212,6 +223,14 @@ export interface Page {
               | {
                   relationTo: 'companies';
                   value: number | Company;
+                }
+              | {
+                  relationTo: 'services';
+                  value: number | Service;
+                }
+              | {
+                  relationTo: 'communityResources';
+                  value: number | CommunityResource;
                 }
             )[]
           | null;
@@ -388,6 +407,8 @@ export interface Post {
               | 'involvementEvents'
               | 'testimonials'
               | 'companies'
+              | 'services'
+              | 'communityResources'
             )
           | null;
         categories?: (number | Category)[] | null;
@@ -426,6 +447,14 @@ export interface Post {
                   relationTo: 'companies';
                   value: number | Company;
                 }
+              | {
+                  relationTo: 'services';
+                  value: number | Service;
+                }
+              | {
+                  relationTo: 'communityResources';
+                  value: number | CommunityResource;
+                }
             )[]
           | null;
         populatedDocs?:
@@ -461,6 +490,14 @@ export interface Post {
               | {
                   relationTo: 'companies';
                   value: number | Company;
+                }
+              | {
+                  relationTo: 'services';
+                  value: number | Service;
+                }
+              | {
+                  relationTo: 'communityResources';
+                  value: number | CommunityResource;
                 }
             )[]
           | null;
@@ -548,6 +585,8 @@ export interface Post {
                   | 'involvementEvents'
                   | 'testimonials'
                   | 'companies'
+                  | 'services'
+                  | 'communityResources'
                 )
               | null;
             categories?: (number | Category)[] | null;
@@ -586,6 +625,14 @@ export interface Post {
                       relationTo: 'companies';
                       value: number | Company;
                     }
+                  | {
+                      relationTo: 'services';
+                      value: number | Service;
+                    }
+                  | {
+                      relationTo: 'communityResources';
+                      value: number | CommunityResource;
+                    }
                 )[]
               | null;
             populatedDocs?:
@@ -621,6 +668,14 @@ export interface Post {
                   | {
                       relationTo: 'companies';
                       value: number | Company;
+                    }
+                  | {
+                      relationTo: 'services';
+                      value: number | Service;
+                    }
+                  | {
+                      relationTo: 'communityResources';
+                      value: number | CommunityResource;
                     }
                 )[]
               | null;
@@ -778,6 +833,8 @@ export interface Project {
               | 'involvementEvents'
               | 'testimonials'
               | 'companies'
+              | 'services'
+              | 'communityResources'
             )
           | null;
         categories?: (number | Category)[] | null;
@@ -816,6 +873,14 @@ export interface Project {
                   relationTo: 'companies';
                   value: number | Company;
                 }
+              | {
+                  relationTo: 'services';
+                  value: number | Service;
+                }
+              | {
+                  relationTo: 'communityResources';
+                  value: number | CommunityResource;
+                }
             )[]
           | null;
         populatedDocs?:
@@ -852,6 +917,14 @@ export interface Project {
                   relationTo: 'companies';
                   value: number | Company;
                 }
+              | {
+                  relationTo: 'services';
+                  value: number | Service;
+                }
+              | {
+                  relationTo: 'communityResources';
+                  value: number | CommunityResource;
+                }
             )[]
           | null;
         populatedDocsTotal?: number | null;
@@ -879,7 +952,6 @@ export interface Listing {
   id: number;
   title: string;
   slug?: string | null;
-  categories?: (number | Category)[] | null;
   address: string;
   streetAddress?: string | null;
   neighborhood?: string | null;
@@ -953,15 +1025,8 @@ export interface Teammate {
 export interface InvolvementGroup {
   id: number;
   title: string;
-  slug?: string | null;
-  categories: number | Category;
-  bio: string;
+  description: string;
   image: number | Media;
-  meta?: {
-    title?: string | null;
-    description?: string | null;
-    image?: number | Media | null;
-  };
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
@@ -973,16 +1038,9 @@ export interface InvolvementGroup {
 export interface InvolvementEvent {
   id: number;
   title: string;
-  slug?: string | null;
-  categories: number | Category;
-  bio: string;
+  description?: string | null;
   image: number | Media;
   eventDate?: string | null;
-  meta?: {
-    title?: string | null;
-    description?: string | null;
-    image?: number | Media | null;
-  };
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
@@ -994,11 +1052,35 @@ export interface InvolvementEvent {
 export interface Testimonial {
   id: number;
   title: string;
-  slug?: string | null;
-  categories: number | Category;
-  bio: string;
+  quote: string;
   image: number | Media;
   jobTitle: string;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "companies".
+ */
+export interface Company {
+  id: number;
+  name: string;
+  image: number | Media;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "services".
+ */
+export interface Service {
+  id: number;
+  title: string;
+  slug?: string | null;
+  iconSvg: string;
+  description: string;
   meta?: {
     title?: string | null;
     description?: string | null;
@@ -1010,19 +1092,15 @@ export interface Testimonial {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "companies".
+ * via the `definition` "communityResources".
  */
-export interface Company {
+export interface CommunityResource {
   id: number;
   title: string;
-  slug?: string | null;
+  address: string;
+  description: string;
   categories: number | Category;
   image: number | Media;
-  meta?: {
-    title?: string | null;
-    description?: string | null;
-    image?: number | Media | null;
-  };
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
@@ -1040,26 +1118,6 @@ export interface Comment {
   };
   doc?: (number | null) | Post;
   comment?: string | null;
-  updatedAt: string;
-  createdAt: string;
-  _status?: ('draft' | 'published') | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "services".
- */
-export interface Service {
-  id: number;
-  title: string;
-  slug?: string | null;
-  iconSvg: string;
-  categories: number | Category;
-  bio: string;
-  meta?: {
-    title?: string | null;
-    description?: string | null;
-    image?: number | Media | null;
-  };
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;

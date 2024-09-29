@@ -31,29 +31,13 @@ export const InvolvementGroups: CollectionConfig = {
   fields: [
     {
       name: 'title',
+      label: 'Group Name',
       type: 'text',
       required: true,
     },
     {
-      // TODO: Remove?
-      name: 'slug',
-      label: 'Slug',
-      type: 'text',
-      hooks: {
-        beforeValidate: [formatSlug('title')],
-      },
-    },
-    {
-      name: 'categories',
-      type: 'relationship',
-      relationTo: 'categories',
-      admin: {
-        position: 'sidebar',
-      },
-      required: true,
-    },
-    {
-      name: 'bio',
+      name: 'description',
+      label: 'Group Description',
       type: 'text',
       required: true,
     },

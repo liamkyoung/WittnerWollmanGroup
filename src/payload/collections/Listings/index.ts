@@ -50,15 +50,6 @@ export const Listings: CollectionConfig = {
       },
     },
     {
-      name: 'categories',
-      type: 'relationship',
-      relationTo: 'categories',
-      hasMany: true,
-      admin: {
-        position: 'sidebar',
-      },
-    }, // TODO: Remove, currently here to be consistent with projects and posts.
-    {
       name: 'address',
       label: 'Property Address',
       type: 'text',

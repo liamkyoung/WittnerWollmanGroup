@@ -12,6 +12,7 @@ import type {
   Testimonial,
   Company,
   Service,
+  CommunityResource,
 } from '../payload-types'
 
 export const populateArchiveBlock: AfterReadHook = async ({ doc, context, req }) => {
@@ -36,6 +37,7 @@ export const populateArchiveBlock: AfterReadHook = async ({ doc, context, req })
               | 'testimonials'
               | 'companies'
               | 'services'
+              | 'communityResources'
             value: string
           }>
         }
@@ -53,6 +55,7 @@ export const populateArchiveBlock: AfterReadHook = async ({ doc, context, req })
               | Testimonial
               | Company
               | Service
+              | CommunityResource
             )[]
           } = await payload.find({
             collection: archiveBlock.relationTo,

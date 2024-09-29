@@ -59,6 +59,30 @@ export const ARCHIVE_BLOCK = `
         title
         ${META}
       }
+       ...on Listings {
+        id
+      }
+      ...on Teammates {
+        id
+      }
+      ...on InvolvementGroups {
+        id
+      }
+      ...on InvolvementEvents {
+        id
+      }
+      ...on Testimonials {
+        id
+      }
+      ...on Companies {
+        id
+      }
+      ...on Services {
+        id
+      }
+      ...on CommunityResources {
+        id
+      }
     }
   }
   populatedDocs {
@@ -77,6 +101,30 @@ export const ARCHIVE_BLOCK = `
         title
         ${CATEGORIES}
         ${META}
+      }
+      ...on Listings {
+        id
+      }
+      ...on Teammates {
+        id
+      }
+      ...on InvolvementGroups {
+        id
+      }
+      ...on InvolvementEvents {
+        id
+      }
+      ...on Testimonials {
+        id
+      }
+      ...on Companies {
+        id
+      }
+      ...on Services {
+        id
+      }
+      ...on CommunityResources {
+        id
       }
     }
   }

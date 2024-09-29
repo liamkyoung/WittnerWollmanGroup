@@ -49,6 +49,34 @@ export const Archive: Block = {
           label: 'Listings',
           value: 'listings',
         },
+        {
+          label: 'Teammates',
+          value: 'teammates',
+        },
+        {
+          label: 'Involvement Groups',
+          value: 'involvementGroups',
+        },
+        {
+          label: 'Involvement Events',
+          value: 'involvementEvents',
+        },
+        {
+          label: 'Testimonials',
+          value: 'testimonials',
+        },
+        {
+          label: 'Companies',
+          value: 'companies',
+        },
+        {
+          label: 'Services',
+          value: 'services',
+        },
+        {
+          label: 'Community Resources',
+          value: 'communityResources',
+        },
       ],
     },
     {
@@ -75,7 +103,18 @@ export const Archive: Block = {
       type: 'relationship',
       name: 'selectedDocs',
       label: 'Selection',
-      relationTo: ['posts', 'projects', 'listings'],
+      relationTo: [
+        'posts',
+        'projects',
+        'listings',
+        'teammates',
+        'involvementGroups',
+        'involvementEvents',
+        'testimonials',
+        'companies',
+        'services',
+        'communityResources',
+      ],
       hasMany: true,
       admin: {
         condition: (_, siblingData) => siblingData.populateBy === 'selection',
@@ -85,7 +124,18 @@ export const Archive: Block = {
       type: 'relationship',
       name: 'populatedDocs',
       label: 'Populated Docs',
-      relationTo: ['posts', 'projects', 'listings'],
+      relationTo: [
+        'posts',
+        'projects',
+        'listings',
+        'teammates',
+        'involvementGroups',
+        'involvementEvents',
+        'testimonials',
+        'companies',
+        'services',
+        'communityResources',
+      ],
       hasMany: true,
       admin: {
         disabled: true,

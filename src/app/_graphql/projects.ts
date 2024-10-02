@@ -23,6 +23,11 @@ export const PROJECT = `
           title
         }
         createdAt
+        price
+        address
+        neighborhood
+        website
+        instagram
         hero {
           type
           richText
@@ -38,14 +43,16 @@ export const PROJECT = `
           ${MEDIA_BLOCK}
           ${ARCHIVE_BLOCK}
         }
-        relatedProjects {
-          id
-          slug
-          title
-          ${META}
-        }
         ${META}
       }
     }
   }
 `
+
+// ADD BACK TO GET RELATED PROJECTS
+// relatedProjects {
+//   id
+//   slug
+//   title
+//   ${META}
+// }

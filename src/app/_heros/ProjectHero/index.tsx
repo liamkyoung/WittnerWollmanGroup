@@ -12,7 +12,17 @@ import classes from './index.module.scss'
 export const ProjectHero: React.FC<{
   project: Project
 }> = ({ project }) => {
-  const { id, title, categories, meta: { image: metaImage, description } = {}, createdAt } = project
+  const {
+    id,
+    title,
+    categories,
+    meta: { image: metaImage, description } = {},
+    createdAt,
+    price,
+    neighborhood,
+    website,
+    instagram,
+  } = project
 
   return (
     <Fragment>
@@ -52,6 +62,10 @@ export const ProjectHero: React.FC<{
               {'.'}
             </p>
           </div>
+          {price && <div>{price}</div>}
+          {neighborhood && <div>{neighborhood}</div>}
+          {website && <div>{website}</div>}
+          {instagram && <div>{instagram}</div>}
         </div>
         <div className={classes.media}>
           <div className={classes.mediaWrapper}>

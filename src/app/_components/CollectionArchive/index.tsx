@@ -31,6 +31,8 @@ import { TeammateCard } from '@/app/customComponents/TeammateCard'
 import { ListingCard } from '@/app/customComponents/Listings'
 
 import classes from './index.module.scss'
+import { NewsCard } from '@/app/customComponents/NewsCard'
+import { ProjectCard } from '@/app/customComponents/ProjectCard'
 
 type Result = {
   docs: (
@@ -247,13 +249,17 @@ export const CollectionArchive: React.FC<Props> = props => {
                   case 'posts':
                     return (
                       <div className={classes.column} key={index}>
-                        <Card doc={result as Post} relationTo={relationTo} showCategories />
+                        <NewsCard doc={result as Post} relationTo={relationTo} />
                       </div>
                     )
                   case 'projects':
                     return (
                       <div className={classes.column} key={index}>
-                        <Card doc={result as Project} relationTo={relationTo} showCategories />
+                        <ProjectCard
+                          doc={result as Project}
+                          relationTo={relationTo}
+                          showCategories
+                        />
                       </div>
                     )
                   default:

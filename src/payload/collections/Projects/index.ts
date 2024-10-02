@@ -12,6 +12,8 @@ import { populateArchiveBlock } from '../../hooks/populateArchiveBlock'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
 import { revalidateProject } from './hooks/revalidateProject'
 
+import { formatSocialMediaHandle } from '../../../payload/hooks/formatSocialMediaHandle'
+
 export const Projects: CollectionConfig = {
   slug: 'projects',
   admin: {
@@ -42,6 +44,42 @@ export const Projects: CollectionConfig = {
       name: 'title',
       type: 'text',
       required: true,
+    },
+    {
+      name: 'address',
+      type: 'text',
+      required: true,
+    },
+    {
+      name: 'price',
+      type: 'text',
+      required: true,
+    },
+    {
+      name: 'description',
+      type: 'text',
+      required: true,
+    },
+    {
+      name: 'neighborhood',
+      type: 'text',
+      required: true,
+    },
+    {
+      name: 'website',
+      type: 'text',
+      required: false,
+    },
+    {
+      name: 'instagram',
+      label: 'Instagram Username',
+      type: 'text',
+      admin: {
+        position: 'sidebar',
+      },
+      hooks: {
+        beforeChange: [formatSocialMediaHandle],
+      },
     },
     {
       name: 'categories',

@@ -723,6 +723,12 @@ export interface User {
 export interface Project {
   id: number;
   title: string;
+  address: string;
+  price: string;
+  description: string;
+  neighborhood: string;
+  website?: string | null;
+  instagram?: string | null;
   categories?: (number | Category)[] | null;
   publishedAt?: string | null;
   hero: {

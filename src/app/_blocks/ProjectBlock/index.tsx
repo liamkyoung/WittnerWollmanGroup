@@ -6,6 +6,7 @@ import { Gutter } from '../../_components/Gutter'
 import { Media } from '../../_components/Media'
 import RichText from '../../_components/RichText'
 
+import { FactsList } from '../../../payload/payload-types'
 import classes from './index.module.scss'
 import Link from 'next/link'
 

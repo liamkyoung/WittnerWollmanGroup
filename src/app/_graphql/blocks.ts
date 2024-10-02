@@ -48,6 +48,7 @@ export const PROJECT_BLOCK = `
     factStat
     factDescription
   }
+  externalLink
   ${MEDIA}
 }
 `

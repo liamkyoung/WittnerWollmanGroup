@@ -70,5 +70,11 @@ export const ProjectBlock: Block = {
       relationTo: 'media',
       required: true,
     },
+    {
+      name: 'externalLink',
+      label: 'External Link',
+      type: 'text',
+      required: false,
+    },
   ],
 }

@@ -961,8 +961,8 @@ export interface Project {
         location: string;
         description: string;
         facts?: FactsList;
-        slug?: string | null;
         media: number | Media;
+        externalLink?: string | null;
         id?: string | null;
         blockName?: string | null;
         blockType: 'projectBlock';

@@ -22,6 +22,7 @@ export const ProjectHero: React.FC<{
     neighborhood,
     website,
     instagram,
+    slider,
   } = project
 
   return (
@@ -66,6 +67,7 @@ export const ProjectHero: React.FC<{
           {neighborhood && <div>{neighborhood}</div>}
           {website && <div>{website}</div>}
           {instagram && <div>{instagram}</div>}
+          {slider && slider.map(i => <Media resource={i.image} alt={i.title} key={i.id} />)}
         </div>
         <div className={classes.media}>
           <div className={classes.mediaWrapper}>

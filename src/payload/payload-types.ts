@@ -6,6 +6,30 @@
  * and re-run `payload generate:types` to regenerate this file.
  */
 
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CardSlider".
+ */
+export type CardSlider =
+  | {
+      title?: string | null;
+      image: number | Media;
+      caption?: string | null;
+      id?: string | null;
+    }[]
+  | null;
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FactsList".
+ */
+export type FactsList =
+  | {
+      factStat: string;
+      factDescription: string;
+      id?: string | null;
+    }[]
+  | null;
+
 export interface Config {
   collections: {
     pages: Page;
@@ -729,6 +753,7 @@ export interface Project {
   neighborhood: string;
   website?: string | null;
   instagram?: string | null;
+  slider?: CardSlider;
   categories?: (number | Category)[] | null;
   publishedAt?: string | null;
   hero: {
@@ -928,6 +953,19 @@ export interface Project {
         id?: string | null;
         blockName?: string | null;
         blockType: 'archive';
+      }
+    | {
+        invertBackground?: boolean | null;
+        position?: ('left' | 'right') | null;
+        title: string;
+        location: string;
+        description: string;
+        facts?: FactsList;
+        slug?: string | null;
+        media: number | Media;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'projectBlock';
       }
   )[];
   relatedProjects?: (number | Project)[] | null;

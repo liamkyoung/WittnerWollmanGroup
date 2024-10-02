@@ -31,7 +31,23 @@ export const MEDIA_BLOCK = `
 ...on MediaBlock {
   blockType
   invertBackground
-  position
+  mediaPosition: position
+  ${MEDIA}
+}
+`
+
+export const PROJECT_BLOCK = `
+...on ProjectBlock {
+  blockType
+  invertBackground
+  projectPosition: position
+  location
+  title
+  description
+  facts {
+    factStat
+    factDescription
+  }
   ${MEDIA}
 }
 `

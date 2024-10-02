@@ -1,4 +1,5 @@
 import type { CollectionConfig } from 'payload/types'
+import { RowLabelArgs } from 'payload/dist/admin/components/forms/RowLabel/types'
 
 import { admins } from '../../access/admins'
 import { adminsOrPublished } from '../../access/adminsOrPublished'
@@ -13,6 +14,7 @@ import { populatePublishedAt } from '../../hooks/populatePublishedAt'
 import { revalidateProject } from './hooks/revalidateProject'
 
 import { formatSocialMediaHandle } from '../../../payload/hooks/formatSocialMediaHandle'
+import { ProjectBlock } from '../../blocks/ProjectBlock'
 
 export const Projects: CollectionConfig = {
   slug: 'projects',
@@ -82,6 +84,42 @@ export const Projects: CollectionConfig = {
       },
     },
     {
+      name: 'slider', // required
+      type: 'array', // required
+      label: 'Image Slider',
+      minRows: 2,
+      maxRows: 10,
+      interfaceName: 'CardSlider', // optional
+      labels: {
+        singular: 'Slide',
+        plural: 'Slides',
+      },
+      fields: [
+        // required
+        {
+          name: 'title',
+          type: 'text',
+        },
+        {
+          name: 'image',
+          type: 'upload',
+          relationTo: 'media',
+          required: true,
+        },
+        {
+          name: 'caption',
+          type: 'text',
+        },
+      ],
+      admin: {
+        components: {
+          RowLabel: ({ data, index }: RowLabelArgs) => {
+            return data?.title || `Slide ${String(index).padStart(2, '0')}`
+          },
+        },
+      },
+    },
+    {
       name: 'categories',
       type: 'relationship',
       relationTo: 'categories',
@@ -111,7 +149,7 @@ export const Projects: CollectionConfig = {
               name: 'layout',
               type: 'blocks',
               required: true,
-              blocks: [CallToAction, Content, MediaBlock, Archive],
+              blocks: [CallToAction, Content, MediaBlock, Archive, ProjectBlock],
             },
           ],
         },

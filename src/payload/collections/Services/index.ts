@@ -3,6 +3,12 @@ import { admins } from '../../access/admins'
 import { adminsOrPublished } from '../../access/adminsOrPublished'
 import type { CollectionConfig, FieldHook } from 'payload/types'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
+import { Archive } from '../../blocks/ArchiveBlock'
+import { CallToAction } from '../../blocks/CallToAction'
+import { Content } from '../../blocks/Content'
+import { MediaBlock } from '../../blocks/MediaBlock'
+import { hero } from '../../fields/hero'
+import { ProjectBlock } from '../../blocks/ProjectBlock'
 
 export const Services: CollectionConfig = {
   slug: 'services',
@@ -51,10 +57,30 @@ export const Services: CollectionConfig = {
       required: true,
     },
     {
-      name: 'description',
-      label: 'Description',
+      name: 'shortDescription',
+      label: 'Short Description',
       type: 'text',
       required: true,
+    },
+    {
+      type: 'tabs',
+      tabs: [
+        {
+          label: 'Hero',
+          fields: [hero],
+        },
+        {
+          label: 'Content',
+          fields: [
+            {
+              name: 'layout',
+              type: 'blocks',
+              required: true,
+              blocks: [CallToAction, Content, MediaBlock, Archive, ProjectBlock],
+            },
+          ],
+        },
+      ],
     },
   ],
 }

@@ -9,6 +9,7 @@ import { GRAPHQL_API_URL } from './shared'
 import { payloadToken } from './token'
 import { TEAMMATES } from '../_graphql/teammates'
 import { INVOLVEMENT_GROUPS } from '../_graphql/involvement'
+import { SERVICES } from '../_graphql/services'
 
 // INSERT GROUP QUERIES FOR COLLECTIONS HERE
 const queryMap = {
@@ -35,6 +36,10 @@ const queryMap = {
   involvementGroups: {
     query: INVOLVEMENT_GROUPS,
     key: 'InvolvementGroups',
+  },
+  services: {
+    query: SERVICES,
+    key: 'Services',
   },
 }
 

@@ -263,6 +263,19 @@ export interface Page {
         blockName?: string | null;
         blockType: 'archive';
       }
+    | {
+        invertBackground?: boolean | null;
+        position?: ('left' | 'right') | null;
+        title: string;
+        location: string;
+        description: string;
+        facts?: FactsList;
+        media: number | Media;
+        externalLink?: string | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'projectBlock';
+      }
   )[];
   slug?: string | null;
   meta?: {
@@ -1115,7 +1128,219 @@ export interface Service {
   title: string;
   slug?: string | null;
   iconSvg: string;
-  description: string;
+  shortDescription: string;
+  hero: {
+    type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact';
+    richText: {
+      [k: string]: unknown;
+    }[];
+    links?:
+      | {
+          link: {
+            type?: ('reference' | 'custom') | null;
+            newTab?: boolean | null;
+            reference?: {
+              relationTo: 'pages';
+              value: number | Page;
+            } | null;
+            url?: string | null;
+            label: string;
+            appearance?: ('default' | 'primary' | 'secondary') | null;
+          };
+          id?: string | null;
+        }[]
+      | null;
+    media?: number | Media | null;
+  };
+  layout: (
+    | {
+        invertBackground?: boolean | null;
+        richText: {
+          [k: string]: unknown;
+        }[];
+        links?:
+          | {
+              link: {
+                type?: ('reference' | 'custom') | null;
+                newTab?: boolean | null;
+                reference?: {
+                  relationTo: 'pages';
+                  value: number | Page;
+                } | null;
+                url?: string | null;
+                label: string;
+                appearance?: ('primary' | 'secondary') | null;
+              };
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'cta';
+      }
+    | {
+        invertBackground?: boolean | null;
+        columns?:
+          | {
+              size?: ('oneThird' | 'half' | 'twoThirds' | 'full') | null;
+              richText: {
+                [k: string]: unknown;
+              }[];
+              enableLink?: boolean | null;
+              link?: {
+                type?: ('reference' | 'custom') | null;
+                newTab?: boolean | null;
+                reference?: {
+                  relationTo: 'pages';
+                  value: number | Page;
+                } | null;
+                url?: string | null;
+                label: string;
+                appearance?: ('default' | 'primary' | 'secondary') | null;
+              };
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'content';
+      }
+    | {
+        invertBackground?: boolean | null;
+        position?: ('default' | 'fullscreen') | null;
+        media: number | Media;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'mediaBlock';
+      }
+    | {
+        introContent: {
+          [k: string]: unknown;
+        }[];
+        populateBy?: ('collection' | 'selection') | null;
+        relationTo?:
+          | (
+              | 'posts'
+              | 'projects'
+              | 'listings'
+              | 'teammates'
+              | 'involvementGroups'
+              | 'involvementEvents'
+              | 'testimonials'
+              | 'companies'
+              | 'services'
+              | 'communityResources'
+            )
+          | null;
+        categories?: (number | Category)[] | null;
+        limit?: number | null;
+        selectedDocs?:
+          | (
+              | {
+                  relationTo: 'posts';
+                  value: number | Post;
+                }
+              | {
+                  relationTo: 'projects';
+                  value: number | Project;
+                }
+              | {
+                  relationTo: 'listings';
+                  value: number | Listing;
+                }
+              | {
+                  relationTo: 'teammates';
+                  value: number | Teammate;
+                }
+              | {
+                  relationTo: 'involvementGroups';
+                  value: number | InvolvementGroup;
+                }
+              | {
+                  relationTo: 'involvementEvents';
+                  value: number | InvolvementEvent;
+                }
+              | {
+                  relationTo: 'testimonials';
+                  value: number | Testimonial;
+                }
+              | {
+                  relationTo: 'companies';
+                  value: number | Company;
+                }
+              | {
+                  relationTo: 'services';
+                  value: number | Service;
+                }
+              | {
+                  relationTo: 'communityResources';
+                  value: number | CommunityResource;
+                }
+            )[]
+          | null;
+        populatedDocs?:
+          | (
+              | {
+                  relationTo: 'posts';
+                  value: number | Post;
+                }
+              | {
+                  relationTo: 'projects';
+                  value: number | Project;
+                }
+              | {
+                  relationTo: 'listings';
+                  value: number | Listing;
+                }
+              | {
+                  relationTo: 'teammates';
+                  value: number | Teammate;
+                }
+              | {
+                  relationTo: 'involvementGroups';
+                  value: number | InvolvementGroup;
+                }
+              | {
+                  relationTo: 'involvementEvents';
+                  value: number | InvolvementEvent;
+                }
+              | {
+                  relationTo: 'testimonials';
+                  value: number | Testimonial;
+                }
+              | {
+                  relationTo: 'companies';
+                  value: number | Company;
+                }
+              | {
+                  relationTo: 'services';
+                  value: number | Service;
+                }
+              | {
+                  relationTo: 'communityResources';
+                  value: number | CommunityResource;
+                }
+            )[]
+          | null;
+        populatedDocsTotal?: number | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'archive';
+      }
+    | {
+        invertBackground?: boolean | null;
+        position?: ('left' | 'right') | null;
+        title: string;
+        location: string;
+        description: string;
+        facts?: FactsList;
+        media: number | Media;
+        externalLink?: string | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'projectBlock';
+      }
+  )[];
   meta?: {
     title?: string | null;
     description?: string | null;

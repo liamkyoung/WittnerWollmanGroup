@@ -59,8 +59,8 @@ export default async function Page({ params: { slug } }) {
           className="rounded-full"
         />
       )}
-      <h1 className="text-3xl">Name: {title}</h1>
-      <p>${price}</p>
+      <h1 className="text-xl">Name: {title}</h1>
+      <p className="text-red-100">${price}</p>
       <p>{city}</p>
       <p>{streetAddress}</p>
       <p>{zipCode}</p>

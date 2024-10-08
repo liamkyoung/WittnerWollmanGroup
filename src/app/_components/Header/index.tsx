@@ -36,7 +36,7 @@ export async function Header() {
             */}
             <img
               className={classes.logo}
-              alt="Payload Logo"
+              alt="Wittner Wollman Logo"
               src="https://raw.githubusercontent.com/payloadcms/payload/main/packages/payload/src/admin/assets/images/payload-logo-light.svg"
             />
           </Link>

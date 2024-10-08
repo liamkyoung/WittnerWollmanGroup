@@ -8,6 +8,9 @@ import { fetchDoc } from '../../../_api/fetchDoc'
 import { fetchDocs } from '../../../_api/fetchDocs'
 import { generateListingMetadata } from '../../../_utilities/generateMeta'
 import Image from 'next/image'
+import { ListingHero } from '@/app/_heros/ListingHero'
+import PhotoGallery from '@/app/customComponents/Gallery/PhotoGallery'
+import Features from './Features'
 
 export const dynamic = 'force-dynamic'
 
@@ -47,10 +50,11 @@ export default async function Page({ params: { slug } }) {
     latitude,
     longitude,
     zipCode,
+    imageGallery,
   } = listing
   return (
-    <div>
-      {typeof coverImage !== 'number' && (
+    <div className="global-margin-x mt-24">
+      {/* {typeof coverImage !== 'number' && (
         <Image
           height={200}
           width={200}
@@ -58,11 +62,34 @@ export default async function Page({ params: { slug } }) {
           alt={coverImage.alt}
           className="rounded-full"
         />
-      )}
-      <h1 className="text-xl">Name: {title}</h1>
-      <p className="text-red-100">${price}</p>
-      <p>{city}</p>
-      <p>{streetAddress}</p>
+      )} */}
+      <ListingHero
+        streetAddress={streetAddress}
+        price={price}
+        city={city}
+        zipCode={zipCode}
+        state={'FL'}
+        propertyType={propertyType}
+        sqFt={sqFt}
+      />
+      <PhotoGallery imageGallery={imageGallery} />
+      <Features
+        sqFtLand={sqFtLand}
+        sqFt={sqFt}
+        yearBuilt={yearBuilt}
+        bedrooms={bedCount}
+        bathrooms={bathroomCount}
+        area={neighborhood}
+        zipCode={zipCode}
+        price={price}
+        propertyType={propertyType}
+        status={'Active'}
+        zoningType={'Placeholder'}
+        occupany={occupancy}
+      />
+      {/* <h1 className="text-xl">Name: {title}</h1>
+      <p className="text-red-100">${price}</p> */}
+      {/* <p>{streetAddress}</p>
       <p>{zipCode}</p>
       <p>
         {latitude} LAT <b>MISSING</b>
@@ -83,7 +110,7 @@ export default async function Page({ params: { slug } }) {
       <p>Zoning Type: {zoningType}</p>
       <p>
         Image Gallery <b>MISSING</b>
-      </p>
+      </p> */}
     </div>
   )
   //   return <div>This is a Listing {slug}</div>

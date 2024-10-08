@@ -4,6 +4,7 @@ import Link from 'next/link'
 
 import { Listing } from '../../../payload/payload-types'
 import { Media } from '../../_components/Media'
+import CardInfo from '../CardInfo'
 
 export const ListingCard: React.FC<{
   className?: string
@@ -20,7 +21,7 @@ export const ListingCard: React.FC<{
   const href = `/listings/${slug}`
 
   return (
-    <div className={``}>
+    <div>
       <Link href={href}>
         {!metaImage && <div className={``}>No image</div>}
         {metaImage && typeof metaImage !== 'string' && (
@@ -28,14 +29,11 @@ export const ListingCard: React.FC<{
         )}
       </Link>
       <div>
-        {titleToUse && (
-          <h4>
-            <Link href={href}>{titleToUse}</Link>
-          </h4>
-        )}
-        {address}
-        <p>Beds:{bedCount}</p>
-        <p>Baths:{bathroomCount}</p>
+        {titleToUse && <h5>{titleToUse}</h5>}
+        <CardInfo
+          address={address}
+          additionalInfo={[`${sqFt} sq ft`, `${bedCount} beds`, `${bathroomCount} baths`]}
+        />
       </div>
     </div>
   )

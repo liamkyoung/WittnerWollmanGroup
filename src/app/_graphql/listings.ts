@@ -1,4 +1,4 @@
-import { COVERIMAGE } from './media'
+import { COVERIMAGE, IMAGE } from './media'
 
 export const LISTINGS = `
   query Listings {
@@ -20,6 +20,7 @@ query Listings($slug: String) {
         title
         streetAddress
         zipCode
+        city
         latitude
         longitude
         propertyType
@@ -35,6 +36,10 @@ query Listings($slug: String) {
         occupancy
         zoningType
         ${COVERIMAGE}
+        imageGallery {
+          id
+          ${IMAGE}
+        }
       }
     }
   }

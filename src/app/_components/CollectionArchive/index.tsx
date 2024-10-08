@@ -24,7 +24,7 @@ import { Pagination } from '../Pagination'
 import { CompanyComponent } from '@/app/customComponents/CompanyComponent'
 import { CommunityResourceCard } from '@/app/customComponents/CommunityResourceCard'
 import { ServiceCard } from '@/app/customComponents/ServiceCard'
-import { TestimonialCard } from '@/app/customComponents/TestimonialCard'
+import { TestimonialCard } from '@/app/customComponents/Testimonials/TestimonialCard'
 import { InvolvementEventCard } from '@/app/customComponents/Involvement/InvolvementEventCard'
 import { InvolvementGroupCard } from '@/app/customComponents/Involvement/InvolvementGroupCard'
 import { TeammateCard } from '@/app/customComponents/TeammateCard'
@@ -33,6 +33,8 @@ import { ListingCard } from '@/app/customComponents/Listings'
 import classes from './index.module.scss'
 import { NewsCard } from '@/app/customComponents/NewsCard'
 import { ProjectCard } from '@/app/customComponents/ProjectCard'
+import TestimonialGallery from '@/app/customComponents/Testimonials/TestimonialGallery'
+import { ListingGallery } from '@/app/customComponents/Listings/ListingGallery'
 
 type Result = {
   docs: (
@@ -226,6 +228,17 @@ export const CollectionArchive: React.FC<Props> = props => {
           </Gutter>
         )}
         <Gutter>
+          {relationTo === 'testimonials' && results.docs ? (
+            <TestimonialGallery testimonials={results.docs as Testimonial[]} />
+          ) : (
+            <div>None found</div>
+          )}
+          {relationTo === 'listings' && results.docs ? (
+            <ListingGallery listings={results.docs as Listing[]} />
+          ) : (
+            <div>No listings found</div>
+          )}
+
           <div className={classes.grid}>
             {results.docs?.map((result, index) => {
               if (typeof result === 'object' && result !== null) {
@@ -236,10 +249,6 @@ export const CollectionArchive: React.FC<Props> = props => {
                     return <CommunityResourceCard doc={result as CommunityResource} key={index} />
                   case 'services':
                     return <ServiceCard doc={result as Service} key={index} />
-                  case 'testimonials':
-                    return <TestimonialCard doc={result as Testimonial} key={index} />
-                  case 'listings':
-                    return <ListingCard doc={result as Listing} key={index} />
                   case 'involvementEvents':
                     return <InvolvementEventCard doc={result as InvolvementEvent} key={index} />
                   case 'involvementGroups':

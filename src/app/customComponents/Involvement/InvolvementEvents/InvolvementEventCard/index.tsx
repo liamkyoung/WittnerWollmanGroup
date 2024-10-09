@@ -2,8 +2,10 @@ import React, { Fragment } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import { Media } from '../../../_components/Media'
+import { Media } from '../../../../_components/Media'
+import { Media as MType } from '@/payload/payload-types'
 import { InvolvementEvent } from '@/payload/payload-types'
+import DefaultCard from '../../../DefaultCard'
 
 export const InvolvementEventCard: React.FC<{
   className?: string
@@ -15,14 +17,5 @@ export const InvolvementEventCard: React.FC<{
 
   const sanitizedDescription = description?.replace(/\s/g, ' ') // replace non-breaking space with white space
 
-  return (
-    <div className={`${className}`}>
-      <Media imgClassName={``} resource={image} />
-      <h2>{title}</h2>
-      <p>{sanitizedDescription}</p>
-
-      {/* Fix Date? */}
-      <p>Date: {eventDate}</p>
-    </div>
-  )
+  return <DefaultCard title={title} image={image as MType} accentText={eventDate} />
 }

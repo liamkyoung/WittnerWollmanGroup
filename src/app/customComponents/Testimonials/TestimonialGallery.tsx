@@ -12,7 +12,11 @@ import BGImage from '../../assets/images/bg_backdrop.png'
 import Image from 'next/image'
 import { Testimonial } from '@/payload/payload-types'
 
-function TestimonialGallery({ testimonials }: Testimonial[]) {
+type Props = {
+  testimonials: Testimonial[]
+}
+
+function TestimonialGallery({ testimonials }: Props) {
   return (
     <div className="relative">
       <Carousel className="pb-16 pt-24 sm:pb-24 sm:pt-32 xl:pb-32 mx-auto z-20">

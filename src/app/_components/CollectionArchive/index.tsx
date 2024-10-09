@@ -22,17 +22,23 @@ import { PageRange } from '../PageRange'
 import { Pagination } from '../Pagination'
 
 import { CompanyComponent } from '@/app/customComponents/Companies/CompanyComponent'
-import { CommunityResourceCard } from '@/app/customComponents/CommunityResourceCard'
+import { CommunityResourceCard } from '@/app/customComponents/CommunityResources/CommunityResourceCard'
+import { CommunityResourceGallery } from '@/app/customComponents/CommunityResources/CommunityResourceGallery'
 import { ServiceCard } from '@/app/customComponents/ServiceCard'
 import { TestimonialCard } from '@/app/customComponents/Testimonials/TestimonialCard'
-import { InvolvementEventCard } from '@/app/customComponents/Involvement/InvolvementEventCard'
-import { InvolvementGroupCard } from '@/app/customComponents/Involvement/InvolvementGroupCard'
+import { InvolvementEventCard } from '@/app/customComponents/Involvement/InvolvementEvents/InvolvementEventCard'
+import { InvolvementEventGallery } from '@/app/customComponents/Involvement/InvolvementEvents/InvolvementEventGallery'
+
+import { InvolvementGroupCard } from '@/app/customComponents/Involvement/InvolvementGroups/InvolvementGroupCard'
+import { InvolvementGroupGallery } from '@/app/customComponents/Involvement/InvolvementGroups/InvolvementGroupGallery'
+
 import { TeammateCard } from '@/app/customComponents/Teammates/TeammateCard'
 import { ListingCard } from '@/app/customComponents/Listings'
 
 import classes from './index.module.scss'
 import { NewsCard } from '@/app/customComponents/NewsCard'
 import { ProjectCard } from '@/app/customComponents/ProjectCard'
+import DefaultCard from '@/app/customComponents/DefaultCard'
 import TestimonialGallery from '@/app/customComponents/Testimonials/TestimonialGallery'
 import { ListingGallery } from '@/app/customComponents/Listings/ListingGallery'
 import { TeammateGallery } from '@/app/customComponents/Teammates/TeammateGallery'
@@ -223,6 +229,12 @@ export const CollectionArchive: React.FC<Props> = props => {
         return <TeammateGallery teammates={results.docs as Teammate[]} />
       case 'companies':
         return <CompanyGallery companies={results.docs as Company[]} />
+      case 'communityResources':
+        return <CommunityResourceGallery communityResources={results.docs as CommunityResource[]} />
+      case 'involvementEvents':
+        return <InvolvementEventGallery events={results.docs as InvolvementEvent[]} />
+      case 'involvementGroups':
+        return <InvolvementGroupGallery groups={results.docs as InvolvementGroup[]} />
       default:
         return <></>
     }
@@ -248,22 +260,15 @@ export const CollectionArchive: React.FC<Props> = props => {
           </Gutter>
         )}
         <Gutter>
+          {/* Rendering Proper Showcases for Each Item */}
           {renderGallery()}
 
           <div className={classes.grid}>
             {results.docs?.map((result, index) => {
               if (typeof result === 'object' && result !== null) {
                 switch (relationTo) {
-                  case 'companies':
-                    return <CompanyComponent doc={result as Company} key={index} />
-                  case 'communityResources':
-                    return <CommunityResourceCard doc={result as CommunityResource} key={index} />
                   case 'services':
                     return <ServiceCard doc={result as Service} key={index} />
-                  case 'involvementEvents':
-                    return <InvolvementEventCard doc={result as InvolvementEvent} key={index} />
-                  case 'involvementGroups':
-                    return <InvolvementGroupCard doc={result as InvolvementGroup} key={index} />
                   case 'posts':
                     return (
                       <div className={classes.column} key={index}>

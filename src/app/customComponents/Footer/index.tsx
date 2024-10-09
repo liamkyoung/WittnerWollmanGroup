@@ -6,7 +6,7 @@ import NewsletterInput from '../inputs/NewsletterInput'
 import { DefaultSocials } from '@/globalData/general'
 import Instagram from '../Icons/Instagram'
 import Facebook from '../Icons/Facebook'
-import Linkedin from '../Icons/Linkedin'
+import Linkedin from '../Icons/LinkedinIcon'
 import { ColorScheme } from '../../types/viewmodels'
 
 function Footer() {

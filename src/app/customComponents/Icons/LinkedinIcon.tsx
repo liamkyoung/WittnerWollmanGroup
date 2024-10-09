@@ -8,7 +8,7 @@ type Props = {
   colorScheme?: ColorScheme
 }
 
-function Linkedin({ profileLink, username, colorScheme }: Props) {
+function LinkedinIcon({ profileLink, username, colorScheme }: Props) {
   let colorStyle = 'default-social-icons'
   let textColor = 'text-white'
 
@@ -33,4 +33,4 @@ function Linkedin({ profileLink, username, colorScheme }: Props) {
   )
 }
 
-export default Linkedin
+export default LinkedinIcon

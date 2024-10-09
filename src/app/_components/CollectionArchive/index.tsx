@@ -21,13 +21,13 @@ import { Gutter } from '../Gutter'
 import { PageRange } from '../PageRange'
 import { Pagination } from '../Pagination'
 
-import { CompanyComponent } from '@/app/customComponents/CompanyComponent'
+import { CompanyComponent } from '@/app/customComponents/Companies/CompanyComponent'
 import { CommunityResourceCard } from '@/app/customComponents/CommunityResourceCard'
 import { ServiceCard } from '@/app/customComponents/ServiceCard'
 import { TestimonialCard } from '@/app/customComponents/Testimonials/TestimonialCard'
 import { InvolvementEventCard } from '@/app/customComponents/Involvement/InvolvementEventCard'
 import { InvolvementGroupCard } from '@/app/customComponents/Involvement/InvolvementGroupCard'
-import { TeammateCard } from '@/app/customComponents/TeammateCard'
+import { TeammateCard } from '@/app/customComponents/Teammates/TeammateCard'
 import { ListingCard } from '@/app/customComponents/Listings'
 
 import classes from './index.module.scss'
@@ -35,6 +35,8 @@ import { NewsCard } from '@/app/customComponents/NewsCard'
 import { ProjectCard } from '@/app/customComponents/ProjectCard'
 import TestimonialGallery from '@/app/customComponents/Testimonials/TestimonialGallery'
 import { ListingGallery } from '@/app/customComponents/Listings/ListingGallery'
+import { TeammateGallery } from '@/app/customComponents/Teammates/TeammateGallery'
+import { CompanyGallery } from '@/app/customComponents/Companies/CompanyGallery'
 
 type Result = {
   docs: (
@@ -210,6 +212,24 @@ export const CollectionArchive: React.FC<Props> = props => {
     }
   }, [page, categories, relationTo, onResultChange, sort, limit, populateBy])
 
+  const renderGallery = () => {
+    if (!results.docs) return <></>
+    switch (relationTo) {
+      case 'testimonials':
+        return <TestimonialGallery testimonials={results.docs as Testimonial[]} />
+      case 'listings':
+        return <ListingGallery listings={results.docs as Listing[]} />
+      case 'teammates':
+        return <TeammateGallery teammates={results.docs as Teammate[]} />
+      case 'companies':
+        return <CompanyGallery companies={results.docs as Company[]} />
+      default:
+        return <></>
+    }
+
+    return <></>
+  }
+
   return (
     <div className={[classes.collectionArchive, className].filter(Boolean).join(' ')}>
       <div className={classes.scrollRef} ref={scrollRef} />
@@ -228,16 +248,7 @@ export const CollectionArchive: React.FC<Props> = props => {
           </Gutter>
         )}
         <Gutter>
-          {relationTo === 'testimonials' && results.docs ? (
-            <TestimonialGallery testimonials={results.docs as Testimonial[]} />
-          ) : (
-            <div>None found</div>
-          )}
-          {relationTo === 'listings' && results.docs ? (
-            <ListingGallery listings={results.docs as Listing[]} />
-          ) : (
-            <div>No listings found</div>
-          )}
+          {renderGallery()}
 
           <div className={classes.grid}>
             {results.docs?.map((result, index) => {
@@ -253,8 +264,6 @@ export const CollectionArchive: React.FC<Props> = props => {
                     return <InvolvementEventCard doc={result as InvolvementEvent} key={index} />
                   case 'involvementGroups':
                     return <InvolvementGroupCard doc={result as InvolvementGroup} key={index} />
-                  case 'teammates':
-                    return <TeammateCard doc={result as Teammate} key={index} />
                   case 'posts':
                     return (
                       <div className={classes.column} key={index}>

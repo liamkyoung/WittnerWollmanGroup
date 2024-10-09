@@ -13,6 +13,7 @@ import { mergeOpenGraph } from './_utilities/mergeOpenGraph'
 import './_css/app.scss'
 
 import { Montserrat } from 'next/font/google'
+import { CompanyGallery } from './customComponents/Companies/CompanyGallery'
 const montserrat = Montserrat({ subsets: ['latin'] })
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {

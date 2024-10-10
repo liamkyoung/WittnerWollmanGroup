@@ -3,9 +3,11 @@ import React from 'react'
 
 type Props = {
   colorScheme?: ColorScheme
+  stat: string
+  description: string
 }
 
-function ProjectStat({ colorScheme = ColorScheme.DEFAULT }: Props) {
+function ProjectStat({ colorScheme = ColorScheme.DEFAULT, stat, description }: Props) {
   let textColor = 'text-wwBlack'
   let emphasisColor = 'text-wwRed'
   let borderColor = 'border-wwRed'
@@ -19,10 +21,8 @@ function ProjectStat({ colorScheme = ColorScheme.DEFAULT }: Props) {
 
   return (
     <div className="w-48 lg:w-72">
-      <h5 className={`border-l-2 pl-4 ${emphasisColor} ${borderColor}`}>11.9%</h5>
-      <p className={`pl-4 ${textColor}`}>
-        average revenue uplift for businesses using WW-Group&apos;s Leasing Services
-      </p>
+      <h5 className={`border-l-2 pl-4 ${emphasisColor} ${borderColor}`}>{stat}</h5>
+      <p className={`pl-4 ${textColor}`}>{description}</p>
     </div>
   )
 }

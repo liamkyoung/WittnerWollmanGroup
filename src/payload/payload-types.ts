@@ -66,7 +66,8 @@ export interface Page {
   title: string;
   publishedAt?: string | null;
   hero: {
-    type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact';
+    type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact' | 'default';
+    headerText?: string | null;
     richText: {
       [k: string]: unknown;
     }[];
@@ -247,6 +248,7 @@ export interface Page {
     | {
         invertBackground?: boolean | null;
         position?: ('left' | 'right') | null;
+        bgColor?: ('white' | 'red') | null;
         title: string;
         location: string;
         description: string;
@@ -327,7 +329,8 @@ export interface Post {
       }[]
     | null;
   hero: {
-    type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact';
+    type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact' | 'default';
+    headerText?: string | null;
     richText: {
       [k: string]: unknown;
     }[];
@@ -713,7 +716,8 @@ export interface Project {
   categories?: (number | Category)[] | null;
   publishedAt?: string | null;
   hero: {
-    type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact';
+    type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact' | 'default';
+    headerText?: string | null;
     richText: {
       [k: string]: unknown;
     }[];
@@ -894,6 +898,7 @@ export interface Project {
     | {
         invertBackground?: boolean | null;
         position?: ('left' | 'right') | null;
+        bgColor?: ('white' | 'red') | null;
         title: string;
         location: string;
         description: string;
@@ -1054,7 +1059,8 @@ export interface Service {
   iconSvg: string;
   shortDescription: string;
   hero: {
-    type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact';
+    type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact' | 'default';
+    headerText?: string | null;
     richText: {
       [k: string]: unknown;
     }[];
@@ -1235,6 +1241,7 @@ export interface Service {
     | {
         invertBackground?: boolean | null;
         position?: ('left' | 'right') | null;
+        bgColor?: ('white' | 'red') | null;
         title: string;
         location: string;
         description: string;

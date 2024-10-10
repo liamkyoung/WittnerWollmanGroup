@@ -21,7 +21,9 @@ export const ProjectGallery = ({ projects }: Props) => {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 2xl:gap-16 3xl:gap-32 justify-items-center">
         {projects.map(p => (
-          <ProjectCard doc={p} key={p.id} />
+          <div key={p.id}>
+            <ProjectCard doc={p} />
+          </div>
         ))}
       </div>
       <div className="md:hidden flex justify-center">

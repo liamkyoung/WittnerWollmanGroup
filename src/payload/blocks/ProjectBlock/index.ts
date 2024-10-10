@@ -22,6 +22,22 @@ export const ProjectBlock: Block = {
       ],
     },
     {
+      name: 'bgColor',
+      label: 'BackgrondColor',
+      type: 'select',
+      defaultValue: 'white',
+      options: [
+        {
+          label: 'White',
+          value: 'white',
+        },
+        {
+          label: 'Red',
+          value: 'red',
+        },
+      ],
+    },
+    {
       name: 'title',
       type: 'text',
       required: true,

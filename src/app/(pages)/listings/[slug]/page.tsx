@@ -11,6 +11,7 @@ import Image from 'next/image'
 import { ListingHero } from '@/app/_heros/ListingHero'
 import PhotoGallery from '@/app/customComponents/Gallery/PhotoGallery'
 import Features from './Features'
+import { GoogleMap } from '@/app/customComponents/GoogleMap/GoogleMap'
 
 export const dynamic = 'force-dynamic'
 
@@ -54,6 +55,7 @@ export default async function Page({ params: { slug } }) {
   } = listing
   return (
     <div className="global-margin-x mt-24">
+      <GoogleMap />
       {/* {typeof coverImage !== 'number' && (
         <Image
           height={200}

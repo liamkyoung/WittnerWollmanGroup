@@ -4,13 +4,29 @@ import Image from 'next/image'
 import ImageSrc from '../../../../media/reflection_mockup.png'
 import ProjectStat from './ProjectStat'
 import Link from 'next/link'
+import { Media as MType } from '@/payload/payload-types'
+import { Media } from '@/app/_components/Media'
+import { FactStat } from '.'
 
 type Props = {
   colorScheme?: ColorScheme
   link?: string
+  title: string
+  location: string
+  image: MType
+  description: string
+  facts: FactStat[]
 }
 
-function ProjectBlockLeft({ link, colorScheme = ColorScheme.DEFAULT }: Props) {
+function ProjectBlockLeft({
+  link,
+  colorScheme = ColorScheme.DEFAULT,
+  title,
+  location,
+  image,
+  description,
+  facts,
+}: Props) {
   let bgColor = 'bg-gray-50'
   let textColor = 'text-wwBlack'
   let buttonStyle = 'btn-primary'
@@ -27,7 +43,7 @@ function ProjectBlockLeft({ link, colorScheme = ColorScheme.DEFAULT }: Props) {
     <div className={`grid lg:grid-cols-2 ${bgColor}`}>
       <div className="lg:ml-32 mr-8 my-auto relative p-8 lg:p-0 lg:mr-16">
         <div className="relative md:py-10 lg:py-8">
-          <h2 className={`${textColor} text-center lg:text-left`}>Reflection, St. Petersburg</h2>
+          <h2 className={`${textColor} text-center lg:text-left`}>{title}</h2>
           <div className="lg:inline-flex flex gap-2 mt-2 justify-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -41,7 +57,7 @@ function ProjectBlockLeft({ link, colorScheme = ColorScheme.DEFAULT }: Props) {
                 clipRule="evenodd"
               />
             </svg>
-            <p className={emphasisColor}>Downtown St. Petersburg</p>
+            {location && <p className={emphasisColor}>{location}</p>}
           </div>
           {/* <Image
             src={PropertyLogo}
@@ -49,28 +65,37 @@ function ProjectBlockLeft({ link, colorScheme = ColorScheme.DEFAULT }: Props) {
             className="absolute top-0 right-16 opacity-30 size-32"
           /> */}
         </div>
-        <div className={`hidden 2xl:flex gap-4 absolute top-32 ${bgColor} p-4`}>
-          <ProjectStat colorScheme={colorScheme} />
-          <ProjectStat colorScheme={colorScheme} />
-          <ProjectStat colorScheme={colorScheme} />
-        </div>
+        {facts && (
+          <div className={`hidden 2xl:flex gap-4 absolute top-32 ${bgColor} p-4`}>
+            {facts.map((f, i) => (
+              <ProjectStat
+                colorScheme={colorScheme}
+                stat={f.factStat}
+                description={f.factDescription}
+                key={i}
+              />
+            ))}
+          </div>
+        )}
 
         <p className={`mb-10 pt-8 md:pt-4 2xl:mt-48 ${textColor} text-center lg:text-left`}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut porta dui. Etiam tempor
-          volutpat tellus id porta. Quisque commodo ex nisl, vel congue erat euismod nec. Maecenas
-          pretium metus eget tortor tristique bibendum. Praesent interdum neque sed magna accumsan
-          fringilla. Suspendisse felis ante, commodo nec mattis non, tempor in turpis. Phasellus id
-          vestibulum magna. Integer dignissim nunc enim, id tempus neque imperdiet nec. Praesent
-          egestas, neque at dapibus tempus, arcu augue sagittis turpis, ac commodo quam arcu vitae
-          massa. Donec vel iaculis odio. Praesent a placerat justo, id cursus est.
+          {description}
         </p>
-        <div
-          className={`2xl:hidden flex flex-row flex-wrap justify-center lg:justify-start gap-8 p-4`}
-        >
-          <ProjectStat colorScheme={colorScheme} />
-          <ProjectStat colorScheme={colorScheme} />
-          <ProjectStat colorScheme={colorScheme} />
-        </div>
+        {facts && (
+          <div
+            className={`2xl:hidden flex flex-row flex-wrap justify-center lg:justify-start gap-8 p-4`}
+          >
+            {facts.map((f, i) => (
+              <ProjectStat
+                colorScheme={colorScheme}
+                stat={f.factStat}
+                description={f.factDescription}
+                key={i}
+              />
+            ))}
+          </div>
+        )}
+
         {link && (
           <div className="flex justify-center lg:block py-8">
             <Link href="/projects/reflection" className={`${buttonStyle} `}>
@@ -79,10 +104,10 @@ function ProjectBlockLeft({ link, colorScheme = ColorScheme.DEFAULT }: Props) {
           </div>
         )}
       </div>
-      <Image
-        src={ImageSrc}
+      <Media
+        resource={image}
         alt="property image"
-        className="w-full max-h-96 lg:max-h-none lg:h-full"
+        imgClassName="w-full max-h-96 lg:max-h-none lg:h-full"
       />
     </div>
   )

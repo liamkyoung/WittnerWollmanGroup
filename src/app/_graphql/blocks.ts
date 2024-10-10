@@ -36,7 +36,7 @@ export const PROJECT_BLOCK = `
 ...on ProjectBlock {
   blockType
   invertBackground
-  projectPosition: position
+  position
   location
   title
   description

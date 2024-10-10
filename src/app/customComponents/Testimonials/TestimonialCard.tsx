@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { Media } from '@/app/_components/Media'
 import { Testimonial } from '../../../payload/payload-types'
 import { StaticImageData } from 'next/image'
+import { Media as MType } from '../../../payload/payload-types'
 
 type Props = {
   name: string
@@ -25,7 +26,7 @@ export const TestimonialCard: React.FC<{
         <div className="relative aspect-[2/1] h-full md:-mx-8 xl:mx-0 xl:aspect-auto">
           <Media
             imgClassName="absolute inset-0 h-full w-full rounded-2xl bg-wwRed object-cover shadow-2xl"
-            resource={image}
+            resource={image as MType}
             alt="testimonial-img"
           />
         </div>

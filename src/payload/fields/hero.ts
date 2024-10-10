@@ -33,7 +33,16 @@ export const hero: Field = {
           label: 'Low Impact',
           value: 'lowImpact',
         },
+        {
+          label: 'Default',
+          value: 'default',
+        },
       ],
+    },
+    {
+      name: 'headerText',
+      label: 'Header Text',
+      type: 'text',
     },
     richText({
       admin: {

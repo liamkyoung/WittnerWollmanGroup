@@ -10,7 +10,7 @@ import { RelatedPosts, type RelatedPostsProps } from '../../_blocks/RelatedPosts
 import { toKebabCase } from '../../_utilities/toKebabCase'
 import { BackgroundColor } from '../BackgroundColor'
 import { VerticalPadding, VerticalPaddingOptions } from '../VerticalPadding'
-import { ProjectBlock } from '../../_blocks/ProjectBlock'
+import { ProjectBlock, type ProjectBlockProps } from '../../_blocks/ProjectBlock'
 
 const blockComponents = {
   cta: CallToActionBlock,
@@ -23,10 +23,12 @@ const blockComponents = {
 }
 
 export const Blocks: React.FC<{
-  blocks: (Page['layout'][0] | RelatedPostsProps | CommentsBlockProps)[]
+  blocks: (Page['layout'][0] | RelatedPostsProps | CommentsBlockProps | ProjectBlockProps)[]
   disableTopPadding?: boolean
 }> = props => {
   const { disableTopPadding, blocks } = props
+
+  console.log('Block Props: ', props)
 
   const hasBlocks = blocks && Array.isArray(blocks) && blocks.length > 0
 

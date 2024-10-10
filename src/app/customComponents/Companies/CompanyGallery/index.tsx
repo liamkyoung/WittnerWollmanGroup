@@ -6,9 +6,11 @@ import anime from 'animejs/lib/anime.es.js'
 import { Company } from '@/payload/payload-types'
 import { CompanyComponent } from '../CompanyComponent'
 
-type Props = {}
+type Props = {
+  companies: Company[]
+}
 
-export const CompanyGallery = ({ companies }) => {
+export const CompanyGallery = ({ companies }: Props) => {
   const animationRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -30,12 +32,12 @@ export const CompanyGallery = ({ companies }) => {
       <h2 className="text-center">Companies We&apos;ve Helped</h2>
       <div className="flex gap-5 whitespace-nowrap marquee-content">
         {companies?.map(c => (
-          <CompanyComponent doc={c} />
+          <CompanyComponent doc={c} key={`${c.name}`} />
         ))}
       </div>
       <div className="flex gap-5 whitespace-nowrap marquee-content">
         {companies?.map(c => (
-          <CompanyComponent doc={c} />
+          <CompanyComponent doc={c} key={`${c.name}-1`} />
         ))}
       </div>
     </div>

@@ -15,7 +15,7 @@ import {
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
-import { ColorScheme } from '@/types/viewmodels'
+import { ColorScheme } from '../../types/viewmodels'
 
 const formSchema = z.object({
   firstName: z
@@ -71,17 +71,12 @@ export function ContactForm({ colorScheme = ColorScheme.DEFAULT }: Props) {
     colorScheme === ColorScheme.WHITE
       ? `bg-white text-wwBlack`
       : 'focus:ring-1 ring-inset focus:ring-inset focus:ring-wwRed'
-  const formTextStyle =
-    colorScheme === ColorScheme.WHITE ? 'text-white' : 'text-wwBlack'
-  const buttonStyle =
-    colorScheme === ColorScheme.WHITE ? 'btn-secondary' : 'btn-primary'
+  const formTextStyle = colorScheme === ColorScheme.WHITE ? 'text-white' : 'text-wwBlack'
+  const buttonStyle = colorScheme === ColorScheme.WHITE ? 'btn-secondary' : 'btn-primary'
 
   return (
     <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(onSubmit)}
-        className={`space-y-8 ${formTextStyle}`}
-      >
+      <form onSubmit={form.handleSubmit(onSubmit)} className={`space-y-8 ${formTextStyle}`}>
         <div className={`grid grid-cols-2 gap-4`}>
           <FormField
             control={form.control}
@@ -90,11 +85,7 @@ export function ContactForm({ colorScheme = ColorScheme.DEFAULT }: Props) {
               <FormItem>
                 <FormLabel>First Name</FormLabel>
                 <FormControl>
-                  <Input
-                    placeholder="First Name"
-                    {...field}
-                    className={formInputStyle}
-                  />
+                  <Input placeholder="First Name" {...field} className={formInputStyle} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -107,11 +98,7 @@ export function ContactForm({ colorScheme = ColorScheme.DEFAULT }: Props) {
               <FormItem>
                 <FormLabel>Last Name</FormLabel>
                 <FormControl>
-                  <Input
-                    placeholder="Last Name"
-                    {...field}
-                    className={formInputStyle}
-                  />
+                  <Input placeholder="Last Name" {...field} className={formInputStyle} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -126,11 +113,7 @@ export function ContactForm({ colorScheme = ColorScheme.DEFAULT }: Props) {
               <FormItem>
                 <FormLabel>Phone Number</FormLabel>
                 <FormControl>
-                  <Input
-                    placeholder="(123) 456 - 7890"
-                    {...field}
-                    className={formInputStyle}
-                  />
+                  <Input placeholder="(123) 456 - 7890" {...field} className={formInputStyle} />
                 </FormControl>
                 <FormDescription></FormDescription>
                 <FormMessage />
@@ -144,11 +127,7 @@ export function ContactForm({ colorScheme = ColorScheme.DEFAULT }: Props) {
               <FormItem>
                 <FormLabel>Email</FormLabel>
                 <FormControl>
-                  <Input
-                    placeholder="example@gmail.com"
-                    {...field}
-                    className={formInputStyle}
-                  />
+                  <Input placeholder="example@gmail.com" {...field} className={formInputStyle} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -164,11 +143,7 @@ export function ContactForm({ colorScheme = ColorScheme.DEFAULT }: Props) {
               <FormItem>
                 <FormLabel>Subject</FormLabel>
                 <FormControl>
-                  <Input
-                    placeholder="Service Inquiry"
-                    {...field}
-                    className={formInputStyle}
-                  />
+                  <Input placeholder="Service Inquiry" {...field} className={formInputStyle} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -189,8 +164,8 @@ export function ContactForm({ colorScheme = ColorScheme.DEFAULT }: Props) {
                   />
                 </FormControl>
                 <FormDescription className={formTextStyle}>
-                  Please provide details about your request here and we will
-                  contact you on how we can help.
+                  Please provide details about your request here and we will contact you on how we
+                  can help.
                 </FormDescription>
                 <FormMessage />
               </FormItem>

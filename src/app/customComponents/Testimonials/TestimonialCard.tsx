@@ -24,7 +24,7 @@ export const TestimonialCard: React.FC<{
       <div className="-mt-8 w-full max-w-2xl xl:-mb-8 xl:w-96 xl:flex-none">
         <div className="relative aspect-[2/1] h-full md:-mx-8 xl:mx-0 xl:aspect-auto">
           <Media
-            className="absolute inset-0 h-full w-full rounded-2xl bg-wwRed object-cover shadow-2xl"
+            imgClassName="absolute inset-0 h-full w-full rounded-2xl bg-wwRed object-cover shadow-2xl"
             resource={image}
             alt="testimonial-img"
           />

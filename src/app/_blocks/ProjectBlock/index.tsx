@@ -5,6 +5,8 @@ import { Page } from '../../../payload/payload-types'
 import { Gutter } from '../../_components/Gutter'
 import { Media } from '../../_components/Media'
 import RichText from '../../_components/RichText'
+import ProjectBlockLeft from './ProjectBlockLeft'
+import ProjectBlockRight from './ProjectBlockRight'
 
 import { FactsList } from '../../../payload/payload-types'
 import classes from './index.module.scss'
@@ -30,23 +32,9 @@ export const ProjectBlock: React.FC<Props> = props => {
   let caption
   if (media && typeof media === 'object') caption = media.caption
 
-  return (
-    <div className={classes.mediaBlock}>
-      {title && <div>{title}</div>}
-      {location && <div>{location}</div>}
-      {description && <div>{description}</div>}
-      {externalLink && <Link href={externalLink}>Link</Link>}
-      {facts &&
-        facts.map((i, index) => (
-          <div key={index}>
-            {i.factStat} | {i.factDescription}
-          </div>
-        ))}
-      {position === 'left' && (
-        <Gutter>
-          <Media resource={media} src={staticImage} />
-        </Gutter>
-      )}
-    </div>
-  )
+  if (position === 'left') {
+    return <ProjectBlockLeft />
+  }
+
+  return <ProjectBlockRight />
 }

@@ -90,26 +90,7 @@ export interface Page {
   };
   layout: (
     | {
-        invertBackground?: boolean | null;
-        richText: {
-          [k: string]: unknown;
-        }[];
-        links?:
-          | {
-              link: {
-                type?: ('reference' | 'custom') | null;
-                newTab?: boolean | null;
-                reference?: {
-                  relationTo: 'pages';
-                  value: number | Page;
-                } | null;
-                url?: string | null;
-                label: string;
-                appearance?: ('primary' | 'secondary') | null;
-              };
-              id?: string | null;
-            }[]
-          | null;
+        type?: ('default' | 'listing' | 'agent') | null;
         id?: string | null;
         blockName?: string | null;
         blockType: 'cta';
@@ -370,26 +351,7 @@ export interface Post {
   };
   layout: (
     | {
-        invertBackground?: boolean | null;
-        richText: {
-          [k: string]: unknown;
-        }[];
-        links?:
-          | {
-              link: {
-                type?: ('reference' | 'custom') | null;
-                newTab?: boolean | null;
-                reference?: {
-                  relationTo: 'pages';
-                  value: number | Page;
-                } | null;
-                url?: string | null;
-                label: string;
-                appearance?: ('primary' | 'secondary') | null;
-              };
-              id?: string | null;
-            }[]
-          | null;
+        type?: ('default' | 'listing' | 'agent') | null;
         id?: string | null;
         blockName?: string | null;
         blockType: 'cta';
@@ -548,26 +510,7 @@ export interface Post {
   premiumContent?:
     | (
         | {
-            invertBackground?: boolean | null;
-            richText: {
-              [k: string]: unknown;
-            }[];
-            links?:
-              | {
-                  link: {
-                    type?: ('reference' | 'custom') | null;
-                    newTab?: boolean | null;
-                    reference?: {
-                      relationTo: 'pages';
-                      value: number | Page;
-                    } | null;
-                    url?: string | null;
-                    label: string;
-                    appearance?: ('primary' | 'secondary') | null;
-                  };
-                  id?: string | null;
-                }[]
-              | null;
+            type?: ('default' | 'listing' | 'agent') | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'cta';
@@ -794,26 +737,7 @@ export interface Project {
   };
   layout: (
     | {
-        invertBackground?: boolean | null;
-        richText: {
-          [k: string]: unknown;
-        }[];
-        links?:
-          | {
-              link: {
-                type?: ('reference' | 'custom') | null;
-                newTab?: boolean | null;
-                reference?: {
-                  relationTo: 'pages';
-                  value: number | Page;
-                } | null;
-                url?: string | null;
-                label: string;
-                appearance?: ('primary' | 'secondary') | null;
-              };
-              id?: string | null;
-            }[]
-          | null;
+        type?: ('default' | 'listing' | 'agent') | null;
         id?: string | null;
         blockName?: string | null;
         blockType: 'cta';
@@ -1154,26 +1078,7 @@ export interface Service {
   };
   layout: (
     | {
-        invertBackground?: boolean | null;
-        richText: {
-          [k: string]: unknown;
-        }[];
-        links?:
-          | {
-              link: {
-                type?: ('reference' | 'custom') | null;
-                newTab?: boolean | null;
-                reference?: {
-                  relationTo: 'pages';
-                  value: number | Page;
-                } | null;
-                url?: string | null;
-                label: string;
-                appearance?: ('primary' | 'secondary') | null;
-              };
-              id?: string | null;
-            }[]
-          | null;
+        type?: ('default' | 'listing' | 'agent') | null;
         id?: string | null;
         blockName?: string | null;
         blockType: 'cta';

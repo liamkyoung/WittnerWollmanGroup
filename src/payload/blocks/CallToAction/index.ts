@@ -11,13 +11,24 @@ export const CallToAction: Block = {
     plural: 'Calls to Action',
   },
   fields: [
-    invertBackground,
-    richText(),
-    linkGroup({
-      appearances: ['primary', 'secondary'],
-      overrides: {
-        maxRows: 2,
-      },
-    }),
+    {
+      name: 'type',
+      type: 'select',
+      defaultValue: 'default',
+      options: [
+        {
+          value: 'default',
+          label: 'Default CTA',
+        },
+        {
+          value: 'listing',
+          label: 'Listing CTA',
+        },
+        {
+          value: 'agent',
+          label: 'Agent CTA',
+        },
+      ],
+    },
   ],
 }

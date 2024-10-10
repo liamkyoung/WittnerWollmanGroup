@@ -24,7 +24,7 @@ import { Pagination } from '../Pagination'
 import { CompanyComponent } from '@/app/customComponents/Companies/CompanyComponent'
 import { CommunityResourceCard } from '@/app/customComponents/CommunityResources/CommunityResourceCard'
 import { CommunityResourceGallery } from '@/app/customComponents/CommunityResources/CommunityResourceGallery'
-import { ServiceCard } from '@/app/customComponents/ServiceCard'
+import { ServiceCard } from '@/app/customComponents/Services/ServiceCard'
 import { TestimonialCard } from '@/app/customComponents/Testimonials/TestimonialCard'
 import { InvolvementEventCard } from '@/app/customComponents/Involvement/InvolvementEvents/InvolvementEventCard'
 import { InvolvementEventGallery } from '@/app/customComponents/Involvement/InvolvementEvents/InvolvementEventGallery'
@@ -37,12 +37,13 @@ import { ListingCard } from '@/app/customComponents/Listings'
 
 import classes from './index.module.scss'
 import { NewsCard } from '@/app/customComponents/NewsCard'
-import { ProjectCard } from '@/app/customComponents/ProjectCard'
+import { ProjectGallery } from '@/app/customComponents/Projects/ProjectGallery'
 import DefaultCard from '@/app/customComponents/DefaultCard'
 import TestimonialGallery from '@/app/customComponents/Testimonials/TestimonialGallery'
 import { ListingGallery } from '@/app/customComponents/Listings/ListingGallery'
 import { TeammateGallery } from '@/app/customComponents/Teammates/TeammateGallery'
 import { CompanyGallery } from '@/app/customComponents/Companies/CompanyGallery'
+import { ServiceGallery } from '@/app/customComponents/Services/ServiceGallery'
 
 type Result = {
   docs: (
@@ -235,6 +236,10 @@ export const CollectionArchive: React.FC<Props> = props => {
         return <InvolvementEventGallery events={results.docs as InvolvementEvent[]} />
       case 'involvementGroups':
         return <InvolvementGroupGallery groups={results.docs as InvolvementGroup[]} />
+      case 'services':
+        return <ServiceGallery services={results.docs as Service[]} />
+      case 'projects':
+        return <ProjectGallery projects={results.docs as Project[]} />
       default:
         return <></>
     }
@@ -267,22 +272,10 @@ export const CollectionArchive: React.FC<Props> = props => {
             {results.docs?.map((result, index) => {
               if (typeof result === 'object' && result !== null) {
                 switch (relationTo) {
-                  case 'services':
-                    return <ServiceCard doc={result as Service} key={index} />
                   case 'posts':
                     return (
                       <div className={classes.column} key={index}>
                         <NewsCard doc={result as Post} relationTo={relationTo} />
-                      </div>
-                    )
-                  case 'projects':
-                    return (
-                      <div className={classes.column} key={index}>
-                        <ProjectCard
-                          doc={result as Project}
-                          relationTo={relationTo}
-                          showCategories
-                        />
                       </div>
                     )
                   default:

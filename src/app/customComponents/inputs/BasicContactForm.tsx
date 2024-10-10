@@ -13,7 +13,7 @@ import {
   FormMessage,
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
-import { ColorScheme } from '@/types/viewmodels'
+import { ColorScheme } from '../../types/viewmodels'
 
 const formSchema = z.object({
   firstName: z
@@ -59,10 +59,8 @@ export function BasicContactForm({ colorScheme = ColorScheme.DEFAULT }: Props) {
     colorScheme === ColorScheme.WHITE
       ? `bg-white text-wwBlack`
       : 'focus:ring-1 ring-inset focus:ring-inset focus:ring-wwRed'
-  const formTextStyle =
-    colorScheme === ColorScheme.WHITE ? 'text-white' : 'text-wwBlack'
-  const buttonStyle =
-    colorScheme === ColorScheme.WHITE ? 'btn-secondary' : 'btn-primary'
+  const formTextStyle = colorScheme === ColorScheme.WHITE ? 'text-white' : 'text-wwBlack'
+  const buttonStyle = colorScheme === ColorScheme.WHITE ? 'btn-secondary' : 'btn-primary'
 
   return (
     <Form {...form}>
@@ -76,11 +74,7 @@ export function BasicContactForm({ colorScheme = ColorScheme.DEFAULT }: Props) {
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <Input
-                  placeholder="First Name"
-                  {...field}
-                  className={formInputStyle}
-                />
+                <Input placeholder="First Name" {...field} className={formInputStyle} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -92,11 +86,7 @@ export function BasicContactForm({ colorScheme = ColorScheme.DEFAULT }: Props) {
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <Input
-                  placeholder="Last Name"
-                  {...field}
-                  className={formInputStyle}
-                />
+                <Input placeholder="Last Name" {...field} className={formInputStyle} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -108,11 +98,7 @@ export function BasicContactForm({ colorScheme = ColorScheme.DEFAULT }: Props) {
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <Input
-                  placeholder="(123) 456 - 7890"
-                  {...field}
-                  className={formInputStyle}
-                />
+                <Input placeholder="(123) 456 - 7890" {...field} className={formInputStyle} />
               </FormControl>
               <FormDescription></FormDescription>
               <FormMessage />
@@ -125,11 +111,7 @@ export function BasicContactForm({ colorScheme = ColorScheme.DEFAULT }: Props) {
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <Input
-                  placeholder="example@gmail.com"
-                  {...field}
-                  className={formInputStyle}
-                />
+                <Input placeholder="example@gmail.com" {...field} className={formInputStyle} />
               </FormControl>
               <FormMessage />
             </FormItem>

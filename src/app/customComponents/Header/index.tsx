@@ -62,7 +62,7 @@ function Nav() {
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-56">
               <DropdownMenuGroup>
-                <Link href="/team">
+                <Link href="/teammates">
                   <DropdownMenuItem className="hover:cursor-pointer">Our Team</DropdownMenuItem>
                 </Link>
                 <Link href="/projects">

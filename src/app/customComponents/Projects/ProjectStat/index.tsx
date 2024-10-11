@@ -1,4 +1,4 @@
-import { ColorScheme } from '../../types/viewmodels'
+import { ColorScheme } from '../../../types/viewmodels'
 import React from 'react'
 
 type Props = {

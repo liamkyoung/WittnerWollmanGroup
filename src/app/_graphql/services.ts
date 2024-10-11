@@ -5,6 +5,7 @@ import {
   MEDIA_BLOCK,
   PROJECT_BLOCK,
   STATS_AND_VIDEO_BLOCK,
+  CONTENT_AND_STATS_BLOCK,
 } from './blocks'
 import { LINK_FIELDS } from './link'
 import { MEDIA } from './media'
@@ -44,6 +45,7 @@ query Services($slug: String) {
           ${PROJECT_BLOCK}
           ${ARCHIVE_BLOCK}
           ${STATS_AND_VIDEO_BLOCK}
+          ${CONTENT_AND_STATS_BLOCK}
         }
         ${META}
       }

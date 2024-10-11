@@ -40,6 +40,7 @@ export const PROJECT_BLOCK = `
   location
   title
   description
+  bgColor
   facts {
     factStat
     factDescription
@@ -62,10 +63,35 @@ export const STATS_AND_VIDEO_BLOCK = `
 }
 `
 
+export const CONTENT_AND_STATS_BLOCK = `
+...on ContentAndStatsBlock {
+  blockType
+  title
+  richText
+  facts {
+    factStat
+    factDescription
+  }
+}
+`
+
+export const STAT_BLOCK = `
+...on StatBlock {
+  blockType
+  title
+  description
+  facts {
+    factStat
+    factDescription
+  }
+}
+`
+
 export const ARCHIVE_BLOCK = `
 ...on Archive {
   blockType
   introContent
+  archiveBgColor: bgColor
   populateBy
   relationTo
   ${CATEGORIES}

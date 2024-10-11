@@ -2,9 +2,11 @@ import {
   ARCHIVE_BLOCK,
   CALL_TO_ACTION,
   CONTENT,
+  CONTENT_AND_STATS_BLOCK,
   MEDIA_BLOCK,
   PROJECT_BLOCK,
   STATS_AND_VIDEO_BLOCK,
+  STAT_BLOCK,
 } from './blocks'
 import { LINK_FIELDS } from './link'
 import { MEDIA } from './media'
@@ -43,6 +45,8 @@ export const PAGE = `
           ${PROJECT_BLOCK}
           ${ARCHIVE_BLOCK}
           ${STATS_AND_VIDEO_BLOCK}
+          ${CONTENT_AND_STATS_BLOCK}
+          ${STAT_BLOCK}
         }
         ${META}
       }

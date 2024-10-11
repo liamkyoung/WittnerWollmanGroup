@@ -22,10 +22,14 @@ export const ArchiveBlock: React.FC<
     populatedDocsTotal,
     selectedDocs,
     categories,
+    archiveBgColor,
   } = props
 
+  console.log('props: ', props)
+  const color = archiveBgColor === 'red' ? 'bg-wwRed' : 'bg-gray-50'
+
   return (
-    <div id={`block-${id}`} className={classes.archiveBlock}>
+    <div id={`block-${id}`} className={`${classes.archiveBlock} ${color}`}>
       {introContent && (
         <Gutter className={classes.introContent}>
           <RichText content={introContent} />

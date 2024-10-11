@@ -29,14 +29,15 @@ export const ProjectBlock: React.FC<ProjectBlockProps> = props => {
   let caption
   if (media && typeof media === 'object') caption = media.caption
 
-  // console.log('Position: ', position)
+  // console.log('Position: ', props)
 
   let color = ColorScheme.DEFAULT
   if (bgColor === 'red') {
     color = ColorScheme.RED
   }
 
-  if (position === 'left') {
+  // If position of Image == right
+  if (position === 'right') {
     return (
       <ProjectBlockLeft
         link={externalLink}

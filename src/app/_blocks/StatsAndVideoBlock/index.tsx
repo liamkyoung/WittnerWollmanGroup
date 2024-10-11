@@ -28,7 +28,7 @@ export type FactStat = {
 }
 
 export const StatsAndVideoBlock: React.FC<StatAndVideoBlockProps> = props => {
-  const { title, media, description, facts } = props
+  const { title, description, facts } = props
 
   return (
     <div className="relative">

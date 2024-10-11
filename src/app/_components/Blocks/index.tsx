@@ -12,12 +12,17 @@ import { BackgroundColor } from '../BackgroundColor'
 import { VerticalPadding, VerticalPaddingOptions } from '../VerticalPadding'
 import { ProjectBlock, type ProjectBlockProps } from '../../_blocks/ProjectBlock'
 import { StatsAndVideoBlock, type StatAndVideoBlockProps } from '../../_blocks/StatsAndVideoBlock'
+import { ContentAndStatsBlock } from '../../_blocks/ContentAndStatsBlock'
+import { StatBlock, type StatBlockProps } from '../../_blocks/StatBlock'
+
 const blockComponents = {
   cta: CallToActionBlock,
   content: ContentBlock,
   mediaBlock: MediaBlock,
   projectBlock: ProjectBlock,
   statsAndVideoBlock: StatsAndVideoBlock,
+  contentAndStatsBlock: ContentAndStatsBlock,
+  statBlock: StatBlock,
   archive: ArchiveBlock,
   relatedPosts: RelatedPosts,
   comments: CommentsBlock,
@@ -30,6 +35,7 @@ export const Blocks: React.FC<{
     | CommentsBlockProps
     | ProjectBlockProps
     | StatAndVideoBlockProps
+    | StatBlockProps
   )[]
   disableTopPadding?: boolean
 }> = props => {

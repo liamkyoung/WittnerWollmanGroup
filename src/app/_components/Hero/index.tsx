@@ -6,6 +6,7 @@ import { LowImpactHero } from '../../_heros/LowImpact'
 import { MediumImpactHero } from '../../_heros/MediumImpact'
 import { DefaultHero } from '../../_heros/DefaultHero'
 import { FullscreenHero } from '../../_heros/FullscreenHero'
+import { ProjectHero } from '../../_heros/ProjectHero'
 
 const heroes = {
   highImpact: HighImpactHero,
@@ -13,6 +14,7 @@ const heroes = {
   lowImpact: LowImpactHero,
   fullscreen: FullscreenHero,
   default: DefaultHero,
+  projectHero: ProjectHero,
 }
 
 export const Hero: React.FC<Page['hero']> = props => {

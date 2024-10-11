@@ -154,5 +154,21 @@ export const Archive: Block = {
         condition: (_, siblingData) => siblingData.populateBy === 'collection',
       },
     },
+    {
+      name: 'bgColor',
+      type: 'select',
+      label: 'Background Color',
+      defaultValue: 'default',
+      options: [
+        {
+          label: 'default',
+          value: 'Default',
+        },
+        {
+          label: 'Red',
+          value: 'red',
+        },
+      ],
+    },
   ],
 }

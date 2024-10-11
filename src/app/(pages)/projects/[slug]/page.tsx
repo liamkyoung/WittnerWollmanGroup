@@ -8,7 +8,7 @@ import { fetchDoc } from '../../../_api/fetchDoc'
 import { fetchDocs } from '../../../_api/fetchDocs'
 import { RelatedPosts } from '../../../_blocks/RelatedPosts'
 import { Blocks } from '../../../_components/Blocks'
-import { ProjectHero } from '../../../_heros/ProjectHero'
+import { SingularProjectHero } from '../../../customComponents/Projects/SingularProjectHero'
 import { generateMeta } from '../../../_utilities/generateMeta'
 
 // Force this page to be dynamic so that Next.js does not cache it
@@ -38,7 +38,7 @@ export default async function Project({ params: { slug } }) {
 
   return (
     <React.Fragment>
-      <ProjectHero project={project} />
+      <SingularProjectHero project={project} />
       <Blocks blocks={[...layout]} />
     </React.Fragment>
   )

@@ -16,6 +16,7 @@ import { revalidateProject } from './hooks/revalidateProject'
 import { formatSocialMediaHandle } from '../../../payload/hooks/formatSocialMediaHandle'
 import { ProjectBlock } from '../../blocks/ProjectBlock'
 import { StatsAndVideoBlock } from '../../blocks/StatsAndVideoBlock'
+import { StatBlock } from '../../blocks/StatBlock'
 
 export const Projects: CollectionConfig = {
   slug: 'projects',
@@ -157,6 +158,7 @@ export const Projects: CollectionConfig = {
                 Archive,
                 ProjectBlock,
                 StatsAndVideoBlock,
+                StatBlock,
               ],
             },
           ],

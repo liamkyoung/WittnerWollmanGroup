@@ -41,6 +41,10 @@ export const hero: Field = {
           label: 'Fullscreen Video',
           value: 'fullscreen',
         },
+        {
+          label: 'Project Hero',
+          value: 'projectHero',
+        },
       ],
     },
     {

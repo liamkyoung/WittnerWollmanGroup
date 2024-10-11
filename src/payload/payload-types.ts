@@ -66,7 +66,7 @@ export interface Page {
   title: string;
   publishedAt?: string | null;
   hero: {
-    type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact' | 'default' | 'fullscreen';
+    type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact' | 'default' | 'fullscreen' | 'projectHero';
     headerText?: string | null;
     richText: {
       [k: string]: unknown;
@@ -241,6 +241,7 @@ export interface Page {
             )[]
           | null;
         populatedDocsTotal?: number | null;
+        bgColor?: ('Default' | 'red') | null;
         id?: string | null;
         blockName?: string | null;
         blockType: 'archive';
@@ -267,6 +268,16 @@ export interface Page {
         id?: string | null;
         blockName?: string | null;
         blockType: 'statsAndVideoBlock';
+      }
+    | {
+        title: string;
+        richText: {
+          [k: string]: unknown;
+        }[];
+        facts?: FactsList;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'contentAndStatsBlock';
       }
   )[];
   slug?: string | null;
@@ -338,7 +349,7 @@ export interface Post {
       }[]
     | null;
   hero: {
-    type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact' | 'default' | 'fullscreen';
+    type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact' | 'default' | 'fullscreen' | 'projectHero';
     headerText?: string | null;
     richText: {
       [k: string]: unknown;
@@ -513,6 +524,7 @@ export interface Post {
             )[]
           | null;
         populatedDocsTotal?: number | null;
+        bgColor?: ('Default' | 'red') | null;
         id?: string | null;
         blockName?: string | null;
         blockType: 'archive';
@@ -672,6 +684,7 @@ export interface Post {
                 )[]
               | null;
             populatedDocsTotal?: number | null;
+            bgColor?: ('Default' | 'red') | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'archive';
@@ -725,7 +738,7 @@ export interface Project {
   categories?: (number | Category)[] | null;
   publishedAt?: string | null;
   hero: {
-    type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact' | 'default' | 'fullscreen';
+    type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact' | 'default' | 'fullscreen' | 'projectHero';
     headerText?: string | null;
     richText: {
       [k: string]: unknown;
@@ -900,6 +913,7 @@ export interface Project {
             )[]
           | null;
         populatedDocsTotal?: number | null;
+        bgColor?: ('Default' | 'red') | null;
         id?: string | null;
         blockName?: string | null;
         blockType: 'archive';
@@ -1077,7 +1091,7 @@ export interface Service {
   iconSvg: string;
   shortDescription: string;
   hero: {
-    type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact' | 'default' | 'fullscreen';
+    type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact' | 'default' | 'fullscreen' | 'projectHero';
     headerText?: string | null;
     richText: {
       [k: string]: unknown;
@@ -1252,6 +1266,7 @@ export interface Service {
             )[]
           | null;
         populatedDocsTotal?: number | null;
+        bgColor?: ('Default' | 'red') | null;
         id?: string | null;
         blockName?: string | null;
         blockType: 'archive';

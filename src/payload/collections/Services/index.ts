@@ -10,6 +10,7 @@ import { MediaBlock } from '../../blocks/MediaBlock'
 import { hero } from '../../fields/hero'
 import { ProjectBlock } from '../../blocks/ProjectBlock'
 import { StatsAndVideoBlock } from '../../blocks/StatsAndVideoBlock'
+import { StatBlock } from '../../blocks/StatBlock'
 
 export const Services: CollectionConfig = {
   slug: 'services',
@@ -84,6 +85,7 @@ export const Services: CollectionConfig = {
                 Archive,
                 ProjectBlock,
                 StatsAndVideoBlock,
+                StatBlock,
               ],
             },
           ],

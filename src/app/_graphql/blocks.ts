@@ -49,6 +49,19 @@ export const PROJECT_BLOCK = `
 }
 `
 
+export const STATS_AND_VIDEO_BLOCK = `
+...on StatsAndVideoBlock {
+  blockType
+  title
+  description
+  facts {
+    factStat
+    factDescription
+  }
+  youtubeLink
+}
+`
+
 export const ARCHIVE_BLOCK = `
 ...on Archive {
   blockType

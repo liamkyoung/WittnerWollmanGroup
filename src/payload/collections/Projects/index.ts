@@ -15,6 +15,7 @@ import { revalidateProject } from './hooks/revalidateProject'
 
 import { formatSocialMediaHandle } from '../../../payload/hooks/formatSocialMediaHandle'
 import { ProjectBlock } from '../../blocks/ProjectBlock'
+import { StatsAndVideoBlock } from '../../blocks/StatsAndVideoBlock'
 
 export const Projects: CollectionConfig = {
   slug: 'projects',
@@ -149,7 +150,14 @@ export const Projects: CollectionConfig = {
               name: 'layout',
               type: 'blocks',
               required: true,
-              blocks: [CallToAction, Content, MediaBlock, Archive, ProjectBlock],
+              blocks: [
+                CallToAction,
+                Content,
+                MediaBlock,
+                Archive,
+                ProjectBlock,
+                StatsAndVideoBlock,
+              ],
             },
           ],
         },

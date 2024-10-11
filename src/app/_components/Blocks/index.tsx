@@ -11,19 +11,26 @@ import { toKebabCase } from '../../_utilities/toKebabCase'
 import { BackgroundColor } from '../BackgroundColor'
 import { VerticalPadding, VerticalPaddingOptions } from '../VerticalPadding'
 import { ProjectBlock, type ProjectBlockProps } from '../../_blocks/ProjectBlock'
-
+import { StatsAndVideoBlock, type StatAndVideoBlockProps } from '../../_blocks/StatsAndVideoBlock'
 const blockComponents = {
   cta: CallToActionBlock,
   content: ContentBlock,
   mediaBlock: MediaBlock,
   projectBlock: ProjectBlock,
+  statsAndVideoBlock: StatsAndVideoBlock,
   archive: ArchiveBlock,
   relatedPosts: RelatedPosts,
   comments: CommentsBlock,
 }
 
 export const Blocks: React.FC<{
-  blocks: (Page['layout'][0] | RelatedPostsProps | CommentsBlockProps | ProjectBlockProps)[]
+  blocks: (
+    | Page['layout'][0]
+    | RelatedPostsProps
+    | CommentsBlockProps
+    | ProjectBlockProps
+    | StatAndVideoBlockProps
+  )[]
   disableTopPadding?: boolean
 }> = props => {
   const { disableTopPadding, blocks } = props

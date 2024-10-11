@@ -12,6 +12,7 @@ import { populateArchiveBlock } from '../../hooks/populateArchiveBlock'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
 import { revalidatePage } from './hooks/revalidatePage'
 import { ProjectBlock } from '../../blocks/ProjectBlock'
+import { StatsAndVideoBlock } from '../../blocks/StatsAndVideoBlock'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -65,7 +66,14 @@ export const Pages: CollectionConfig = {
               name: 'layout',
               type: 'blocks',
               required: true,
-              blocks: [CallToAction, Content, MediaBlock, Archive, ProjectBlock],
+              blocks: [
+                CallToAction,
+                Content,
+                MediaBlock,
+                Archive,
+                ProjectBlock,
+                StatsAndVideoBlock,
+              ],
             },
           ],
         },

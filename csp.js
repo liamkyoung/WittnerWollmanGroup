@@ -21,7 +21,7 @@ const policies = {
     'data:', // Allow data URIs if needed
   ],
   'font-src': ["'self'", 'https://fonts.gstatic.com'],
-  'frame-src': ["'self'"],
+  'frame-src': ["'self'", 'https://www.youtube.com'],
   'connect-src': ["'self'", 'https://maps.googleapis.com', 'https://maps.gstatic.com'],
 }
 

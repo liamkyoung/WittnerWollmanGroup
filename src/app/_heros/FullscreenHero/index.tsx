@@ -15,7 +15,7 @@ export const FullscreenHero: React.FC<Page['hero']> = ({ richText, media, links,
           <h1 className="font-normal text-white">{headerText}</h1>
           <RichText
             content={richText}
-            className="text-lg font-medium text-white lg:w-3/4"
+            className="text-lg font-medium lg:w-3/4"
             textColor="text-white"
           />
         </div>

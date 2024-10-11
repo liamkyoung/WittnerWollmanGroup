@@ -25,17 +25,24 @@ export const MarkerWithInfo = ({ position, title, href, image }: Props) => {
 
   // if the maps api closes the infowindow, we have to synchronize our state
   const handleClose = useCallback(() => setInfoWindowShown(false), [])
-
   return (
     <>
-      <AdvancedMarker ref={markerRef} position={position} onClick={handleMarkerClick} />
+      {position.lat && position.lng && (
+        <>
+          <AdvancedMarker
+            ref={markerRef}
+            position={new google.maps.LatLng(position.lat, position.lng)}
+            onClick={handleMarkerClick}
+          />
 
-      {infoWindowShown && (
-        <InfoWindow anchor={marker} onClose={handleClose}>
-          <h2>{title}</h2>
-          <Media resource={image} />
-          <Link href={href}>Click here to view</Link>
-        </InfoWindow>
+          {infoWindowShown && (
+            <InfoWindow anchor={marker} onClose={handleClose}>
+              <h2>{title}</h2>
+              <Media resource={image} />
+              <Link href={href}>Click here to view</Link>
+            </InfoWindow>
+          )}
+        </>
       )}
     </>
   )

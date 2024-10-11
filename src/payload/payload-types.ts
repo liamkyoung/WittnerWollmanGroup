@@ -259,6 +259,15 @@ export interface Page {
         blockName?: string | null;
         blockType: 'projectBlock';
       }
+    | {
+        title: string;
+        description: string;
+        facts?: FactsList;
+        youtubeLink: string;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'statsAndVideoBlock';
+      }
   )[];
   slug?: string | null;
   meta?: {
@@ -909,6 +918,15 @@ export interface Project {
         blockName?: string | null;
         blockType: 'projectBlock';
       }
+    | {
+        title: string;
+        description: string;
+        facts?: FactsList;
+        youtubeLink: string;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'statsAndVideoBlock';
+      }
   )[];
   relatedProjects?: (number | Project)[] | null;
   slug?: string | null;
@@ -1251,6 +1269,15 @@ export interface Service {
         id?: string | null;
         blockName?: string | null;
         blockType: 'projectBlock';
+      }
+    | {
+        title: string;
+        description: string;
+        facts?: FactsList;
+        youtubeLink: string;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'statsAndVideoBlock';
       }
   )[];
   meta?: {

@@ -1,4 +1,11 @@
-import { ARCHIVE_BLOCK, CALL_TO_ACTION, CONTENT, MEDIA_BLOCK, PROJECT_BLOCK } from './blocks'
+import {
+  ARCHIVE_BLOCK,
+  CALL_TO_ACTION,
+  CONTENT,
+  MEDIA_BLOCK,
+  PROJECT_BLOCK,
+  STATS_AND_VIDEO_BLOCK,
+} from './blocks'
 import { LINK_FIELDS } from './link'
 import { IMAGE, MEDIA } from './media'
 import { META } from './meta'
@@ -48,6 +55,7 @@ export const PROJECT = `
           ${CONTENT}
           ${MEDIA_BLOCK}
           ${PROJECT_BLOCK}
+          ${STATS_AND_VIDEO_BLOCK}
           ${ARCHIVE_BLOCK}
         }
         ${META}

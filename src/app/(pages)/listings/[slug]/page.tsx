@@ -12,11 +12,17 @@ import { ListingHero } from '@/app/_heros/ListingHero'
 import PhotoGallery from '@/app/customComponents/Gallery/PhotoGallery'
 import Features from './Features'
 import { GoogleMap } from '@/app/customComponents/GoogleMap/GoogleMap'
+import AdminAddressSearch from '@/app/customComponents/GoogleMap/AdminAddressSearch'
 
 export const dynamic = 'force-dynamic'
 
 export default async function Page({ params: { slug } }) {
   const { isEnabled: isDraftMode } = draftMode()
+  const locations = [
+    { lat: 27.77, lng: -82.65 },
+    { lat: 27.67, lng: -82.64 },
+    { lat: 27.67, lng: -83.64 },
+  ]
   let listing: Listing | null = null
   try {
     listing = await fetchDoc<Listing>({
@@ -55,16 +61,6 @@ export default async function Page({ params: { slug } }) {
   } = listing
   return (
     <div className="global-margin-x mt-24">
-      <GoogleMap />
-      {/* {typeof coverImage !== 'number' && (
-        <Image
-          height={200}
-          width={200}
-          src={`/media/${coverImage.filename}`}
-          alt={coverImage.alt}
-          className="rounded-full"
-        />
-      )} */}
       <ListingHero
         streetAddress={streetAddress}
         price={price}
@@ -89,30 +85,6 @@ export default async function Page({ params: { slug } }) {
         zoningType={'Placeholder'}
         occupany={occupancy}
       />
-      {/* <h1 className="text-xl">Name: {title}</h1>
-      <p className="text-red-100">${price}</p> */}
-      {/* <p>{streetAddress}</p>
-      <p>{zipCode}</p>
-      <p>
-        {latitude} LAT <b>MISSING</b>
-      </p>
-      <p>
-        {longitude} LONG <b>MISSING</b>
-      </p>
-      <p>Neighborhood {neighborhood}</p>
-      <p>{sqFt} sqft</p>
-      <p>{sqFtLand} land sqft</p>
-      <p>{propertyType}</p>
-      <p>Beds {bedCount}</p>
-      <p>Baths: {bathroomCount}</p>
-      <p>Year Built: {yearBuilt}</p>
-      <p>Area Overview: {areaOverview}</p>
-      <p>Tenancy Type: {tenancyType}</p>
-      <p>Occupancy: {occupancy}%</p>
-      <p>Zoning Type: {zoningType}</p>
-      <p>
-        Image Gallery <b>MISSING</b>
-      </p> */}
     </div>
   )
   //   return <div>This is a Listing {slug}</div>

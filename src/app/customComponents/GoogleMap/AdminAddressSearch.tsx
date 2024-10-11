@@ -10,7 +10,7 @@ import AddressSearch from './AddressSearch'
 const API_KEY =
   process.env.PAYLOAD_PUBLIC_GOOGLE_MAPS_KEY || process.env.NEXT_PUBLIC_GOOGLE_MAPS_KEY
 
-export default function AdminAddressSearch({ path, label }) {
+export default function AdminAddressSearch({ path }) {
   const [addressList, setAddressList] = useState<void | google.maps.GeocoderResponse>(null)
   const [addressQuery, setAddressQuery] = useState('')
   const [debouncedInputValue, setDebouncedInputValue] = useState('')
@@ -24,8 +24,9 @@ export default function AdminAddressSearch({ path, label }) {
   const state = useFormFields(([fields, dispatch]) => fields.state)
   const neighborhood = useFormFields(([fields, dispatch]) => fields.neighborhood)
 
-  const { value, setValue } = useField<string>({ path })
+  const { value, setValue } = useField<string>({ path: 'address' })
 
+  // DEBOUNCING
   useEffect(() => {
     const delayInputTimeoutId = setTimeout(() => {
       setDebouncedInputValue(addressQuery)
@@ -80,7 +81,7 @@ export default function AdminAddressSearch({ path, label }) {
       )}
       <APIProvider apiKey={API_KEY}>
         <div className="grid w-full max-w-sm items-center gap-1.5">
-          <label htmlFor={path}>Address</label>
+          <label htmlFor={'address'}>Address</label>
           <input
             placeholder="Address"
             onInput={e => {

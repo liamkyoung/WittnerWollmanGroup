@@ -1,4 +1,4 @@
-import { Socials } from '../types/viewmodels'
+import { Socials, MapSettings } from '@/app/types/viewmodels'
 
 export const DefaultSocials: Socials = {
   phoneNumber: '(813) 456-7890',
@@ -18,4 +18,8 @@ export const FakeRealtorSocials: Socials = {
   twitter: 'https://www.x.com/realtor',
   instagram: 'https://www.instagram.com/realtor',
   facebook: 'https://www.facebook.com/realtor',
+}
+
+export const GoogleMapsDefaults: MapSettings = {
+  mapCenter: { lat: 27.77, lng: -82.64 },
 }

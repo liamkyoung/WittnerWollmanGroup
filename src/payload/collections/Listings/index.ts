@@ -8,6 +8,7 @@ import { adminsOrPublished } from '../../access/adminsOrPublished'
 
 // import AdminAddressSearch from '../../../components/custom/GoogleMap/AdminAddressSearch'
 import { revalidateListing } from './hooks/revalidateListing'
+import AdminAddressSearch from '../../../app/customComponents/GoogleMap/AdminAddressSearch'
 
 import { Archive } from '../../blocks/ArchiveBlock'
 
@@ -54,11 +55,11 @@ export const Listings: CollectionConfig = {
       label: 'Property Address',
       type: 'text',
       required: true,
-      // admin: {
-      //   components: {
-      //     Field: AdminAddressSearch,
-      //   },
-      // },
+      admin: {
+        components: {
+          Field: AdminAddressSearch,
+        },
+      },
       // Able to get from map
     },
     {

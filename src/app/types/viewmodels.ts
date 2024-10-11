@@ -29,3 +29,12 @@ export type NavGrouping = {
   relLink: string
   subNavigation?: NavGrouping[]
 }
+
+export type MapSettings = {
+  mapCenter: MapCoords
+}
+
+export type MapCoords = {
+  lat: number
+  lng: number
+}

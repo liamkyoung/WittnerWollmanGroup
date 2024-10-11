@@ -1,6 +1,17 @@
 const policies = {
-  'default-src': ["'self'", 'https://raw.githubusercontent.com'],
-  'script-src': ["'self'", "'unsafe-inline'", "'unsafe-eval'", 'https://maps.googleapis.com'],
+  'default-src': [
+    "'self'",
+    'https://raw.githubusercontent.com',
+    'https://maps.googleapis.com',
+    'https://maps.gstatic.com',
+  ],
+  'script-src': [
+    "'self'",
+    "'unsafe-inline'",
+    "'unsafe-eval'",
+    'https://maps.googleapis.com',
+    'https://maps.gstatic.com',
+  ],
   'child-src': ["'self'"],
   'style-src': ["'self'", "'unsafe-inline'", 'https://fonts.googleapis.com'],
   'img-src': [

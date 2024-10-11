@@ -3,6 +3,7 @@ import { useState, useMemo, useEffect } from 'react'
 import React from 'react'
 
 import AdminAddressSearch from './AdminAddressSearch'
+import { GoogleMapsDefaults } from '@/globalData/general'
 
 type Props = {}
 
@@ -16,7 +17,7 @@ export default function AdminAddressSearchWrapper({}: Props) {
   const [open, setOpen] = useState(false)
   const [addressQuery, setAddressQuery] = useState('')
 
-  const [center, setCenter] = useState({ lat: 27.77, lng: -82.64 }) // Centered on St. Pete Downtown
+  const [center, setCenter] = useState(GoogleMapsDefaults.mapCenter) // Centered on St. Pete Downtown
   const [formattedAddress, setFormattedAddress] = useState<string>(null)
 
   function handleAddressSelected(lat, lng, formattedAddress) {
@@ -26,7 +27,7 @@ export default function AdminAddressSearchWrapper({}: Props) {
 
   return (
     <>
-      <AdminAddressSearch path="/" label="" />
+      <AdminAddressSearch />
     </>
   )
 }

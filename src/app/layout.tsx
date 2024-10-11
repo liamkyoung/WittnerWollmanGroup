@@ -23,10 +23,6 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <InitTheme />
         <link rel="icon" href="/favicon.ico" sizes="32x32" />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-        <meta
-          httpEquiv="Content-Security-Policy"
-          content="img-src 'self' https://raw.githubusercontent.com https://maps.gstatic.com;"
-        ></meta>
       </head>
       <body className={`${montserrat.className} antialiased bg-gray-50 mx-auto`}>
         <Providers>

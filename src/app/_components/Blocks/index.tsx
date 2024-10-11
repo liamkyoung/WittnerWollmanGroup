@@ -14,6 +14,7 @@ import { ProjectBlock, type ProjectBlockProps } from '../../_blocks/ProjectBlock
 import { StatsAndVideoBlock, type StatAndVideoBlockProps } from '../../_blocks/StatsAndVideoBlock'
 import { ContentAndStatsBlock } from '../../_blocks/ContentAndStatsBlock'
 import { StatBlock, type StatBlockProps } from '../../_blocks/StatBlock'
+import { GoogleMapsBlock, type GoogleMapsBlockProps } from '../../_blocks/GoogleMapsBlock'
 
 const blockComponents = {
   cta: CallToActionBlock,
@@ -26,6 +27,7 @@ const blockComponents = {
   archive: ArchiveBlock,
   relatedPosts: RelatedPosts,
   comments: CommentsBlock,
+  googleMapsBlock: GoogleMapsBlock,
 }
 
 export const Blocks: React.FC<{
@@ -36,6 +38,7 @@ export const Blocks: React.FC<{
     | ProjectBlockProps
     | StatAndVideoBlockProps
     | StatBlockProps
+    | GoogleMapsBlockProps
   )[]
   disableTopPadding?: boolean
 }> = props => {

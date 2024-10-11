@@ -15,6 +15,7 @@ import { ProjectBlock } from '../../blocks/ProjectBlock'
 import { StatsAndVideoBlock } from '../../blocks/StatsAndVideoBlock'
 import { ContentAndStatsBlock } from '../../blocks/ContentAndStatsBlock'
 import { StatBlock } from '../../blocks/StatBlock'
+import { GoogleMapsBlock } from '../../blocks/GoogleMapsBlock'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -77,6 +78,7 @@ export const Pages: CollectionConfig = {
                 StatsAndVideoBlock,
                 ContentAndStatsBlock,
                 StatBlock,
+                GoogleMapsBlock,
               ],
             },
           ],

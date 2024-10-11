@@ -279,6 +279,21 @@ export interface Page {
         blockName?: string | null;
         blockType: 'contentAndStatsBlock';
       }
+    | {
+        title?: string | null;
+        description?: string | null;
+        facts?: FactsList;
+        bgColor?: ('white' | 'red') | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'statBlock';
+      }
+    | {
+        locations?: (number | Project)[] | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'googleMapsBlock';
+      }
   )[];
   slug?: string | null;
   meta?: {
@@ -941,6 +956,15 @@ export interface Project {
         blockName?: string | null;
         blockType: 'statsAndVideoBlock';
       }
+    | {
+        title?: string | null;
+        description?: string | null;
+        facts?: FactsList;
+        bgColor?: ('white' | 'red') | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'statBlock';
+      }
   )[];
   relatedProjects?: (number | Project)[] | null;
   slug?: string | null;
@@ -1293,6 +1317,15 @@ export interface Service {
         id?: string | null;
         blockName?: string | null;
         blockType: 'statsAndVideoBlock';
+      }
+    | {
+        title?: string | null;
+        description?: string | null;
+        facts?: FactsList;
+        bgColor?: ('white' | 'red') | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'statBlock';
       }
   )[];
   meta?: {

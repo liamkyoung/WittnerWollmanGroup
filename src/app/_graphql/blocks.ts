@@ -87,6 +87,15 @@ export const STAT_BLOCK = `
 }
 `
 
+export const GOOGLE_MAPS_BLOCK = `
+...on GoogleMapsBlock {
+  blockType
+  locations {
+    title
+  }
+}
+`
+
 export const ARCHIVE_BLOCK = `
 ...on Archive {
   blockType

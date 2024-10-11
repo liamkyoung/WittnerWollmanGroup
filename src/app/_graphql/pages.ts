@@ -7,6 +7,7 @@ import {
   PROJECT_BLOCK,
   STATS_AND_VIDEO_BLOCK,
   STAT_BLOCK,
+  GOOGLE_MAPS_BLOCK,
 } from './blocks'
 import { LINK_FIELDS } from './link'
 import { MEDIA } from './media'
@@ -47,6 +48,7 @@ export const PAGE = `
           ${STATS_AND_VIDEO_BLOCK}
           ${CONTENT_AND_STATS_BLOCK}
           ${STAT_BLOCK}
+          ${GOOGLE_MAPS_BLOCK}
         }
         ${META}
       }

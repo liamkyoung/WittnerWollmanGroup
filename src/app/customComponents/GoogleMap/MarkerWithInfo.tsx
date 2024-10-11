@@ -1,12 +1,18 @@
 import React, { useState, useCallback } from 'react'
 import { AdvancedMarker, useAdvancedMarkerRef, InfoWindow } from '@vis.gl/react-google-maps'
 import { MapCoords } from '@/app/types/viewmodels'
+import Link from 'next/link'
+import { Media } from '@/app/_components/Media'
+import { Media as MediaType } from '@/payload/payload-types'
 
 type Props = {
   position: MapCoords
+  title: string
+  href: string
+  image: MediaType
 }
 
-export const MarkerWithInfo = ({ position }: Props) => {
+export const MarkerWithInfo = ({ position, title, href, image }: Props) => {
   // `markerRef` and `marker` are needed to establish the connection between
   // the marker and infowindow (if you're using the Marker component, you
   // can use the `useMarkerRef` hook instead).
@@ -26,8 +32,9 @@ export const MarkerWithInfo = ({ position }: Props) => {
 
       {infoWindowShown && (
         <InfoWindow anchor={marker} onClose={handleClose}>
-          <h2>InfoWindow content!</h2>
-          <p>Some arbitrary html to be rendered into the InfoWindow.</p>
+          <h2>{title}</h2>
+          <Media resource={image} />
+          <Link href={href}>Click here to view</Link>
         </InfoWindow>
       )}
     </>

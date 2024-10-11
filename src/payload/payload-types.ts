@@ -66,7 +66,7 @@ export interface Page {
   title: string;
   publishedAt?: string | null;
   hero: {
-    type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact' | 'default';
+    type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact' | 'default' | 'fullscreen';
     headerText?: string | null;
     richText: {
       [k: string]: unknown;
@@ -329,7 +329,7 @@ export interface Post {
       }[]
     | null;
   hero: {
-    type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact' | 'default';
+    type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact' | 'default' | 'fullscreen';
     headerText?: string | null;
     richText: {
       [k: string]: unknown;
@@ -716,7 +716,7 @@ export interface Project {
   categories?: (number | Category)[] | null;
   publishedAt?: string | null;
   hero: {
-    type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact' | 'default';
+    type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact' | 'default' | 'fullscreen';
     headerText?: string | null;
     richText: {
       [k: string]: unknown;
@@ -1059,7 +1059,7 @@ export interface Service {
   iconSvg: string;
   shortDescription: string;
   hero: {
-    type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact' | 'default';
+    type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact' | 'default' | 'fullscreen';
     headerText?: string | null;
     richText: {
       [k: string]: unknown;

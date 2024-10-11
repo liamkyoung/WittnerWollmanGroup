@@ -21,26 +21,38 @@ type Leaf = {
   [key: string]: unknown
 }
 
-const serialize = (children?: Children): React.ReactNode[] =>
+const serialize = (children?: Children, textColor: string = 'text-black'): React.ReactNode[] =>
   children?.map((node, i) => {
     if (Text.isText(node)) {
       let text = <span dangerouslySetInnerHTML={{ __html: escapeHTML(node.text) }} />
 
       if (node.bold) {
-        text = <strong key={i}>{text}</strong>
+        text = (
+          <strong key={i} className={textColor}>
+            {text}
+          </strong>
+        )
       }
 
       if (node.code) {
-        text = <code key={i}>{text}</code>
+        text = (
+          <code key={i} className={textColor}>
+            {text}
+          </code>
+        )
       }
 
       if (node.italic) {
-        text = <em key={i}>{text}</em>
+        text = (
+          <em key={i} className={textColor}>
+            {text}
+          </em>
+        )
       }
 
       if (node.underline) {
         text = (
-          <span style={{ textDecoration: 'underline' }} key={i}>
+          <span style={{ textDecoration: 'underline' }} key={i} className={textColor}>
             {text}
           </span>
         )
@@ -48,13 +60,17 @@ const serialize = (children?: Children): React.ReactNode[] =>
 
       if (node.strikethrough) {
         text = (
-          <span style={{ textDecoration: 'line-through' }} key={i}>
+          <span style={{ textDecoration: 'line-through' }} key={i} className={textColor}>
             {text}
           </span>
         )
       }
 
-      return <Fragment key={i}>{text}</Fragment>
+      return (
+        <Fragment key={i} className={textColor}>
+          {text}
+        </Fragment>
+      )
     }
 
     if (!node) {
@@ -63,25 +79,65 @@ const serialize = (children?: Children): React.ReactNode[] =>
 
     switch (node.type) {
       case 'h1':
-        return <h1 key={i}>{serialize(node?.children)}</h1>
+        return (
+          <h1 key={i} className={textColor}>
+            {serialize(node?.children)}
+          </h1>
+        )
       case 'h2':
-        return <h2 key={i}>{serialize(node?.children)}</h2>
+        return (
+          <h2 key={i} className={textColor}>
+            {serialize(node?.children)}
+          </h2>
+        )
       case 'h3':
-        return <h3 key={i}>{serialize(node?.children)}</h3>
+        return (
+          <h3 key={i} className={textColor}>
+            {serialize(node?.children)}
+          </h3>
+        )
       case 'h4':
-        return <h4 key={i}>{serialize(node?.children)}</h4>
+        return (
+          <h4 key={i} className={textColor}>
+            {serialize(node?.children)}
+          </h4>
+        )
       case 'h5':
-        return <h5 key={i}>{serialize(node?.children)}</h5>
+        return (
+          <h5 key={i} className={textColor}>
+            {serialize(node?.children)}
+          </h5>
+        )
       case 'h6':
-        return <h6 key={i}>{serialize(node?.children)}</h6>
+        return (
+          <h6 key={i} className={textColor}>
+            {serialize(node?.children)}
+          </h6>
+        )
       case 'quote':
-        return <blockquote key={i}>{serialize(node?.children)}</blockquote>
+        return (
+          <blockquote key={i} className={textColor}>
+            {serialize(node?.children)}
+          </blockquote>
+        )
       case 'ul':
-        return <ul key={i}>{serialize(node?.children)}</ul>
+        return (
+          <ul key={i} className={textColor}>
+            {serialize(node?.children)}
+          </ul>
+        )
       case 'ol':
-        return <ol key={i}>{serialize(node.children)}</ol>
+        return (
+          <ol key={i} className={textColor}>
+            {serialize(node.children)}
+          </ol>
+        )
       case 'li':
-        return <li key={i}>{serialize(node.children)}</li>
+        return (
+          <li key={i} className={textColor}>
+            {serialize(node.children)}
+          </li>
+        )
       case 'link':
         return (
           <CMSLink
@@ -90,6 +146,7 @@ const serialize = (children?: Children): React.ReactNode[] =>
             url={node.url}
             reference={node.doc as any}
             newTab={Boolean(node?.newTab)}
+            className={textColor}
           >
             {serialize(node?.children)}
           </CMSLink>
@@ -103,7 +160,11 @@ const serialize = (children?: Children): React.ReactNode[] =>
       }
 
       default:
-        return <p key={i}>{serialize(node?.children)}</p>
+        return (
+          <p key={i} className={textColor}>
+            {serialize(node?.children)}
+          </p>
+        )
     }
   }) || []
 

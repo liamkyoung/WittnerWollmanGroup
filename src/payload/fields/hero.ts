@@ -37,6 +37,10 @@ export const hero: Field = {
           label: 'Default',
           value: 'default',
         },
+        {
+          label: 'Fullscreen Video',
+          value: 'fullscreen',
+        },
       ],
     },
     {
@@ -61,7 +65,8 @@ export const hero: Field = {
       relationTo: 'media',
       required: true,
       admin: {
-        condition: (_, { type } = {}) => ['highImpact', 'mediumImpact'].includes(type),
+        condition: (_, { type } = {}) =>
+          ['highImpact', 'mediumImpact', 'fullscreen', 'default'].includes(type),
       },
     },
   ],

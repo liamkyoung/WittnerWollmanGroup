@@ -5,11 +5,13 @@ import { HighImpactHero } from '../../_heros/HighImpact'
 import { LowImpactHero } from '../../_heros/LowImpact'
 import { MediumImpactHero } from '../../_heros/MediumImpact'
 import { DefaultHero } from '../../_heros/DefaultHero'
+import { FullscreenHero } from '../../_heros/FullscreenHero'
 
 const heroes = {
   highImpact: HighImpactHero,
   mediumImpact: MediumImpactHero,
   lowImpact: LowImpactHero,
+  fullscreen: FullscreenHero,
   default: DefaultHero,
 }
 

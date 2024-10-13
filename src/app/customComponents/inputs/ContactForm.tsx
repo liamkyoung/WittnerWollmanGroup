@@ -16,6 +16,7 @@ import {
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { ColorScheme } from '../../types/viewmodels'
+import { useToast } from '@/hooks/use-toast'
 
 const formSchema = z.object({
   firstName: z
@@ -46,9 +47,12 @@ type Props = {
   colorScheme?: ColorScheme
 }
 
+export type ContactEmailProps = typeof formSchema
+
 export function ContactForm({ colorScheme = ColorScheme.DEFAULT }: Props) {
+  const { toast } = useToast()
   // 1. Define your form.
-  const form = useForm<z.infer<typeof formSchema>>({
+  const form = useForm<z.infer<ContactEmailProps>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       firstName: '',
@@ -61,10 +65,36 @@ export function ContactForm({ colorScheme = ColorScheme.DEFAULT }: Props) {
   })
 
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  async function onSubmit(values: z.infer<ContactEmailProps>) {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
-    console.log(values)
+    try {
+      const response = await fetch('/api/sendEmail', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(values),
+      })
+
+      const data = await response.json()
+      if (response.ok) {
+        toast({
+          title: '✅ Your message has been sent!',
+        })
+      } else {
+        toast({
+          title: '❌ There was an error sending your message',
+          description: 'Please try again later.',
+        })
+      }
+    } catch (err) {
+      console.error('Error submitting form:', err)
+      toast({
+        title: '❌ There was an error sending your message',
+        description: 'Please try again later.',
+      })
+    }
   }
 
   const formInputStyle =

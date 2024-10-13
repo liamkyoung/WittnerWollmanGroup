@@ -34,6 +34,8 @@ import { InvolvementEvents } from './collections/InvolvementEvents'
 import { InvolvementGroups } from './collections/InvolvementGroups'
 import { CommunityResources } from './collections/CommunityResources'
 
+import { sendEmail } from './endpoints/sendEmail'
+
 const generateTitle: GenerateTitle = () => {
   return 'Wittner Wollman Group'
 }
@@ -109,6 +111,11 @@ export default buildConfig({
       path: '/seed',
       method: 'get',
       handler: seed,
+    },
+    {
+      path: '/sendEmail',
+      method: 'post',
+      handler: sendEmail,
     },
   ],
   plugins: [

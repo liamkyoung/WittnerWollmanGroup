@@ -15,6 +15,7 @@ import './_css/app.scss'
 import { Montserrat } from 'next/font/google'
 import { CompanyGallery } from './customComponents/Companies/CompanyGallery'
 const montserrat = Montserrat({ subsets: ['latin'] })
+import { Toaster } from '@/components/ui/toaster'
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -30,6 +31,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             <Header />
             {children}
             <Footer />
+            <Toaster />
           </>
         </Providers>
       </body>

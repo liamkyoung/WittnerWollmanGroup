@@ -2,7 +2,7 @@ import { Socials, MapSettings } from '@/app/types/viewmodels'
 
 export const DefaultSocials: Socials = {
   phoneNumber: '(813) 456-7890',
-  email: 'wwgroup@kw.com',
+  email: 'liamkingstonyoung@gmail.com',
   address: '360 Central Ave, St. Petersburg, FL 33701',
   linkedin: 'https://www.linkedin.com',
   twitter: 'https://www.x.com',

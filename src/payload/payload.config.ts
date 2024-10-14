@@ -35,6 +35,7 @@ import { InvolvementGroups } from './collections/InvolvementGroups'
 import { CommunityResources } from './collections/CommunityResources'
 
 import { sendEmail } from './endpoints/sendEmail'
+import { signUpNewsletter } from './endpoints/signUpNewsletter'
 
 const generateTitle: GenerateTitle = () => {
   return 'Wittner Wollman Group'
@@ -108,14 +109,14 @@ export default buildConfig({
     // The seed endpoint is used to populate the database with some example data
     // You should delete this endpoint before deploying your site to production
     {
-      path: '/seed',
-      method: 'get',
-      handler: seed,
-    },
-    {
       path: '/sendEmail',
       method: 'post',
       handler: sendEmail,
+    },
+    {
+      path: '/signUpNewsletter',
+      method: 'post',
+      handler: signUpNewsletter,
     },
   ],
   plugins: [

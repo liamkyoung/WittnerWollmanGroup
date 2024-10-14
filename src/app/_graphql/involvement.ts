@@ -17,7 +17,7 @@ export const INVOLVEMENT_GROUPS = `
 
 export const INVOLVEMENT_EVENTS = `
   query InvolvementEvents {
-    InvolvementEvents(limit: 300) {
+    InvolvementEvents(where: { eventDate: { gte: "now" } }, limit: 300) {
       docs {
         slug
         title

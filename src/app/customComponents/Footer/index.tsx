@@ -2,7 +2,7 @@ import React from 'react'
 import Logo from '../../assets/branding/logo.svg'
 import Image from 'next/image'
 import Link from 'next/link'
-import NewsletterInput from '../inputs/NewsletterInput'
+import NewsletterInputFooter from '../inputs/NewsletterInputFooter'
 import { DefaultSocials } from '@/globalData/general'
 import Instagram from '../Icons/Instagram'
 import Facebook from '../Icons/Facebook'
@@ -15,7 +15,7 @@ function Footer() {
       <div className="global-margin-x flex flex-col xl:flex-row justify-between gap-8 lg:gap-0">
         <div className="flex flex-col lg:flex-row items-center lg:items-start justify-center gap-8 lg:gap-16 lg:mb-16">
           <Image src={Logo} alt="WW-Logo" />
-          <NewsletterInput />
+          <NewsletterInputFooter />
         </div>
         <div className="grid grid-cols-2 md:grid-cols-5 justify-items-center gap-8">
           <div className="">

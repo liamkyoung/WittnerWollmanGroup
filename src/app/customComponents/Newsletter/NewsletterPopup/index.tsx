@@ -12,7 +12,7 @@ import {
 import NewsletterCard from '../NewsletterCard'
 import { Button } from '@/components/ui/button'
 
-export default function AutoDialog() {
+export default function NewsletterPopup() {
   const [isOpen, setIsOpen] = useState(false)
 
   useEffect(() => {

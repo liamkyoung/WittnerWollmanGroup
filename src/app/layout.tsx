@@ -16,7 +16,7 @@ import { Montserrat } from 'next/font/google'
 import { CompanyGallery } from './customComponents/Companies/CompanyGallery'
 const montserrat = Montserrat({ subsets: ['latin'] })
 import { Toaster } from '@/components/ui/toaster'
-import AutoDialog from './customComponents/Newsletter/NewsletterPopup'
+import NewsletterPopup from './customComponents/Newsletter/NewsletterPopup'
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -33,7 +33,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             {children}
             <Footer />
             <Toaster />
-            <AutoDialog />
+            <NewsletterPopup />
           </>
         </Providers>
       </body>

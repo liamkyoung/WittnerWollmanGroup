@@ -3,6 +3,7 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
+import { useState } from 'react'
 
 import {
   Form,
@@ -17,21 +18,24 @@ import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { ColorScheme } from '../../types/viewmodels'
 import { useToast } from '@/hooks/use-toast'
+import Spinner from '../Icons/Spinner'
 
 const formSchema = z.object({
   firstName: z
     .string()
     .min(1, {
-      message: 'First name must be at least 1 characters.',
+      message: 'First name must be at least 1 character.',
     })
     .max(50, 'First name cannot exceed 50 characters'),
   lastName: z
     .string()
     .min(1, {
-      message: 'Last name must be at least 12 characters.',
+      message: 'Last name must be at least 1 character.',
     })
-    .max(50, 'First name cannot exceed 50 characters'),
-  phoneNumber: z.string().regex(/^\+?\d{10,15}$/, 'Phone number must be valid'),
+    .max(50, 'Last name cannot exceed 50 characters'),
+  phoneNumber: z
+    .string()
+    .regex(/^(\+\d{1,2}\s?)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/, 'Phone number must be valid'), // https://stackoverflow.com/questions/16699007/regular-expression-to-match-standard-10-digit-phone-number
   email: z.string().email('Invalid email address'),
   subject: z
     .string()
@@ -64,8 +68,11 @@ export function ContactForm({ colorScheme = ColorScheme.DEFAULT }: Props) {
     },
   })
 
+  const [sending, setSending] = useState<boolean>(false)
+
   // 2. Define a submit handler.
   async function onSubmit(values: z.infer<ContactEmailProps>) {
+    setSending(true)
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
     try {
@@ -94,6 +101,8 @@ export function ContactForm({ colorScheme = ColorScheme.DEFAULT }: Props) {
         title: '❌ There was an error sending your message',
         description: 'Please try again later.',
       })
+    } finally {
+      setSending(false)
     }
   }
 
@@ -203,8 +212,8 @@ export function ContactForm({ colorScheme = ColorScheme.DEFAULT }: Props) {
           />
         </div>
 
-        <button type="submit" className={buttonStyle}>
-          SEND MESSAGE
+        <button type="submit" className={buttonStyle} disabled={sending}>
+          {!sending ? <span>SEND MESSAGE</span> : <Spinner />}
         </button>
       </form>
     </Form>

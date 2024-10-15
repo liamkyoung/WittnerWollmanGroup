@@ -17,6 +17,8 @@ import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { ColorScheme } from '../../types/viewmodels'
 import { useToast } from '@/hooks/use-toast'
+import { useState } from 'react'
+import Spinner from '../Icons/Spinner'
 
 const formSchema = z.object({
   email: z.string().email('Invalid email address'),
@@ -34,8 +36,11 @@ export function NewsletterForm() {
     },
   })
 
+  const [sending, setSending] = useState<boolean>(false)
+
   // 2. Define a submit handler.
   async function onSubmit(values: z.infer<ContactNewsletterProps>) {
+    setSending(true)
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
     try {
@@ -64,6 +69,8 @@ export function NewsletterForm() {
         title: '❌ There was an error signing up for the newsletter.',
         description: 'Please try again later.',
       })
+    } finally {
+      setSending(false)
     }
   }
 
@@ -91,8 +98,9 @@ export function NewsletterForm() {
         <button
           type="submit"
           className="flex-none rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+          disabled={sending}
         >
-          Notify Me
+          {!sending ? <span>Notify Me</span> : <Spinner />}
         </button>
       </form>
     </Form>

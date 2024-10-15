@@ -42,7 +42,7 @@ export const TeammateCard: React.FC<{
             <Media imgClassName={`size-72`} resource={profilePic} />
           )}
 
-          <p className="bg-wwYellow px-3 py-4 rounded-md font-bold">{strengths}</p>
+          <p className="bg-wwYellow px-3 py-4 rounded-md font-bold text-wwBlack">{strengths}</p>
         </div>
 
         <div className="inline-flex gap-2 items-center">

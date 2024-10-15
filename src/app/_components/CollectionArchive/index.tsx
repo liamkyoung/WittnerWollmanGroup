@@ -252,18 +252,6 @@ export const CollectionArchive: React.FC<Props> = props => {
       <div className={classes.scrollRef} ref={scrollRef} />
       {!isLoading && error && <Gutter>{error}</Gutter>}
       <Fragment>
-        {showPageRange !== false && populateBy !== 'selection' && (
-          <Gutter>
-            <div className={classes.pageRange}>
-              <PageRange
-                collection={relationTo}
-                currentPage={results.page}
-                limit={limit}
-                totalDocs={results.totalDocs}
-              />
-            </div>
-          </Gutter>
-        )}
         <Gutter>
           {/* Rendering Proper Showcases for Each Item */}
           {renderGallery()}

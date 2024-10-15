@@ -44,7 +44,7 @@ function ProjectBlockRight({
       <Media
         resource={image}
         alt="property image"
-        imgClassName="w-full max-h-96 lg:max-h-none lg:h-full"
+        imgClassName="w-full max-h-96 lg:max-h-none lg:h-full object-cover"
       />
       <div className="p-8 lg:p-0 lg:ml-16 lg:mr-32 my-auto relative">
         <div className="relative md:py-10 lg:py-8">

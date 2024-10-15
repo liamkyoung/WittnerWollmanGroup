@@ -10,8 +10,8 @@ import { GoogleMap } from '@/app/customComponents/GoogleMap/GoogleMap'
 
 export const ProjectHero: React.FC<Page['hero']> = ({ richText, media, links, headerText }) => {
   return (
-    <div className="grid grid-cols-2">
-      <div className="global-margin-x mt-24">
+    <div className="grid lg:grid-cols-2 grid-cols-1 global-margin-x lg:gap-0 gap-16 lg:mt-16">
+      <div className="mt-24">
         <h1 className="mb-10">Our Projects</h1>
         <p className="mb-8">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam porttitor eros vel augue

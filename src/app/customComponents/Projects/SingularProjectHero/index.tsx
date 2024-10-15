@@ -7,8 +7,6 @@ import { Media } from '../../../_components/Media'
 import RichText from '../../../_components/RichText'
 import { formatDateTime } from '../../../_utilities/formatDateTime'
 
-import classes from './index.module.scss'
-
 export const SingularProjectHero: React.FC<{
   project: Project
 }> = ({ project }) => {
@@ -27,10 +25,10 @@ export const SingularProjectHero: React.FC<{
 
   return (
     <Fragment>
-      <Gutter className={classes.projectHero}>
-        <div className={classes.content}>
-          <div className={classes.leader}>
-            <div className={classes.categories}>
+      <Gutter className={''}>
+        <div className={''}>
+          <div className={''}>
+            <div className={''}>
               {createdAt && formatDateTime(createdAt)}
               &nbsp; &mdash; &nbsp;
               {categories?.map((category, index) => {
@@ -53,9 +51,9 @@ export const SingularProjectHero: React.FC<{
               })}
             </div>
           </div>
-          <h1 className={classes.title}>{title}</h1>
+          <h1>{title}</h1>
           <div>
-            <p className={classes.description}>
+            <p>
               {`${description ? `${description} ` : ''}To edit this project, `}
               <Link href={`${process.env.NEXT_PUBLIC_SERVER_URL}/admin/collections/projects/${id}`}>
                 navigate to the admin dashboard
@@ -69,15 +67,15 @@ export const SingularProjectHero: React.FC<{
           {instagram && <div>{instagram}</div>}
           {slider && slider.map(i => <Media resource={i.image} alt={i.title} key={i.id} />)}
         </div>
-        <div className={classes.media}>
-          <div className={classes.mediaWrapper}>
-            {!metaImage && <div className={classes.placeholder}>No image</div>}
+        <div className={``}>
+          <div className={``}>
+            {!metaImage && <div className={``}>No image</div>}
             {metaImage && typeof metaImage !== 'string' && (
-              <Media imgClassName={classes.image} resource={metaImage} fill />
+              <Media imgClassName={``} resource={metaImage} fill />
             )}
           </div>
           {metaImage && typeof metaImage !== 'string' && metaImage?.caption && (
-            <RichText content={metaImage.caption} className={classes.caption} />
+            <RichText content={metaImage.caption} />
           )}
         </div>
       </Gutter>

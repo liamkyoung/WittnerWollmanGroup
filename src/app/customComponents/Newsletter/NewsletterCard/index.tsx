@@ -7,7 +7,7 @@ export default function NewsletterCard({}: Props) {
   return (
     <div className="mx-auto">
       <div className="mx-auto">
-        <div className="relative isolate overflow-hidden bg-wwBlack px-6 py-24 sm:rounded-3xl sm:px-24 xl:py-32">
+        <div className="relative isolate overflow-hidden bg-wwBlack px-6 py-24 sm:px-24 xl:py-32">
           <h2 className="mx-auto text-center text-3xl font-bold tracking-tight text-white sm:text-4xl">
             Sign up for our Newsletter!
           </h2>

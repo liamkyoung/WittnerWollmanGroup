@@ -107,7 +107,7 @@ function ProjectBlockLeft({
       <Media
         resource={image}
         alt="property image"
-        imgClassName="w-full max-h-96 lg:max-h-none lg:h-full"
+        imgClassName="w-full max-h-96 lg:max-h-none lg:h-full object-cover"
       />
     </div>
   )

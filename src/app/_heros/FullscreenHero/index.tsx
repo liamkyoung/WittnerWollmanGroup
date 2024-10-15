@@ -6,20 +6,23 @@ import Image from 'next/image'
 import { Media as MediaType, Page } from '../../../payload/payload-types'
 import RichText from '../../../app/_components/RichText'
 import { Media } from '@/app/_components/Media'
+import HeroImg from '../../assets/images/bg_backdrop.png'
 
 export const FullscreenHero: React.FC<Page['hero']> = ({ richText, media, links, headerText }) => {
   return (
     <div className="relative">
-      <div className="absolute z-20 lg:w-3/5 flex flex-col h-full justify-center space-y-16 global-margin-x">
+      <div className="absolute z-20 lg:w-3/5 flex flex-col h-full justify-center md:space-y-16 space-y-4 global-margin-x">
         <div className="space-y-4 text-center lg:text-left">
-          <h1 className="font-normal text-white">{headerText}</h1>
+          <h1 className="md:font-normal text-white text-2xl sm:text-3xl font-semibold md:text-5xl lg:text-6xl">
+            {headerText}
+          </h1>
           <RichText
             content={richText}
-            className="text-lg font-medium lg:w-3/4"
+            className="md:text-lg font-medium lg:w-3/4 text-sm"
             textColor="text-white"
           />
         </div>
-        <div className="space-x-4 mx-auto lg:mx-0">
+        <div className="space-x-4 mt-4 sm:mt-0 mx-auto lg:mx-0 text-center sm:text-left">
           <Link className="btn-primary" href="/team">
             MEET THE TEAM
           </Link>
@@ -28,12 +31,18 @@ export const FullscreenHero: React.FC<Page['hero']> = ({ richText, media, links,
           </Link>
         </div>
       </div>
-      <div className="bg-wwBlack absolute z-10 w-full h-screen lg:h-full opacity-70"></div>
+      {/* Black overlay */}
+      <div className="bg-wwBlack absolute inset-0 z-10 opacity-70 pointer-events-none"></div>
+
+      {/* Media (image or video) */}
       <Media
         resource={media as MediaType}
-        alt="hero-img"
-        imgClassName="w-full h-screen lg:h-full aspect-video"
+        alt="hero-video-img"
+        imgClassName="sm:w-full sm:h-screen lg:h-auto object-cover hidden sm:block"
+        videoClassName="sm:w-full sm:h-screen lg:h-auto object-cover hidden sm:block"
       />
+
+      <Image src={HeroImg} alt="hero-img" className="w-full h-96 object-cover sm:hidden block" />
     </div>
   )
 }

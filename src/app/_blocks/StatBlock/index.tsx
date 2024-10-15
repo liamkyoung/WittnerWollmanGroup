@@ -27,7 +27,7 @@ export const StatBlock: React.FC<StatBlockProps> = props => {
   const { title, description, facts } = props
 
   return (
-    <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 place-items-center my-24 global-space-x">
+    <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 place-items-center global-space-x global-space-y">
       <Stat bgColor="bg-wwRed" title="17K+" descriptor="Satisfied Customers" />
       <Stat bgColor="bg-wwBlack" title="17K+" descriptor="Satisfied Customers" />
       <Stat bgColor="bg-wwLogoPink" title="17K+" descriptor="Satisfied Customers" />

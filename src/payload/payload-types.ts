@@ -132,9 +132,11 @@ export interface Page {
         blockType: 'mediaBlock';
       }
     | {
-        introContent: {
-          [k: string]: unknown;
-        }[];
+        introContent?:
+          | {
+              [k: string]: unknown;
+            }[]
+          | null;
         populateBy?: ('collection' | 'selection') | null;
         relationTo?:
           | (
@@ -430,9 +432,11 @@ export interface Post {
         blockType: 'mediaBlock';
       }
     | {
-        introContent: {
-          [k: string]: unknown;
-        }[];
+        introContent?:
+          | {
+              [k: string]: unknown;
+            }[]
+          | null;
         populateBy?: ('collection' | 'selection') | null;
         relationTo?:
           | (
@@ -590,9 +594,11 @@ export interface Post {
             blockType: 'mediaBlock';
           }
         | {
-            introContent: {
-              [k: string]: unknown;
-            }[];
+            introContent?:
+              | {
+                  [k: string]: unknown;
+                }[]
+              | null;
             populateBy?: ('collection' | 'selection') | null;
             relationTo?:
               | (
@@ -819,9 +825,11 @@ export interface Project {
         blockType: 'mediaBlock';
       }
     | {
-        introContent: {
-          [k: string]: unknown;
-        }[];
+        introContent?:
+          | {
+              [k: string]: unknown;
+            }[]
+          | null;
         populateBy?: ('collection' | 'selection') | null;
         relationTo?:
           | (
@@ -1181,9 +1189,11 @@ export interface Service {
         blockType: 'mediaBlock';
       }
     | {
-        introContent: {
-          [k: string]: unknown;
-        }[];
+        introContent?:
+          | {
+              [k: string]: unknown;
+            }[]
+          | null;
         populateBy?: ('collection' | 'selection') | null;
         relationTo?:
           | (

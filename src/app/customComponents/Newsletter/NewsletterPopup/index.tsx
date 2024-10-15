@@ -18,7 +18,7 @@ export default function AutoDialog() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsOpen(true)
-    }, 10) // 30 seconds
+    }, 30 * 1000) // 30 seconds
 
     // Cleanup timer on component unmount
     return () => clearTimeout(timer)
@@ -31,7 +31,7 @@ export default function AutoDialog() {
         <DialogTrigger asChild>
           <button style={{ display: 'none' }}>Open Dialog</button>
         </DialogTrigger>
-        <DialogContent className="max-w-3xl p-0 sm:rounded-3xl">
+        <DialogContent className="max-w-3xl p-0 rounded-none">
           <NewsletterCard />
         </DialogContent>
       </Dialog>

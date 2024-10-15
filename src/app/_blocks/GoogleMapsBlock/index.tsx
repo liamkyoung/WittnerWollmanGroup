@@ -4,8 +4,6 @@ import { StaticImageData } from 'next/image'
 import { Media as MType, Page } from '../../../payload/payload-types'
 import { Gutter } from '../../_components/Gutter'
 import RichText from '../../_components/RichText'
-import ProjectBlockLeft from './ProjectBlockLeft'
-import ProjectBlockRight from './ProjectBlockRight'
 
 import { FactsList } from '../../../payload/payload-types'
 import classes from './index.module.scss'

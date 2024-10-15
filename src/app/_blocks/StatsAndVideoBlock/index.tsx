@@ -32,7 +32,7 @@ export const StatsAndVideoBlock: React.FC<StatAndVideoBlockProps> = props => {
 
   return (
     <div className="relative">
-      <div className="absolute z-10 w-full h-full mt-16">
+      <div className="absolute z-10 w-full h-screen xl:h-auto mt-16">
         <div className="global-margin-x">
           <div className="flex flex-col xl:flex-row items-center xl:items-start justify-between gap-4">
             <h2 className="flex-1 text-center xl:text-left">{title}</h2>
@@ -53,7 +53,17 @@ export const StatsAndVideoBlock: React.FC<StatAndVideoBlockProps> = props => {
           </div>
         </div>
       </div>
-      <Image src={BGImage} alt="hero-img" className="w-full h-screen xl:h-auto opacity-20" />
+      <Image
+        src={BGImage}
+        alt="hero-img"
+        className="w-full h-screen xl:h-auto opacity-20 object-cover"
+      />
+      {/* {Repeated Img to fill space} */}
+      <Image
+        src={BGImage}
+        alt="hero-img"
+        className="xl:hidden block w-full opacity-20 object-cover"
+      />
     </div>
   )
 }

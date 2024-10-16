@@ -4,6 +4,15 @@ module.exports = {
   content: ['./src/**/*.{html,js,ts,tsx,jsx,scss,css}'],
   theme: {
     extend: {
+      animation: {
+        infiniteLoop: 'infiniteLoop 30s linear infinite',
+      },
+      keyframes: {
+        infiniteLoop: {
+          '0%': { transform: 'translateX(100%)' },
+          '100%': { transform: 'translateX(-100%)' },
+        },
+      },
       borderRadius: {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',

@@ -44,6 +44,7 @@ import { ListingGallery } from '@/app/customComponents/Listings/ListingGallery'
 import { TeammateGallery } from '@/app/customComponents/Teammates/TeammateGallery'
 import { CompanyGallery } from '@/app/customComponents/Companies/CompanyGallery'
 import { ServiceGallery } from '@/app/customComponents/Services/ServiceGallery'
+import { randomInt } from 'crypto'
 
 type Result = {
   docs: (
@@ -255,7 +256,6 @@ export const CollectionArchive: React.FC<Props> = props => {
         <Gutter>
           {/* Rendering Proper Showcases for Each Item */}
           {renderGallery()}
-
           <div className={classes.grid}>
             {results.docs?.map((result, index) => {
               if (typeof result === 'object' && result !== null) {

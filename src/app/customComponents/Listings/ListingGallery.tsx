@@ -11,8 +11,8 @@ export const ListingGallery = ({ listings }: Props) => {
   return (
     <div className="grid grid-cols-1 xl:grid-cols-2 gap-8 xl:gap-4 global-margin-x">
       <div className="grid grid-cols-1 md:grid-cols-2 justify-items-center gap-4 overflow-y-scroll h-[44rem]">
-        {listings.map(l => (
-          <ListingCard doc={l} />
+        {listings.map((l, i) => (
+          <ListingCard doc={l} key={i} />
         ))}
       </div>
       <div className="">

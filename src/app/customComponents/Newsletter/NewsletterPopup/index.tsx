@@ -11,17 +11,23 @@ import {
 } from '@/components/ui/dialog'
 import NewsletterCard from '../NewsletterCard'
 import { Button } from '@/components/ui/button'
+import { getCookie, setCookie } from '../../../_utilities/cookies'
 
 export default function NewsletterPopup() {
   const [isOpen, setIsOpen] = useState(false)
+  const cookie = getCookie('ww-group-newsletter')
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsOpen(true)
-    }, 30 * 1000) // 30 seconds
-
-    // Cleanup timer on component unmount
-    return () => clearTimeout(timer)
+    // Only triggers popup if there is no cookie.
+    // Newsletter cookie: ww-group-newsletter
+    // If signed up - exists for 1 year, no sign up - 30 days.
+    if (!cookie) {
+      const timer = setTimeout(() => {
+        setIsOpen(true)
+      }, 20 * 1000) // 20 seconds
+      // Cleanup timer on component unmount
+      return () => clearTimeout(timer)
+    }
   }, [])
 
   return (
@@ -34,6 +40,7 @@ export default function NewsletterPopup() {
         <DialogContent className="max-w-3xl p-0 rounded-none">
           <NewsletterCard />
         </DialogContent>
+        <DialogClose onClick={() => setCookie('ww-group-newsletter', false, 30)} />
       </Dialog>
     </div>
   )

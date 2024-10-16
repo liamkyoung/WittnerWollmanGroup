@@ -19,6 +19,7 @@ import { ColorScheme } from '../../types/viewmodels'
 import { useToast } from '@/hooks/use-toast'
 import { useState } from 'react'
 import Spinner from '../Icons/Spinner'
+import { setCookie } from '@/app/_utilities/cookies'
 
 const formSchema = z.object({
   email: z.string().email('Invalid email address'),
@@ -41,6 +42,7 @@ export function NewsletterForm() {
   // 2. Define a submit handler.
   async function onSubmit(values: z.infer<ContactNewsletterProps>) {
     setSending(true)
+
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
     try {
@@ -57,6 +59,7 @@ export function NewsletterForm() {
         toast({
           title: '✅ Signed up for our newsletter!',
         })
+        setCookie('ww-group-newsletter', true, 180) // Set true for 1 year
       } else {
         toast({
           title: '❌ There was an error signing up for the newsletter',

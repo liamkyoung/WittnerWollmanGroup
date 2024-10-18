@@ -10,7 +10,7 @@ import {
   GOOGLE_MAPS_BLOCK,
 } from './blocks'
 import { LINK_FIELDS } from './link'
-import { MEDIA } from './media'
+import { BACKUP_IMAGE, MEDIA } from './media'
 import { META } from './meta'
 
 export const PAGES = `
@@ -33,6 +33,7 @@ export const PAGE = `
           type
           richText
           headerText
+          ${BACKUP_IMAGE}
           links {
             link ${LINK_FIELDS()}
           }

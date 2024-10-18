@@ -27,7 +27,7 @@ export const ContentAndStatsBlock: Block = {
         // required
         {
           name: 'factStat',
-          label: 'Fact Number',
+          label: 'Fact Metric (Number, Percentage, Etc.)',
           type: 'text',
           required: true,
         },

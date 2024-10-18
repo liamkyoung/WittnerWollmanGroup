@@ -7,8 +7,15 @@ import { Media as MediaType, Page } from '../../../payload/payload-types'
 import RichText from '../../../app/_components/RichText'
 import { Media } from '@/app/_components/Media'
 import HeroImg from '../../assets/images/bg_backdrop.png'
+import { CMSLink } from '@/app/_components/Link'
 
-export const FullscreenHero: React.FC<Page['hero']> = ({ richText, media, links, headerText }) => {
+export const FullscreenHero: React.FC<Page['hero']> = ({
+  richText,
+  media,
+  links,
+  headerText,
+  backupImage,
+}) => {
   return (
     <div className="relative">
       <div className="absolute z-20 lg:w-3/5 flex flex-col h-full justify-center md:space-y-16 space-y-4 global-margin-x">
@@ -22,13 +29,23 @@ export const FullscreenHero: React.FC<Page['hero']> = ({ richText, media, links,
             textColor="text-white"
           />
         </div>
+
         <div className="space-x-4 mt-4 sm:mt-0 mx-auto lg:mx-0 text-center sm:text-left">
-          <Link className="btn-primary" href="/team">
-            MEET THE TEAM
-          </Link>
-          <Link className="btn-secondary" href="/listings">
-            VIEW LISTINGS
-          </Link>
+          {links &&
+            links.map(l => {
+              const appearance = l.link?.appearance
+
+              if (!appearance) return
+
+              switch (appearance) {
+                case 'secondary':
+                  return <CMSLink className="btn-secondary" {...l.link} />
+                case 'default':
+                case 'primary':
+                default:
+                  return <CMSLink className="btn-primary" {...l.link} />
+              }
+            })}
         </div>
       </div>
       {/* Black overlay */}
@@ -42,7 +59,15 @@ export const FullscreenHero: React.FC<Page['hero']> = ({ richText, media, links,
         videoClassName="sm:w-full sm:h-screen lg:h-auto object-cover hidden sm:block"
       />
 
-      <Image src={HeroImg} alt="hero-img" className="w-full h-96 object-cover sm:hidden block" />
+      {!backupImage ? (
+        <Image src={HeroImg} alt="hero-img" className="w-full h-96 object-cover sm:hidden block" />
+      ) : (
+        <Media
+          resource={backupImage as MediaType}
+          alt="hero-img"
+          imgClassName="w-full h-96 object-cover sm:hidden block"
+        />
+      )}
     </div>
   )
 }

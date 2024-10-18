@@ -73,5 +73,13 @@ export const hero: Field = {
           ['highImpact', 'mediumImpact', 'fullscreen', 'default'].includes(type),
       },
     },
+    {
+      name: 'backupImage',
+      type: 'upload',
+      relationTo: 'media',
+      admin: {
+        condition: (_, { type } = {}) => ['fullscreen'].includes(type),
+      },
+    },
   ],
 }

@@ -34,20 +34,9 @@ export const Button: React.FC<Props> = ({
 
   const newTabProps = newTab ? { target: '_blank', rel: 'noopener noreferrer' } : {}
 
-  const className = [
-    classes.button,
-    classNameFromProps,
-    classes[`appearance--${appearance}`],
-    invert && classes[`${appearance}--invert`],
-  ]
-    .filter(Boolean)
-    .join(' ')
+  const className = [classNameFromProps].filter(Boolean).join(' ')
 
-  const content = (
-    <div className={classes.content}>
-      <span className={classes.label}>{label}</span>
-    </div>
-  )
+  const content = <span>{label}</span>
 
   if (onClick || type === 'submit') el = 'button'
 

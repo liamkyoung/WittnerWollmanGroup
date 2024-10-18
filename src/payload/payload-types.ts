@@ -88,6 +88,7 @@ export interface Page {
         }[]
       | null;
     media?: number | Media | null;
+    backupImage?: number | Media | null;
   };
   layout: (
     | {
@@ -388,6 +389,7 @@ export interface Post {
         }[]
       | null;
     media?: number | Media | null;
+    backupImage?: number | Media | null;
   };
   layout: (
     | {
@@ -781,6 +783,7 @@ export interface Project {
         }[]
       | null;
     media?: number | Media | null;
+    backupImage?: number | Media | null;
   };
   layout: (
     | {
@@ -1145,6 +1148,7 @@ export interface Service {
         }[]
       | null;
     media?: number | Media | null;
+    backupImage?: number | Media | null;
   };
   layout: (
     | {

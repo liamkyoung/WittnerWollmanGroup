@@ -15,6 +15,10 @@ export const IMAGE = `image {
   ${MEDIA_FIELDS}
 }`
 
+export const BACKUP_IMAGE = `backupImage {
+  ${MEDIA_FIELDS}
+}`
+
 export const PROFILEPIC = `profilePic {
   ${MEDIA_FIELDS}
 }`

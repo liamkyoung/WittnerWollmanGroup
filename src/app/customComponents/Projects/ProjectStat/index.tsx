@@ -20,7 +20,7 @@ function ProjectStat({ colorScheme = ColorScheme.DEFAULT, stat, description }: P
   }
 
   return (
-    <div className="w-48 lg:w-72">
+    <div className="w-72">
       <h5 className={`border-l-2 pl-4 ${emphasisColor} ${borderColor}`}>{stat}</h5>
       <p className={`pl-4 ${textColor}`}>{description}</p>
     </div>

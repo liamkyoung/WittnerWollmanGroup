@@ -33,7 +33,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
-, "postcss.config.js"  ],
+, "postcss.config.js", "src/app/customComponents/News/NewsGallery"  ],
   "exclude": [
     "node_modules"
   ],

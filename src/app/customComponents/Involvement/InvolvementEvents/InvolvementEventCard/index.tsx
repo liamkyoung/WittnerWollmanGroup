@@ -6,6 +6,7 @@ import { Media } from '../../../../_components/Media'
 import { Media as MType } from '@/payload/payload-types'
 import { InvolvementEvent } from '@/payload/payload-types'
 import DefaultCard from '../../../DefaultCard'
+import { formatDateTime } from '@/app/_utilities/formatDateTime'
 
 export const InvolvementEventCard: React.FC<{
   className?: string
@@ -17,5 +18,5 @@ export const InvolvementEventCard: React.FC<{
 
   const sanitizedDescription = description?.replace(/\s/g, ' ') // replace non-breaking space with white space
 
-  return <DefaultCard title={title} image={image as MType} accentText={eventDate} />
+  return <DefaultCard title={title} image={image as MType} accentText={formatDateTime(eventDate)} />
 }

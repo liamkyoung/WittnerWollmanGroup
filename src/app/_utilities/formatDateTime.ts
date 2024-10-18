@@ -1,20 +1,25 @@
-export const formatDateTime = (timestamp: string): string => {
-  const now = new Date()
-  let date = now
-  if (timestamp) date = new Date(timestamp)
-  const months = date.getMonth()
-  const days = date.getDate()
-  // const hours = date.getHours();
-  // const minutes = date.getMinutes();
-  // const seconds = date.getSeconds();
+export function formatDateTime(dateTime: string | Date): string {
+  // Convert the input to a Date object if it's a string
+  const dateObj = typeof dateTime === 'string' ? new Date(dateTime) : dateTime
 
-  const MM = months + 1 < 10 ? `0${months + 1}` : months + 1
-  const DD = days < 10 ? `0${days}` : days
-  const YYYY = date.getFullYear()
-  // const AMPM = hours < 12 ? 'AM' : 'PM';
-  // const HH = hours > 12 ? hours - 12 : hours;
-  // const MinMin = (minutes < 10) ? `0${minutes}` : minutes;
-  // const SS = (seconds < 10) ? `0${seconds}` : seconds;
+  // Ensure the input is a valid date
+  if (!dateObj || isNaN(dateObj.getTime())) {
+    return ''
+  }
 
-  return `${MM}/${DD}/${YYYY}`
+  // Extract date components
+  const year = dateObj.getFullYear()
+  const month = String(dateObj.getMonth() + 1).padStart(2, '0') // Months are 0-based
+  const day = String(dateObj.getDate()).padStart(2, '0')
+
+  // Extract time components
+  let hours = dateObj.getHours()
+  const minutes = String(dateObj.getMinutes()).padStart(2, '0')
+  const ampm = hours >= 12 ? 'PM' : 'AM'
+
+  // Convert 24-hour to 12-hour format
+  hours = hours % 12 || 12 // Convert 0 (midnight) to 12
+
+  // Format the date and time
+  return `${month}/${day}/${year} ${hours}:${minutes} ${ampm}`
 }

@@ -65,7 +65,7 @@ export const FullscreenHero: React.FC<Page['hero']> = ({
         <Media
           resource={backupImage as MediaType}
           alt="hero-img"
-          imgClassName="w-full h-96 object-cover sm:hidden block"
+          imgClassName="w-full h-[32rem] object-cover sm:hidden block"
         />
       )}
     </div>

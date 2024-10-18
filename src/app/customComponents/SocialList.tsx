@@ -10,26 +10,42 @@ import { ColorScheme } from '../types/viewmodels'
 
 type Props = {
   colorScheme?: ColorScheme
+  email?: string
+  phoneNumber?: string
+  instagram?: string
+  facebook?: string
+  linkedin?: string
 }
 
-function SocialList({ colorScheme = ColorScheme.DEFAULT }: Props) {
+function SocialList({
+  email,
+  phoneNumber,
+  instagram,
+  facebook,
+  linkedin,
+  colorScheme = ColorScheme.DEFAULT,
+}: Props) {
   return (
     <div className="flex flex-col items-center lg:items-start gap-8 mx-auto">
-      <Email emailAddress={DefaultSocials.email} show colorScheme={colorScheme} />
-      <Phone phoneNumber={'(305) 432 - 1052'} show colorScheme={colorScheme} />
+      <Email emailAddress={!email ? DefaultSocials.email : email} show colorScheme={colorScheme} />
+      <Phone
+        phoneNumber={!phoneNumber ? DefaultSocials.phoneNumber : phoneNumber}
+        show
+        colorScheme={colorScheme}
+      />
       <Instagram
-        profileLink={DefaultSocials.instagram}
-        username={'@wwgroup'}
+        profileLink={`www.instagram.com/${instagram}`}
+        username={!instagram ? DefaultSocials.instagram : `${instagram}`}
         colorScheme={colorScheme}
       />
       <Facebook
-        profileLink={DefaultSocials.facebook}
-        username={'@wwgroup'}
+        profileLink={`www.facebook.com/${facebook}`}
+        username={!facebook ? DefaultSocials.facebook : `${facebook}`}
         colorScheme={colorScheme}
       />
       <Linkedin
-        profileLink={DefaultSocials.linkedin}
-        username={'@wwgroup'}
+        profileLink={`www.linkedin.com/in/${linkedin}`}
+        username={!linkedin ? DefaultSocials.linkedin : `${linkedin}`}
         colorScheme={colorScheme}
       />
     </div>

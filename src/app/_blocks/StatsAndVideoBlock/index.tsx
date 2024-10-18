@@ -28,7 +28,7 @@ export type FactStat = {
 }
 
 export const StatsAndVideoBlock: React.FC<StatAndVideoBlockProps> = props => {
-  const { title, description, facts } = props
+  const { title, description, facts, bgImage } = props
 
   return (
     <div className="relative">
@@ -41,11 +41,53 @@ export const StatsAndVideoBlock: React.FC<StatAndVideoBlockProps> = props => {
 
           <div className="flex flex-col-reverse xl:flex-row items-center mt-16 gap-8">
             <div className="grid grid-cols-2 gap-4 xl:w-1/2">
-              {/* {facts?.map((f, i) => <Stat bgColor="bg-wwRed" title="17K+" descriptor="Satisfied Customers" />)} */}
-              <Stat bgColor="bg-wwRed" title="17K+" descriptor="Satisfied Customers" />
-              <Stat bgColor="bg-wwBlack" title="17K+" descriptor="Satisfied Customers" />
-              <Stat bgColor="bg-wwLogoPink" title="17K+" descriptor="Satisfied Customers" />
-              <Stat bgColor="bg-wwLogoRed" title="17K+" descriptor="Satisfied Customers" />
+              {facts &&
+                facts?.map((f, i) => {
+                  const bgIndex = i % 4
+
+                  switch (bgIndex) {
+                    case 0:
+                      return (
+                        <Stat
+                          bgColor="bg-wwRed"
+                          title={f.factStat}
+                          descriptor={f.factDescription}
+                        />
+                      )
+                    case 1:
+                      return (
+                        <Stat
+                          bgColor="bg-wwBlack"
+                          title={f.factStat}
+                          descriptor={f.factDescription}
+                        />
+                      )
+                    case 2:
+                      return (
+                        <Stat
+                          bgColor="bg-wwLogoPink"
+                          title={f.factStat}
+                          descriptor={f.factDescription}
+                        />
+                      )
+                    case 3:
+                      return (
+                        <Stat
+                          bgColor="bg-wwLogoRed"
+                          title={f.factStat}
+                          descriptor={f.factDescription}
+                        />
+                      )
+                    default:
+                      return (
+                        <Stat
+                          bgColor="bg-wwLogoRed"
+                          title={f.factStat}
+                          descriptor={f.factDescription}
+                        />
+                      )
+                  }
+                })}
             </div>
             <div className="w-full xl:w-1/2">
               <YoutubeVideo />
@@ -53,17 +95,33 @@ export const StatsAndVideoBlock: React.FC<StatAndVideoBlockProps> = props => {
           </div>
         </div>
       </div>
-      <Image
-        src={BGImage}
-        alt="hero-img"
-        className="w-full h-screen xl:h-auto opacity-20 object-cover"
-      />
-      {/* {Repeated Img to fill space} */}
-      <Image
-        src={BGImage}
-        alt="hero-img"
-        className="xl:hidden block w-full opacity-20 object-cover"
-      />
+      {!bgImage ? (
+        <>
+          {' '}
+          <Image
+            src={BGImage}
+            alt="stats-video-bg-img"
+            className="w-full min-h-[48rem] xl:h-auto opacity-20 object-cover"
+          />
+          {/* {Repeated Img to fill space} */}
+          <Image
+            src={BGImage}
+            alt="stats-video-bg-img-1"
+            className="xl:hidden block w-full opacity-20 object-cover min-h-96"
+          />
+        </>
+      ) : (
+        <>
+          <Media
+            resource={bgImage as MType}
+            imgClassName="w-full min-h-[48rem] xl:h-auto opacity-20 object-cover"
+          />
+          <Media
+            resource={bgImage as MType}
+            imgClassName="xl:hidden block w-full opacity-20 object-cover"
+          />
+        </>
+      )}
     </div>
   )
 }

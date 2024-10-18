@@ -268,6 +268,7 @@ export interface Page {
         description: string;
         facts?: FactsList;
         youtubeLink: string;
+        bgImage?: number | Media | null;
         id?: string | null;
         blockName?: string | null;
         blockType: 'statsAndVideoBlock';
@@ -963,6 +964,7 @@ export interface Project {
         description: string;
         facts?: FactsList;
         youtubeLink: string;
+        bgImage?: number | Media | null;
         id?: string | null;
         blockName?: string | null;
         blockType: 'statsAndVideoBlock';
@@ -1328,6 +1330,7 @@ export interface Service {
         description: string;
         facts?: FactsList;
         youtubeLink: string;
+        bgImage?: number | Media | null;
         id?: string | null;
         blockName?: string | null;
         blockType: 'statsAndVideoBlock';

@@ -28,10 +28,26 @@ export const StatBlock: React.FC<StatBlockProps> = props => {
 
   return (
     <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 place-items-center global-space-x global-space-y">
-      <Stat bgColor="bg-wwRed" title="17K+" descriptor="Satisfied Customers" />
-      <Stat bgColor="bg-wwBlack" title="17K+" descriptor="Satisfied Customers" />
-      <Stat bgColor="bg-wwLogoPink" title="17K+" descriptor="Satisfied Customers" />
-      <Stat bgColor="bg-wwLogoRed" title="17K+" descriptor="Satisfied Customers" />
+      {facts &&
+        facts?.map((f, i) => {
+          const bgIndex = i % 4
+
+          switch (bgIndex) {
+            case 0:
+              return <Stat bgColor="bg-wwRed" title={f.factStat} descriptor={f.factDescription} />
+            case 1:
+              return <Stat bgColor="bg-wwBlack" title={f.factStat} descriptor={f.factDescription} />
+            case 2:
+              return (
+                <Stat bgColor="bg-wwLogoPink" title={f.factStat} descriptor={f.factDescription} />
+              )
+            case 3:
+              return (
+                <Stat bgColor="bg-wwLogoRed" title={f.factStat} descriptor={f.factDescription} />
+              )
+            default:
+          }
+        })}
     </div>
   )
 }

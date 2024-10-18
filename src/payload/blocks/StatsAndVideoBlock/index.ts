@@ -20,7 +20,7 @@ export const StatsAndVideoBlock: Block = {
       type: 'array', // required
       label: 'Project Facts',
       minRows: 1,
-      maxRows: 3,
+      maxRows: 4,
       interfaceName: 'FactsList', // optional
       labels: {
         singular: 'Fact',
@@ -47,6 +47,12 @@ export const StatsAndVideoBlock: Block = {
       type: 'text',
       label: 'YouTube Link',
       required: true,
+    },
+    {
+      name: 'bgImage',
+      type: 'upload',
+      relationTo: 'media',
+      label: 'Background Image',
     },
   ],
 }

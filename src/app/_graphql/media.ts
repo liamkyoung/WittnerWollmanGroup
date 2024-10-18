@@ -19,6 +19,10 @@ export const BACKUP_IMAGE = `backupImage {
   ${MEDIA_FIELDS}
 }`
 
+export const BACKGROUND_IMAGE = `bgImage {
+  ${MEDIA_FIELDS}
+}`
+
 export const PROFILEPIC = `profilePic {
   ${MEDIA_FIELDS}
 }`

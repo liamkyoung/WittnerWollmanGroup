@@ -34,9 +34,10 @@ import { InvolvementGroupGallery } from '@/app/customComponents/Involvement/Invo
 
 import { TeammateCard } from '@/app/customComponents/Teammates/TeammateCard'
 import { ListingCard } from '@/app/customComponents/Listings'
+import { NewsGallery } from '@/app/customComponents/News/NewsGallery'
 
 import classes from './index.module.scss'
-import { NewsCard } from '@/app/customComponents/NewsCard'
+import { NewsCard } from '@/app/customComponents/News/NewsCard'
 import { ProjectGallery } from '@/app/customComponents/Projects/ProjectGallery'
 import DefaultCard from '@/app/customComponents/DefaultCard'
 import TestimonialGallery from '@/app/customComponents/Testimonials/TestimonialGallery'
@@ -241,6 +242,8 @@ export const CollectionArchive: React.FC<Props> = props => {
         return <ServiceGallery services={results.docs as Service[]} />
       case 'projects':
         return <ProjectGallery projects={results.docs as Project[]} />
+      case 'posts':
+        return <NewsGallery news={results.docs as Post[]} />
       default:
         return <></>
     }
@@ -260,12 +263,6 @@ export const CollectionArchive: React.FC<Props> = props => {
             {results.docs?.map((result, index) => {
               if (typeof result === 'object' && result !== null) {
                 switch (relationTo) {
-                  case 'posts':
-                    return (
-                      <div className={classes.column} key={index}>
-                        <NewsCard doc={result as Post} relationTo={relationTo} />
-                      </div>
-                    )
                   default:
                     return <></>
                 }

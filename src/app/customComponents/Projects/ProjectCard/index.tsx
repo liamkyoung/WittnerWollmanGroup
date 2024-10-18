@@ -5,6 +5,7 @@ import { Media, Project } from '../../../../payload/payload-types'
 
 import classes from './index.module.scss'
 import DefaultCard from '../../DefaultCard'
+import { formatDollarAmount } from '@/app/_utilities/formatDollarAmount'
 
 export const ProjectCard: React.FC<{
   className?: string
@@ -17,5 +18,12 @@ export const ProjectCard: React.FC<{
 
   const href = `/projects/${slug}`
 
-  return <DefaultCard title={title} accentText={price} link={href} image={metaImage as Media} />
+  return (
+    <DefaultCard
+      title={title}
+      accentText={formatDollarAmount(price)}
+      link={href}
+      image={metaImage as Media}
+    />
+  )
 }

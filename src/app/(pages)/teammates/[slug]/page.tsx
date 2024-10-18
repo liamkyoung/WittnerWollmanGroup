@@ -9,6 +9,9 @@ import { fetchDocs } from '../../../_api/fetchDocs'
 import { generateTeammateMetadata } from '../../../_utilities/generateMeta'
 import Image from 'next/image'
 import { Media } from '../../../_components/Media'
+import { Media as MType } from '../../../../payload/payload-types'
+import TeammateHeader from './TeammateHeader'
+import ContactAndBio from './ContactAndBio'
 
 export const dynamic = 'force-dynamic'
 
@@ -40,34 +43,23 @@ export default async function Page({ params: { slug } }) {
     Linkedin,
   } = teammate
   return (
-    <div>
-      <h1 className="text-3xl">Name: {title}</h1>
-      <div>
-        Job Title: <b>MISSING</b>
-      </div>
-      <div>
-        Short Bio: <b>MISSING</b>{' '}
-      </div>
-      <Media imgClassName={``} resource={profilePic} />
-
-      <div>
-        About Me
-        <p>Strength: {strengths}</p>
-        <p>{yearsOfExperience} Years of Experience</p>
-        <p>
-          Another Stat: <b>MISSING</b>
-        </p>
-      </div>
-
-      <div>
-        Contact
-        <p>Email: {email}</p>
-        <p>Phone: {phoneNumber}</p>
-        <p>Insta: {instagram}</p>
-        <p>FB: {Facebook}</p>
-        <p>Linkedin: {Linkedin}</p>
-      </div>
-      <div>{bio}</div>
+    <div className="global-margin-x space-y-24 mt-16">
+      <TeammateHeader
+        name={title}
+        fullBodyImg={profilePic as MType}
+        shortDescription={bio}
+        jobTitle="Commercial Real Estate Agent"
+        yearsOfExperience={yearsOfExperience}
+        strength={strengths[0]}
+      />
+      <ContactAndBio
+        bio={bio}
+        email={email}
+        phoneNumber={phoneNumber}
+        instagram={instagram}
+        facebook={Facebook}
+        linkedin={Linkedin}
+      />
 
       <div>
         Current Listings: <b>MISSING</b>

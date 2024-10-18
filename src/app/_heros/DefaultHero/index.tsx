@@ -7,6 +7,9 @@ import Image from 'next/image'
 import { Page } from '../../../payload/payload-types'
 import RichText from '@/app/_components/RichText'
 
+import { Media } from '@/app/_components/Media'
+import { Media as MType } from '../../../payload/payload-types'
+
 export const DefaultHero: React.FC<Page['hero']> = ({ richText, media, links, headerText }) => {
   return (
     <div className="grid xl:grid-cols-2 place-items-center py-16">
@@ -43,9 +46,17 @@ export const DefaultHero: React.FC<Page['hero']> = ({ richText, media, links, he
           </div>
         </div>
       </div>
-
       <div>
-        <Image src={ImageSrc} alt="service-img" className="my-12 lg:my-0" />
+        {/* Backup Image === The Hero Image for the Default Hero. */}
+        {!media ? (
+          <Image src={ImageSrc} alt="service-img" className="my-12 lg:my-0" />
+        ) : (
+          <Media
+            resource={media as MType}
+            alt="service-img"
+            imgClassName="my-12 lg:my-0 lg:pr-36 pr-0"
+          />
+        )}
       </div>
     </div>
   )

@@ -6,14 +6,15 @@ import {
   PROJECT_BLOCK,
   STATS_AND_VIDEO_BLOCK,
   CONTENT_AND_STATS_BLOCK,
+  STAT_BLOCK,
 } from './blocks'
 import { LINK_FIELDS } from './link'
 import { MEDIA } from './media'
 import { META } from './meta'
 
 export const SERVICES = `
-  query Listings {
-    Listings(limit: 300) {
+  query Services {
+    Services(limit: 300) {
       docs {
         slug
       }
@@ -28,10 +29,11 @@ query Services($slug: String) {
         id
         slug
         title
-        longDescription
+        shortDescription
         hero {
           type
           richText
+          headerText
           links {
             link ${LINK_FIELDS()}
           }
@@ -46,6 +48,7 @@ query Services($slug: String) {
           ${ARCHIVE_BLOCK}
           ${STATS_AND_VIDEO_BLOCK}
           ${CONTENT_AND_STATS_BLOCK}
+          ${STAT_BLOCK}
         }
         ${META}
       }

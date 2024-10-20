@@ -31,7 +31,7 @@ export default function PhotoGallery({ imageGallery }: Listing) {
             (img, index) =>
               index === 0 && (
                 <div key={img.id}>
-                  <Media resource={img.image} />
+                  <Media resource={img.image as Img} />
                 </div>
               ),
           )}
@@ -42,7 +42,7 @@ export default function PhotoGallery({ imageGallery }: Listing) {
               index !== 0 &&
               index < 3 && (
                 <div key={img.id}>
-                  <Media resource={img.image} />
+                  <Media resource={img.image as Img} />
                 </div>
               ),
           )}

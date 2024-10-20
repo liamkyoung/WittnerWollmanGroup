@@ -756,36 +756,13 @@ export interface Project {
   price: string;
   description: string;
   neighborhood: string;
+  latitude?: number | null;
+  longitude?: number | null;
   website?: string | null;
   instagram?: string | null;
   slider?: CardSlider;
   categories?: (number | Category)[] | null;
   publishedAt?: string | null;
-  hero: {
-    type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact' | 'default' | 'fullscreen' | 'projectHero';
-    headerText?: string | null;
-    richText: {
-      [k: string]: unknown;
-    }[];
-    links?:
-      | {
-          link: {
-            type?: ('reference' | 'custom') | null;
-            newTab?: boolean | null;
-            reference?: {
-              relationTo: 'pages';
-              value: number | Page;
-            } | null;
-            url?: string | null;
-            label: string;
-            appearance?: ('default' | 'primary' | 'secondary') | null;
-          };
-          id?: string | null;
-        }[]
-      | null;
-    media?: number | Media | null;
-    backupImage?: number | Media | null;
-  };
   layout: (
     | {
         type?: ('default' | 'listing' | 'agent') | null;
@@ -1343,6 +1320,16 @@ export interface Service {
         id?: string | null;
         blockName?: string | null;
         blockType: 'statBlock';
+      }
+    | {
+        title: string;
+        richText: {
+          [k: string]: unknown;
+        }[];
+        facts?: FactsList;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'contentAndStatsBlock';
       }
   )[];
   meta?: {

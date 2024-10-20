@@ -18,11 +18,7 @@ export const dynamic = 'force-dynamic'
 
 export default async function Page({ params: { slug } }) {
   const { isEnabled: isDraftMode } = draftMode()
-  const locations = [
-    { lat: 27.77, lng: -82.65 },
-    { lat: 27.67, lng: -82.64 },
-    { lat: 27.67, lng: -83.64 },
-  ]
+
   let listing: Listing | null = null
   try {
     listing = await fetchDoc<Listing>({

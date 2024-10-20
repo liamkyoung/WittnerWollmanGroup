@@ -3,7 +3,7 @@ import React from 'react'
 import { createRoot } from 'react-dom/client'
 import { APIProvider, Map, Marker } from '@vis.gl/react-google-maps'
 import { GoogleMapsDefaults } from '@/globalData/general'
-import { MapCoords } from '@/app/types/viewmodels'
+import { GoogleMapPin, MapCoords } from '@/app/types/viewmodels'
 import { Listing, Media } from '@/payload/payload-types'
 import {
   Dialog,
@@ -16,31 +16,38 @@ import {
 import { MarkerWithInfo } from './MarkerWithInfo'
 
 export type Props = {
-  listings?: Listing[]
+  pins?: GoogleMapPin[]
   fullscreen?: Boolean
+  zoom?: 'close' | 'default' | 'far'
 }
 
-export const GoogleMap = ({ listings, fullscreen = false }: Props) => {
+export const GoogleMap = ({ pins, fullscreen = false, zoom = 'default' }: Props) => {
   const GOOGLE_MAP_API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_KEY
   const widthValue = !fullscreen ? '100%' : '100vw'
+
+  let mapZoom = 11
+
+  if (zoom === 'close') mapZoom = 14
+  if (zoom === 'far') mapZoom = 10
+
   return (
     <div className="flex">
       <APIProvider apiKey={GOOGLE_MAP_API_KEY}>
         <Map
           style={{ width: widthValue, height: '500px' }}
           defaultCenter={GoogleMapsDefaults.mapCenter}
-          defaultZoom={11}
+          defaultZoom={mapZoom}
           gestureHandling={'greedy'}
           disableDefaultUI={true}
           mapId={'1'}
         >
-          {listings &&
-            listings.map((p, i) => (
+          {pins &&
+            pins.map((p, i) => (
               <MarkerWithInfo
-                position={{ lat: p.latitude, lng: p.longitude }}
-                title={p.title}
-                href={`listings/${p.slug}`}
-                image={p.coverImage as Media}
+                position={{ lat: p.coords.lat, lng: p.coords.lng }}
+                title={p.name}
+                href={p.slug}
+                image={p.coverImg}
                 key={i}
               />
             ))}

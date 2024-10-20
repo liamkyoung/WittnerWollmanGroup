@@ -1,3 +1,5 @@
+import { Listing, Media, Project } from '@/payload/payload-types'
+
 export type Socials = {
   linkedin: string
   twitter: string
@@ -37,4 +39,11 @@ export type MapSettings = {
 export type MapCoords = {
   lat: number
   lng: number
+}
+
+export type GoogleMapPin = {
+  name: string
+  coords: MapCoords
+  slug: string
+  coverImg?: Media
 }

@@ -15,6 +15,9 @@ export const PROJECTS = `
     Projects(limit: 300) {
       docs {
         slug
+        title
+        latitude
+        longitude
       }
     }
   }
@@ -26,23 +29,14 @@ export const PROJECT = `
       docs {
         id
         title
-        categories {
-          title
-        }
         createdAt
         price
         address
         neighborhood
+        latitude
+        longitude
         website
         instagram
-        hero {
-          type
-          richText
-          links {
-            link ${LINK_FIELDS()}
-          }
-          ${MEDIA}
-        }
         slider {
           id
           title

@@ -1,14 +1,39 @@
-import React, { Fragment } from 'react'
+'use client'
+import React, { Fragment, useEffect, useState } from 'react'
 import Link from 'next/link'
 import { DefaultSocials } from '../../../globalData/general'
 import Image from 'next/image'
 
-import { Media as MediaType, Page } from '../../../payload/payload-types'
+import { Media as MediaType, Page, Project } from '../../../payload/payload-types'
 import RichText from '../../../app/_components/RichText'
 import { Media } from '../../_components/Media'
 import { GoogleMap } from '@/app/customComponents/GoogleMap/GoogleMap'
+import { fetchDocs } from '@/app/_api/fetchDocs'
+import { GoogleMapPin } from '@/app/types/viewmodels'
+
+async function getProjectPins() {
+  try {
+    const projects = await fetchDocs<Project>('projects')
+    let pins: GoogleMapPin[] = projects?.map(({ slug, title, latitude, longitude }) => {
+      return { name: title, slug: slug, coords: { lat: latitude, lng: longitude } }
+    })
+    return pins
+  } catch (error) {
+    return []
+  }
+}
 
 export const ProjectHero: React.FC<Page['hero']> = ({ richText, media, links, headerText }) => {
+  const [pins, setPins] = useState<GoogleMapPin[]>()
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getProjectPins()
+      setPins(data)
+    }
+
+    fetchData().catch(console.error)
+  }, [])
+
   return (
     <div className="grid lg:grid-cols-2 grid-cols-1 global-margin-x lg:gap-0 gap-16 lg:mt-16">
       <div className="mt-24">
@@ -47,7 +72,7 @@ export const ProjectHero: React.FC<Page['hero']> = ({ richText, media, links, he
         </div>
       </div>
 
-      <GoogleMap />
+      <GoogleMap pins={pins} />
     </div>
   )
 }

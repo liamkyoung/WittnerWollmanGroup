@@ -17,6 +17,7 @@ import { formatSocialMediaHandle } from '../../../payload/hooks/formatSocialMedi
 import { ProjectBlock } from '../../blocks/ProjectBlock'
 import { StatsAndVideoBlock } from '../../blocks/StatsAndVideoBlock'
 import { StatBlock } from '../../blocks/StatBlock'
+import AdminAddressSearch from '../../../app/customComponents/GoogleMap/AdminAddressSearch'
 
 export const Projects: CollectionConfig = {
   slug: 'projects',
@@ -51,8 +52,15 @@ export const Projects: CollectionConfig = {
     },
     {
       name: 'address',
+      label: 'Property Address',
       type: 'text',
       required: true,
+      admin: {
+        components: {
+          Field: AdminAddressSearch,
+        },
+      },
+      // Able to get from map
     },
     {
       name: 'price',
@@ -68,6 +76,24 @@ export const Projects: CollectionConfig = {
       name: 'neighborhood',
       type: 'text',
       required: true,
+    },
+    {
+      name: 'latitude',
+      label: 'Latitude',
+      type: 'number',
+      admin: {
+        hidden: true,
+      },
+      // Able to get from map
+    },
+    {
+      name: 'longitude',
+      label: 'Longitude',
+      type: 'number',
+      admin: {
+        hidden: true,
+      },
+      // Able to get from map
     },
     {
       name: 'website',
@@ -140,10 +166,6 @@ export const Projects: CollectionConfig = {
     {
       type: 'tabs',
       tabs: [
-        {
-          label: 'Hero',
-          fields: [hero],
-        },
         {
           label: 'Content',
           fields: [

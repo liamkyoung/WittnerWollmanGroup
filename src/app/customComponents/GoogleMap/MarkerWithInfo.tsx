@@ -9,7 +9,7 @@ type Props = {
   position: MapCoords
   title: string
   href: string
-  image: MediaType
+  image?: MediaType
 }
 
 export const MarkerWithInfo = ({ position, title, href, image }: Props) => {
@@ -38,7 +38,7 @@ export const MarkerWithInfo = ({ position, title, href, image }: Props) => {
           {infoWindowShown && (
             <InfoWindow anchor={marker} onClose={handleClose}>
               <h2>{title}</h2>
-              <Media resource={image} />
+              {image && <Media resource={image} />}
               <Link href={href}>Click here to view</Link>
             </InfoWindow>
           )}

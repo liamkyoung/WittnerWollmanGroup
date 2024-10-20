@@ -10,6 +10,8 @@ import { RelatedPosts } from '../../../_blocks/RelatedPosts'
 import { Blocks } from '../../../_components/Blocks'
 import { SingularProjectHero } from '../../../customComponents/Projects/SingularProjectHero'
 import { generateMeta } from '../../../_utilities/generateMeta'
+import { GoogleMap } from '@/app/customComponents/GoogleMap/GoogleMap'
+import { GoogleMapPin } from '@/app/types/viewmodels'
 
 // Force this page to be dynamic so that Next.js does not cache it
 // See the note in '../../../[slug]/page.tsx' about this
@@ -34,12 +36,20 @@ export default async function Project({ params: { slug } }) {
     notFound()
   }
 
-  const { layout, relatedProjects } = project
+  const { layout, title, latitude, longitude } = project
+
+  const pin: GoogleMapPin = {
+    name: title,
+    coords: { lat: latitude, lng: longitude },
+    coverImg: null,
+    slug: slug,
+  }
 
   return (
     <React.Fragment>
       <SingularProjectHero project={project} />
       <Blocks blocks={[...layout]} />
+      <GoogleMap fullscreen pins={[pin]} zoom="far" />
     </React.Fragment>
   )
 }

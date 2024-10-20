@@ -80,6 +80,13 @@ export const Teammates: CollectionConfig = {
       },
     },
     {
+      name: 'favoritePlaces', // required
+      label: 'Favorite Places',
+      type: 'relationship', // required
+      relationTo: 'communityResources', // required
+      hasMany: true,
+    },
+    {
       name: 'phoneNumber',
       label: 'Phone Number',
       type: 'text',

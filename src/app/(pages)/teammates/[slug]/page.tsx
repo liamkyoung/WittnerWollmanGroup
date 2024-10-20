@@ -3,7 +3,7 @@ import { Metadata } from 'next'
 import { draftMode } from 'next/headers'
 import { notFound } from 'next/navigation'
 
-import { Teammate } from '../../../../payload/payload-types'
+import { CommunityResource, Teammate } from '../../../../payload/payload-types'
 import { fetchDoc } from '../../../_api/fetchDoc'
 import { fetchDocs } from '../../../_api/fetchDocs'
 import { generateTeammateMetadata } from '../../../_utilities/generateMeta'
@@ -12,6 +12,7 @@ import { Media } from '../../../_components/Media'
 import { Media as MType } from '../../../../payload/payload-types'
 import TeammateHeader from './TeammateHeader'
 import ContactAndBio from './ContactAndBio'
+import { CommunityResourceGallery } from '@/app/customComponents/CommunityResources/CommunityResourceGallery'
 
 export const dynamic = 'force-dynamic'
 
@@ -41,40 +42,41 @@ export default async function Page({ params: { slug } }) {
     instagram,
     Facebook,
     Linkedin,
+    favoritePlaces,
   } = teammate
   return (
-    <div className="global-margin-x space-y-24 mt-16">
-      <TeammateHeader
-        name={title}
-        fullBodyImg={profilePic as MType}
-        shortDescription={bio}
-        jobTitle="Commercial Real Estate Agent"
-        yearsOfExperience={yearsOfExperience}
-        strength={strengths[0]}
-      />
-      <ContactAndBio
-        bio={bio}
-        email={email}
-        phoneNumber={phoneNumber}
-        instagram={instagram}
-        facebook={Facebook}
-        linkedin={Linkedin}
-      />
+    <>
+      <div className="global-margin-x space-y-24 mt-16">
+        <TeammateHeader
+          name={title}
+          fullBodyImg={profilePic as MType}
+          shortDescription={bio}
+          jobTitle="Commercial Real Estate Agent"
+          yearsOfExperience={yearsOfExperience}
+          strength={strengths[0]}
+        />
+        <ContactAndBio
+          bio={bio}
+          email={email}
+          phoneNumber={phoneNumber}
+          instagram={instagram}
+          facebook={Facebook}
+          linkedin={Linkedin}
+        />
 
-      <div>
-        Current Listings: <b>MISSING</b>
-      </div>
-      <div>
-        Previous Projects: <b>MISSING</b>
-      </div>
-      <div>
-        Favorite Places: <b>MISSING</b>
-      </div>
+        <div>
+          Current Listings: <b>MISSING</b>
+        </div>
+        <div>
+          Previous Projects: <b>MISSING</b>
+        </div>
 
-      <div>
-        Contact Form: <b>MISSING</b>
+        <div>
+          Contact Form: <b>MISSING</b>
+        </div>
       </div>
-    </div>
+      <CommunityResourceGallery communityResources={favoritePlaces as CommunityResource[]} />
+    </>
   )
   // return <div></div>
 }

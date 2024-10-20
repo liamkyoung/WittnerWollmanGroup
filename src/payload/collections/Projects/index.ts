@@ -96,6 +96,13 @@ export const Projects: CollectionConfig = {
       // Able to get from map
     },
     {
+      name: 'agents', // required
+      label: 'Teammates on Project',
+      type: 'relationship', // required
+      relationTo: 'teammates', // required
+      hasMany: true,
+    },
+    {
       name: 'website',
       type: 'text',
       required: false,

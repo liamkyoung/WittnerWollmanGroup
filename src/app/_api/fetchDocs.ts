@@ -10,6 +10,7 @@ import { payloadToken } from './token'
 import { TEAMMATES } from '../_graphql/teammates'
 import { INVOLVEMENT_GROUPS, INVOLVEMENT_EVENTS } from '../_graphql/involvement'
 import { SERVICES } from '../_graphql/services'
+import { COMMUNITY_RESOURCES } from '../_graphql/communityResources'
 
 // INSERT GROUP QUERIES FOR COLLECTIONS HERE
 const queryMap = {
@@ -44,6 +45,10 @@ const queryMap = {
   services: {
     query: SERVICES,
     key: 'Services',
+  },
+  communityResources: {
+    query: COMMUNITY_RESOURCES,
+    key: 'CommunityResources',
   },
 }
 

@@ -63,6 +63,13 @@ export const Listings: CollectionConfig = {
       // Able to get from map
     },
     {
+      name: 'agents', // required
+      label: 'Agent(s) on Listing',
+      type: 'relationship', // required
+      relationTo: 'teammates', // required
+      hasMany: true,
+    },
+    {
       name: 'streetAddress',
       label: 'Street',
       type: 'text',

@@ -1,3 +1,4 @@
+import { FAVORITE_PLACES } from './communityResources'
 import { PROFILEPIC } from './media'
 
 export const TEAMMATES = `
@@ -17,6 +18,7 @@ query Teammates($slug: String) {
         id
         title
         bio
+        ${FAVORITE_PLACES}
         phoneNumber
         instagram
         Facebook

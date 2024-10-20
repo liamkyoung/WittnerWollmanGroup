@@ -1,3 +1,4 @@
+'use client'
 import { Category, CommunityResource } from '@/payload/payload-types'
 import React from 'react'
 import { CommunityResourceCard } from '../CommunityResourceCard'

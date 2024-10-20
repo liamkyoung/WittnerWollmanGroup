@@ -758,6 +758,7 @@ export interface Project {
   neighborhood: string;
   latitude?: number | null;
   longitude?: number | null;
+  agents?: (number | Teammate)[] | null;
   website?: string | null;
   instagram?: string | null;
   slider?: CardSlider;
@@ -969,6 +970,48 @@ export interface Project {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "teammates".
+ */
+export interface Teammate {
+  id: number;
+  title: string;
+  bio: string;
+  profilePic: number | Media;
+  strengths?: ('Residential Real Estate' | 'Commercial Real Estate')[] | null;
+  yearsOfExperience: number;
+  favoritePlaces?: (number | CommunityResource)[] | null;
+  phoneNumber: string;
+  email: string;
+  slug?: string | null;
+  instagram?: string | null;
+  Facebook?: string | null;
+  Linkedin?: string | null;
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    image?: number | Media | null;
+  };
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "communityResources".
+ */
+export interface CommunityResource {
+  id: number;
+  title: string;
+  address: string;
+  description: string;
+  categories: number | Category;
+  image: number | Media;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "listings".
  */
 export interface Listing {
@@ -976,6 +1019,7 @@ export interface Listing {
   title: string;
   slug?: string | null;
   address: string;
+  agents?: (number | Teammate)[] | null;
   streetAddress?: string | null;
   neighborhood?: string | null;
   city: string;
@@ -1005,32 +1049,6 @@ export interface Listing {
   tenancyType?: ('singleTenant' | 'multiTenant') | null;
   yearBuilt?: number | null;
   occupancy?: number | null;
-  meta?: {
-    title?: string | null;
-    description?: string | null;
-    image?: number | Media | null;
-  };
-  updatedAt: string;
-  createdAt: string;
-  _status?: ('draft' | 'published') | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "teammates".
- */
-export interface Teammate {
-  id: number;
-  title: string;
-  bio: string;
-  profilePic: number | Media;
-  strengths?: ('Residential Real Estate' | 'Commercial Real Estate')[] | null;
-  yearsOfExperience: number;
-  phoneNumber: string;
-  email: string;
-  slug?: string | null;
-  instagram?: string | null;
-  Facebook?: string | null;
-  Linkedin?: string | null;
   meta?: {
     title?: string | null;
     description?: string | null;
@@ -1337,21 +1355,6 @@ export interface Service {
     description?: string | null;
     image?: number | Media | null;
   };
-  updatedAt: string;
-  createdAt: string;
-  _status?: ('draft' | 'published') | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "communityResources".
- */
-export interface CommunityResource {
-  id: number;
-  title: string;
-  address: string;
-  description: string;
-  categories: number | Category;
-  image: number | Media;
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;

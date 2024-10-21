@@ -3,7 +3,7 @@ import { Metadata } from 'next'
 import { draftMode } from 'next/headers'
 import { notFound } from 'next/navigation'
 
-import { CommunityResource, Teammate } from '../../../../payload/payload-types'
+import { CommunityResource, Listing, Project, Teammate } from '../../../../payload/payload-types'
 import { fetchDoc } from '../../../_api/fetchDoc'
 import { fetchDocs } from '../../../_api/fetchDocs'
 import { generateTeammateMetadata } from '../../../_utilities/generateMeta'
@@ -13,12 +13,21 @@ import { Media as MType } from '../../../../payload/payload-types'
 import TeammateHeader from './TeammateHeader'
 import ContactAndBio from './ContactAndBio'
 import { CommunityResourceGallery } from '@/app/customComponents/CommunityResources/CommunityResourceGallery'
+import payload from 'payload'
+import { GoogleMapPin } from '@/app/types/viewmodels'
+import { GoogleMap } from '@/app/customComponents/GoogleMap/GoogleMap'
+import { ProjectGallery } from '@/app/customComponents/Projects/ProjectGallery'
+import { Blocks } from '@/app/_components/Blocks'
+import CallToAction, { CallToActionBlock } from '../../../_blocks/CallToAction'
 
 export const dynamic = 'force-dynamic'
 
 export default async function Page({ params: { slug } }) {
   const { isEnabled: isDraftMode } = draftMode()
   let teammate: Teammate | null = null
+  let pins: GoogleMapPin[]
+  let projects: Project[]
+
   try {
     teammate = await fetchDoc<Teammate>({
       collection: 'teammates',
@@ -30,11 +39,16 @@ export default async function Page({ params: { slug } }) {
   }
   if (!teammate) {
     notFound()
+  } else {
+    pins = await getAgentListings(teammate.id)
+    projects = await getAgentProjects(teammate.id)
   }
+
   const {
     title,
     bio,
     profilePic,
+    profileIntroduction,
     strengths,
     yearsOfExperience,
     email,
@@ -50,7 +64,7 @@ export default async function Page({ params: { slug } }) {
         <TeammateHeader
           name={title}
           fullBodyImg={profilePic as MType}
-          shortDescription={bio}
+          shortDescription={profileIntroduction}
           jobTitle="Commercial Real Estate Agent"
           yearsOfExperience={yearsOfExperience}
           strength={strengths[0]}
@@ -64,18 +78,21 @@ export default async function Page({ params: { slug } }) {
           linkedin={Linkedin}
         />
 
-        <div>
-          Current Listings: <b>MISSING</b>
-        </div>
-        <div>
-          Previous Projects: <b>MISSING</b>
-        </div>
+        {pins ? <GoogleMap pins={pins} fullscreen /> : <div>There are no listings for {title}</div>}
 
-        <div>
+        {projects && projects.length > 0 ? (
+          <ProjectGallery projects={projects} />
+        ) : (
+          <div>There are no projects for {title}</div>
+        )}
+
+        {/* TODO */}
+        {/* <div>
           Contact Form: <b>MISSING</b>
-        </div>
+        </div> */}
       </div>
       <CommunityResourceGallery communityResources={favoritePlaces as CommunityResource[]} />
+      <CallToActionBlock type={'agent'} blockType="cta" />
     </>
   )
   // return <div></div>
@@ -107,4 +124,57 @@ export async function generateMetadata({ params: { slug } }): Promise<Metadata> 
   } catch (error) {}
 
   return generateTeammateMetadata({ doc: teammates })
+}
+
+export async function getAgentListings(teammateId: number): Promise<GoogleMapPin[] | null> {
+  let listings
+  let pins: GoogleMapPin[]
+  // Next, fetch listings that reference the teammate in the 'agents' field
+  try {
+    listings = await payload.find({
+      collection: 'listings',
+      where: {
+        agents: {
+          contains: teammateId, // This filters listings by the agent's ID
+        },
+      },
+    })
+  } catch (error) {
+    console.error('Error fetching teammate or listings:', error)
+  }
+
+  if (listings && listings.docs) {
+    console.log(listings)
+    pins = listings.docs.map(l => {
+      return {
+        name: l.title,
+        coords: { lat: l.latitude, lng: l.longitude },
+        slug: l.slug,
+        coverImg: l.coverImage as MType,
+      }
+    })
+  }
+
+  return pins
+}
+
+export async function getAgentProjects(teammateId: number): Promise<Project[] | null> {
+  let projects = null
+  // Next, fetch listings that reference the teammate in the 'agents' field
+  try {
+    projects = await payload.find({
+      collection: 'projects',
+      where: {
+        agents: {
+          contains: teammateId, // This filters listings by the agent's ID
+        },
+      },
+    })
+  } catch (error) {
+    console.error('Error fetching teammate or listings:', error)
+  }
+
+  console.log('Projecst', projects.docs)
+
+  return projects.docs
 }

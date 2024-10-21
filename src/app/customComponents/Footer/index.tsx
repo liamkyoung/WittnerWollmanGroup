@@ -40,7 +40,9 @@ function Footer() {
           </div>
 
           <div className="">
-            <h6 className="text-white">Listings</h6>
+            <Link href="/listings">
+              <h6 className="text-white">Listings</h6>
+            </Link>
           </div>
 
           <div>
@@ -59,7 +61,10 @@ function Footer() {
           </div>
 
           <div>
-            <h6 className="text-white">Projects</h6>
+            <Link href="/projects">
+              <h6 className="text-white">Projects</h6>
+            </Link>
+
             <div className="space-y-2 mt-4">
               <p className="text-sm text-white">
                 <Link href="/projects/reflection">Reflection</Link>

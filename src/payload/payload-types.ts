@@ -975,6 +975,7 @@ export interface Project {
 export interface Teammate {
   id: number;
   title: string;
+  profileIntroduction: string;
   bio: string;
   profilePic: number | Media;
   strengths?: ('Residential Real Estate' | 'Commercial Real Estate')[] | null;

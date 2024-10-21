@@ -41,6 +41,12 @@ export const Teammates: CollectionConfig = {
       required: true,
     },
     {
+      name: 'profileIntroduction',
+      label: 'Profile Introduction',
+      type: 'text',
+      required: true,
+    },
+    {
       name: 'bio',
       type: 'text',
       required: true,

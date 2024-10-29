@@ -92,6 +92,7 @@ export type Props = {
   selectedDocs?: ArchiveBlockProps['selectedDocs']
   showPageRange?: boolean
   sort?: string
+  displayHeader?: 'yes' | 'no'
 }
 
 export const CollectionArchive: React.FC<Props> = props => {
@@ -107,6 +108,7 @@ export const CollectionArchive: React.FC<Props> = props => {
     selectedDocs,
     showPageRange,
     sort = '-createdAt',
+    displayHeader,
   } = props
 
   const [results, setResults] = useState<Result>({
@@ -227,7 +229,7 @@ export const CollectionArchive: React.FC<Props> = props => {
       case 'testimonials':
         return <TestimonialGallery testimonials={results.docs as Testimonial[]} />
       case 'listings':
-        return <ListingGallery listings={results.docs as Listing[]} />
+        return <ListingGallery listings={results.docs as Listing[]} displayHeader={displayHeader} />
       case 'teammates':
         return <TeammateGallery teammates={results.docs as Teammate[]} />
       case 'companies':

@@ -213,7 +213,7 @@ export function ContactForm({ colorScheme = ColorScheme.DEFAULT }: Props) {
         </div>
 
         <button type="submit" className={buttonStyle} disabled={sending}>
-          {!sending ? <span>SEND MESSAGE</span> : <Spinner />}
+          {!sending ? <span>SEND MESSAGE</span> : <Spinner size={6} />}
         </button>
       </form>
     </Form>

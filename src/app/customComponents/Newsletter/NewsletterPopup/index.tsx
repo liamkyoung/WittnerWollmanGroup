@@ -21,10 +21,11 @@ export default function NewsletterPopup() {
     // Only triggers popup if there is no cookie.
     // Newsletter cookie: ww-group-newsletter
     // If signed up - exists for 1 year, no sign up - 30 days.
+    const secondsUntilPopupAppears = 20 // 20 seconds
     if (!cookie) {
       const timer = setTimeout(() => {
         setIsOpen(true)
-      }, 20 * 1000) // 20 seconds
+      }, secondsUntilPopupAppears * 1000)
       // Cleanup timer on component unmount
       return () => clearTimeout(timer)
     }

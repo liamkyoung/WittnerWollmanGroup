@@ -46,7 +46,13 @@ export const ProjectBlock: Block = {
       name: 'location',
       label: 'Neighborhood or Address',
       type: 'text',
-      required: true,
+      required: false,
+    },
+    {
+      name: 'subheading',
+      label: 'Subheading',
+      type: 'text',
+      required: false,
     },
     {
       name: 'description',

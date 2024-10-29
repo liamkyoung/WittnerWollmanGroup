@@ -1,13 +1,19 @@
 import { Listing, Media, Project } from '@/payload/payload-types'
 
 export type Socials = {
-  linkedin: string
-  twitter: string
-  facebook: string
-  instagram: string
+  linkedin: SocialMediaInfo
+  twitter: SocialMediaInfo
+  facebook: SocialMediaInfo
+  instagram: SocialMediaInfo
   address: string
   phoneNumber: string
   email: string
+}
+
+export type SocialMediaInfo = {
+  platformName: string
+  username: string
+  profileLink: string
 }
 
 export enum CardSize {

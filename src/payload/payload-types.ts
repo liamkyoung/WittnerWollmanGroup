@@ -245,6 +245,7 @@ export interface Page {
           | null;
         populatedDocsTotal?: number | null;
         bgColor?: ('Default' | 'red') | null;
+        displayHeader?: ('yes' | 'no') | null;
         id?: string | null;
         blockName?: string | null;
         blockType: 'archive';
@@ -254,7 +255,8 @@ export interface Page {
         position?: ('left' | 'right') | null;
         bgColor?: ('white' | 'red') | null;
         title: string;
-        location: string;
+        location?: string | null;
+        subheading?: string | null;
         description: string;
         facts?: FactsList;
         media: number | Media;
@@ -547,6 +549,7 @@ export interface Post {
           | null;
         populatedDocsTotal?: number | null;
         bgColor?: ('Default' | 'red') | null;
+        displayHeader?: ('yes' | 'no') | null;
         id?: string | null;
         blockName?: string | null;
         blockType: 'archive';
@@ -709,6 +712,7 @@ export interface Post {
               | null;
             populatedDocsTotal?: number | null;
             bgColor?: ('Default' | 'red') | null;
+            displayHeader?: ('yes' | 'no') | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'archive';
@@ -919,6 +923,7 @@ export interface Project {
           | null;
         populatedDocsTotal?: number | null;
         bgColor?: ('Default' | 'red') | null;
+        displayHeader?: ('yes' | 'no') | null;
         id?: string | null;
         blockName?: string | null;
         blockType: 'archive';
@@ -928,7 +933,8 @@ export interface Project {
         position?: ('left' | 'right') | null;
         bgColor?: ('white' | 'red') | null;
         title: string;
-        location: string;
+        location?: string | null;
+        subheading?: string | null;
         description: string;
         facts?: FactsList;
         media: number | Media;
@@ -1303,6 +1309,7 @@ export interface Service {
           | null;
         populatedDocsTotal?: number | null;
         bgColor?: ('Default' | 'red') | null;
+        displayHeader?: ('yes' | 'no') | null;
         id?: string | null;
         blockName?: string | null;
         blockType: 'archive';
@@ -1312,7 +1319,8 @@ export interface Service {
         position?: ('left' | 'right') | null;
         bgColor?: ('white' | 'red') | null;
         title: string;
-        location: string;
+        location?: string | null;
+        subheading?: string | null;
         description: string;
         facts?: FactsList;
         media: number | Media;

@@ -42,7 +42,7 @@ function CardInfo({ address, additionalInfo, description }: Props) {
             />
           </svg>
           <p className="text-sm font-bold">
-            {additionalInfo.map((i) => i + ', ')}
+            {additionalInfo.map((info, i) => info + (i !== additionalInfo.length - 1 ? ', ' : ''))}
           </p>
         </div>
       )}

@@ -29,7 +29,7 @@ export const ListingCard: React.FC<{
         )}
       </Link>
       <div>
-        {titleToUse && <h5>{titleToUse}</h5>}
+        {titleToUse && <h5 className="my-2">{titleToUse}</h5>}
         <CardInfo
           address={address}
           additionalInfo={[`${sqFt} sq ft`, `${bedCount} beds`, `${bathroomCount} baths`]}

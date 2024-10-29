@@ -39,6 +39,7 @@ export const PROJECT_BLOCK = `
   invertBackground
   position
   location
+  subheading
   title
   description
   bgColor
@@ -104,6 +105,7 @@ export const ARCHIVE_BLOCK = `
   introContent
   archiveBgColor: bgColor
   populateBy
+  displayHeader
   relationTo
   ${CATEGORIES}
   limit

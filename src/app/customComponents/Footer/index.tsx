@@ -8,6 +8,7 @@ import Instagram from '../Icons/Instagram'
 import Facebook from '../Icons/Facebook'
 import Linkedin from '../Icons/LinkedinIcon'
 import { ColorScheme } from '../../types/viewmodels'
+import { InternalLinks } from '@/globalData/navigation'
 
 function Footer() {
   return (
@@ -18,78 +19,19 @@ function Footer() {
           <NewsletterInputFooter />
         </div>
         <div className="grid grid-cols-2 md:grid-cols-5 justify-items-center gap-8">
-          <div className="">
-            <h6 className="text-white">Services</h6>
-            <div className="space-y-2 mt-4">
-              <p className="text-sm text-white">
-                <Link href="/services/leasing">Leasing</Link>
-              </p>
-
-              <p className="text-sm text-white">
-                <Link href="/services/sales">Sales</Link>
-              </p>
-
-              <p className="text-sm text-white">
-                <Link href="/services/acquisition">Acquisition </Link>
-              </p>
-
-              <p className="text-sm text-white">
-                <Link href="/services/consulting">Consulting</Link>
-              </p>
+          {InternalLinks.map(group => (
+            <div>
+              <h6 className="text-white">{group.title}</h6>
+              <div className="space-y-2 mt-4">
+                {group.subNavigation &&
+                  group.subNavigation.map(n => (
+                    <p className="text-sm text-white">
+                      <Link href={n.relLink}>{n.title}</Link>
+                    </p>
+                  ))}
+              </div>
             </div>
-          </div>
-
-          <div className="">
-            <Link href="/listings">
-              <h6 className="text-white">Listings</h6>
-            </Link>
-          </div>
-
-          <div>
-            <h6 className="text-white">About Us</h6>
-            <div className="space-y-2 mt-4">
-              <p className="text-sm text-white">
-                <Link href="/team">Our Team</Link>
-              </p>
-              <p className="text-sm text-white">
-                <Link href="/projects">Our Projects</Link>
-              </p>
-              <p className="text-sm text-white">
-                <Link href="/involvement">Involvement</Link>
-              </p>
-            </div>
-          </div>
-
-          <div>
-            <Link href="/projects">
-              <h6 className="text-white">Projects</h6>
-            </Link>
-
-            <div className="space-y-2 mt-4">
-              <p className="text-sm text-white">
-                <Link href="/projects/reflection">Reflection</Link>
-              </p>
-              <p className="text-sm text-white">
-                <Link href="/projects/reflection">The Factory</Link>
-              </p>
-              <p className="text-sm text-white">
-                <Link href="/projects/reflection">Other Project</Link>
-              </p>
-            </div>
-          </div>
-
-          <div>
-            <h6 className="text-white">Community</h6>
-            <div className="space-y-2 mt-4">
-              <p className="text-sm text-white">
-                <Link href="/news">News</Link>
-              </p>
-              <p className="text-sm text-white">
-                {' '}
-                <Link href="/community-resources">Resources</Link>
-              </p>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
 
@@ -144,9 +86,18 @@ function Footer() {
         </div>
 
         <div className="flex gap-4 items-center justify-center md:justify-start">
-          <Instagram profileLink={DefaultSocials.instagram} colorScheme={ColorScheme.RED} />
-          <Facebook profileLink={DefaultSocials.facebook} colorScheme={ColorScheme.RED} />
-          <Linkedin profileLink={DefaultSocials.linkedin} colorScheme={ColorScheme.RED} />
+          <Instagram
+            profileLink={DefaultSocials.instagram.profileLink}
+            colorScheme={ColorScheme.RED}
+          />
+          <Facebook
+            profileLink={DefaultSocials.facebook.profileLink}
+            colorScheme={ColorScheme.RED}
+          />
+          <Linkedin
+            profileLink={DefaultSocials.linkedin.profileLink}
+            colorScheme={ColorScheme.RED}
+          />
           <div className="flex items-center gap-4 md:hidden">
             <Link href={`mailto:${DefaultSocials.email}`}>
               <svg

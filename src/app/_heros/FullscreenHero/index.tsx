@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react'
 import Link from 'next/link'
-import { DefaultSocials } from '../../../globalData/general'
 import Image from 'next/image'
 
 import { Media as MediaType, Page } from '../../../payload/payload-types'

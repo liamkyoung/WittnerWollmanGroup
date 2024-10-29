@@ -5,44 +5,52 @@ import Logo from '../../../assets/branding/logo.svg'
 // import anime from 'animejs/lib/anime.es.js'
 import { Company } from '@/payload/payload-types'
 import { CompanyComponent } from '../CompanyComponent'
+import './style.css'
 
 type Props = {
   companies: Company[]
 }
 
 export const CompanyGallery = ({ companies }: Props) => {
-  // const animationRef = useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    const scrollers = document.querySelectorAll('.scroller')
 
-  // useEffect(() => {
-  //   if (animationRef.current) {
-  //     anime({
-  //       targets: animationRef.current.querySelectorAll('.marquee-content'),
-  //       translateX: (el: HTMLElement) => {
-  //         return [0, `-${el.scrollWidth / 2}px`]
-  //       },
-  //       easing: 'linear', // Make the movement smooth
-  //       duration: 10000, // Adjust duration for speed
-  //       loop: true, // Infinite loop
-  //     })
-  //   }
-  // }, [])
+    // If a user hasn't opted in for recuded motion, then we add the animation
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      addAnimation()
+    }
+
+    function addAnimation() {
+      scrollers.forEach(scroller => {
+        // add data-animated="true" to every `.scroller` on the page
+        scroller.setAttribute('data-animated', 'true')
+
+        // Make an array from the elements within `.scroller-inner`
+        const scrollerInner = scroller.querySelector('.scroller__inner')
+        const scrollerContent = Array.from(scrollerInner.children)
+
+        // For each item in the array, clone it
+        // add aria-hidden to it
+        // add it into the `.scroller-inner`
+        scrollerContent.forEach(item => {
+          const duplicatedItem = item.cloneNode(true)
+          duplicatedItem.setAttribute('aria-hidden', true)
+          scrollerInner.appendChild(duplicatedItem)
+        })
+      })
+    }
+  }, [])
 
   return (
-    <>
-      <h2 className="text-center">Companies We&apos;ve Helped</h2>
-      <div className="w-full overflow-hidden relative h-96 whitespace-nowrap">
-        <div className="fixed flex items-center justify-around w-fit whitespace-nowrap ">
+    <div className="global-margin-y">
+      <h2 className="text-center mb-8">Companies We&apos;ve Helped</h2>
+      <div className="scroller mx-auto" data-direction="left" data-speed="slow">
+        <div className="scroller__inner">
           {companies?.map((c, i) => (
             <CompanyComponent doc={c} key={`${i}`} />
           ))}
         </div>
-        <div className="fixed flex items-center justify-around w-fit whitespace-nowrap ">
-          {companies?.map((c, i) => (
-            <CompanyComponent doc={c} key={`${i}-1`} />
-          ))}
-        </div>
       </div>
-      {/* <div className="w-full absolute bg-gradient-to-r from-black to-black/30 inset-0 pointer-events-none"></div> */}
-    </>
+    </div>
   )
 }

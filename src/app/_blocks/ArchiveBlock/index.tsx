@@ -23,6 +23,7 @@ export const ArchiveBlock: React.FC<
     selectedDocs,
     categories,
     archiveBgColor,
+    displayHeader,
   } = props
 
   console.log('props: ', props)
@@ -43,6 +44,7 @@ export const ArchiveBlock: React.FC<
         selectedDocs={selectedDocs}
         categories={categories}
         limit={limit}
+        displayHeader={displayHeader}
         sort="-publishedAt"
       />
     </div>

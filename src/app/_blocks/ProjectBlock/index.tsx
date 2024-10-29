@@ -24,7 +24,17 @@ export type FactStat = {
 }
 
 export const ProjectBlock: React.FC<ProjectBlockProps> = props => {
-  const { media, position, location, title, bgColor, externalLink, description, facts } = props
+  const {
+    media,
+    position,
+    location,
+    subheading,
+    title,
+    bgColor,
+    externalLink,
+    description,
+    facts,
+  } = props
 
   let caption
   if (media && typeof media === 'object') caption = media.caption
@@ -44,6 +54,7 @@ export const ProjectBlock: React.FC<ProjectBlockProps> = props => {
         colorScheme={color}
         title={title}
         image={media as MType}
+        subheading={subheading}
         location={location}
         description={description}
         facts={facts}
@@ -57,6 +68,7 @@ export const ProjectBlock: React.FC<ProjectBlockProps> = props => {
       colorScheme={color}
       title={title}
       image={media as MType}
+      subheading={subheading}
       location={location}
       description={description}
       facts={facts}

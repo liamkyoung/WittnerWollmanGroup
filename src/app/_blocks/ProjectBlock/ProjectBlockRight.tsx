@@ -13,6 +13,7 @@ type Props = {
   link?: string
   title: string
   location: string
+  subheading: string
   image: MType
   description: string
   facts: FactStat[]
@@ -23,6 +24,7 @@ function ProjectBlockRight({
   colorScheme = ColorScheme.DEFAULT,
   title,
   location,
+  subheading,
   image,
   description,
   facts,

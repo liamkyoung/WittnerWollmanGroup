@@ -24,6 +24,7 @@ export type Props = {
 export const GoogleMap = ({ pins, fullscreen = false, zoom = 'default' }: Props) => {
   const GOOGLE_MAP_API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_KEY
   const widthValue = !fullscreen ? '100%' : '100vw'
+  const heightValue = !fullscreen ? '44rem' : '500px'
 
   let mapZoom = 11
 
@@ -34,7 +35,7 @@ export const GoogleMap = ({ pins, fullscreen = false, zoom = 'default' }: Props)
     <div className="flex">
       <APIProvider apiKey={GOOGLE_MAP_API_KEY}>
         <Map
-          style={{ width: widthValue, height: '500px' }}
+          style={{ width: widthValue, height: heightValue }}
           defaultCenter={GoogleMapsDefaults.mapCenter}
           defaultZoom={mapZoom}
           gestureHandling={'greedy'}

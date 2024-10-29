@@ -1,0 +1,70 @@
+import React from 'react'
+
+type Props = {}
+
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu'
+
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from '@/components/ui/sheet'
+import { InternalLinks } from '@/globalData/navigation'
+import Link from 'next/link'
+import Image from 'next/image'
+import Logo from '../../assets/branding/logo.svg'
+
+function DesktopHeader({}: Props) {
+  return (
+    <nav className="bg-gray-50 font-semibold items-center justify-between my-5 hidden lg:flex global-margin-x">
+      <Link href="/">
+        <Image priority src={Logo} alt="WW-Logo" />
+      </Link>
+
+      <div className="flex items-center space-x-8">
+        {InternalLinks.map(navGroup => {
+          if (navGroup.subNavigation) {
+            return (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <p className="hover:text-gray-500 cursor-pointer">{navGroup.title}</p>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="w-56">
+                  <DropdownMenuGroup>
+                    {navGroup.subNavigation.map(subNav => (
+                      <Link href={subNav.relLink}>
+                        <DropdownMenuItem className="hover:cursor-pointer">
+                          {subNav.title}
+                        </DropdownMenuItem>
+                      </Link>
+                    ))}
+                  </DropdownMenuGroup>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            )
+          } else {
+            return (
+              <Link href={navGroup.relLink}>
+                <p className="hover:text-gray-500">{navGroup.title}</p>
+              </Link>
+            )
+          }
+        })}
+      </div>
+      <Link className="btn-primary" href="/contact">
+        CONTACT
+      </Link>
+    </nav>
+  )
+}
+
+export default DesktopHeader

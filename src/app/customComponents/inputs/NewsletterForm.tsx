@@ -93,7 +93,7 @@ export function NewsletterForm() {
                   {...field}
                 />
               </FormControl>
-              <FormMessage />
+              <FormMessage className="absolute" />
             </FormItem>
           )}
         />

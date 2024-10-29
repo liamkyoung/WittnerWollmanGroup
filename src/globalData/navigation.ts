@@ -1,4 +1,4 @@
-import { NavGrouping } from '@/types/viewmodels'
+import { NavGrouping } from '../app/types/viewmodels'
 
 const Services: NavGrouping = {
   title: 'Services',
@@ -30,11 +30,11 @@ const Listings: NavGrouping = {
 
 const About: NavGrouping = {
   title: 'About Us',
-  relLink: '/team',
+  relLink: '/teammates',
   subNavigation: [
     {
       title: 'Our Team',
-      relLink: '/team',
+      relLink: '/teammates',
     },
     {
       title: 'Our Projects',
@@ -77,10 +77,4 @@ const Community: NavGrouping = {
   ],
 }
 
-export const InternalLinks: NavGrouping[] = [
-  Services,
-  Listings,
-  About,
-  Projects,
-  Community,
-]
+export const InternalLinks: NavGrouping[] = [Services, Listings, About, Projects, Community]

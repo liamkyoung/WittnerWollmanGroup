@@ -13,6 +13,7 @@ type Props = {
   link?: string
   title: string
   location: string
+  subheading: string
   image: MType
   description: string
   facts: FactStat[]
@@ -23,6 +24,7 @@ function ProjectBlockLeft({
   colorScheme = ColorScheme.DEFAULT,
   title,
   location,
+  subheading,
   image,
   description,
   facts,
@@ -45,19 +47,24 @@ function ProjectBlockLeft({
         <div className="relative md:py-10 lg:py-8">
           <h2 className={`${textColor} text-center lg:text-left`}>{title}</h2>
           <div className="lg:inline-flex flex gap-2 mt-2 justify-center">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              className={`size-6 ${emphasisColor}`}
-            >
-              <path
-                fillRule="evenodd"
-                d="m11.54 22.351.07.04.028.016a.76.76 0 0 0 .723 0l.028-.015.071-.041a16.975 16.975 0 0 0 1.144-.742 19.58 19.58 0 0 0 2.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 0 0-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 0 0 2.682 2.282 16.975 16.975 0 0 0 1.145.742ZM12 13.5a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"
-                clipRule="evenodd"
-              />
-            </svg>
-            {location && <p className={emphasisColor}>{location}</p>}
+            {location && (
+              <>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  className={`size-6 ${emphasisColor}`}
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="m11.54 22.351.07.04.028.016a.76.76 0 0 0 .723 0l.028-.015.071-.041a16.975 16.975 0 0 0 1.144-.742 19.58 19.58 0 0 0 2.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 0 0-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 0 0 2.682 2.282 16.975 16.975 0 0 0 1.145.742ZM12 13.5a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+                <p className={emphasisColor}>{location}</p>
+              </>
+            )}
+            {subheading && <p className={emphasisColor}>{subheading}</p>}
           </div>
           {/* <Image
             src={PropertyLogo}

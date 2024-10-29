@@ -171,5 +171,21 @@ export const Archive: Block = {
         },
       ],
     },
+    {
+      name: 'displayHeader',
+      type: 'select',
+      label: 'Display Archive Header',
+      defaultValue: 'yes',
+      options: [
+        {
+          label: 'Yes',
+          value: 'yes',
+        },
+        {
+          label: 'No',
+          value: 'no',
+        },
+      ],
+    },
   ],
 }

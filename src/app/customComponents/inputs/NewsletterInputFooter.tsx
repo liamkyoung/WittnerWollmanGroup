@@ -19,7 +19,7 @@ import {
 import { Input } from '@/components/ui/input'
 
 const formSchema = z.object({
-  email: z.string().email('Invalid email address'),
+  email: z.string().email('Invalid Email Address'),
 })
 
 export type ContactNewsletterProps = typeof formSchema
@@ -98,7 +98,7 @@ function NewsletterInputFooter() {
                       {...field}
                     />
                   </FormControl>
-                  <FormMessage />
+                  <FormMessage className="absolute" />
                 </FormItem>
               )}
             />

@@ -1,19 +1,19 @@
 import React from 'react'
 import SocialList from '@/app/customComponents/SocialList'
-import { ColorScheme } from '@/app/types/viewmodels'
+import { ColorScheme, SocialMediaInfo } from '@/app/types/viewmodels'
 
 type Props = {
   email: string
-  linkedin: string
+  linkedin: SocialMediaInfo
   phoneNumber: string
-  facebook: string
-  instagram: string
+  facebook: SocialMediaInfo
+  instagram: SocialMediaInfo
   bio: string
 }
 
 function ContactAndBio({ bio, email, linkedin, phoneNumber, facebook, instagram }: Props) {
   return (
-    <div className="bg-wwRed p-8 lg:p-16">
+    <div className="bg-wwRed p-8 lg:p-16 my-24">
       <div className="flex lg:flex-row flex-col-reverse gap-8">
         <div className="space-y-8 border-t-2 border-white lg:border-none lg:pt-0 pt-10">
           <h2 className="text-white text-center lg:text-left">Contact</h2>

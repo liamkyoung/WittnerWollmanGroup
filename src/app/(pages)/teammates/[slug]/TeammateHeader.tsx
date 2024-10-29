@@ -2,6 +2,7 @@ import React from 'react'
 import Image from 'next/image'
 import { Media } from '@/app/_components/Media'
 import { Media as MType } from '@/payload/payload-types'
+import Link from 'next/link'
 
 type Props = {
   name: string
@@ -23,7 +24,10 @@ function TeammateHeader({
   return (
     <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
       <div>
-        <h6 className="text-gray-800 hidden xl:block">Team /</h6>
+        <Link href="/teammates">
+          <h6 className="text-gray-800 hidden xl:block">Team /</h6>
+        </Link>
+
         <div className="xl:hidden block">
           <Media resource={fullBodyImg} alt="fullbody-img" imgClassName="mx-auto" />
         </div>

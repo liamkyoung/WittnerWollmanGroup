@@ -25,15 +25,17 @@ export const ListingCard: React.FC<{
       <Link href={href}>
         {!coverImage && <div className={``}>No image</div>}
         {coverImage && typeof coverImage !== 'string' && (
-          <Media imgClassName={``} resource={coverImage} />
+          <Media imgClassName={`mx-auto`} resource={coverImage} />
         )}
       </Link>
       <div>
-        {titleToUse && <h5 className="my-2">{titleToUse}</h5>}
-        <CardInfo
-          address={address}
-          additionalInfo={[`${sqFt} sq ft`, `${bedCount} beds`, `${bathroomCount} baths`]}
-        />
+        {titleToUse && <h5 className="my-2 text-center lg:text-left">{titleToUse}</h5>}
+        <div className="mx-auto">
+          <CardInfo
+            address={address}
+            additionalInfo={[`${sqFt} sq ft`, `${bedCount} beds`, `${bathroomCount} baths`]}
+          />
+        </div>
       </div>
     </div>
   )

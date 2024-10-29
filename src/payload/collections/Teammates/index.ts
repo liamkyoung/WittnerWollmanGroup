@@ -127,13 +127,13 @@ export const Teammates: CollectionConfig = {
       admin: {
         position: 'sidebar',
       },
-      hooks: {
-        beforeChange: [formatSocialMediaHandle],
-      },
+      // hooks: {
+      //   beforeChange: [formatSocialMediaHandle],
+      // },
     },
     {
       name: 'Facebook',
-      label: 'Facebook Link',
+      label: 'Facebook Username',
       type: 'text',
       admin: {
         position: 'sidebar',
@@ -141,7 +141,7 @@ export const Teammates: CollectionConfig = {
     },
     {
       name: 'Linkedin',
-      label: 'Linkedin Profile',
+      label: 'Linkedin Username',
       type: 'text',
       admin: {
         position: 'sidebar',

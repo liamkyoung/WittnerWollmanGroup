@@ -17,12 +17,14 @@ export const ListingGallery = ({ listings, displayHeader }: Props) => {
       coords: { lat: m.latitude, lng: m.longitude },
       slug: m.slug,
       coverImg: m.coverImage as Media,
+      address: m.address,
+      price: m.price,
     }
   })
   return (
     <div className="global-margin-x global-margin-y">
       {displayHeader === 'yes' && (
-        <div className="flex items-center justify-between mb-16">
+        <div className="flex flex-col lg:flex-row gap-8 lg:gap-0 items-center justify-between mb-16">
           <h2>Current Listings</h2>
           <Link href="/listings" className="btn-primary">
             VIEW ALL LISTINGS

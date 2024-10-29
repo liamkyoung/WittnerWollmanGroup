@@ -89,7 +89,7 @@ export default async function Page({ params: { slug } }) {
 export async function generateStaticParams() {
   try {
     const listings = await fetchDocs<Listing>('listings')
-    console.log('listings: ', listings)
+    // console.log('listings: ', listings)
     return listings?.map(({ slug }) => slug)
   } catch (error) {
     console.log("Couldn't generate listings", error)

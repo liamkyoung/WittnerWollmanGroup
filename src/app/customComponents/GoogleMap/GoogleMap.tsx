@@ -49,6 +49,8 @@ export const GoogleMap = ({ pins, fullscreen = false, zoom = 'default' }: Props)
                 title={p.name}
                 href={p.slug}
                 image={p.coverImg}
+                address={p.address}
+                price={p.price}
                 key={i}
               />
             ))}

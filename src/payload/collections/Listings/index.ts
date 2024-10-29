@@ -1,5 +1,4 @@
 import type { CollectionConfig, FieldHook } from 'payload/types'
-import formatSlug from '../../../payload/utilities/formatSlug'
 import { populateArchiveBlock } from '../../hooks/populateArchiveBlock'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
 
@@ -11,6 +10,7 @@ import { revalidateListing } from './hooks/revalidateListing'
 import AdminAddressSearch from '../../../app/customComponents/GoogleMap/AdminAddressSearch'
 
 import { Archive } from '../../blocks/ArchiveBlock'
+import formatSlug from '../../../payload/utilities/formatSlug'
 
 export const Listings: CollectionConfig = {
   slug: 'listings',

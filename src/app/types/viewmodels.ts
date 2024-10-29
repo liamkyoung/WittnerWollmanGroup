@@ -52,4 +52,6 @@ export type GoogleMapPin = {
   coords: MapCoords
   slug: string
   coverImg?: Media
+  address?: string
+  price?: number
 }

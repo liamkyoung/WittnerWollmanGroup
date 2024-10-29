@@ -19,6 +19,7 @@ import { GoogleMap } from '@/app/customComponents/GoogleMap/GoogleMap'
 import { ProjectGallery } from '@/app/customComponents/Projects/ProjectGallery'
 import { Blocks } from '@/app/_components/Blocks'
 import CallToAction, { CallToActionBlock } from '../../../_blocks/CallToAction'
+import { Link } from 'lucide-react'
 
 export const dynamic = 'force-dynamic'
 
@@ -73,26 +74,37 @@ export default async function Page({ params: { slug } }) {
           bio={bio}
           email={email}
           phoneNumber={phoneNumber}
-          instagram={instagram}
-          facebook={Facebook}
-          linkedin={Linkedin}
+          instagram={
+            instagram && {
+              platformName: 'instagram',
+              profileLink: `https://www.instagram.com/${instagram}`,
+              username: instagram,
+            }
+          }
+          facebook={
+            Facebook && {
+              platformName: 'facebook',
+              profileLink: `https://www.facebook.com/${Facebook}`,
+              username: Facebook,
+            }
+          }
+          linkedin={
+            Linkedin && {
+              platformName: 'linkedin',
+              profileLink: `https://www.linkedin.com/in/${Linkedin}`,
+              username: Linkedin,
+            }
+          }
         />
 
-        {pins ? <GoogleMap pins={pins} fullscreen /> : <div>There are no listings for {title}</div>}
+        {pins && pins.length > 0 && <GoogleMap pins={pins} fullscreen />}
 
-        {projects && projects.length > 0 ? (
-          <ProjectGallery projects={projects} />
-        ) : (
-          <div>There are no projects for {title}</div>
-        )}
-
-        {/* TODO */}
-        {/* <div>
-          Contact Form: <b>MISSING</b>
-        </div> */}
+        <ProjectGallery projects={projects} />
       </div>
-      <CommunityResourceGallery communityResources={favoritePlaces as CommunityResource[]} />
-      <CallToActionBlock type={'agent'} blockType="cta" />
+      <div className="mt-24">
+        <CommunityResourceGallery communityResources={favoritePlaces as CommunityResource[]} />
+        <CallToActionBlock type={'agent'} blockType="cta" />
+      </div>
     </>
   )
   // return <div></div>
@@ -102,7 +114,7 @@ export default async function Page({ params: { slug } }) {
 export async function generateStaticParams() {
   try {
     const teammates = await fetchDocs<Teammate>('teammates')
-    console.log('team Members: ', teammates)
+    // console.log('team Members: ', teammates)
     return teammates?.map(({ slug }) => slug)
   } catch (error) {
     console.log("(Couldn't generate teammates)", error)
@@ -144,7 +156,7 @@ export async function getAgentListings(teammateId: number): Promise<GoogleMapPin
   }
 
   if (listings && listings.docs) {
-    console.log(listings)
+    // console.log(listings)
     pins = listings.docs.map(l => {
       return {
         name: l.title,
@@ -174,7 +186,7 @@ export async function getAgentProjects(teammateId: number): Promise<Project[] | 
     console.error('Error fetching teammate or listings:', error)
   }
 
-  console.log('Projecst', projects.docs)
+  //console.log('Projects', projects.docs)
 
   return projects.docs
 }

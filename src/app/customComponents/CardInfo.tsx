@@ -8,7 +8,7 @@ type Props = {
 
 function CardInfo({ address, additionalInfo, description }: Props) {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col gap-2">
       {address && (
         <div className="inline-flex gap-2">
           <svg

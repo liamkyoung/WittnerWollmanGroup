@@ -26,7 +26,7 @@ export const ArchiveBlock: React.FC<
     displayHeader,
   } = props
 
-  console.log('props: ', props)
+  // console.log('props: ', props)
   const color = archiveBgColor === 'red' ? 'bg-wwRed' : 'bg-gray-50'
 
   return (

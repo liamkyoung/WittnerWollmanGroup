@@ -1,3 +1,4 @@
+'use client'
 import React from 'react'
 import Logo from '../../assets/branding/logo.svg'
 import Image from 'next/image'

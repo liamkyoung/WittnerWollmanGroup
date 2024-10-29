@@ -4,15 +4,29 @@ import { MapCoords } from '@/app/types/viewmodels'
 import Link from 'next/link'
 import { Media } from '@/app/_components/Media'
 import { Media as MediaType } from '@/payload/payload-types'
+import CardInfo from '../CardInfo'
+import DefaultCard from '../DefaultCard'
+import { formatDollarAmount } from '@/app/_utilities/formatDollarAmount'
 
 type Props = {
   position: MapCoords
+  pinType: 'listing' | 'project'
   title: string
   href: string
   image?: MediaType
+  address?: string
+  price?: number
 }
 
-export const MarkerWithInfo = ({ position, title, href, image }: Props) => {
+export const MarkerWithInfo = ({
+  position,
+  title,
+  href,
+  image,
+  address,
+  price,
+  pinType = 'listing',
+}: Props) => {
   // `markerRef` and `marker` are needed to establish the connection between
   // the marker and infowindow (if you're using the Marker component, you
   // can use the `useMarkerRef` hook instead).
@@ -25,6 +39,8 @@ export const MarkerWithInfo = ({ position, title, href, image }: Props) => {
 
   // if the maps api closes the infowindow, we have to synchronize our state
   const handleClose = useCallback(() => setInfoWindowShown(false), [])
+  const finalHref = pinType === 'listing' ? `/listings/${href}` : `/projects/${href}`
+
   return (
     <>
       {position.lat && position.lng && (
@@ -37,9 +53,13 @@ export const MarkerWithInfo = ({ position, title, href, image }: Props) => {
 
           {infoWindowShown && (
             <InfoWindow anchor={marker} onClose={handleClose}>
-              <h2>{title}</h2>
-              {image && <Media resource={image} />}
-              <Link href={href}>Click here to view</Link>
+              <DefaultCard
+                link={finalHref}
+                accentText={formatDollarAmount(price)}
+                address={address}
+                title={title}
+                image={image}
+              />
             </InfoWindow>
           )}
         </>

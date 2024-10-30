@@ -12,6 +12,7 @@ import { ProjectBlock } from '../../blocks/ProjectBlock'
 import { StatsAndVideoBlock } from '../../blocks/StatsAndVideoBlock'
 import { StatBlock } from '../../blocks/StatBlock'
 import { ContentAndStatsBlock } from '../../blocks/ContentAndStatsBlock'
+import { slugField } from '../../../payload/fields/slug'
 
 export const Services: CollectionConfig = {
   slug: 'services',
@@ -39,35 +40,25 @@ export const Services: CollectionConfig = {
   },
   fields: [
     {
-      name: 'title',
-      label: 'Service Name',
-      type: 'text',
-      required: true,
-    },
-    {
-      name: 'slug',
-      label: 'Slug',
-      type: 'text',
-      hooks: {
-        beforeValidate: [formatSlug('title')],
-      },
-    },
-    {
-      // Can use link to SVG, text as SVG, etc
-      name: 'iconSvg',
-      label: 'Icon',
-      type: 'text',
-      required: true,
-    },
-    {
-      name: 'shortDescription',
-      label: 'Short Description',
-      type: 'text',
-      required: true,
-    },
-    {
       type: 'tabs',
       tabs: [
+        {
+          label: 'Overview',
+          fields: [
+            {
+              name: 'title',
+              label: 'Service Name',
+              type: 'text',
+              required: true,
+            },
+            {
+              name: 'shortDescription',
+              label: 'Short Description',
+              type: 'textarea',
+              required: true,
+            },
+          ],
+        },
         {
           label: 'Hero',
           fields: [hero],
@@ -94,5 +85,6 @@ export const Services: CollectionConfig = {
         },
       ],
     },
+    slugField(),
   ],
 }

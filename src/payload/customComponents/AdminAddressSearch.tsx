@@ -5,7 +5,7 @@ import { APIProvider } from '@vis.gl/react-google-maps'
 import { useField } from 'payload/components/forms'
 import { useFormFields } from 'payload/components/forms'
 
-import AddressSearch from './AddressSearch'
+import AddressSearch from '../../app/customComponents/GoogleMap/AddressSearch'
 
 const API_KEY =
   process.env.PAYLOAD_PUBLIC_GOOGLE_MAPS_KEY || process.env.NEXT_PUBLIC_GOOGLE_MAPS_KEY
@@ -74,21 +74,57 @@ export default function AdminAddressSearch({ path }) {
 
   return (
     <>
-      {value && (
-        <p className="p-2 rounded-md mb-2" onClick={() => handleAddressDeSelected()}>
-          Selected: {value}
+      {value ? (
+        <p
+          className=""
+          style={{
+            fontWeight: 'bold',
+            display: 'flex',
+            gap: '1rem',
+            fontSize: '1.5rem',
+            alignItems: 'center',
+          }}
+        >
+          Address Selected: {value}
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            style={{ width: '1.5rem', height: '1.5rem', color: 'red', cursor: 'pointer' }}
+            onClick={() => handleAddressDeSelected()}
+          >
+            <path
+              fill-rule="evenodd"
+              d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm-1.72 6.97a.75.75 0 1 0-1.06 1.06L10.94 12l-1.72 1.72a.75.75 0 1 0 1.06 1.06L12 13.06l1.72 1.72a.75.75 0 1 0 1.06-1.06L13.06 12l1.72-1.72a.75.75 0 1 0-1.06-1.06L12 10.94l-1.72-1.72Z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </p>
+      ) : (
+        <p
+          style={{
+            fontWeight: 'bold',
+            display: 'flex',
+            gap: '1rem',
+            fontSize: '1.5rem',
+            alignItems: 'center',
+          }}
+        >
+          Search for an address below...
         </p>
       )}
       <APIProvider apiKey={API_KEY}>
-        <div className="grid w-full max-w-sm items-center gap-1.5">
-          <label htmlFor={'address'}>Address</label>
+        <div style={{ display: 'flex', flexDirection: 'column', marginBottom: '2rem' }}>
+          <label htmlFor={'Address'}>
+            Property Address <span style={{ color: 'red' }}>*</span>
+          </label>
           <input
             placeholder="Address"
             onInput={e => {
               setAddressQuery(e.target.value)
             }}
             value={addressQuery}
-            className="bg-white text-black outline rounded-md px-2 py-2"
+            style={{ padding: '1rem' }}
           />
           <AddressSearch addyQueryString={debouncedInputValue} setAddyList={setAddressList} />
           {addressList &&

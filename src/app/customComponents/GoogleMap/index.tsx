@@ -2,7 +2,7 @@
 import { useState, useMemo, useEffect } from 'react'
 import React from 'react'
 
-import AdminAddressSearch from './AdminAddressSearch'
+import AdminAddressSearch from '../../../payload/customComponents/AdminAddressSearch'
 import { GoogleMapsDefaults } from '@/globalData/general'
 
 type Props = {}

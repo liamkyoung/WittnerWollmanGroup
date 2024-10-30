@@ -44,20 +44,18 @@ export const Pages: CollectionConfig = {
   },
   fields: [
     {
-      name: 'title',
-      type: 'text',
-      required: true,
-    },
-    {
-      name: 'publishedAt',
-      type: 'date',
-      admin: {
-        position: 'sidebar',
-      },
-    },
-    {
       type: 'tabs',
       tabs: [
+        {
+          label: 'Overview',
+          fields: [
+            {
+              name: 'title',
+              type: 'text',
+              required: true,
+            },
+          ],
+        },
         {
           label: 'Hero',
           fields: [hero],
@@ -86,5 +84,12 @@ export const Pages: CollectionConfig = {
       ],
     },
     slugField(),
+    {
+      name: 'publishedAt',
+      type: 'date',
+      admin: {
+        position: 'sidebar',
+      },
+    },
   ],
 }

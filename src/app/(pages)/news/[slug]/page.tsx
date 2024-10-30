@@ -42,7 +42,7 @@ export default async function News({ params: { slug } }) {
   const { layout, relatedPosts, enablePremiumContent, premiumContent } = post
 
   return (
-    <React.Fragment>
+    <main className="global-margin-x">
       <PostHero post={post} />
       <Blocks blocks={layout} />
       {enablePremiumContent && <PremiumContent postSlug={slug as string} disableTopPadding />}
@@ -124,7 +124,7 @@ export default async function News({ params: { slug } }) {
           },
         ]}
       />
-    </React.Fragment>
+    </main>
   )
 }
 

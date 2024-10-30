@@ -40,18 +40,47 @@ export const Posts: CollectionConfig = {
   },
   fields: [
     {
-      name: 'title',
-      type: 'text',
-      required: true,
-    },
-    {
-      name: 'categories',
-      type: 'relationship',
-      relationTo: 'categories',
-      hasMany: true,
-      admin: {
-        position: 'sidebar',
-      },
+      type: 'tabs',
+      tabs: [
+        {
+          label: 'Overview',
+          fields: [
+            {
+              name: 'title',
+              type: 'text',
+              required: true,
+            },
+          ],
+        },
+        {
+          label: 'Hero',
+          fields: [hero],
+        },
+        {
+          label: 'Content',
+          fields: [
+            {
+              name: 'layout',
+              type: 'blocks',
+              required: true,
+              blocks: [CallToAction, Content, MediaBlock, Archive],
+            },
+            {
+              name: 'enablePremiumContent',
+              label: 'Enable Premium Content',
+              type: 'checkbox',
+            },
+            {
+              name: 'premiumContent',
+              type: 'blocks',
+              access: {
+                read: ({ req }) => req.user,
+              },
+              blocks: [CallToAction, Content, MediaBlock, Archive],
+            },
+          ],
+        },
+      ],
     },
     {
       name: 'publishedAt',
@@ -73,6 +102,7 @@ export const Posts: CollectionConfig = {
         ],
       },
     },
+    slugField(),
     {
       name: 'authors',
       type: 'relationship',
@@ -107,39 +137,6 @@ export const Posts: CollectionConfig = {
       ],
     },
     {
-      type: 'tabs',
-      tabs: [
-        {
-          label: 'Hero',
-          fields: [hero],
-        },
-        {
-          label: 'Content',
-          fields: [
-            {
-              name: 'layout',
-              type: 'blocks',
-              required: true,
-              blocks: [CallToAction, Content, MediaBlock, Archive],
-            },
-            {
-              name: 'enablePremiumContent',
-              label: 'Enable Premium Content',
-              type: 'checkbox',
-            },
-            {
-              name: 'premiumContent',
-              type: 'blocks',
-              access: {
-                read: ({ req }) => req.user,
-              },
-              blocks: [CallToAction, Content, MediaBlock, Archive],
-            },
-          ],
-        },
-      ],
-    },
-    {
       name: 'relatedPosts',
       type: 'relationship',
       relationTo: 'posts',
@@ -152,6 +149,5 @@ export const Posts: CollectionConfig = {
         }
       },
     },
-    slugField(),
   ],
 }

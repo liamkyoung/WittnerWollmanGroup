@@ -39,7 +39,6 @@ export const PROJECT_BLOCK = `
   invertBackground
   position
   location
-  subheading
   title
   description
   bgColor
@@ -103,11 +102,8 @@ export const ARCHIVE_BLOCK = `
 ...on Archive {
   blockType
   introContent
-  archiveBgColor: bgColor
   populateBy
-  displayHeader
   relationTo
-  ${CATEGORIES}
   limit
   selectedDocs {
     relationTo
@@ -133,14 +129,12 @@ export const ARCHIVE_BLOCK = `
         id
         slug
         title
-        ${CATEGORIES}
         ${META}
       }
       ...on Project {
         id
         slug
         title
-        ${CATEGORIES}
         ${META}
       }
     }

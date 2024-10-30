@@ -5,8 +5,6 @@ import { admins } from '../../access/admins'
 import { adminsOrPublished } from '../../access/adminsOrPublished'
 import { Archive } from '../../blocks/ArchiveBlock'
 import { CallToAction } from '../../blocks/CallToAction'
-import { Content } from '../../blocks/Content'
-import { MediaBlock } from '../../blocks/MediaBlock'
 import { hero } from '../../fields/hero'
 import { slugField } from '../../fields/slug'
 import { populateArchiveBlock } from '../../hooks/populateArchiveBlock'
@@ -17,7 +15,10 @@ import { formatSocialMediaHandle } from '../../../payload/hooks/formatSocialMedi
 import { ProjectBlock } from '../../blocks/ProjectBlock'
 import { StatsAndVideoBlock } from '../../blocks/StatsAndVideoBlock'
 import { StatBlock } from '../../blocks/StatBlock'
-import AdminAddressSearch from '../../../app/customComponents/GoogleMap/AdminAddressSearch'
+import { Content } from '../../blocks/Content'
+import { MediaBlock } from '../../blocks/MediaBlock'
+
+import AdminAddressSearch from '../../customComponents/AdminAddressSearch'
 
 export const Projects: CollectionConfig = {
   slug: 'projects',
@@ -46,133 +47,134 @@ export const Projects: CollectionConfig = {
   },
   fields: [
     {
-      name: 'title',
-      type: 'text',
-      required: true,
-    },
-    {
-      name: 'address',
-      label: 'Property Address',
-      type: 'text',
-      required: true,
-      admin: {
-        components: {
-          Field: AdminAddressSearch,
-        },
-      },
-      // Able to get from map
-    },
-    {
-      name: 'price',
-      type: 'text',
-      required: true,
-    },
-    {
-      name: 'description',
-      type: 'text',
-      required: true,
-    },
-    {
-      name: 'neighborhood',
-      type: 'text',
-      required: true,
-    },
-    {
-      name: 'latitude',
-      label: 'Latitude',
-      type: 'number',
-      admin: {
-        hidden: true,
-      },
-      // Able to get from map
-    },
-    {
-      name: 'longitude',
-      label: 'Longitude',
-      type: 'number',
-      admin: {
-        hidden: true,
-      },
-      // Able to get from map
-    },
-    {
-      name: 'agents', // required
-      label: 'Teammates on Project',
-      type: 'relationship', // required
-      relationTo: 'teammates', // required
-      hasMany: true,
-    },
-    {
-      name: 'website',
-      type: 'text',
-      required: false,
-    },
-    {
-      name: 'instagram',
-      label: 'Instagram Username',
-      type: 'text',
-      admin: {
-        position: 'sidebar',
-      },
-      hooks: {
-        beforeChange: [formatSocialMediaHandle],
-      },
-    },
-    {
-      name: 'slider', // required
-      type: 'array', // required
-      label: 'Image Slider',
-      minRows: 2,
-      maxRows: 10,
-      interfaceName: 'CardSlider', // optional
-      labels: {
-        singular: 'Slide',
-        plural: 'Slides',
-      },
-      fields: [
-        // required
-        {
-          name: 'title',
-          type: 'text',
-        },
-        {
-          name: 'image',
-          type: 'upload',
-          relationTo: 'media',
-          required: true,
-        },
-        {
-          name: 'caption',
-          type: 'text',
-        },
-      ],
-      admin: {
-        components: {
-          RowLabel: ({ data, index }: RowLabelArgs) => {
-            return data?.title || `Slide ${String(index).padStart(2, '0')}`
-          },
-        },
-      },
-    },
-    {
-      name: 'categories',
-      type: 'relationship',
-      relationTo: 'categories',
-      hasMany: true,
-      admin: {
-        position: 'sidebar',
-      },
-    },
-    {
-      name: 'publishedAt',
-      type: 'date',
-      admin: {
-        position: 'sidebar',
-      },
-    },
-    {
       type: 'tabs',
       tabs: [
+        {
+          label: 'Overview',
+          fields: [
+            {
+              name: 'title',
+              type: 'text',
+              required: true,
+            },
+            {
+              name: 'address',
+              label: 'Property Address',
+              type: 'text',
+              required: true,
+              admin: {
+                components: {
+                  Field: AdminAddressSearch,
+                },
+              },
+              // Able to get from map
+            },
+            {
+              name: 'description',
+              type: 'text',
+              required: true,
+            },
+            {
+              name: 'neighborhood',
+              type: 'text',
+              required: true,
+            },
+            {
+              name: 'latitude',
+              label: 'Latitude',
+              type: 'number',
+              admin: {
+                hidden: true,
+              },
+              // Able to get from map
+            },
+            {
+              name: 'longitude',
+              label: 'Longitude',
+              type: 'number',
+              admin: {
+                hidden: true,
+              },
+              // Able to get from map
+            },
+          ],
+        },
+        {
+          label: 'Features',
+          fields: [
+            {
+              name: 'price',
+              type: 'text',
+              required: true,
+            },
+
+            {
+              name: 'agents', // required
+              label: 'Teammates on Project',
+              type: 'relationship', // required
+              relationTo: 'teammates', // required
+              hasMany: true,
+            },
+
+            {
+              name: 'slider', // required
+              type: 'array', // required
+              label: 'Image Slider',
+              minRows: 2,
+              maxRows: 10,
+              interfaceName: 'CardSlider', // optional
+              labels: {
+                singular: 'Slide',
+                plural: 'Slides',
+              },
+              fields: [
+                // required
+                {
+                  name: 'title',
+                  type: 'text',
+                },
+                {
+                  name: 'image',
+                  type: 'upload',
+                  relationTo: 'media',
+                  required: true,
+                },
+                {
+                  name: 'caption',
+                  type: 'text',
+                },
+              ],
+              admin: {
+                components: {
+                  RowLabel: ({ data, index }: RowLabelArgs) => {
+                    return data?.title || `Slide ${String(index).padStart(2, '0')}`
+                  },
+                },
+              },
+            },
+          ],
+        },
+        {
+          label: 'Socials',
+          fields: [
+            {
+              name: 'website',
+              type: 'text',
+              required: false,
+            },
+            {
+              name: 'instagram',
+              label: 'Instagram Username',
+              type: 'text',
+              admin: {
+                position: 'sidebar',
+              },
+              hooks: {
+                beforeChange: [formatSocialMediaHandle],
+              },
+            },
+          ],
+        },
         {
           label: 'Content',
           fields: [
@@ -195,10 +197,21 @@ export const Projects: CollectionConfig = {
       ],
     },
     {
+      name: 'publishedAt',
+      type: 'date',
+      admin: {
+        position: 'sidebar',
+      },
+    },
+    slugField(),
+    {
       name: 'relatedProjects',
       type: 'relationship',
       relationTo: 'projects',
       hasMany: true,
+      admin: {
+        position: 'sidebar',
+      },
       filterOptions: ({ id }) => {
         return {
           id: {
@@ -207,6 +220,5 @@ export const Projects: CollectionConfig = {
         }
       },
     },
-    slugField(),
   ],
 }

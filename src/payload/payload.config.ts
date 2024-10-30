@@ -136,6 +136,7 @@ export default buildConfig({
       collections: ['pages', 'posts', 'projects', 'listings', 'teammates', 'services'], // USED TO ADD "META" DETAILS
       generateTitle,
       uploadsCollection: 'media',
+      tabbedUI: true,
     }), // TODO
     payloadCloud(),
   ],

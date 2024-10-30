@@ -3,6 +3,7 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
+import Spinner from '../Icons/Spinner'
 
 import {
   Form,
@@ -14,6 +15,9 @@ import {
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { ColorScheme } from '../../types/viewmodels'
+import { useState } from 'react'
+import { useToast } from '@/hooks/use-toast'
+import { CalendarInput } from './CalendarInput'
 
 const formSchema = z.object({
   firstName: z
@@ -30,6 +34,7 @@ const formSchema = z.object({
     .max(50, 'First name cannot exceed 50 characters'),
   phoneNumber: z.string().regex(/^\+?\d{10,15}$/, 'Phone number must be valid'),
   email: z.string().email('Invalid email address'),
+  date: z.date().min(new Date(), 'Please select a valid date'),
 })
 
 type Props = {
@@ -37,6 +42,8 @@ type Props = {
 }
 
 export function BasicContactForm({ colorScheme = ColorScheme.DEFAULT }: Props) {
+  const { toast } = useToast()
+
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -45,82 +52,141 @@ export function BasicContactForm({ colorScheme = ColorScheme.DEFAULT }: Props) {
       lastName: '',
       phoneNumber: '',
       email: '',
+      date: new Date(),
     },
   })
 
-  // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values)
-  }
+  // console.log(form.getValues())
 
   const formInputStyle =
     colorScheme === ColorScheme.WHITE
-      ? `bg-white text-wwBlack`
-      : 'focus:ring-1 ring-inset focus:ring-inset focus:ring-wwRed'
+      ? `bg-white text-wwBlack w-full`
+      : 'focus:ring-1 ring-inset focus:ring-inset focus:ring-wwRed w-full'
   const formTextStyle = colorScheme === ColorScheme.WHITE ? 'text-white' : 'text-wwBlack'
   const buttonStyle = colorScheme === ColorScheme.WHITE ? 'btn-secondary' : 'btn-primary'
+
+  const [sending, setSending] = useState<boolean>(false)
+
+  // 2. Define a submit handler.
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    // Do something with the form values.
+    // ✅ This will be type-safe and validated.
+    // console.log('VALUES: ', values)
+    setSending(true)
+    try {
+      const response = await fetch('/api/sendListingEmail', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(values),
+      })
+
+      const data = await response.json()
+      if (response.ok) {
+        toast({
+          title: '✅ Your message has been sent!',
+        })
+      } else {
+        toast({
+          title: '❌ There was an error sending your message',
+          description: 'Please try again later.',
+        })
+      }
+    } catch (err) {
+      console.error('Error submitting form:', err)
+      toast({
+        title: '❌ There was an error sending your message',
+        description: 'Please try again later.',
+      })
+    } finally {
+      setSending(false)
+    }
+  }
 
   return (
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className={`w-full max-w-[28rem] space-y-4 ${formTextStyle}`}
+        className="flex flex-col lg:flex-row gap-4 w-full"
       >
-        <FormField
-          control={form.control}
-          name="firstName"
-          render={({ field }) => (
-            <FormItem>
-              <FormControl>
-                <Input placeholder="First Name" {...field} className={formInputStyle} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="lastName"
-          render={({ field }) => (
-            <FormItem>
-              <FormControl>
-                <Input placeholder="Last Name" {...field} className={formInputStyle} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="phoneNumber"
-          render={({ field }) => (
-            <FormItem>
-              <FormControl>
-                <Input placeholder="(123) 456 - 7890" {...field} className={formInputStyle} />
-              </FormControl>
-              <FormDescription></FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="email"
-          render={({ field }) => (
-            <FormItem>
-              <FormControl>
-                <Input placeholder="example@gmail.com" {...field} className={formInputStyle} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+        <div
+          className={`flex flex-col justify-center gap-8 ${formTextStyle} min-w-72 max-w-96 mx-auto mb-8`}
+        >
+          <FormField
+            control={form.control}
+            name="firstName"
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <Input placeholder="First Name" {...field} className={formInputStyle} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="lastName"
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <Input placeholder="Last Name" {...field} className={formInputStyle} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="phoneNumber"
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <Input placeholder="(123) 456 - 7890" {...field} className={formInputStyle} />
+                </FormControl>
+                <FormDescription></FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="email"
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <Input placeholder="example@gmail.com" {...field} className={formInputStyle} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
 
-        <button type="submit" className={buttonStyle}>
-          SUBMIT
-        </button>
+        <div className="mx-auto">
+          <FormField
+            control={form.control}
+            name="date"
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <CalendarInput
+                    date={form.getValues('date')}
+                    setDate={(date: Date) => form.setValue('date', date)}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
+
+        <div className="mx-auto lg:place-self-end">
+          <button type="submit" className={buttonStyle} disabled={sending}>
+            {!sending ? <span>SUBMIT</span> : <Spinner size={6} />}
+          </button>
+        </div>
       </form>
     </Form>
   )

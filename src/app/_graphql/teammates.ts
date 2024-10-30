@@ -32,3 +32,11 @@ query Teammates($slug: String) {
     }
   }
 `
+export const LISTING_AGENT = `
+agents {
+  title
+  ${PROFILEPIC}
+  phoneNumber
+  email
+}
+`

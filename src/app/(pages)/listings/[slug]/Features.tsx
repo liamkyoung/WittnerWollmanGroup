@@ -46,7 +46,7 @@ function Features({
   return (
     <div>
       <h2>Features</h2>
-      <div className="grid grid-cols-2 gap-16 my-16">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 my-16">
         <div className="space-y-8">
           {bedrooms && <Feature name={'Bedrooms'} description={bedrooms} />}
           {bathrooms && <Feature name={'Bathrooms'} description={bathrooms} />}

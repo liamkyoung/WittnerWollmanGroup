@@ -1,0 +1,39 @@
+'use client'
+
+import React from 'react'
+import { CalendarInput } from '../inputs/CalendarInput'
+import { BasicContactForm } from '../inputs/BasicContactForm'
+import { ColorScheme } from '@/app/types/viewmodels'
+import { Media } from '@/app/_components/Media'
+import { Media as MType, Teammate } from '@/payload/payload-types'
+
+type Props = {
+  agent: Teammate
+}
+
+function ListingCTA({ agent }: Props) {
+  const [date, setDate] = React.useState<Date | undefined>(new Date())
+
+  return (
+    <div className="bg-wwRed relative py-8">
+      <div className="global-margin-x grid lg:grid-cols-3 grid-cols-1">
+        <div className="lg:row-span-2 row-span-1">
+          <h2 className="text-white mb-8 text-center lg:text-left lg:whitespace-nowrap whitespace-normal">
+            <span className="text-wwYellow">Schedule A Tour</span> With {agent.title}
+          </h2>
+          <div className="flex gap-16 items-center">
+            <BasicContactForm colorScheme={ColorScheme.WHITE} date={date} />
+            {/* <CalendarInput date={date} setDate={setDate} /> */}
+          </div>
+        </div>
+        <Media
+          resource={agent.profilePic as MType}
+          alt="teammate-image"
+          imgClassName="absolute z-10 bottom-0 right-0 mr-24 max-w-80 hidden xl:block"
+        />
+      </div>
+    </div>
+  )
+}
+
+export default ListingCTA

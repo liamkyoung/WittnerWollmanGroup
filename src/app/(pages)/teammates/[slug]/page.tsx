@@ -18,7 +18,7 @@ import { GoogleMapPin } from '@/app/types/viewmodels'
 import { GoogleMap } from '@/app/customComponents/GoogleMap/GoogleMap'
 import { ProjectGallery } from '@/app/customComponents/Projects/ProjectGallery'
 import { Blocks } from '@/app/_components/Blocks'
-import CallToAction, { CallToActionBlock } from '../../../_blocks/CallToAction'
+import { CallToActionBlock } from '../../../_blocks/CallToAction'
 import { Link } from 'lucide-react'
 
 export const dynamic = 'force-dynamic'

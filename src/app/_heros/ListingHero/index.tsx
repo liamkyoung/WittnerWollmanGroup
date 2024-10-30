@@ -1,5 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
+import { formatDollarAmount } from '@/app/_utilities/formatDollarAmount'
 
 type Props = {
   streetAddress: string
@@ -23,18 +24,18 @@ export const ListingHero: React.FC = ({
   price,
 }: Props) => {
   return (
-    <div className="flex justify-between items-center">
+    <div className="flex flex-col lg:flex-row gap-8 lg:gap-0 justify-between items-center">
       <div className="space-y-4">
         <Link href="/listings">
-          <h6 className="text-gray-600 hover:text-gray-400">Listings /</h6>
+          <h6 className="text-gray-600 hover:text-gray-400 text-center lg:text-left">Listings /</h6>
         </Link>
-        <div>
+        <div className="text-center lg:text-left">
           <h3>{streetAddress}</h3>
           <h6>
             {city}, {state} {zipCode}
           </h6>
         </div>
-        <div className="space-x-4">
+        <div className="space-x-4 text-center lg:text-left">
           <span className="inline-flex items-center gap-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -68,7 +69,7 @@ export const ListingHero: React.FC = ({
           </span>
         </div>
       </div>
-      <h1 className="bg-wwRed p-6 text-white">${price}</h1>
+      <h1 className="bg-wwRed p-6 text-white">{formatDollarAmount(price)}</h1>
     </div>
   )
 }

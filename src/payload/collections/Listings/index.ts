@@ -12,6 +12,12 @@ import AdminAddressSearch from '../../../app/customComponents/GoogleMap/AdminAdd
 import { Archive } from '../../blocks/ArchiveBlock'
 import formatSlug from '../../../payload/utilities/formatSlug'
 
+import { ProjectBlock } from '../../blocks/ProjectBlock'
+import { StatsAndVideoBlock } from '../../blocks/StatsAndVideoBlock'
+import { StatBlock } from '../../blocks/StatBlock'
+import { Content } from '../../blocks/Content'
+import { MediaBlock } from '../../blocks/MediaBlock'
+
 export const Listings: CollectionConfig = {
   slug: 'listings',
   admin: {
@@ -263,12 +269,6 @@ export const Listings: CollectionConfig = {
         },
       ],
     },
-    // {
-    //   name: 'agent',
-    //   label: 'Listing Agent',
-    //   type: 'relationship',
-    //   relationTo: 'teamMember',
-    // },
     {
       name: 'yearBuilt',
       label: 'Year Built',
@@ -296,6 +296,22 @@ export const Listings: CollectionConfig = {
 
         return true
       },
+    },
+    {
+      type: 'tabs',
+      tabs: [
+        {
+          label: 'Content',
+          fields: [
+            {
+              name: 'layout',
+              type: 'blocks',
+              required: true,
+              blocks: [Content, MediaBlock, Archive, ProjectBlock, StatsAndVideoBlock, StatBlock],
+            },
+          ],
+        },
+      ],
     },
   ],
 }

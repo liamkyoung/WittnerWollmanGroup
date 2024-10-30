@@ -13,6 +13,12 @@ import PhotoGallery from '@/app/customComponents/Gallery/PhotoGallery'
 import Features from './Features'
 import { GoogleMap } from '@/app/customComponents/GoogleMap/GoogleMap'
 import AdminAddressSearch from '@/app/customComponents/GoogleMap/AdminAddressSearch'
+import { CallToActionBlock } from '@/app/_blocks/CallToAction'
+import { ProjectBlock } from '@/app/_blocks/ProjectBlock'
+import { formatDollarAmount } from '@/app/_utilities/formatDollarAmount'
+import { Blocks } from '@/app/_components/Blocks'
+import ListingCTA from '@/app/customComponents/Listings/ListingCTA'
+import { Teammate } from '../../../../payload/payload-types'
 
 export const dynamic = 'force-dynamic'
 
@@ -32,6 +38,7 @@ export default async function Page({ params: { slug } }) {
   if (!listing) {
     notFound()
   }
+
   const {
     title,
     price,
@@ -45,6 +52,7 @@ export default async function Page({ params: { slug } }) {
     bedCount,
     bathroomCount,
     yearBuilt,
+    overview,
     areaOverview,
     tenancyType,
     occupancy,
@@ -54,34 +62,53 @@ export default async function Page({ params: { slug } }) {
     longitude,
     zipCode,
     imageGallery,
+    agents,
+    layout,
   } = listing
+
+  const agent = agents && agents.length > 0 ? agents[0] : null
   return (
-    <div className="global-margin-x mt-24">
-      <ListingHero
-        streetAddress={streetAddress}
-        price={price}
-        city={city}
-        zipCode={zipCode}
-        state={'FL'}
-        propertyType={propertyType}
-        sqFt={sqFt}
-      />
-      <PhotoGallery imageGallery={imageGallery} />
-      <Features
-        sqFtLand={sqFtLand}
-        sqFt={sqFt}
-        yearBuilt={yearBuilt}
-        bedrooms={bedCount}
-        bathrooms={bathroomCount}
-        area={neighborhood}
-        zipCode={zipCode}
-        price={price}
-        propertyType={propertyType}
-        status={'Active'}
-        zoningType={'Placeholder'}
-        occupany={occupancy}
-      />
-    </div>
+    <>
+      <div className="global-margin-x mt-24 space-y-24">
+        <ListingHero
+          streetAddress={streetAddress}
+          price={price}
+          city={city}
+          zipCode={zipCode}
+          state={'FL'}
+          propertyType={propertyType}
+          sqFt={sqFt}
+        />
+        <PhotoGallery imageGallery={imageGallery} />
+        <Blocks blocks={[...layout]} />
+        {/* {overview && coverImage && streetAddress && (
+          <ProjectBlock
+            title={title}
+            location={streetAddress}
+            media={coverImage}
+            bgColor={'white'}
+            position={'left'}
+            description={overview}
+          />
+        )} */}
+
+        <Features
+          sqFtLand={sqFtLand}
+          sqFt={sqFt}
+          yearBuilt={yearBuilt}
+          bedrooms={bedCount}
+          bathrooms={bathroomCount}
+          area={neighborhood}
+          zipCode={zipCode}
+          price={formatDollarAmount(price)}
+          propertyType={propertyType}
+          status={'Active'}
+          zoningType={'Placeholder'}
+          occupany={occupancy}
+        />
+      </div>
+      {agent && <ListingCTA agent={agent as Teammate} />}
+    </>
   )
   //   return <div>This is a Listing {slug}</div>
 }

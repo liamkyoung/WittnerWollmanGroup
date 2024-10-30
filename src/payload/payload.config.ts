@@ -36,6 +36,7 @@ import { CommunityResources } from './collections/CommunityResources'
 
 import { sendEmail } from './endpoints/sendEmail'
 import { signUpNewsletter } from './endpoints/signUpNewsletter'
+import { sendListingEmail } from './endpoints/sendListingEmail'
 
 const generateTitle: GenerateTitle = () => {
   return 'Wittner Wollman Group'
@@ -117,6 +118,11 @@ export default buildConfig({
       path: '/signUpNewsletter',
       method: 'post',
       handler: signUpNewsletter,
+    },
+    {
+      path: '/sendListingEmail',
+      method: 'post',
+      handler: sendListingEmail,
     },
   ],
   plugins: [

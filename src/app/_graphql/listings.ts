@@ -1,4 +1,14 @@
 import { COVERIMAGE, IMAGE } from './media'
+import {
+  ARCHIVE_BLOCK,
+  CALL_TO_ACTION,
+  CONTENT,
+  MEDIA_BLOCK,
+  PROJECT_BLOCK,
+  STAT_BLOCK,
+  STATS_AND_VIDEO_BLOCK,
+} from './blocks'
+import { LISTING_AGENT } from './teammates'
 
 export const LISTINGS = `
   query Listings {
@@ -31,14 +41,24 @@ query Listings($slug: String) {
         bedCount
         price
         yearBuilt
+        overview
         areaOverview
         tenancyType
         occupancy
         zoningType
+        ${LISTING_AGENT}
         ${COVERIMAGE}
         imageGallery {
           id
           ${IMAGE}
+        }
+        layout {
+          ${CONTENT}
+          ${MEDIA_BLOCK}
+          ${PROJECT_BLOCK}
+          ${STAT_BLOCK}
+          ${STATS_AND_VIDEO_BLOCK}
+          ${ARCHIVE_BLOCK}
         }
       }
     }

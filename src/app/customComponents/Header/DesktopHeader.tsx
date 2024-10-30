@@ -35,14 +35,14 @@ function DesktopHeader({}: Props) {
         {InternalLinks.map(navGroup => {
           if (navGroup.subNavigation) {
             return (
-              <DropdownMenu>
+              <DropdownMenu key={navGroup.title}>
                 <DropdownMenuTrigger asChild>
                   <p className="hover:text-gray-500 cursor-pointer">{navGroup.title}</p>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="w-56">
                   <DropdownMenuGroup>
                     {navGroup.subNavigation.map(subNav => (
-                      <Link href={subNav.relLink}>
+                      <Link href={subNav.relLink} key={subNav.title}>
                         <DropdownMenuItem className="hover:cursor-pointer">
                           {subNav.title}
                         </DropdownMenuItem>
@@ -54,7 +54,7 @@ function DesktopHeader({}: Props) {
             )
           } else {
             return (
-              <Link href={navGroup.relLink}>
+              <Link href={navGroup.relLink} key={navGroup.title}>
                 <p className="hover:text-gray-500">{navGroup.title}</p>
               </Link>
             )

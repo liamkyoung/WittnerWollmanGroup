@@ -1056,6 +1056,195 @@ export interface Listing {
   tenancyType?: ('singleTenant' | 'multiTenant') | null;
   yearBuilt?: number | null;
   occupancy?: number | null;
+  layout: (
+    | {
+        invertBackground?: boolean | null;
+        columns?:
+          | {
+              size?: ('oneThird' | 'half' | 'twoThirds' | 'full') | null;
+              richText: {
+                [k: string]: unknown;
+              }[];
+              enableLink?: boolean | null;
+              link?: {
+                type?: ('reference' | 'custom') | null;
+                newTab?: boolean | null;
+                reference?: {
+                  relationTo: 'pages';
+                  value: number | Page;
+                } | null;
+                url?: string | null;
+                label: string;
+                appearance?: ('default' | 'primary' | 'secondary') | null;
+              };
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'content';
+      }
+    | {
+        invertBackground?: boolean | null;
+        position?: ('default' | 'fullscreen') | null;
+        media: number | Media;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'mediaBlock';
+      }
+    | {
+        introContent?:
+          | {
+              [k: string]: unknown;
+            }[]
+          | null;
+        populateBy?: ('collection' | 'selection') | null;
+        relationTo?:
+          | (
+              | 'posts'
+              | 'projects'
+              | 'listings'
+              | 'teammates'
+              | 'involvementGroups'
+              | 'involvementEvents'
+              | 'testimonials'
+              | 'companies'
+              | 'services'
+              | 'communityResources'
+            )
+          | null;
+        categories?: (number | Category)[] | null;
+        limit?: number | null;
+        selectedDocs?:
+          | (
+              | {
+                  relationTo: 'posts';
+                  value: number | Post;
+                }
+              | {
+                  relationTo: 'projects';
+                  value: number | Project;
+                }
+              | {
+                  relationTo: 'listings';
+                  value: number | Listing;
+                }
+              | {
+                  relationTo: 'teammates';
+                  value: number | Teammate;
+                }
+              | {
+                  relationTo: 'involvementGroups';
+                  value: number | InvolvementGroup;
+                }
+              | {
+                  relationTo: 'involvementEvents';
+                  value: number | InvolvementEvent;
+                }
+              | {
+                  relationTo: 'testimonials';
+                  value: number | Testimonial;
+                }
+              | {
+                  relationTo: 'companies';
+                  value: number | Company;
+                }
+              | {
+                  relationTo: 'services';
+                  value: number | Service;
+                }
+              | {
+                  relationTo: 'communityResources';
+                  value: number | CommunityResource;
+                }
+            )[]
+          | null;
+        populatedDocs?:
+          | (
+              | {
+                  relationTo: 'posts';
+                  value: number | Post;
+                }
+              | {
+                  relationTo: 'projects';
+                  value: number | Project;
+                }
+              | {
+                  relationTo: 'listings';
+                  value: number | Listing;
+                }
+              | {
+                  relationTo: 'teammates';
+                  value: number | Teammate;
+                }
+              | {
+                  relationTo: 'involvementGroups';
+                  value: number | InvolvementGroup;
+                }
+              | {
+                  relationTo: 'involvementEvents';
+                  value: number | InvolvementEvent;
+                }
+              | {
+                  relationTo: 'testimonials';
+                  value: number | Testimonial;
+                }
+              | {
+                  relationTo: 'companies';
+                  value: number | Company;
+                }
+              | {
+                  relationTo: 'services';
+                  value: number | Service;
+                }
+              | {
+                  relationTo: 'communityResources';
+                  value: number | CommunityResource;
+                }
+            )[]
+          | null;
+        populatedDocsTotal?: number | null;
+        bgColor?: ('Default' | 'red') | null;
+        displayHeader?: ('yes' | 'no') | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'archive';
+      }
+    | {
+        invertBackground?: boolean | null;
+        position?: ('left' | 'right') | null;
+        bgColor?: ('white' | 'red') | null;
+        title: string;
+        location?: string | null;
+        subheading?: string | null;
+        description: string;
+        facts?: FactsList;
+        media: number | Media;
+        externalLink?: string | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'projectBlock';
+      }
+    | {
+        title: string;
+        description: string;
+        facts?: FactsList;
+        youtubeLink: string;
+        bgImage?: number | Media | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'statsAndVideoBlock';
+      }
+    | {
+        title?: string | null;
+        description?: string | null;
+        facts?: FactsList;
+        bgColor?: ('white' | 'red') | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'statBlock';
+      }
+  )[];
   meta?: {
     title?: string | null;
     description?: string | null;

@@ -107,7 +107,7 @@ export default async function Page({ params: { slug } }) {
           occupany={occupancy}
         />
       </div>
-      {agent && <ListingCTA agent={agent as Teammate} />}
+      {agent && <ListingCTA agent={agent as Teammate} address={streetAddress} />}
     </>
   )
   //   return <div>This is a Listing {slug}</div>

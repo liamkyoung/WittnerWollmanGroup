@@ -9,9 +9,10 @@ import { Media as MType, Teammate } from '@/payload/payload-types'
 
 type Props = {
   agent: Teammate
+  address: string
 }
 
-function ListingCTA({ agent }: Props) {
+function ListingCTA({ address, agent }: Props) {
   const [date, setDate] = React.useState<Date | undefined>(new Date())
 
   return (
@@ -22,7 +23,7 @@ function ListingCTA({ agent }: Props) {
             <span className="text-wwYellow">Schedule A Tour</span> With {agent.title}
           </h2>
           <div className="flex gap-16 items-center">
-            <BasicContactForm colorScheme={ColorScheme.WHITE} date={date} />
+            <BasicContactForm colorScheme={ColorScheme.WHITE} date={date} address={address} />
             {/* <CalendarInput date={date} setDate={setDate} /> */}
           </div>
         </div>

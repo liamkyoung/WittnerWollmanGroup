@@ -34,14 +34,16 @@ const formSchema = z.object({
     .max(50, 'First name cannot exceed 50 characters'),
   phoneNumber: z.string().regex(/^\+?\d{10,15}$/, 'Phone number must be valid'),
   email: z.string().email('Invalid email address'),
+  address: z.string(),
   date: z.date().min(new Date(), 'Please select a valid date'),
 })
 
 type Props = {
+  address: string
   colorScheme?: ColorScheme
 }
 
-export function BasicContactForm({ colorScheme = ColorScheme.DEFAULT }: Props) {
+export function BasicContactForm({ address, colorScheme = ColorScheme.DEFAULT }: Props) {
   const { toast } = useToast()
 
   // 1. Define your form.
@@ -52,6 +54,7 @@ export function BasicContactForm({ colorScheme = ColorScheme.DEFAULT }: Props) {
       lastName: '',
       phoneNumber: '',
       email: '',
+      address: address,
       date: new Date(),
     },
   })
@@ -71,7 +74,7 @@ export function BasicContactForm({ colorScheme = ColorScheme.DEFAULT }: Props) {
   async function onSubmit(values: z.infer<typeof formSchema>) {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
-    // console.log('VALUES: ', values)
+    console.log('VALUES: ', values)
     setSending(true)
     try {
       const response = await fetch('/api/sendListingEmail', {
@@ -121,7 +124,7 @@ export function BasicContactForm({ colorScheme = ColorScheme.DEFAULT }: Props) {
                 <FormControl>
                   <Input placeholder="First Name" {...field} className={formInputStyle} />
                 </FormControl>
-                <FormMessage />
+                <FormMessage className="absolute" />
               </FormItem>
             )}
           />
@@ -133,7 +136,7 @@ export function BasicContactForm({ colorScheme = ColorScheme.DEFAULT }: Props) {
                 <FormControl>
                   <Input placeholder="Last Name" {...field} className={formInputStyle} />
                 </FormControl>
-                <FormMessage />
+                <FormMessage className="absolute" />
               </FormItem>
             )}
           />
@@ -146,7 +149,7 @@ export function BasicContactForm({ colorScheme = ColorScheme.DEFAULT }: Props) {
                   <Input placeholder="(123) 456 - 7890" {...field} className={formInputStyle} />
                 </FormControl>
                 <FormDescription></FormDescription>
-                <FormMessage />
+                <FormMessage className="absolute" />
               </FormItem>
             )}
           />
@@ -158,7 +161,7 @@ export function BasicContactForm({ colorScheme = ColorScheme.DEFAULT }: Props) {
                 <FormControl>
                   <Input placeholder="example@gmail.com" {...field} className={formInputStyle} />
                 </FormControl>
-                <FormMessage />
+                <FormMessage className="absolute" />
               </FormItem>
             )}
           />
@@ -176,7 +179,7 @@ export function BasicContactForm({ colorScheme = ColorScheme.DEFAULT }: Props) {
                     setDate={(date: Date) => form.setValue('date', date)}
                   />
                 </FormControl>
-                <FormMessage />
+                <FormMessage className="absolute" />
               </FormItem>
             )}
           />

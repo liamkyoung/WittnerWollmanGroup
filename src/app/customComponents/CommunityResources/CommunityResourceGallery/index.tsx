@@ -110,7 +110,7 @@ export const CommunityResourceGallery = ({ communityResources }: Props) => {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-16 mt-24 place-items-center mx-20">
+          <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-16 my-24 place-items-center mx-20">
             {/* TODO: Put Category Selector Here */}
             {communityResources &&
               communityResources.length > 0 &&

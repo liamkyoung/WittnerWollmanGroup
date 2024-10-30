@@ -1,11 +1,13 @@
 import * as React from 'react'
+import { formatDateTime } from '../_utilities/formatDateTime'
 
 interface EmailTemplateProps {
   firstName: string
   lastName: string
   phoneNumber: string
+  address: string
   email: string
-  date: string
+  date: Date
 }
 
 export const EmailTemplate: React.FC<Readonly<EmailTemplateProps>> = ({
@@ -13,6 +15,7 @@ export const EmailTemplate: React.FC<Readonly<EmailTemplateProps>> = ({
   lastName,
   email,
   phoneNumber,
+  address,
   date,
 }) => (
   <div>
@@ -25,11 +28,12 @@ export const EmailTemplate: React.FC<Readonly<EmailTemplateProps>> = ({
       <h2>Contact Information</h2>
       <p>Email Address: {email}</p>
       <p>Phone Number: {phoneNumber}</p>
+      <p>Street Address: {address}</p>
     </div>
 
     <div>
       {firstName} {lastName}&apos; message:
-      <p>Date: {date}</p>
+      <p>Date: {formatDateTime(date)}</p>
     </div>
   </div>
 )

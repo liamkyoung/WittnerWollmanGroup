@@ -9,17 +9,18 @@ import { formatDateTime } from '../../app/_utilities/formatDateTime'
 const resend = new Resend(process.env.PAYLOAD_PUBLIC_RESEND_API_KEY)
 
 export const sendListingEmail: PayloadHandler = async (req, res) => {
-  const { firstName, lastName, email, phoneNumber, date } = req.body
+  const { firstName, lastName, email, phoneNumber, date, address } = req.body
   const { data, error } = await resend.emails.send({
     from: 'Acme <onboarding@resend.dev>',
     to: DefaultSocials.email,
-    subject: `Listing Scheduling for ${date}`,
+    subject: `Listing Showing for ${formatDateTime(date)}`,
     react: EmailTemplate({
       firstName: firstName,
       lastName: lastName,
       phoneNumber: phoneNumber,
+      address: address,
       email: email,
-      date: formatDateTime(date),
+      date: date,
     }),
   })
 

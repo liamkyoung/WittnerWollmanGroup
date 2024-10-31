@@ -9,7 +9,6 @@ import { slateEditor } from '@payloadcms/richtext-slate'
 import dotenv from 'dotenv'
 import path from 'path'
 import { buildConfig } from 'payload/config'
-import * as fs from 'fs'
 
 import Categories from './collections/Categories'
 import Comments from './collections/Comments'
@@ -73,8 +72,7 @@ export default buildConfig({
     pool: {
       connectionString: process.env.DATABASE_URI,
       ssl: {
-        ca: fs.readFileSync(path.resolve(__dirname, 'ca-certificate.crt')).toString(),
-        rejectUnauthorized: false,
+        ca: process.env.CA_CERTIFICATE,
       },
     },
   }),

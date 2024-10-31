@@ -1,10 +1,10 @@
 import React from 'react'
 
 import { DefaultSocials } from '../../globalData/general'
-import Instagram from '../customComponents/Icons/Instagram'
-import Facebook from '../customComponents/Icons/Facebook'
-import Linkedin from '../customComponents/Icons/LinkedinIcon'
 import Email from '../customComponents/Icons/Email'
+import Facebook from '../customComponents/Icons/Facebook'
+import Instagram from '../customComponents/Icons/Instagram'
+import Linkedin from '../customComponents/Icons/LinkedinIcon'
 import Phone from '../customComponents/Icons/Phone'
 import { ColorScheme, SocialMediaInfo } from '../types/viewmodels'
 

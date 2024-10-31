@@ -1,4 +1,4 @@
-import { Socials, MapSettings } from '@/app/types/viewmodels'
+import type { MapSettings, Socials } from '@/app/types/viewmodels'
 
 export const DefaultSocials: Socials = {
   phoneNumber: '(813) 456-7890',

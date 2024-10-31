@@ -1,16 +1,16 @@
 import type { RequestCookie } from 'next/dist/compiled/@edge-runtime/cookies'
 
 import type { Config } from '../../payload/payload-types'
+import { COMMUNITY_RESOURCES } from '../_graphql/communityResources'
+import { INVOLVEMENT_EVENTS, INVOLVEMENT_GROUPS } from '../_graphql/involvement'
+import { LISTINGS } from '../_graphql/listings'
 import { PAGES } from '../_graphql/pages'
 import { POSTS } from '../_graphql/posts'
 import { PROJECTS } from '../_graphql/projects'
-import { LISTINGS } from '../_graphql/listings'
+import { SERVICES } from '../_graphql/services'
+import { TEAMMATES } from '../_graphql/teammates'
 import { GRAPHQL_API_URL } from './shared'
 import { payloadToken } from './token'
-import { TEAMMATES } from '../_graphql/teammates'
-import { INVOLVEMENT_GROUPS, INVOLVEMENT_EVENTS } from '../_graphql/involvement'
-import { SERVICES } from '../_graphql/services'
-import { COMMUNITY_RESOURCES } from '../_graphql/communityResources'
 
 // INSERT GROUP QUERIES FOR COLLECTIONS HERE
 const queryMap = {

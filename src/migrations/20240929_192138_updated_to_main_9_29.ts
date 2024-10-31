@@ -1,8 +1,8 @@
-import { MigrateUpArgs, MigrateDownArgs } from '@payloadcms/db-postgres'
+import type { MigrateDownArgs, MigrateUpArgs } from '@payloadcms/db-postgres'
 import { sql } from 'drizzle-orm'
 
 export async function up({ payload }: MigrateUpArgs): Promise<void> {
-await payload.db.drizzle.execute(sql`
+  await payload.db.drizzle.execute(sql`
 
 ALTER TYPE "enum_pages_blocks_archive_relation_to" ADD VALUE 'teammates';
 ALTER TYPE "enum_pages_blocks_archive_relation_to" ADD VALUE 'involvementGroups';
@@ -339,12 +339,11 @@ DO $$ BEGIN
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
-`);
-
-};
+`)
+}
 
 export async function down({ payload }: MigrateDownArgs): Promise<void> {
-await payload.db.drizzle.execute(sql`
+  await payload.db.drizzle.execute(sql`
 
 ALTER TABLE "pages_rels" DROP CONSTRAINT "pages_rels_teammates_fk";
 
@@ -471,6 +470,5 @@ ALTER TABLE "_projects_v_rels" DROP COLUMN IF EXISTS "involvement_events_id";
 ALTER TABLE "_projects_v_rels" DROP COLUMN IF EXISTS "testimonials_id";
 ALTER TABLE "_projects_v_rels" DROP COLUMN IF EXISTS "companies_id";
 ALTER TABLE "_projects_v_rels" DROP COLUMN IF EXISTS "services_id";
-ALTER TABLE "_projects_v_rels" DROP COLUMN IF EXISTS "community_resources_id";`);
-
-};
+ALTER TABLE "_projects_v_rels" DROP COLUMN IF EXISTS "community_resources_id";`)
+}

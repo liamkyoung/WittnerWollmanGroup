@@ -1,6 +1,7 @@
-import { Project } from '@/payload/payload-types'
 import React from 'react'
 import Link from 'next/link'
+
+import { Project } from '../../../../payload/payload-types'
 import { ProjectCard } from './../ProjectCard'
 
 type Props = {

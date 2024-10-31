@@ -12,31 +12,29 @@ import { buildConfig } from 'payload/config'
 
 import Categories from './collections/Categories'
 import Comments from './collections/Comments'
+import { CommunityResources } from './collections/CommunityResources'
+import { Companies } from './collections/Companies'
+import { InvolvementEvents } from './collections/InvolvementEvents'
+import { InvolvementGroups } from './collections/InvolvementGroups'
+// Custom Collections
+import { Listings } from './collections/Listings'
 import { Media } from './collections/Media'
 import { Pages } from './collections/Pages'
 import { Posts } from './collections/Posts'
 import { Projects } from './collections/Projects'
+import { Services } from './collections/Services'
+import { Teammates } from './collections/Teammates'
+import { Testimonials } from './collections/Testimonials'
 import Users from './collections/Users'
 import BeforeDashboard from './components/BeforeDashboard'
 import BeforeLogin from './components/BeforeLogin'
-import { seed } from './endpoints/seed'
+import { sendEmail } from './endpoints/sendEmail'
+import { sendListingEmail } from './endpoints/sendListingEmail'
+import { signUpNewsletter } from './endpoints/signUpNewsletter'
+// import { seed } from './endpoints/seed'
 import { Footer } from './globals/Footer'
 import { Header } from './globals/Header'
 import { Settings } from './globals/Settings'
-
-// Custom Collections
-import { Listings } from './collections/Listings'
-import { Teammates } from './collections/Teammates'
-import { Testimonials } from './collections/Testimonials'
-import { Services } from './collections/Services'
-import { Companies } from './collections/Companies'
-import { InvolvementEvents } from './collections/InvolvementEvents'
-import { InvolvementGroups } from './collections/InvolvementGroups'
-import { CommunityResources } from './collections/CommunityResources'
-
-import { sendEmail } from './endpoints/sendEmail'
-import { signUpNewsletter } from './endpoints/signUpNewsletter'
-import { sendListingEmail } from './endpoints/sendListingEmail'
 
 const generateTitle: GenerateTitle = () => {
   return 'Wittner Wollman Group'
@@ -65,10 +63,6 @@ export default buildConfig({
         alias: {
           ...config.resolve.alias,
           dotenv: path.resolve(__dirname, './dotenv.js'),
-          [path.resolve(__dirname, './endpoints/seed')]: path.resolve(
-            __dirname,
-            './emptyModuleMock.js',
-          ),
         },
       },
     }),

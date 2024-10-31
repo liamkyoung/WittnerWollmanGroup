@@ -1,18 +1,18 @@
-import formatSlug from '../../utilities/formatSlug'
+import type { CollectionConfig } from 'payload/types'
+
+import { slugField } from '../../../payload/fields/slug'
 import { admins } from '../../access/admins'
 import { adminsOrPublished } from '../../access/adminsOrPublished'
-import type { CollectionConfig, FieldHook } from 'payload/types'
-import { populatePublishedAt } from '../../hooks/populatePublishedAt'
 import { Archive } from '../../blocks/ArchiveBlock'
 import { CallToAction } from '../../blocks/CallToAction'
 import { Content } from '../../blocks/Content'
-import { MediaBlock } from '../../blocks/MediaBlock'
-import { hero } from '../../fields/hero'
-import { ProjectBlock } from '../../blocks/ProjectBlock'
-import { StatsAndVideoBlock } from '../../blocks/StatsAndVideoBlock'
-import { StatBlock } from '../../blocks/StatBlock'
 import { ContentAndStatsBlock } from '../../blocks/ContentAndStatsBlock'
-import { slugField } from '../../../payload/fields/slug'
+import { MediaBlock } from '../../blocks/MediaBlock'
+import { ProjectBlock } from '../../blocks/ProjectBlock'
+import { StatBlock } from '../../blocks/StatBlock'
+import { StatsAndVideoBlock } from '../../blocks/StatsAndVideoBlock'
+import { hero } from '../../fields/hero'
+import { populatePublishedAt } from '../../hooks/populatePublishedAt'
 
 export const Services: CollectionConfig = {
   slug: 'services',

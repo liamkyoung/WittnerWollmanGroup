@@ -67,9 +67,9 @@ const serialize = (children?: Children, textColor: string = 'text-black'): React
       }
 
       return (
-        <Fragment key={i} className={textColor}>
+        <span key={i} className={textColor}>
           {text}
-        </Fragment>
+        </span>
       )
     }
 

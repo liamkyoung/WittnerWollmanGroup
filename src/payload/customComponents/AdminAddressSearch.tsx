@@ -1,16 +1,14 @@
 'use client'
-import { useState, useEffect } from 'react'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { APIProvider } from '@vis.gl/react-google-maps'
-import { useField } from 'payload/components/forms'
-import { useFormFields } from 'payload/components/forms'
+import { useField, useFormFields } from 'payload/components/forms'
 
 import AddressSearch from '../../app/customComponents/GoogleMap/AddressSearch'
 
 const API_KEY =
   process.env.PAYLOAD_PUBLIC_GOOGLE_MAPS_KEY || process.env.NEXT_PUBLIC_GOOGLE_MAPS_KEY
 
-export default function AdminAddressSearch({ path }) {
+export default function AdminAddressSearch() {
   const [addressList, setAddressList] = useState<void | google.maps.GeocoderResponse>(null)
   const [addressQuery, setAddressQuery] = useState('')
   const [debouncedInputValue, setDebouncedInputValue] = useState('')
@@ -23,19 +21,19 @@ export default function AdminAddressSearch({ path }) {
   const county = useFormFields(([fields, dispatch]) => fields.county)
   const state = useFormFields(([fields, dispatch]) => fields.state)
   const neighborhood = useFormFields(([fields, dispatch]) => fields.neighborhood)
-
+  const DEBOUNCE_MS = 500
   const { value, setValue } = useField<string>({ path: 'address' })
 
   // DEBOUNCING
   useEffect(() => {
     const delayInputTimeoutId = setTimeout(() => {
       setDebouncedInputValue(addressQuery)
-    }, 500)
+    }, DEBOUNCE_MS)
     return () => clearTimeout(delayInputTimeoutId)
-  }, [addressQuery, 500])
+  }, [addressQuery, DEBOUNCE_MS])
 
   function handleAddressSelected(address: google.maps.GeocoderResult) {
-    console.log(address)
+    // console.log(address)
     setValue(address.formatted_address)
     latitude.value = address.geometry.location.lat()
     longitude.value = address.geometry.location.lng()
@@ -120,7 +118,7 @@ export default function AdminAddressSearch({ path }) {
           </label>
           <input
             placeholder="Address"
-            onInput={e => {
+            onInput={(e: React.ChangeEvent<HTMLInputElement>) => {
               setAddressQuery(e.target.value)
             }}
             value={addressQuery}

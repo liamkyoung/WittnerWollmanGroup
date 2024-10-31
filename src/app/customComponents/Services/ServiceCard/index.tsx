@@ -11,7 +11,7 @@ export const ServiceCard: React.FC<{
 }> = props => {
   const { doc, className } = props
 
-  const { title, shortDescription, iconSvg, slug } = doc || {}
+  const { title, shortDescription, slug } = doc || {}
 
   const sanitizedDescription = shortDescription?.replace(/\s/g, ' ') // replace non-breaking space with white space
   const href = `/services/${slug}`

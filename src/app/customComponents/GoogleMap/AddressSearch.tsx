@@ -1,6 +1,5 @@
 'use client'
 import React, { useEffect, useMemo } from 'react'
-
 import { useMapsLibrary } from '@vis.gl/react-google-maps'
 
 export default function AddressSearch(params: {
@@ -20,7 +19,7 @@ export default function AddressSearch(params: {
       .geocode({ address: params.addyQueryString, region: 'US' })
       .catch(err => null) // Ignore No Result Errors.
       .then(res => params.setAddyList(res))
-  }, [geocoder, params.addyQueryString])
+  }, [geocoder, params.addyQueryString]) // eslint-disable-line react-hooks/exhaustive-deps
 
   return null
 }

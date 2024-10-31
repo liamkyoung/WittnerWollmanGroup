@@ -1,17 +1,9 @@
 'use client'
 import { useEffect, useState } from 'react'
-import {
-  Dialog,
-  DialogTrigger,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-  DialogClose,
-} from '@/components/ui/dialog'
-import NewsletterCard from '../NewsletterCard'
-import { Button } from '@/components/ui/button'
+
+import { Dialog, DialogClose, DialogContent, DialogTrigger } from '../../../../components/ui/dialog'
 import { getCookie, setCookie } from '../../../_utilities/cookies'
+import NewsletterCard from '../NewsletterCard'
 
 export default function NewsletterPopup() {
   const [isOpen, setIsOpen] = useState(false)
@@ -29,7 +21,7 @@ export default function NewsletterPopup() {
       // Cleanup timer on component unmount
       return () => clearTimeout(timer)
     }
-  }, [])
+  })
 
   return (
     <div>

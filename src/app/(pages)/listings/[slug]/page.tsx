@@ -3,22 +3,17 @@ import { Metadata } from 'next'
 import { draftMode } from 'next/headers'
 import { notFound } from 'next/navigation'
 
-import { Listing } from '../../../../payload/payload-types'
+import { Blocks } from '../../../../app/_components/Blocks'
+import { ListingHero } from '../../../../app/_heros/ListingHero'
+import { formatDollarAmount } from '../../../../app/_utilities/formatDollarAmount'
+import PhotoGallery from '../../../../app/customComponents/Gallery/PhotoGallery'
+import ListingCTA from '../../../../app/customComponents/Listings/ListingCTA'
+import { Listing, Teammate } from '../../../../payload/payload-types'
 import { fetchDoc } from '../../../_api/fetchDoc'
 import { fetchDocs } from '../../../_api/fetchDocs'
 import { generateListingMetadata } from '../../../_utilities/generateMeta'
-import Image from 'next/image'
-import { ListingHero } from '@/app/_heros/ListingHero'
-import PhotoGallery from '@/app/customComponents/Gallery/PhotoGallery'
 import Features from './Features'
-import { GoogleMap } from '@/app/customComponents/GoogleMap/GoogleMap'
-import AdminAddressSearch from '@/app/customComponents/GoogleMap/AdminAddressSearch'
-import { CallToActionBlock } from '@/app/_blocks/CallToAction'
-import { ProjectBlock } from '@/app/_blocks/ProjectBlock'
-import { formatDollarAmount } from '@/app/_utilities/formatDollarAmount'
-import { Blocks } from '@/app/_components/Blocks'
-import ListingCTA from '@/app/customComponents/Listings/ListingCTA'
-import { Teammate } from '../../../../payload/payload-types'
+// import { ListingHeroProps } from '@/app/_heros/ListingHero'
 
 export const dynamic = 'force-dynamic'
 
@@ -46,6 +41,7 @@ export default async function Page({ params: { slug } }) {
     streetAddress,
     city,
     address,
+    state,
     sqFtLand,
     coverImage,
     propertyType,
@@ -67,6 +63,7 @@ export default async function Page({ params: { slug } }) {
   } = listing
 
   const agent = agents && agents.length > 0 ? agents[0] : null
+  //const heroProps: ListingHeroProps = {streetAddress: streetAddress, price: price, city: city, zipCode: zipCode, state: state, propertyType: propertyType, sqFt: sqFt}
   return (
     <>
       <div className="global-margin-x mt-24 space-y-24">
@@ -75,7 +72,7 @@ export default async function Page({ params: { slug } }) {
           price={price}
           city={city}
           zipCode={zipCode}
-          state={'FL'}
+          state={state}
           propertyType={propertyType}
           sqFt={sqFt}
         />
@@ -104,7 +101,7 @@ export default async function Page({ params: { slug } }) {
           propertyType={propertyType}
           status={'Active'}
           zoningType={'Placeholder'}
-          occupany={occupancy}
+          occupancy={occupancy}
         />
       </div>
       {agent && <ListingCTA agent={agent as Teammate} address={streetAddress} />}
@@ -119,7 +116,7 @@ export async function generateStaticParams() {
     // console.log('listings: ', listings)
     return listings?.map(({ slug }) => slug)
   } catch (error) {
-    console.log("Couldn't generate listings", error)
+    // console.log("Couldn't generate listings", error)
     return []
   }
 }

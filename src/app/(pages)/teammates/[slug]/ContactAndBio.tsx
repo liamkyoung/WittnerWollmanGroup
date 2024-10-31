@@ -1,4 +1,5 @@
 import React from 'react'
+
 import SocialList from '@/app/customComponents/SocialList'
 import { ColorScheme, SocialMediaInfo } from '@/app/types/viewmodels'
 

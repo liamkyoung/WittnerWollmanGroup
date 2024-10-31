@@ -1,9 +1,8 @@
 'use client'
-
-import { zodResolver } from '@hookform/resolvers/zod'
+import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
-import { useState } from 'react'
 
 import {
   Form,
@@ -13,11 +12,11 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@/components/ui/form'
-import { Input } from '@/components/ui/input'
-import { Textarea } from '@/components/ui/textarea'
+} from '../../../components/ui/form'
+import { Input } from '../../../components/ui/input'
+import { Textarea } from '../../../components/ui/textarea'
+import { useToast } from '../../../hooks/use-toast'
 import { ColorScheme } from '../../types/viewmodels'
-import { useToast } from '@/hooks/use-toast'
 import Spinner from '../Icons/Spinner'
 
 const formSchema = z.object({
@@ -96,7 +95,7 @@ export function ContactForm({ colorScheme = ColorScheme.DEFAULT }: Props) {
         })
       }
     } catch (err) {
-      console.error('Error submitting form:', err)
+      //console.error('Error submitting form:', err)
       toast({
         title: '❌ There was an error sending your message',
         description: 'Please try again later.',

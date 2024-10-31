@@ -1,6 +1,7 @@
-import { Service } from '@/payload/payload-types'
 import React from 'react'
 import Link from 'next/link'
+
+import { Service } from '../../../../payload/payload-types'
 import { ServiceCard } from '../ServiceCard'
 
 type Props = {

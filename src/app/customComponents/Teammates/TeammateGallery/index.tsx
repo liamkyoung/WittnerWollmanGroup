@@ -1,4 +1,5 @@
 import { TeammateCard } from '../TeammateCard'
+
 import { Teammate } from '@/payload/payload-types'
 
 type Props = {

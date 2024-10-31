@@ -3,6 +3,11 @@ import React from 'react'
 
 type Props = {}
 
+import Image from 'next/image'
+import Link from 'next/link'
+
+import Logo from '../../assets/branding/logo.svg'
+
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,7 +15,6 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
-
 import {
   Sheet,
   SheetContent,
@@ -20,9 +24,6 @@ import {
   SheetTrigger,
 } from '@/components/ui/sheet'
 import { InternalLinks } from '@/globalData/navigation'
-import Link from 'next/link'
-import Image from 'next/image'
-import Logo from '../../assets/branding/logo.svg'
 
 function DesktopHeader({}: Props) {
   return (

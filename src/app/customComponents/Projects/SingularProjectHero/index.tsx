@@ -1,11 +1,8 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import Link from 'next/link'
 
-import { Project } from '../../../../payload/payload-types'
-import { Gutter } from '../../../_components/Gutter'
+import { Media as MediaType, Project } from '../../../../payload/payload-types'
 import { Media } from '../../../_components/Media'
-import RichText from '../../../_components/RichText'
-import { formatDateTime } from '../../../_utilities/formatDateTime'
 import CardInfo from '../../CardInfo'
 
 export const SingularProjectHero: React.FC<{
@@ -14,7 +11,6 @@ export const SingularProjectHero: React.FC<{
   const {
     id,
     title,
-    categories,
     meta: { image: metaImage, description } = {},
     createdAt,
     price,
@@ -74,7 +70,10 @@ export const SingularProjectHero: React.FC<{
       <div className="relative">
         {!metaImage && <div className={``}>No image</div>}
         {metaImage && typeof metaImage !== 'string' && (
-          <Media imgClassName={`object-cover w-full max-h-[36rem]`} resource={metaImage} />
+          <Media
+            imgClassName={`object-cover w-full max-h-[36rem]`}
+            resource={metaImage as MediaType}
+          />
         )}
         <button className="absolute bottom-0 right-0 btn-primary">SEE FULL GALLERY</button>
       </div>

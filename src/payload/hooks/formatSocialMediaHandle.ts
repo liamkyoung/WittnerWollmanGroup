@@ -1,5 +1,4 @@
-import { BeforeChangeHook } from 'payload/dist/globals/config/types'
-import { FieldHook } from 'payload/types'
+import type { FieldHook } from 'payload/types'
 
 export const formatSocialMediaHandle: FieldHook = ({ value }) => {
   if (!value) return value // If the field is empty, return as is.

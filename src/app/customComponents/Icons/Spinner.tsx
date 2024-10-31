@@ -1,5 +1,6 @@
-import { CardSize } from '@/app/types/viewmodels'
 import React from 'react'
+
+import { CardSize } from '@/app/types/viewmodels'
 
 type Props = {
   size?: number

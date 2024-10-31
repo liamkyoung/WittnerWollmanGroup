@@ -14,7 +14,7 @@ function Feature({ name, description }: FeatureProps) {
   )
 }
 
-type Props = {
+type ListingFeaturesProps = {
   bedrooms: string
   bathrooms: string
   sqFt: string

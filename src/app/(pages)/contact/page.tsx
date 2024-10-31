@@ -1,7 +1,8 @@
+import React from 'react'
+
 import { ContactForm } from '../../customComponents/inputs/ContactForm'
 import SocialList from '../../customComponents/SocialList'
 import { ColorScheme } from '../../types/viewmodels'
-import React from 'react'
 
 function Page() {
   return (

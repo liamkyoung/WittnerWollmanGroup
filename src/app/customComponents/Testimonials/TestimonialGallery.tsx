@@ -1,5 +1,6 @@
 import React from 'react'
-import { TestimonialCard } from './TestimonialCard'
+import Image from 'next/image'
+
 import {
   Carousel,
   CarouselContent,
@@ -7,10 +8,9 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '../../../components/ui/carousel'
-
+import { Testimonial } from '../../../payload/payload-types'
 import BGImage from '../../assets/images/bg_backdrop.png'
-import Image from 'next/image'
-import { Testimonial } from '@/payload/payload-types'
+import { TestimonialCard } from './TestimonialCard'
 
 type Props = {
   testimonials: Testimonial[]

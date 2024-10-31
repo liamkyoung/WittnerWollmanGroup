@@ -64,7 +64,6 @@ export interface Config {
 export interface Page {
   id: number;
   title: string;
-  publishedAt?: string | null;
   hero: {
     type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact' | 'default' | 'fullscreen' | 'projectHero';
     headerText?: string | null;
@@ -301,12 +300,13 @@ export interface Page {
         blockType: 'googleMapsBlock';
       }
   )[];
-  slug?: string | null;
   meta?: {
     title?: string | null;
     description?: string | null;
     image?: number | Media | null;
   };
+  slug?: string | null;
+  publishedAt?: string | null;
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
@@ -360,15 +360,6 @@ export interface Category {
 export interface Post {
   id: number;
   title: string;
-  categories?: (number | Category)[] | null;
-  publishedAt?: string | null;
-  authors?: (number | User)[] | null;
-  populatedAuthors?:
-    | {
-        id?: string | null;
-        name?: string | null;
-      }[]
-    | null;
   hero: {
     type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact' | 'default' | 'fullscreen' | 'projectHero';
     headerText?: string | null;
@@ -719,35 +710,24 @@ export interface Post {
           }
       )[]
     | null;
-  relatedPosts?: (number | Post)[] | null;
-  slug?: string | null;
   meta?: {
     title?: string | null;
     description?: string | null;
     image?: number | Media | null;
   };
+  publishedAt?: string | null;
+  slug?: string | null;
+  authors?: (number | User)[] | null;
+  populatedAuthors?:
+    | {
+        id?: string | null;
+        name?: string | null;
+      }[]
+    | null;
+  relatedPosts?: (number | Post)[] | null;
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "users".
- */
-export interface User {
-  id: number;
-  name?: string | null;
-  roles?: ('admin' | 'user')[] | null;
-  updatedAt: string;
-  createdAt: string;
-  email: string;
-  resetPasswordToken?: string | null;
-  resetPasswordExpiration?: string | null;
-  salt?: string | null;
-  hash?: string | null;
-  loginAttempts?: number | null;
-  lockUntil?: string | null;
-  password: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -757,17 +737,15 @@ export interface Project {
   id: number;
   title: string;
   address: string;
-  price: string;
   description: string;
   neighborhood: string;
   latitude?: number | null;
   longitude?: number | null;
+  price: string;
   agents?: (number | Teammate)[] | null;
+  slider?: CardSlider;
   website?: string | null;
   instagram?: string | null;
-  slider?: CardSlider;
-  categories?: (number | Category)[] | null;
-  publishedAt?: string | null;
   layout: (
     | {
         type?: ('default' | 'listing' | 'agent') | null;
@@ -963,13 +941,14 @@ export interface Project {
         blockType: 'statBlock';
       }
   )[];
-  relatedProjects?: (number | Project)[] | null;
-  slug?: string | null;
   meta?: {
     title?: string | null;
     description?: string | null;
     image?: number | Media | null;
   };
+  publishedAt?: string | null;
+  slug?: string | null;
+  relatedProjects?: (number | Project)[] | null;
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
@@ -981,15 +960,14 @@ export interface Project {
 export interface Teammate {
   id: number;
   title: string;
+  profilePic: number | Media;
   profileIntroduction: string;
   bio: string;
-  profilePic: number | Media;
   strengths?: ('Residential Real Estate' | 'Commercial Real Estate')[] | null;
   yearsOfExperience: number;
   favoritePlaces?: (number | CommunityResource)[] | null;
   phoneNumber: string;
   email: string;
-  slug?: string | null;
   instagram?: string | null;
   Facebook?: string | null;
   Linkedin?: string | null;
@@ -998,6 +976,7 @@ export interface Teammate {
     description?: string | null;
     image?: number | Media | null;
   };
+  slug?: string | null;
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
@@ -1024,19 +1003,17 @@ export interface CommunityResource {
 export interface Listing {
   id: number;
   title: string;
-  slug?: string | null;
   address: string;
-  agents?: (number | Teammate)[] | null;
-  streetAddress?: string | null;
+  streetAddress: string;
   neighborhood?: string | null;
   city: string;
   zipCode: string;
-  county?: string | null;
-  state?: string | null;
-  latitude?: number | null;
-  longitude?: number | null;
+  county: string;
+  state: string;
+  latitude: number;
+  longitude: number;
   price: number;
-  propertyType?: ('shoppingCenter' | 'bizOpportunity' | 'multiFamily' | 'office' | 'mixedUse')[] | null;
+  agents?: (number | Teammate)[] | null;
   coverImage: number | Media;
   imageGallery?:
     | {
@@ -1046,6 +1023,7 @@ export interface Listing {
         id?: string | null;
       }[]
     | null;
+  propertyType?: ('shoppingCenter' | 'bizOpportunity' | 'multiFamily' | 'office' | 'mixedUse')[] | null;
   sqFt: number;
   sqFtLand?: number | null;
   bedCount?: number | null;
@@ -1250,6 +1228,7 @@ export interface Listing {
     description?: string | null;
     image?: number | Media | null;
   };
+  slug?: string | null;
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
@@ -1315,8 +1294,6 @@ export interface Company {
 export interface Service {
   id: number;
   title: string;
-  slug?: string | null;
-  iconSvg: string;
   shortDescription: string;
   hero: {
     type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact' | 'default' | 'fullscreen' | 'projectHero';
@@ -1553,9 +1530,29 @@ export interface Service {
     description?: string | null;
     image?: number | Media | null;
   };
+  slug?: string | null;
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "users".
+ */
+export interface User {
+  id: number;
+  name?: string | null;
+  roles?: ('admin' | 'user')[] | null;
+  updatedAt: string;
+  createdAt: string;
+  email: string;
+  resetPasswordToken?: string | null;
+  resetPasswordExpiration?: string | null;
+  salt?: string | null;
+  hash?: string | null;
+  loginAttempts?: number | null;
+  lockUntil?: string | null;
+  password: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

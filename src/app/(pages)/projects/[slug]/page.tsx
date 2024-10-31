@@ -8,8 +8,9 @@ import { fetchDoc } from '../../../_api/fetchDoc'
 import { fetchDocs } from '../../../_api/fetchDocs'
 import { RelatedPosts } from '../../../_blocks/RelatedPosts'
 import { Blocks } from '../../../_components/Blocks'
-import { SingularProjectHero } from '../../../customComponents/Projects/SingularProjectHero'
 import { generateMeta } from '../../../_utilities/generateMeta'
+import { SingularProjectHero } from '../../../customComponents/Projects/SingularProjectHero'
+
 import { GoogleMap } from '@/app/customComponents/GoogleMap/GoogleMap'
 import { GoogleMapPin } from '@/app/types/viewmodels'
 
@@ -49,7 +50,7 @@ export default async function Project({ params: { slug } }) {
     <React.Fragment>
       <SingularProjectHero project={project} />
       <Blocks blocks={[...layout]} />
-      <GoogleMap fullscreen pins={[pin]} zoom="far" />
+      <GoogleMap fullscreen pins={[pin]} zoom="far" pinType="project" />
     </React.Fragment>
   )
 }

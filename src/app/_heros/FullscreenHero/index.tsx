@@ -1,12 +1,13 @@
 import React, { Fragment } from 'react'
-import Link from 'next/link'
 import Image from 'next/image'
+import Link from 'next/link'
 
-import { Media as MediaType, Page } from '../../../payload/payload-types'
 import RichText from '../../../app/_components/RichText'
-import { Media } from '@/app/_components/Media'
+import { Media as MediaType, Page } from '../../../payload/payload-types'
 import HeroImg from '../../assets/images/bg_backdrop.png'
+
 import { CMSLink } from '@/app/_components/Link'
+import { Media } from '@/app/_components/Media'
 
 export const FullscreenHero: React.FC<Page['hero']> = ({
   richText,

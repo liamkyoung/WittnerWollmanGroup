@@ -3,10 +3,10 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import { Media } from '../../../../_components/Media'
-import { Media as MType } from '@/payload/payload-types'
-import { InvolvementEvent } from '@/payload/payload-types'
 import DefaultCard from '../../../DefaultCard'
+
 import { formatDateTime } from '@/app/_utilities/formatDateTime'
+import { InvolvementEvent, Media as MType } from '@/payload/payload-types'
 
 export const InvolvementEventCard: React.FC<{
   className?: string

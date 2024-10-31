@@ -1,16 +1,13 @@
 'use client'
-import React, { useEffect } from 'react'
-
+import React, { useState } from 'react'
 import Lightbox from 'yet-another-react-lightbox'
-import 'yet-another-react-lightbox/styles.css'
-import ReflectionPhoto from '../../assets/images/reflection_pool_wide.png'
-import { useState } from 'react'
-import Image from 'next/image'
-import { Listing, Media as Img } from '@/payload/payload-types'
-import { Media } from '../../_components/Media'
-import StaticImg from '../../assets/images/mangosteen.png'
 
-export default function PhotoGallery({ imageGallery }: Listing) {
+import { Media } from '../../_components/Media'
+
+import 'yet-another-react-lightbox/styles.css'
+import { Media as Img } from '@/payload/payload-types'
+
+export default function PhotoGallery({ imageGallery }) {
   const [open, setOpen] = useState(false)
   const imgArray: Img[] = imageGallery?.map(i => typeof i !== 'number' && i.image)
 
@@ -18,8 +15,8 @@ export default function PhotoGallery({ imageGallery }: Listing) {
     return {
       src: `${process.env.NEXT_PUBLIC_SERVER_URL}/media/${img.filename}`,
       alt: `${img.alt}`,
-      width: `${img.width}`,
-      height: `${img.height}`,
+      width: img.width,
+      height: img.height,
     }
   })
 

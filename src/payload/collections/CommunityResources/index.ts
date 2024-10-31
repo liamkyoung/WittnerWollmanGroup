@@ -1,7 +1,7 @@
-import formatSlug from '../../utilities/formatSlug'
+import type { CollectionConfig } from 'payload/types'
+
 import { admins } from '../../access/admins'
 import { adminsOrPublished } from '../../access/adminsOrPublished'
-import type { CollectionConfig, FieldHook } from 'payload/types'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
 
 export const CommunityResources: CollectionConfig = {

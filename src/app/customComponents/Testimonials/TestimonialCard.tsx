@@ -1,16 +1,7 @@
 import React from 'react'
-import Image from 'next/image'
-import { Media } from '@/app/_components/Media'
-import { Testimonial } from '../../../payload/payload-types'
-import { StaticImageData } from 'next/image'
-import { Media as MType } from '../../../payload/payload-types'
 
-type Props = {
-  name: string
-  quote: string
-  position: string
-  imageSrc: StaticImageData | string
-}
+import { Media } from '../../../app/_components/Media'
+import { Media as MType, Testimonial } from '../../../payload/payload-types'
 
 export const TestimonialCard: React.FC<{
   className?: string

@@ -1,4 +1,5 @@
 import { NewsCard } from '../NewsCard'
+
 import { Post } from '@/payload/payload-types'
 
 type Props = {

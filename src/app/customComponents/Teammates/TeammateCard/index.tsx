@@ -1,13 +1,12 @@
-import React, { Fragment } from 'react'
-import Image from 'next/image'
+import React from 'react'
 import Link from 'next/link'
 
+import { Media as MediaType, Teammate } from '../../../../payload/payload-types'
+import { Media } from '../../../_components/Media'
 import Email from '../../Icons/Email'
+import Instagram from '../../Icons/Instagram'
 import LinkedinIcon from '../../Icons/LinkedinIcon'
 import Phone from '../../Icons/Phone'
-import Instagram from '../../Icons/Instagram'
-import { Teammate } from '../../../../payload/payload-types'
-import { Media } from '../../../_components/Media'
 
 export const TeammateCard: React.FC<{
   className?: string
@@ -39,7 +38,7 @@ export const TeammateCard: React.FC<{
       <Link href={href}>
         <div className="bg-gradient-to-b from-gray-50 to-[#949495] w-72 rounded-md mb-2">
           {profilePic && typeof metaImage !== 'string' && (
-            <Media imgClassName={`size-72`} resource={profilePic} />
+            <Media imgClassName={`size-72`} resource={profilePic as MediaType} />
           )}
 
           <p className="bg-wwYellow px-3 py-4 rounded-md font-bold text-wwBlack">{strengths}</p>

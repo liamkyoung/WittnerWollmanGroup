@@ -1,20 +1,17 @@
-import React, { Fragment } from 'react'
-import Link from 'next/link'
+import React from 'react'
 
+import { formatDollarAmount } from '../../../../app/_utilities/formatDollarAmount'
 import { Media, Project } from '../../../../payload/payload-types'
-
-import classes from './index.module.scss'
 import DefaultCard from '../../DefaultCard'
-import { formatDollarAmount } from '@/app/_utilities/formatDollarAmount'
 
 export const ProjectCard: React.FC<{
   className?: string
   doc?: Project
 }> = props => {
-  const { className, doc } = props
+  const { doc } = props
 
-  const { slug, title, categories, meta, publishedAt, price } = doc || {}
-  const { description, image: metaImage } = meta || {}
+  const { slug, title, meta, price } = doc || {}
+  const { image: metaImage } = meta || {}
 
   const href = `/projects/${slug}`
 

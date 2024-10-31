@@ -2,7 +2,7 @@
 
 import * as React from 'react'
 
-import { Calendar } from '@/components/ui/calendar'
+import { Calendar } from '../../../components/ui/calendar'
 
 type Props = {
   date: Date | undefined

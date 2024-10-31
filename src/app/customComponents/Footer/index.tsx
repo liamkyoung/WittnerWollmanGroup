@@ -1,13 +1,15 @@
 import React from 'react'
-import Logo from '../../assets/branding/logo.svg'
 import Image from 'next/image'
 import Link from 'next/link'
-import NewsletterInputFooter from '../inputs/NewsletterInputFooter'
-import { DefaultSocials } from '@/globalData/general'
-import Instagram from '../Icons/Instagram'
-import Facebook from '../Icons/Facebook'
-import Linkedin from '../Icons/LinkedinIcon'
+
+import Logo from '../../assets/branding/logo.svg'
 import { ColorScheme } from '../../types/viewmodels'
+import Facebook from '../Icons/Facebook'
+import Instagram from '../Icons/Instagram'
+import Linkedin from '../Icons/LinkedinIcon'
+import NewsletterInputFooter from '../inputs/NewsletterInputFooter'
+
+import { DefaultSocials } from '@/globalData/general'
 import { InternalLinks } from '@/globalData/navigation'
 
 function Footer() {

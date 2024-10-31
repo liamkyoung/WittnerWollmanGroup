@@ -1,10 +1,7 @@
 'use client'
 import React from 'react'
-
-import { useToast } from '@/hooks/use-toast'
-
-import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 
 import {
@@ -15,8 +12,9 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@/components/ui/form'
-import { Input } from '@/components/ui/input'
+} from '../../../components/ui/form'
+import { Input } from '../../../components/ui/input'
+import { useToast } from '../../../hooks/use-toast'
 
 const formSchema = z.object({
   email: z.string().email('Invalid Email Address'),
@@ -59,7 +57,7 @@ function NewsletterInputFooter() {
         })
       }
     } catch (err) {
-      console.error('Error submitting form:', err)
+      // console.error('Error submitting form:', err)
       toast({
         title: '❌ There was an error signing up for the newsletter.',
         description: 'Please try again later.',

@@ -1,6 +1,6 @@
-import { Listing, Media, Project } from '@/payload/payload-types'
+import type { Media } from '../../payload/payload-types'
 
-export type Socials = {
+export interface Socials {
   linkedin: SocialMediaInfo
   twitter: SocialMediaInfo
   facebook: SocialMediaInfo
@@ -10,7 +10,7 @@ export type Socials = {
   email: string
 }
 
-export type SocialMediaInfo = {
+export interface SocialMediaInfo {
   platformName: string
   username: string
   profileLink: string
@@ -32,26 +32,32 @@ export enum ColorScheme {
   YELLOW,
 }
 
-export type NavGrouping = {
+export interface NavGrouping {
   title: string
   relLink: string
   subNavigation?: NavGrouping[]
 }
 
-export type MapSettings = {
+export interface MapSettings {
   mapCenter: MapCoords
 }
 
-export type MapCoords = {
+export interface MapCoords {
   lat: number
   lng: number
 }
 
-export type GoogleMapPin = {
+export interface GoogleMapPin {
   name: string
   coords: MapCoords
   slug: string
   coverImg?: Media
   address?: string
   price?: number
+}
+
+export interface FactStat {
+  factStat: string
+  factDescription: string
+  id?: string | null
 }

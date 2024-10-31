@@ -1,25 +1,31 @@
 import React from 'react'
+import { Link } from 'lucide-react'
 import { Metadata } from 'next'
 import { draftMode } from 'next/headers'
+import Image from 'next/image'
 import { notFound } from 'next/navigation'
+import payload from 'payload'
 
-import { CommunityResource, Listing, Project, Teammate } from '../../../../payload/payload-types'
+import {
+  CommunityResource,
+  Listing,
+  Media as MType,
+  Project,
+  Teammate,
+} from '../../../../payload/payload-types'
 import { fetchDoc } from '../../../_api/fetchDoc'
 import { fetchDocs } from '../../../_api/fetchDocs'
-import { generateTeammateMetadata } from '../../../_utilities/generateMeta'
-import Image from 'next/image'
+import { CallToActionBlock } from '../../../_blocks/CallToAction'
 import { Media } from '../../../_components/Media'
-import { Media as MType } from '../../../../payload/payload-types'
-import TeammateHeader from './TeammateHeader'
+import { generateTeammateMetadata } from '../../../_utilities/generateMeta'
 import ContactAndBio from './ContactAndBio'
+import TeammateHeader from './TeammateHeader'
+
+import { Blocks } from '@/app/_components/Blocks'
 import { CommunityResourceGallery } from '@/app/customComponents/CommunityResources/CommunityResourceGallery'
-import payload from 'payload'
-import { GoogleMapPin } from '@/app/types/viewmodels'
 import { GoogleMap } from '@/app/customComponents/GoogleMap/GoogleMap'
 import { ProjectGallery } from '@/app/customComponents/Projects/ProjectGallery'
-import { Blocks } from '@/app/_components/Blocks'
-import { CallToActionBlock } from '../../../_blocks/CallToAction'
-import { Link } from 'lucide-react'
+import { GoogleMapPin } from '@/app/types/viewmodels'
 
 export const dynamic = 'force-dynamic'
 
@@ -97,7 +103,7 @@ export default async function Page({ params: { slug } }) {
           }
         />
 
-        {pins && pins.length > 0 && <GoogleMap pins={pins} fullscreen />}
+        {pins && pins.length > 0 && <GoogleMap pins={pins} fullscreen pinType="listing" />}
 
         <ProjectGallery projects={projects} />
       </div>
@@ -117,7 +123,7 @@ export async function generateStaticParams() {
     // console.log('team Members: ', teammates)
     return teammates?.map(({ slug }) => slug)
   } catch (error) {
-    console.log("(Couldn't generate teammates)", error)
+    // console.log("(Couldn't generate teammates)", error)
     return []
   }
 }
@@ -138,7 +144,7 @@ export async function generateMetadata({ params: { slug } }): Promise<Metadata> 
   return generateTeammateMetadata({ doc: teammates })
 }
 
-export async function getAgentListings(teammateId: number): Promise<GoogleMapPin[] | null> {
+async function getAgentListings(teammateId: number): Promise<GoogleMapPin[] | null> {
   let listings
   let pins: GoogleMapPin[]
   // Next, fetch listings that reference the teammate in the 'agents' field
@@ -152,7 +158,7 @@ export async function getAgentListings(teammateId: number): Promise<GoogleMapPin
       },
     })
   } catch (error) {
-    console.error('Error fetching teammate or listings:', error)
+    //console.error('Error fetching teammate or listings:', error)
   }
 
   if (listings && listings.docs) {
@@ -170,7 +176,7 @@ export async function getAgentListings(teammateId: number): Promise<GoogleMapPin
   return pins
 }
 
-export async function getAgentProjects(teammateId: number): Promise<Project[] | null> {
+async function getAgentProjects(teammateId: number): Promise<Project[] | null> {
   let projects = null
   // Next, fetch listings that reference the teammate in the 'agents' field
   try {
@@ -183,7 +189,7 @@ export async function getAgentProjects(teammateId: number): Promise<Project[] | 
       },
     })
   } catch (error) {
-    console.error('Error fetching teammate or listings:', error)
+    //console.error('Error fetching teammate or listings:', error)
   }
 
   //console.log('Projects', projects.docs)

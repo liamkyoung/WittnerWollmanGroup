@@ -6,8 +6,7 @@ import {
   PROJECT_BLOCK,
   STATS_AND_VIDEO_BLOCK,
 } from './blocks'
-import { LINK_FIELDS } from './link'
-import { IMAGE, MEDIA } from './media'
+import { IMAGE } from './media'
 import { META } from './meta'
 
 export const PROJECTS = `

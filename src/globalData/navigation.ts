@@ -1,4 +1,4 @@
-import { NavGrouping } from '../app/types/viewmodels'
+import type { NavGrouping } from '../app/types/viewmodels'
 
 const Services: NavGrouping = {
   title: 'Services',

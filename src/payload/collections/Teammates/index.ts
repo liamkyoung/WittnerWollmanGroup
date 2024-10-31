@@ -1,14 +1,11 @@
-import type { CollectionConfig, FieldHook } from 'payload/types'
+import type { CollectionConfig } from 'payload/types'
+
+import { slugField } from '../../../payload/fields/slug'
+// import { formatSocialMediaHandle } from '../../../payload/hooks/formatSocialMediaHandle'
 import { admins } from '../../access/admins'
 import { adminsOrPublished } from '../../access/adminsOrPublished'
-import formatSlug from '../../utilities/formatSlug'
-
-import { populateArchiveBlock } from '../../hooks/populateArchiveBlock'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
-
 import { revalidateTeammate } from './hooks/revalidateTeammate'
-import { formatSocialMediaHandle } from '../../../payload/hooks/formatSocialMediaHandle'
-import { slugField } from '../../../payload/fields/slug'
 
 export const Teammates: CollectionConfig = {
   slug: 'teammates',

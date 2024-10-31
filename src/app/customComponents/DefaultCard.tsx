@@ -1,10 +1,12 @@
+import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import React from 'react'
-import CardInfo from './CardInfo'
-import { CardSize } from '../types/viewmodels'
-import { Media as MType } from '@/payload/payload-types'
+
 import { Media } from '../_components/Media'
+import { CardSize } from '../types/viewmodels'
+import CardInfo from './CardInfo'
+
+import { Media as MType } from '@/payload/payload-types'
 
 type Props = {
   size?: CardSize

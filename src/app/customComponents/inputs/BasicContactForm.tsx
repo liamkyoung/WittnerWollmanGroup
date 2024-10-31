@@ -1,9 +1,9 @@
 'use client'
 
-import { zodResolver } from '@hookform/resolvers/zod'
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
-import Spinner from '../Icons/Spinner'
 
 import {
   Form,
@@ -12,12 +12,13 @@ import {
   FormField,
   FormItem,
   FormMessage,
-} from '@/components/ui/form'
-import { Input } from '@/components/ui/input'
+} from '../../../components/ui/form'
+import { Input } from '../../../components/ui/input'
 import { ColorScheme } from '../../types/viewmodels'
-import { useState } from 'react'
-import { useToast } from '@/hooks/use-toast'
+import Spinner from '../Icons/Spinner'
 import { CalendarInput } from './CalendarInput'
+
+import { useToast } from '@/hooks/use-toast'
 
 const formSchema = z.object({
   firstName: z
@@ -74,7 +75,7 @@ export function BasicContactForm({ address, colorScheme = ColorScheme.DEFAULT }:
   async function onSubmit(values: z.infer<typeof formSchema>) {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
-    console.log('VALUES: ', values)
+    // console.log('VALUES: ', values)
     setSending(true)
     try {
       const response = await fetch('/api/sendListingEmail', {
@@ -97,7 +98,7 @@ export function BasicContactForm({ address, colorScheme = ColorScheme.DEFAULT }:
         })
       }
     } catch (err) {
-      console.error('Error submitting form:', err)
+      // console.error('Error submitting form:', err)
       toast({
         title: '❌ There was an error sending your message',
         description: 'Please try again later.',

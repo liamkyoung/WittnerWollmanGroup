@@ -1,12 +1,14 @@
-import React, { useState, useCallback } from 'react'
-import { AdvancedMarker, useAdvancedMarkerRef, InfoWindow } from '@vis.gl/react-google-maps'
-import { MapCoords } from '@/app/types/viewmodels'
+import React, { useCallback, useState } from 'react'
+import { AdvancedMarker, InfoWindow, useAdvancedMarkerRef } from '@vis.gl/react-google-maps'
 import Link from 'next/link'
-import { Media } from '@/app/_components/Media'
-import { Media as MediaType } from '@/payload/payload-types'
+
 import CardInfo from '../CardInfo'
 import DefaultCard from '../DefaultCard'
+
+import { Media } from '@/app/_components/Media'
 import { formatDollarAmount } from '@/app/_utilities/formatDollarAmount'
+import { MapCoords } from '@/app/types/viewmodels'
+import { Media as MediaType } from '@/payload/payload-types'
 
 type Props = {
   position: MapCoords
@@ -25,7 +27,7 @@ export const MarkerWithInfo = ({
   image,
   address,
   price,
-  pinType = 'listing',
+  pinType,
 }: Props) => {
   // `markerRef` and `marker` are needed to establish the connection between
   // the marker and infowindow (if you're using the Marker component, you

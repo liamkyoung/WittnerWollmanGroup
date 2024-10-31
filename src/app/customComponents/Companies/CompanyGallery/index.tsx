@@ -1,11 +1,13 @@
 'use client'
 import React, { useEffect, useRef } from 'react'
 import Image from 'next/image'
+
 import Logo from '../../../assets/branding/logo.svg'
+import { CompanyComponent } from '../CompanyComponent'
+
+import './style.css'
 // import anime from 'animejs/lib/anime.es.js'
 import { Company } from '@/payload/payload-types'
-import { CompanyComponent } from '../CompanyComponent'
-import './style.css'
 
 type Props = {
   companies: Company[]
@@ -33,8 +35,8 @@ export const CompanyGallery = ({ companies }: Props) => {
         // add aria-hidden to it
         // add it into the `.scroller-inner`
         scrollerContent.forEach(item => {
-          const duplicatedItem = item.cloneNode(true)
-          duplicatedItem.setAttribute('aria-hidden', true)
+          const duplicatedItem = item.cloneNode(true) as Element
+          duplicatedItem.setAttribute('aria-hidden', 'true')
           scrollerInner.appendChild(duplicatedItem)
         })
       })

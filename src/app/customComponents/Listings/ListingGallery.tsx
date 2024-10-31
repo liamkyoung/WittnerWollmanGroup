@@ -1,9 +1,10 @@
-import { Listing, Media } from '@/payload/payload-types'
 import React from 'react'
-import { ListingCard } from './index'
-import { GoogleMap } from '../GoogleMap/GoogleMap'
-import { GoogleMapPin } from '@/app/types/viewmodels'
 import Link from 'next/link'
+
+import { GoogleMapPin } from '../../../app/types/viewmodels'
+import { Listing, Media } from '../../../payload/payload-types'
+import { GoogleMap } from '../GoogleMap/GoogleMap'
+import { ListingCard } from './index'
 
 type Props = {
   listings: Listing[]
@@ -39,7 +40,7 @@ export const ListingGallery = ({ listings, displayHeader }: Props) => {
           ))}
         </div>
         <div className="">
-          <GoogleMap pins={pins} />
+          <GoogleMap pins={pins} pinType="listing" />
         </div>
       </div>
     </div>

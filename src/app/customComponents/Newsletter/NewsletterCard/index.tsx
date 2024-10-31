@@ -1,4 +1,5 @@
 import React from 'react'
+
 import { NewsletterForm } from '../../inputs/NewsletterForm'
 
 type Props = {}

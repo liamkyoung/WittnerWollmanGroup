@@ -1,5 +1,6 @@
 import { InvolvementGroupCard } from '../InvolvementGroupCard'
-import { InvolvementEvent, InvolvementGroup } from '@/payload/payload-types'
+
+import { InvolvementGroup } from '@/payload/payload-types'
 
 type Props = {
   groups: InvolvementGroup[]

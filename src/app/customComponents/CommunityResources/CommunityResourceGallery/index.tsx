@@ -1,8 +1,9 @@
 'use client'
-import { Category, CommunityResource } from '@/payload/payload-types'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+
 import { CommunityResourceCard } from '../CommunityResourceCard'
-import { useState, useEffect } from 'react'
+
+import { Category, CommunityResource } from '@/payload/payload-types'
 
 type Props = {
   communityResources: CommunityResource[]

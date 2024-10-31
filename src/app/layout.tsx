@@ -1,21 +1,18 @@
 import React from 'react'
 import { Metadata } from 'next'
+import { Montserrat } from 'next/font/google'
 
 import { AdminBar } from './_components/AdminBar'
+import { Providers } from './_providers'
+import { mergeOpenGraph } from './_utilities/mergeOpenGraph'
+import Footer from './customComponents/Footer'
 // import { Footer } from './_components/Footer'
 // import { Header } from './_components/Header' Payload Header
 import Header from './customComponents/Header'
-import Footer from './customComponents/Footer'
-import { Providers } from './_providers'
-import { InitTheme } from './_providers/Theme/InitTheme'
-import { mergeOpenGraph } from './_utilities/mergeOpenGraph'
 
 import './_css/app.scss'
-
-import { Montserrat } from 'next/font/google'
-import { CompanyGallery } from './customComponents/Companies/CompanyGallery'
 const montserrat = Montserrat({ subsets: ['latin'] })
-import { Toaster } from '@/components/ui/toaster'
+import { Toaster } from '../components/ui/toaster'
 import NewsletterPopup from './customComponents/Newsletter/NewsletterPopup'
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {

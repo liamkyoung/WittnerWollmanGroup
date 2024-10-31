@@ -1,27 +1,25 @@
 'use client'
 import React from 'react'
-import { createRoot } from 'react-dom/client'
-import { APIProvider, Map, Marker } from '@vis.gl/react-google-maps'
-import { GoogleMapsDefaults } from '@/globalData/general'
-import { GoogleMapPin, MapCoords } from '@/app/types/viewmodels'
-import { Listing, Media } from '@/payload/payload-types'
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from '@/components/ui/dialog'
+import { APIProvider, Map } from '@vis.gl/react-google-maps'
+
 import { MarkerWithInfo } from './MarkerWithInfo'
+
+import { GoogleMapPin } from '@/app/types/viewmodels'
+import { GoogleMapsDefaults } from '@/globalData/general'
 
 export type Props = {
   pins?: GoogleMapPin[]
   fullscreen?: Boolean
   zoom?: 'close' | 'default' | 'far'
+  pinType?: 'listing' | 'project'
 }
 
-export const GoogleMap = ({ pins, fullscreen = false, zoom = 'default' }: Props) => {
+export const GoogleMap = ({
+  pins,
+  fullscreen = false,
+  zoom = 'default',
+  pinType = 'listing',
+}: Props) => {
   const GOOGLE_MAP_API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_KEY
   const widthValue = !fullscreen ? '100%' : '100vw'
   const heightValue = !fullscreen ? '44rem' : '500px'
@@ -51,6 +49,7 @@ export const GoogleMap = ({ pins, fullscreen = false, zoom = 'default' }: Props)
                 image={p.coverImg}
                 address={p.address}
                 price={p.price}
+                pinType={pinType}
                 key={i}
               />
             ))}

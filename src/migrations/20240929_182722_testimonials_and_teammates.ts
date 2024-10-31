@@ -1,8 +1,8 @@
-import { MigrateUpArgs, MigrateDownArgs } from '@payloadcms/db-postgres'
+import type { MigrateDownArgs, MigrateUpArgs } from '@payloadcms/db-postgres'
 import { sql } from 'drizzle-orm'
 
 export async function up({ payload }: MigrateUpArgs): Promise<void> {
-await payload.db.drizzle.execute(sql`
+  await payload.db.drizzle.execute(sql`
 
 DO $$ BEGIN
  CREATE TYPE "enum_teammates_strengths" AS ENUM('Residential Real Estate', 'Commercial Real Estate');
@@ -263,12 +263,11 @@ DO $$ BEGIN
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
-`);
-
-};
+`)
+}
 
 export async function down({ payload }: MigrateDownArgs): Promise<void> {
-await payload.db.drizzle.execute(sql`
+  await payload.db.drizzle.execute(sql`
 
 DO $$ BEGIN
  CREATE TYPE "enum_team_member_strengths" AS ENUM('Residential Real Estate', 'Commercial Real Estate');
@@ -357,6 +356,5 @@ DO $$ BEGIN
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
-`);
-
-};
+`)
+}

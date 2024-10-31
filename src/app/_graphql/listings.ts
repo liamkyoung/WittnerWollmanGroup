@@ -1,13 +1,12 @@
-import { COVERIMAGE, IMAGE } from './media'
 import {
   ARCHIVE_BLOCK,
-  CALL_TO_ACTION,
   CONTENT,
   MEDIA_BLOCK,
   PROJECT_BLOCK,
   STAT_BLOCK,
   STATS_AND_VIDEO_BLOCK,
 } from './blocks'
+import { COVERIMAGE, IMAGE } from './media'
 import { LISTING_AGENT } from './teammates'
 
 export const LISTINGS = `

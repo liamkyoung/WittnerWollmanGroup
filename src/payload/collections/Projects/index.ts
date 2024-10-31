@@ -1,24 +1,21 @@
+import type { RowLabelArgs } from 'payload/dist/admin/components/forms/RowLabel/types'
 import type { CollectionConfig } from 'payload/types'
-import { RowLabelArgs } from 'payload/dist/admin/components/forms/RowLabel/types'
 
+import { formatSocialMediaHandle } from '../../../payload/hooks/formatSocialMediaHandle'
 import { admins } from '../../access/admins'
 import { adminsOrPublished } from '../../access/adminsOrPublished'
 import { Archive } from '../../blocks/ArchiveBlock'
 import { CallToAction } from '../../blocks/CallToAction'
-import { hero } from '../../fields/hero'
+import { Content } from '../../blocks/Content'
+import { MediaBlock } from '../../blocks/MediaBlock'
+import { ProjectBlock } from '../../blocks/ProjectBlock'
+import { StatBlock } from '../../blocks/StatBlock'
+import { StatsAndVideoBlock } from '../../blocks/StatsAndVideoBlock'
+import AdminAddressSearch from '../../customComponents/AdminAddressSearch'
 import { slugField } from '../../fields/slug'
 import { populateArchiveBlock } from '../../hooks/populateArchiveBlock'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
 import { revalidateProject } from './hooks/revalidateProject'
-
-import { formatSocialMediaHandle } from '../../../payload/hooks/formatSocialMediaHandle'
-import { ProjectBlock } from '../../blocks/ProjectBlock'
-import { StatsAndVideoBlock } from '../../blocks/StatsAndVideoBlock'
-import { StatBlock } from '../../blocks/StatBlock'
-import { Content } from '../../blocks/Content'
-import { MediaBlock } from '../../blocks/MediaBlock'
-
-import AdminAddressSearch from '../../customComponents/AdminAddressSearch'
 
 export const Projects: CollectionConfig = {
   slug: 'projects',

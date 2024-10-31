@@ -1,6 +1,5 @@
 import type { Block } from 'payload/types'
 
-import { invertBackground } from '../../fields/invertBackground'
 import richText from '../../fields/richText'
 
 export const ContentAndStatsBlock: Block = {

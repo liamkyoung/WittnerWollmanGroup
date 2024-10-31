@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import { Listing } from '../../../payload/payload-types'
+import { Listing, Media as MediaType } from '../../../payload/payload-types'
 import { Media } from '../../_components/Media'
 import CardInfo from '../CardInfo'
 
@@ -25,7 +25,7 @@ export const ListingCard: React.FC<{
       <Link href={href}>
         {!coverImage && <div className={``}>No image</div>}
         {coverImage && typeof coverImage !== 'string' && (
-          <Media imgClassName={`mx-auto`} resource={coverImage} />
+          <Media imgClassName={`mx-auto`} resource={coverImage as MediaType} />
         )}
       </Link>
       <div>

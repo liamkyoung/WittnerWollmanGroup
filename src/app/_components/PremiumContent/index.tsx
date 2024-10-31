@@ -1,6 +1,5 @@
 'use client'
-
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 
 import { Page } from '../../../payload/payload-types'
@@ -19,10 +18,10 @@ export const PremiumContent: React.FC<{
   const { postSlug, disableTopPadding } = props
   const { user } = useAuth()
 
-  const [isLoading, setIsLoading] = React.useState(false)
-  const [blocks, setBlocks] = React.useState<Page['layout']>()
-  const hasInitialized = React.useRef(false)
-  const isRequesting = React.useRef(false)
+  const [isLoading, setIsLoading] = useState(false)
+  const [blocks, setBlocks] = useState<Page['layout']>()
+  const hasInitialized = useRef(false)
+  const isRequesting = useRef(false)
 
   useEffect(() => {
     if (!user || hasInitialized.current || isRequesting.current) return

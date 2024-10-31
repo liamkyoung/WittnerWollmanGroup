@@ -1,16 +1,15 @@
 import React from 'react'
 import Image, { StaticImageData } from 'next/image'
-
-import { Media as MType, Page } from '../../../payload/payload-types'
-import { Gutter } from '../../_components/Gutter'
-import RichText from '../../_components/RichText'
-import { Media } from '../../_components/Media'
-
-import { FactsList } from '../../../payload/payload-types'
-import classes from './index.module.scss'
 import Link from 'next/link'
-import { YoutubeVideo } from '../../customComponents/YoutubeVideo'
+
+import { FactsList, Media as MType, Page } from '../../../payload/payload-types'
+import { Gutter } from '../../_components/Gutter'
+import { Media } from '../../_components/Media'
+import RichText from '../../_components/RichText'
 import { Stat } from '../../customComponents/Stat'
+import { YoutubeVideo } from '../../customComponents/YoutubeVideo'
+
+import classes from './index.module.scss'
 
 export type StatBlockProps = Extract<Page['layout'][0], { blockType: 'statBlock' }> & {
   staticImage?: StaticImageData

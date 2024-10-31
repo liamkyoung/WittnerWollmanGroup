@@ -22,12 +22,12 @@ export const ArchiveBlock: React.FC<
     populatedDocsTotal,
     selectedDocs,
     categories,
-    archiveBgColor,
+    bgColor,
     displayHeader,
   } = props
 
   // console.log('props: ', props)
-  const color = archiveBgColor === 'red' ? 'bg-wwRed' : 'bg-gray-50'
+  const color = bgColor === 'red' ? 'bg-wwRed' : 'bg-gray-50'
 
   return (
     <div id={`block-${id}`} className={`${classes.archiveBlock} ${color}`}>

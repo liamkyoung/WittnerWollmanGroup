@@ -1,14 +1,13 @@
 import React from 'react'
 import { StaticImageData } from 'next/image'
+import Link from 'next/link'
 
-import { Media as MType, Page } from '../../../payload/payload-types'
+import { FactsList, Media as MType, Page } from '../../../payload/payload-types'
 import { Gutter } from '../../_components/Gutter'
 import RichText from '../../_components/RichText'
-
-import { FactsList } from '../../../payload/payload-types'
-import classes from './index.module.scss'
-import Link from 'next/link'
 import { GoogleMap } from '../../customComponents/GoogleMap/GoogleMap'
+
+import classes from './index.module.scss'
 
 // import { ColorScheme } from '@/app/types/viewmodels'
 
@@ -24,11 +23,8 @@ export type FactStat = {
 }
 
 export const GoogleMapsBlock: React.FC<GoogleMapsBlockProps> = props => {
-  const { title } = props
-
   return (
     <div>
-      {title}
       <GoogleMap fullscreen />
     </div>
   )

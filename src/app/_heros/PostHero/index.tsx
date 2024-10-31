@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import Link from 'next/link'
 
-import { Post } from '../../../payload/payload-types'
+import { Media as MediaType, Post } from '../../../payload/payload-types'
 import { Gutter } from '../../_components/Gutter'
 import { Media } from '../../_components/Media'
 import RichText from '../../_components/RichText'
@@ -15,37 +15,17 @@ export const PostHero: React.FC<{
   const {
     id,
     title,
-    categories,
     meta: { image: metaImage, description } = {},
     publishedAt,
     populatedAuthors,
   } = post
 
+  const img: MediaType = metaImage as MediaType
+
   return (
     <Fragment>
       <Gutter className={classes.postHero}>
         <div className={classes.content}>
-          <div className={classes.leader}>
-            <div className={classes.categories}>
-              {categories?.map((category, index) => {
-                if (typeof category === 'object' && category !== null) {
-                  const { title: categoryTitle } = category
-
-                  const titleToUse = categoryTitle || 'Untitled category'
-
-                  const isLast = index === categories.length - 1
-
-                  return (
-                    <Fragment key={index}>
-                      {titleToUse}
-                      {!isLast && <Fragment>, &nbsp;</Fragment>}
-                    </Fragment>
-                  )
-                }
-                return null
-              })}
-            </div>
-          </div>
           <h1 className={classes.title}>{title}</h1>
           <p className={classes.meta}>
             {populatedAuthors && (
@@ -89,11 +69,11 @@ export const PostHero: React.FC<{
           <div className={classes.mediaWrapper}>
             {!metaImage && <div className={classes.placeholder}>No image</div>}
             {metaImage && typeof metaImage !== 'string' && (
-              <Media imgClassName={classes.image} resource={metaImage} fill />
+              <Media imgClassName={classes.image} resource={metaImage as MediaType} fill />
             )}
           </div>
-          {metaImage && typeof metaImage !== 'string' && metaImage?.caption && (
-            <RichText content={metaImage.caption} className={classes.caption} />
+          {img && typeof metaImage !== 'string' && img?.caption && (
+            <RichText content={img.caption} className={classes.caption} />
           )}
         </div>
       </Gutter>

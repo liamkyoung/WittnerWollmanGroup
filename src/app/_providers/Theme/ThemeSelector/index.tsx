@@ -1,18 +1,17 @@
 'use client'
 
-import React from 'react'
+import React, { useRef, useState } from 'react'
 
 import { Chevron } from '../../../_components/Chevron'
 import { useTheme } from '..'
-import { getImplicitPreference } from '../shared'
 import { Theme, themeLocalStorageKey } from './types'
 
 import classes from './index.module.scss'
 
 export const ThemeSelector: React.FC = () => {
-  const selectRef = React.useRef<HTMLSelectElement>(null)
+  const selectRef = useRef<HTMLSelectElement>(null)
   const { setTheme } = useTheme()
-  const [show, setShow] = React.useState(false)
+  const [show, setShow] = useState(false)
 
   const onThemeChange = (themeToSet: Theme & 'auto') => {
     if (themeToSet === 'auto') {

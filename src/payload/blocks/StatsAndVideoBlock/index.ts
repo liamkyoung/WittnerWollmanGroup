@@ -1,7 +1,5 @@
 import type { Block } from 'payload/types'
 
-import { invertBackground } from '../../fields/invertBackground'
-
 export const StatsAndVideoBlock: Block = {
   slug: 'statsAndVideoBlock',
   fields: [

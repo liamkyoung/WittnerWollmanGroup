@@ -1,9 +1,8 @@
 import React, { Fragment } from 'react'
 import Image from 'next/image'
 
-import { Company } from '../../../../payload/payload-types'
+import { Company, Media as MType } from '../../../../payload/payload-types'
 import { Media } from '../../../_components/Media'
-import { Media as MType } from '../../../../payload/payload-types'
 
 export const CompanyComponent: React.FC<{
   alignItems?: 'center'

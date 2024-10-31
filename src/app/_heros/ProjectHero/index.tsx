@@ -1,14 +1,15 @@
 'use client'
 import React, { Fragment, useEffect, useState } from 'react'
-import Link from 'next/link'
-import { DefaultSocials } from '../../../globalData/general'
 import Image from 'next/image'
+import Link from 'next/link'
 
-import { Media as MediaType, Page, Project } from '../../../payload/payload-types'
 import RichText from '../../../app/_components/RichText'
+import { DefaultSocials } from '../../../globalData/general'
+import { Media as MediaType, Page, Project } from '../../../payload/payload-types'
 import { Media } from '../../_components/Media'
-import { GoogleMap } from '@/app/customComponents/GoogleMap/GoogleMap'
+
 import { fetchDocs } from '@/app/_api/fetchDocs'
+import { GoogleMap } from '@/app/customComponents/GoogleMap/GoogleMap'
 import { GoogleMapPin } from '@/app/types/viewmodels'
 
 async function getProjectPins() {
@@ -31,7 +32,7 @@ export const ProjectHero: React.FC<Page['hero']> = ({ richText, media, links, he
       setPins(data)
     }
 
-    fetchData().catch(console.error)
+    fetchData().catch(console.error) // eslint-disable-line no-console
   }, [])
 
   return (
@@ -72,7 +73,7 @@ export const ProjectHero: React.FC<Page['hero']> = ({ richText, media, links, he
         </div>
       </div>
 
-      <GoogleMap pins={pins} />
+      <GoogleMap pins={pins} pinType="project" />
     </div>
   )
 }

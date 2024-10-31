@@ -1,14 +1,13 @@
 import React, { Fragment } from 'react'
-import Link from 'next/link'
-import { DefaultSocials } from '@/globalData/general'
-import ImageSrc from '../../../../media/mangosteen-2.png'
 import Image from 'next/image'
+import Link from 'next/link'
 
-import { Page } from '../../../payload/payload-types'
-import RichText from '@/app/_components/RichText'
+import ImageSrc from '../../../../media/mangosteen-2.png'
+import { Media as MType, Page } from '../../../payload/payload-types'
 
 import { Media } from '@/app/_components/Media'
-import { Media as MType } from '../../../payload/payload-types'
+import RichText from '@/app/_components/RichText'
+import { DefaultSocials } from '@/globalData/general'
 
 export const DefaultHero: React.FC<Page['hero']> = ({ richText, media, links, headerText }) => {
   return (

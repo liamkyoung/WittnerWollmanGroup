@@ -1,12 +1,10 @@
-import React from 'react'
-import { ColorScheme } from '../../types/viewmodels'
-import Image from 'next/image'
-import ImageSrc from '../../../../media/reflection_mockup.png'
-import ProjectStat from '../../customComponents/Projects/ProjectStat'
 import Link from 'next/link'
-import { Media as MType } from '@/payload/payload-types'
+
+import ProjectStat from '../../customComponents/Projects/ProjectStat'
+import { ColorScheme, FactStat } from '../../types/viewmodels'
+
 import { Media } from '@/app/_components/Media'
-import { FactStat } from '.'
+import { Media as MType } from '@/payload/payload-types'
 
 type Props = {
   colorScheme?: ColorScheme

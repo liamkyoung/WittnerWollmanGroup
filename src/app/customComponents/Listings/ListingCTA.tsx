@@ -1,11 +1,11 @@
 'use client'
 
-import React from 'react'
-import { CalendarInput } from '../inputs/CalendarInput'
+import React, { useState } from 'react'
+
+import { Media } from '../../../app/_components/Media'
+import { ColorScheme } from '../../../app/types/viewmodels'
+import { Media as MType, Teammate } from '../../../payload/payload-types'
 import { BasicContactForm } from '../inputs/BasicContactForm'
-import { ColorScheme } from '@/app/types/viewmodels'
-import { Media } from '@/app/_components/Media'
-import { Media as MType, Teammate } from '@/payload/payload-types'
 
 type Props = {
   agent: Teammate
@@ -13,7 +13,7 @@ type Props = {
 }
 
 function ListingCTA({ address, agent }: Props) {
-  const [date, setDate] = React.useState<Date | undefined>(new Date())
+  const [date, setDate] = useState<Date | undefined>(new Date())
 
   return (
     <div className="bg-wwRed relative py-8">
@@ -23,8 +23,7 @@ function ListingCTA({ address, agent }: Props) {
             <span className="text-wwYellow">Schedule A Tour</span> With {agent.title}
           </h2>
           <div className="flex gap-16 items-center">
-            <BasicContactForm colorScheme={ColorScheme.WHITE} date={date} address={address} />
-            {/* <CalendarInput date={date} setDate={setDate} /> */}
+            <BasicContactForm colorScheme={ColorScheme.WHITE} address={address} />
           </div>
         </div>
         <Media

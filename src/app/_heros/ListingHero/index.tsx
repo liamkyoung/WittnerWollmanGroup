@@ -1,20 +1,21 @@
 import React from 'react'
 import Link from 'next/link'
+
 import { formatDollarAmount } from '@/app/_utilities/formatDollarAmount'
 
-type Props = {
+export type ListingHeroProps = {
   streetAddress: string
   city: string
   state: string
   zipCode: string
-  sqFt: string
-  propertyType: string
+  sqFt: number
+  propertyType: ('shoppingCenter' | 'bizOpportunity' | 'multiFamily' | 'office' | 'mixedUse')[]
   price: number
 }
 
 //import { Page } from '../../../payload/payload-types'
 
-export const ListingHero: React.FC = ({
+export const ListingHero: React.FC<ListingHeroProps> = ({
   streetAddress,
   city,
   state,
@@ -22,7 +23,7 @@ export const ListingHero: React.FC = ({
   sqFt,
   propertyType,
   price,
-}: Props) => {
+}) => {
   return (
     <div className="flex flex-col lg:flex-row gap-8 lg:gap-0 justify-between items-center">
       <div className="space-y-4">

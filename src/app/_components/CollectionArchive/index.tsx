@@ -4,48 +4,33 @@ import React, { Fragment, useCallback, useEffect, useRef, useState } from 'react
 import qs from 'qs'
 
 import type {
+  CommunityResource,
+  Company,
+  InvolvementEvent,
+  InvolvementGroup,
+  Listing,
   Post,
   Project,
-  Listing,
-  Teammate,
-  InvolvementGroup,
-  InvolvementEvent,
-  Testimonial,
-  Company,
   Service,
-  CommunityResource,
+  Teammate,
+  Testimonial,
 } from '../../../payload/payload-types'
 import type { ArchiveBlockProps } from '../../_blocks/ArchiveBlock/types'
-import { Card } from '../Card'
 import { Gutter } from '../Gutter'
-import { PageRange } from '../PageRange'
 import { Pagination } from '../Pagination'
 
-import { CompanyComponent } from '@/app/customComponents/Companies/CompanyComponent'
-import { CommunityResourceCard } from '@/app/customComponents/CommunityResources/CommunityResourceCard'
 import { CommunityResourceGallery } from '@/app/customComponents/CommunityResources/CommunityResourceGallery'
-import { ServiceCard } from '@/app/customComponents/Services/ServiceCard'
-import { TestimonialCard } from '@/app/customComponents/Testimonials/TestimonialCard'
-import { InvolvementEventCard } from '@/app/customComponents/Involvement/InvolvementEvents/InvolvementEventCard'
+import { CompanyGallery } from '@/app/customComponents/Companies/CompanyGallery'
 import { InvolvementEventGallery } from '@/app/customComponents/Involvement/InvolvementEvents/InvolvementEventGallery'
-
-import { InvolvementGroupCard } from '@/app/customComponents/Involvement/InvolvementGroups/InvolvementGroupCard'
 import { InvolvementGroupGallery } from '@/app/customComponents/Involvement/InvolvementGroups/InvolvementGroupGallery'
-
-import { TeammateCard } from '@/app/customComponents/Teammates/TeammateCard'
-import { ListingCard } from '@/app/customComponents/Listings'
+import { ListingGallery } from '@/app/customComponents/Listings/ListingGallery'
 import { NewsGallery } from '@/app/customComponents/News/NewsGallery'
+import { ProjectGallery } from '@/app/customComponents/Projects/ProjectGallery'
+import { ServiceGallery } from '@/app/customComponents/Services/ServiceGallery'
+import { TeammateGallery } from '@/app/customComponents/Teammates/TeammateGallery'
+import TestimonialGallery from '@/app/customComponents/Testimonials/TestimonialGallery'
 
 import classes from './index.module.scss'
-import { NewsCard } from '@/app/customComponents/News/NewsCard'
-import { ProjectGallery } from '@/app/customComponents/Projects/ProjectGallery'
-import DefaultCard from '@/app/customComponents/DefaultCard'
-import TestimonialGallery from '@/app/customComponents/Testimonials/TestimonialGallery'
-import { ListingGallery } from '@/app/customComponents/Listings/ListingGallery'
-import { TeammateGallery } from '@/app/customComponents/Teammates/TeammateGallery'
-import { CompanyGallery } from '@/app/customComponents/Companies/CompanyGallery'
-import { ServiceGallery } from '@/app/customComponents/Services/ServiceGallery'
-import { randomInt } from 'crypto'
 
 type Result = {
   docs: (
@@ -60,6 +45,7 @@ type Result = {
     | Service
     | CommunityResource
     | string
+    | number
   )[]
   hasNextPage: boolean
   hasPrevPage: boolean

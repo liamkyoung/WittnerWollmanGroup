@@ -1,8 +1,7 @@
-import type { NextApiRequest, NextApiResponse } from 'next'
-import { EmailTemplate } from '../../app/emailTemplates/basicEmail'
-import { Resend } from 'resend'
 import type { PayloadHandler } from 'payload/config'
-import { ContactEmailProps } from '@/app/customComponents/inputs/ContactForm'
+import { Resend } from 'resend'
+
+import { EmailTemplate } from '../../app/emailTemplates/basicEmail'
 import { DefaultSocials } from '../../globalData/general'
 
 const resend = new Resend(process.env.PAYLOAD_PUBLIC_RESEND_API_KEY)

@@ -1,25 +1,15 @@
 'use client'
 
-import { zodResolver } from '@hookform/resolvers/zod'
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/components/ui/form'
-import { Input } from '@/components/ui/input'
-import { Textarea } from '@/components/ui/textarea'
-import { ColorScheme } from '../../types/viewmodels'
-import { useToast } from '@/hooks/use-toast'
-import { useState } from 'react'
+import { setCookie } from '../../../app/_utilities/cookies'
+import { Form, FormControl, FormField, FormItem, FormMessage } from '../../../components/ui/form'
+import { Input } from '../../../components/ui/input'
+import { useToast } from '../../../hooks/use-toast'
 import Spinner from '../Icons/Spinner'
-import { setCookie } from '@/app/_utilities/cookies'
 
 const formSchema = z.object({
   email: z.string().email('Invalid email address'),
@@ -67,7 +57,7 @@ export function NewsletterForm() {
         })
       }
     } catch (err) {
-      console.error('Error submitting form:', err)
+      // console.error('Error submitting form:', err)
       toast({
         title: '❌ There was an error signing up for the newsletter.',
         description: 'Please try again later.',

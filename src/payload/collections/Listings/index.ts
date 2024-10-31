@@ -1,23 +1,18 @@
-import type { CollectionConfig, FieldHook } from 'payload/types'
-import { populateArchiveBlock } from '../../hooks/populateArchiveBlock'
-import { populatePublishedAt } from '../../hooks/populatePublishedAt'
+import type { CollectionConfig } from 'payload/types'
 
+import { slugField } from '../../../payload/fields/slug'
 import { admins } from '../../access/admins'
 import { adminsOrPublished } from '../../access/adminsOrPublished'
-
-// import AdminAddressSearch from '../../../components/custom/GoogleMap/AdminAddressSearch'
-import { revalidateListing } from './hooks/revalidateListing'
-import AdminAddressSearch from '../../customComponents/AdminAddressSearch'
-
 import { Archive } from '../../blocks/ArchiveBlock'
-import formatSlug from '../../../payload/utilities/formatSlug'
-
-import { ProjectBlock } from '../../blocks/ProjectBlock'
-import { StatsAndVideoBlock } from '../../blocks/StatsAndVideoBlock'
-import { StatBlock } from '../../blocks/StatBlock'
 import { Content } from '../../blocks/Content'
 import { MediaBlock } from '../../blocks/MediaBlock'
-import { slugField } from '../../../payload/fields/slug'
+import { ProjectBlock } from '../../blocks/ProjectBlock'
+import { StatBlock } from '../../blocks/StatBlock'
+import { StatsAndVideoBlock } from '../../blocks/StatsAndVideoBlock'
+import AdminAddressSearch from '../../customComponents/AdminAddressSearch'
+import { populatePublishedAt } from '../../hooks/populatePublishedAt'
+// import AdminAddressSearch from '../../../components/custom/GoogleMap/AdminAddressSearch'
+import { revalidateListing } from './hooks/revalidateListing'
 
 export const Listings: CollectionConfig = {
   slug: 'listings',

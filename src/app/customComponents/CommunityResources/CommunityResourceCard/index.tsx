@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import { CommunityResource } from '../../../../payload/payload-types'
+import { CommunityResource, Media as MediaType } from '../../../../payload/payload-types'
 import { Media } from '../../../_components/Media'
 import CardInfo from '../../CardInfo'
 
@@ -24,7 +24,7 @@ export const CommunityResourceCard: React.FC<{
         <CardInfo address={address} />
       </div>
 
-      <Media imgClassName={`w-full h-full`} resource={image} />
+      <Media imgClassName={`w-full h-full`} resource={image as MediaType} />
       <p className="border-l-4 border-wwRed pl-2">{sanitizedDescription}</p>
     </div>
   )

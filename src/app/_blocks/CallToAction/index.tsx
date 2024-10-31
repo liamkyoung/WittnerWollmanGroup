@@ -1,22 +1,7 @@
 import React from 'react'
-import Image from 'next/image'
 import Link from 'next/link'
 
-import AgentImg from '../../../../media/agent_cta.png'
-import FullBodyImg from '../../../../media/fullbody_transparent.png'
-import { Media, Page } from '../../../payload/payload-types'
-import { Gutter } from '../../_components/Gutter'
-import { CMSLink } from '../../_components/Link'
-import RichText from '../../_components/RichText'
-import { VerticalPadding } from '../../_components/VerticalPadding'
-import { BasicContactForm } from '../../customComponents/inputs/BasicContactForm'
-import { CalendarInput } from '../../customComponents/inputs/CalendarInput'
-import { ContactForm } from '../../customComponents/inputs/ContactForm'
-
-import { Media as MType } from '@/app/_components/Media'
-import { ColorScheme } from '@/app/types/viewmodels'
-
-import classes from './index.module.scss'
+import { Page } from '../../../payload/payload-types'
 
 type Props = Extract<Page['layout'][0], { blockType: 'cta' }>
 
@@ -80,7 +65,8 @@ export const CallToActionBlock: React.FC<
               </div>
             </div>
             <div className="hidden lg:block">
-              <Image src={AgentImg} alt="agent" className="absolute -bottom-16 -right-16 z-50" />
+              <div className="absolute -bottom-16 -right-16 z-50 size-64 bg-wwRed"></div>
+              {/* <Image src={AgentImg} alt="agent"  /> */}
             </div>
           </div>
         </div>

@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import ImageSrc from '../../../../media/mangosteen-2.png'
+// import ImageSrc from '../../../../media/mangosteen-2.png'
 import { Media as MType, Page } from '../../../payload/payload-types'
 
 import { Media } from '@/app/_components/Media'
@@ -48,7 +48,7 @@ export const DefaultHero: React.FC<Page['hero']> = ({ richText, media, links, he
       <div>
         {/* Backup Image === The Hero Image for the Default Hero. */}
         {!media ? (
-          <Image src={ImageSrc} alt="service-img" className="my-12 lg:my-0" />
+          <div className="w-full h-full bg-wwRed text-wwRed">.</div>
         ) : (
           <Media
             resource={media as MType}

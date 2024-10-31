@@ -2,7 +2,7 @@ import { MigrateUpArgs, MigrateDownArgs } from '@payloadcms/db-postgres'
 import { sql } from 'drizzle-orm'
 
 export async function up({ payload }: MigrateUpArgs): Promise<void> {
-await payload.db.drizzle.execute(sql`
+  await payload.db.drizzle.execute(sql`
 
 DO $$ BEGIN
  CREATE TYPE "enum_pages_hero_type" AS ENUM('none', 'highImpact', 'mediumImpact', 'lowImpact', 'default', 'fullscreen', 'projectHero');
@@ -5655,12 +5655,11 @@ DO $$ BEGIN
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
-`);
-
-};
+`)
+}
 
 export async function down({ payload }: MigrateDownArgs): Promise<void> {
-await payload.db.drizzle.execute(sql`
+  await payload.db.drizzle.execute(sql`
 
 DROP TABLE "pages_hero_links";
 DROP TABLE "pages_blocks_cta";
@@ -5850,6 +5849,5 @@ DROP TABLE "header";
 DROP TABLE "header_rels";
 DROP TABLE "footer_nav_items";
 DROP TABLE "footer";
-DROP TABLE "footer_rels";`);
-
-};
+DROP TABLE "footer_rels";`)
+}

@@ -5,7 +5,7 @@ module.exports = {
     '**/payload-types.ts',
     '**/src/components/ui/*',
     '**/src/hooks/use-toast.ts',
-    '**/src/app/migrations/*',
+    '**/src/migrations/*',
   ],
   plugins: ['prettier'],
   settings: {

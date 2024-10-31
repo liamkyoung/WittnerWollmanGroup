@@ -1,7 +1,12 @@
 module.exports = {
   root: true,
   extends: ['plugin:@next/next/recommended', '@payloadcms'],
-  ignorePatterns: ['**/payload-types.ts', '**/src/components/ui/*', '**/src/hooks/use-toast.ts'],
+  ignorePatterns: [
+    '**/payload-types.ts',
+    '**/src/components/ui/*',
+    '**/src/hooks/use-toast.ts',
+    '**/src/app/migrations/*',
+  ],
   plugins: ['prettier'],
   settings: {
     'import/resolver': {

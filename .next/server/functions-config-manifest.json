@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "functions": {
+    "/[slug]": {},
+    "/account": {},
+    "/listings/[slug]": {},
+    "/login": {},
+    "/logout": {},
+    "/news/[slug]": {},
+    "/projects/[slug]": {},
+    "/recover-password": {},
+    "/reset-password": {},
+    "/teammates/[slug]": {},
+    "/services/[slug]": {}
+  }
+}

@@ -26,6 +26,7 @@ module.exports = {
     ],
     'import/no-named-as-default': 0,
     'import/no-named-as-default-member': 0,
+    'prettier/prettier': 0,
     // Other rules...
   },
 }

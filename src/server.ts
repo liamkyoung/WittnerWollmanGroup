@@ -15,7 +15,12 @@ import payload from 'payload'
 
 const app = express()
 
-app.use(cors())
+const corsOptions = {
+	origin: 'https://lkycode.com',
+	credentials: true,
+}
+
+app.use(cors(corsOptions))
 
 const PORT = process.env.PORT || 3000
 

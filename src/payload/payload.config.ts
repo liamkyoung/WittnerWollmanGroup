@@ -1,6 +1,5 @@
 import { webpackBundler } from '@payloadcms/bundler-webpack'
 import { postgresAdapter } from '@payloadcms/db-postgres'
-import { payloadCloud } from '@payloadcms/plugin-cloud'
 import nestedDocs from '@payloadcms/plugin-nested-docs'
 import redirects from '@payloadcms/plugin-redirects'
 import seo from '@payloadcms/plugin-seo'
@@ -131,7 +130,6 @@ export default buildConfig({
       generateTitle,
       uploadsCollection: 'media',
       tabbedUI: true,
-    }), // TODO
-    payloadCloud(),
+    }),
   ],
 })

@@ -3,17 +3,17 @@
   "/page": "/",
   "/(pages)/contact/page": "/contact",
   "/next/exit-preview/route": "/next/exit-preview",
-  "/next/revalidate/route": "/next/revalidate",
   "/next/preview/route": "/next/preview",
+  "/next/revalidate/route": "/next/revalidate",
   "/(pages)/[slug]/page": "/[slug]",
+  "/(pages)/logout/page": "/logout",
   "/(pages)/login/page": "/login",
   "/(pages)/account/page": "/account",
-  "/(pages)/reset-password/page": "/reset-password",
-  "/(pages)/logout/page": "/logout",
   "/(pages)/recover-password/page": "/recover-password",
+  "/(pages)/reset-password/page": "/reset-password",
+  "/(pages)/projects/[slug]/page": "/projects/[slug]",
   "/(pages)/news/[slug]/page": "/news/[slug]",
   "/(pages)/listings/[slug]/page": "/listings/[slug]",
-  "/(pages)/projects/[slug]/page": "/projects/[slug]",
-  "/(pages)/teammates/[slug]/page": "/teammates/[slug]",
-  "/(pages)/services/[slug]/page": "/services/[slug]"
+  "/(pages)/services/[slug]/page": "/services/[slug]",
+  "/(pages)/teammates/[slug]/page": "/teammates/[slug]"
 }

@@ -6,7 +6,6 @@ const redirects = require('./redirects')
 
 const nextConfig = withPayload(
   {
-    optimizeFonts: false,
     reactStrictMode: true,
     swcMinify: true,
     images: {

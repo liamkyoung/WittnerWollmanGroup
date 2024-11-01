@@ -3,17 +3,17 @@
   "/page": "app/page.js",
   "/(pages)/contact/page": "app/(pages)/contact/page.js",
   "/next/exit-preview/route": "app/next/exit-preview/route.js",
-  "/next/revalidate/route": "app/next/revalidate/route.js",
   "/next/preview/route": "app/next/preview/route.js",
+  "/next/revalidate/route": "app/next/revalidate/route.js",
   "/(pages)/[slug]/page": "app/(pages)/[slug]/page.js",
+  "/(pages)/logout/page": "app/(pages)/logout/page.js",
   "/(pages)/login/page": "app/(pages)/login/page.js",
   "/(pages)/account/page": "app/(pages)/account/page.js",
-  "/(pages)/reset-password/page": "app/(pages)/reset-password/page.js",
-  "/(pages)/logout/page": "app/(pages)/logout/page.js",
   "/(pages)/recover-password/page": "app/(pages)/recover-password/page.js",
+  "/(pages)/reset-password/page": "app/(pages)/reset-password/page.js",
+  "/(pages)/projects/[slug]/page": "app/(pages)/projects/[slug]/page.js",
   "/(pages)/news/[slug]/page": "app/(pages)/news/[slug]/page.js",
   "/(pages)/listings/[slug]/page": "app/(pages)/listings/[slug]/page.js",
-  "/(pages)/projects/[slug]/page": "app/(pages)/projects/[slug]/page.js",
-  "/(pages)/teammates/[slug]/page": "app/(pages)/teammates/[slug]/page.js",
-  "/(pages)/services/[slug]/page": "app/(pages)/services/[slug]/page.js"
+  "/(pages)/services/[slug]/page": "app/(pages)/services/[slug]/page.js",
+  "/(pages)/teammates/[slug]/page": "app/(pages)/teammates/[slug]/page.js"
 }

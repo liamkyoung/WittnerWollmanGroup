@@ -1,16 +1,16 @@
 {
   "version": 1,
   "functions": {
-    "/[slug]": {},
     "/account": {},
-    "/listings/[slug]": {},
     "/login": {},
-    "/logout": {},
-    "/news/[slug]": {},
+    "/[slug]": {},
+    "/listings/[slug]": {},
     "/projects/[slug]": {},
+    "/news/[slug]": {},
+    "/logout": {},
     "/recover-password": {},
     "/reset-password": {},
-    "/teammates/[slug]": {},
-    "/services/[slug]": {}
+    "/services/[slug]": {},
+    "/teammates/[slug]": {}
   }
 }

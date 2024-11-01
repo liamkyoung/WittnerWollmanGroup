@@ -1,7 +1,10 @@
+build
+dist
 /media
 node_modules
 .DS_Store
 .env.production
 .env.prod
 .env
+.next
 .vercel

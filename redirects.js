@@ -36,7 +36,7 @@ module.exports = async () => {
           .split('?')[0]
           .toLowerCase()
 
-	if (source === '/admin' || source.startsWith('/admin/')) return
+        if (source === '/admin' || source.startsWith('/admin/')) return
 
         if (source.endsWith('/')) source = source.slice(0, -1) // a trailing slash will break this redirect
 

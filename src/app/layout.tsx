@@ -12,21 +12,21 @@ const montserrat = Montserrat({ subsets: ['latin'] })
 import { Toaster } from '../components/ui/toaster'
 import NewsletterPopup from './customComponents/Newsletter/NewsletterPopup'
 
+import { GoogleAnalytics } from '@next/third-parties/google'
+
+// Google Analytics
+// ReactGA.initialize(process.env.NEXT_PUBLIC_G_ANALYTICS_ID)
+
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <link rel="icon" href="/favicon-16x16.png" sizes="16x16" />
         <link rel="icon" href="/favicon-32x32.png" sizes="32x32" />
+        <link rel="icon" href="/android-chrome-192x192.png" sizes="192x192" />
+        <link rel="icon" href="/android-chrome-512x512.png" sizes="512x512" />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
       </head>
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-0PNS6VZFDB" defer></script>
-
-      {/* Google Analytics Tag */}
-      <script>
-        window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments)}
-        gtag('js', new Date()); gtag('config', 'G-0PNS6VZFDB');
-      </script>
-
       <body className={`${montserrat.className} antialiased bg-gray-50 mx-auto`}>
         <Providers>
           <AdminBar />
@@ -39,6 +39,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           </>
         </Providers>
       </body>
+      <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_G_ANALYTICS_ID} />
     </html>
   )
 }

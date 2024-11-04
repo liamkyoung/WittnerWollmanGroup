@@ -75,6 +75,14 @@ export default buildConfig({
       ...config,
       resolve: {
         ...config.resolve,
+        fallback: {
+          fs: false, // Prevents bundling 'fs' in the frontend
+          os: false, // Prevents bundling 'os' in the frontend
+          crypto: require.resolve('crypto-browserify'),
+          path: require.resolve('path-browserify'), // Use a browser-compatible path polyfill
+          stream: require.resolve('stream-browserify'),
+          vm: require.resolve('vm-browserify'),
+        },
         alias: {
           ...config.resolve.alias,
           dotenv: path.resolve(__dirname, './dotenv.js'),
@@ -147,11 +155,14 @@ export default buildConfig({
       uploadsCollection: 'media',
       tabbedUI: true,
     }),
-    process.env.NODE_ENV === 'production' &&
-      cloudStorage({
-        collections: {
-          media: { adapter: storageAdapter },
-        },
-      }),
+    ...(process.env.NODE_ENV === 'production'
+      ? [
+          cloudStorage({
+            collections: {
+              media: { adapter: storageAdapter },
+            },
+          }),
+        ]
+      : []),
   ],
 })

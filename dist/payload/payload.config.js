@@ -16,6 +16,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var bundler_webpack_1 = require("@payloadcms/bundler-webpack");
 var db_postgres_1 = require("@payloadcms/db-postgres");
+var plugin_cloud_storage_1 = require("@payloadcms/plugin-cloud-storage");
+var s3_1 = require("@payloadcms/plugin-cloud-storage/s3");
 var plugin_nested_docs_1 = __importDefault(require("@payloadcms/plugin-nested-docs"));
 var plugin_redirects_1 = __importDefault(require("@payloadcms/plugin-redirects"));
 var plugin_seo_1 = __importDefault(require("@payloadcms/plugin-seo"));
@@ -53,6 +55,18 @@ var generateTitle = function () {
 };
 dotenv_1.default.config({
     path: path_1.default.resolve(__dirname, '../../.env'),
+});
+// Used to store images in s3 bucket on digital ocean.
+var storageAdapter = (0, s3_1.s3Adapter)({
+    config: {
+        endpoint: process.env.S3_ENDPOINT,
+        credentials: {
+            accessKeyId: process.env.S3_ACCESS_KEY,
+            secretAccessKey: process.env.S3_SECRET_KEY,
+        },
+        region: process.env.S3_REGION,
+    },
+    bucket: process.env.S3_BUCKET_NAME,
 });
 exports.default = (0, config_1.buildConfig)({
     admin: {
@@ -132,6 +146,11 @@ exports.default = (0, config_1.buildConfig)({
             generateTitle: generateTitle,
             uploadsCollection: 'media',
             tabbedUI: true,
+        }),
+        (0, plugin_cloud_storage_1.cloudStorage)({
+            collections: {
+                media: { adapter: storageAdapter },
+            },
         }),
     ],
 });

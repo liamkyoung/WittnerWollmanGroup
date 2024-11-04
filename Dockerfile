@@ -5,14 +5,18 @@ FROM base AS builder
 WORKDIR /home/node/app
 COPY package*.json ./
 
+# Remove Old Files
+RUN rm -rf ./build
+RUN rm -rf ./dist
+RUN rm -rf ./.next
+
 COPY . .
 RUN yarn install
-# RUN cross-env NODE_ENV=production yarn build:payload
-# RUN yarn build:payload && yarn build:server && yarn copyfiles && yarn build:next
 
 ENV NODE_ENV=production
 ENV PAYLOAD_CONFIG_PATH=dist/payload.config.js
-ENV PAYLOAD_SECRET=17f1a455a70217ebee255472
+ENV PAYLOAD_PUBLIC_SERVER_URL=https://lkycode.com
+ENV NEXT_PUBLIC_SERVER_URL=https://lkycode.com
 
 RUN yarn build:payload
 RUN yarn build:server
@@ -29,6 +33,9 @@ RUN yarn install --production
 COPY --from=builder /home/node/app/dist ./dist
 COPY --from=builder /home/node/app/build ./build
 COPY --from=builder /home/node/app/.next ./.next
+COPY --from=builder /home/node/app/next.config.js ./
+COPY --from=builder /home/node/app/csp.js ./
+COPY --from=builder /home/node/app/redirects.js ./
 
 EXPOSE 3000
 

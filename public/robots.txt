@@ -1,0 +1,7 @@
+User-agent: *
+Crawl-delay: 5
+
+
+Allow: /
+Disallow: /admin/
+Sitemap: https://lkycode.com/sitemap.xml

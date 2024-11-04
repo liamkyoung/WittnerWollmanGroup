@@ -2,12 +2,13 @@ import type { Metadata } from 'next'
 
 const defaultOpenGraph: Metadata['openGraph'] = {
   type: 'website',
-  siteName: 'Payload Website Template',
-  title: 'Payload Website Template',
-  description: 'An open-source website built with Payload and Next.js.',
+  siteName: 'Wittner Wollman Group',
+  title: 'Wittner Wollman Group',
+  description:
+    'We are the premier real estate team in the Tampa Bay Area and St. Pete. Meet the team that will help you ',
   images: [
     {
-      url: 'https://payloadcms.com/images/og-image.jpg',
+      url: 'https://ww-group.nyc3.cdn.digitaloceanspaces.com/ww-logo.png',
     },
   ],
 }

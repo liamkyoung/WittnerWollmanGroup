@@ -1,3 +1,4 @@
+/* eslint simple-import-sort/imports: 0 */
 /** @type {import('next').NextConfig} */
 const path = require('path')
 const { withPayload } = require('@payloadcms/next-payload')
@@ -9,7 +10,11 @@ const nextConfig = withPayload(
     reactStrictMode: true,
     swcMinify: true,
     images: {
-      domains: ['localhost', process.env.NEXT_PUBLIC_SERVER_URL]
+      domains: [
+        'localhost',
+        process.env.NEXT_PUBLIC_SERVER_URL,
+        process.env.NEXT_PUBLIC_S3_CDN_ENDPOINT,
+      ]
         .filter(Boolean)
         .map(url => url.replace(/https?:\/\//, '')),
     },
@@ -55,7 +60,7 @@ const nextConfig = withPayload(
     // and configure the admin route to your Payload CMS.
 
     // Point to your Payload config (required)
-    configPath: path.resolve(__dirname, './src/payload/payload.config.ts'),
+    configPath: path.resolve(__dirname, process.env.PAYLOAD_CONFIG_PATH),
 
     // Set a custom Payload admin route (optional, default is `/admin`)
     // NOTE: Read the "Set a custom admin route" section in the payload/next-payload README.

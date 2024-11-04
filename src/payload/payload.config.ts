@@ -1,5 +1,7 @@
 import { webpackBundler } from '@payloadcms/bundler-webpack'
 import { postgresAdapter } from '@payloadcms/db-postgres'
+import { cloudStorage } from '@payloadcms/plugin-cloud-storage'
+import { s3Adapter } from '@payloadcms/plugin-cloud-storage/s3'
 import nestedDocs from '@payloadcms/plugin-nested-docs'
 import redirects from '@payloadcms/plugin-redirects'
 import seo from '@payloadcms/plugin-seo'
@@ -41,6 +43,20 @@ const generateTitle: GenerateTitle = () => {
 
 dotenv.config({
   path: path.resolve(__dirname, '../../.env'),
+})
+
+// Used to store images in s3 bucket on digital ocean.
+const storageAdapter = s3Adapter({
+  config: {
+    endpoint: process.env.S3_ENDPOINT,
+    credentials: {
+      accessKeyId: process.env.S3_ACCESS_KEY,
+      secretAccessKey: process.env.S3_SECRET_KEY,
+    },
+    region: process.env.S3_REGION,
+  },
+  bucket: process.env.S3_BUCKET_NAME,
+  acl: 'public-read',
 })
 
 export default buildConfig({
@@ -131,5 +147,11 @@ export default buildConfig({
       uploadsCollection: 'media',
       tabbedUI: true,
     }),
+    process.env.NODE_ENV === 'production' &&
+      cloudStorage({
+        collections: {
+          media: { adapter: storageAdapter },
+        },
+      }),
   ],
 })

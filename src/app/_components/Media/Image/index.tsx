@@ -43,7 +43,7 @@ export const Image: React.FC<MediaProps> = props => {
 
     const filename = fullFilename
 
-    src = `${process.env.NEXT_PUBLIC_SERVER_URL}/media/${filename}`
+    src = `${process.env.NEXT_PUBLIC_S3_CDN_ENDPOINT}/${filename}` // s3 cdn endpoint for prod
   }
 
   // NOTE: this is used by the browser to determine which image to download at different screen sizes

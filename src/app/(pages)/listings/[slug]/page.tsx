@@ -117,7 +117,7 @@ export async function generateStaticParams() {
     return listings?.map(({ slug }) => slug)
   } catch (error) {
     // console.log("Couldn't generate listings", error)
-    return []
+    return ['/']
   }
 }
 

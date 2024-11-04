@@ -60,7 +60,7 @@ export async function generateStaticParams() {
     const projects = await fetchDocs<Project>('projects')
     return projects?.map(({ slug }) => slug)
   } catch (error) {
-    return []
+    return ['/']
   }
 }
 

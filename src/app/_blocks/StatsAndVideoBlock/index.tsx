@@ -1,16 +1,11 @@
 import React from 'react'
 import Image, { StaticImageData } from 'next/image'
-import Link from 'next/link'
 
-import { FactsList, Media as MType, Page } from '../../../payload/payload-types'
-import { Gutter } from '../../_components/Gutter'
+import { Media as MType, Page } from '../../../payload/payload-types'
 import { Media } from '../../_components/Media'
-import RichText from '../../_components/RichText'
 import BGImage from '../../assets/images/bg_backdrop.png'
 import { Stat } from '../../customComponents/Stat'
 import { YoutubeVideo } from '../../customComponents/YoutubeVideo'
-
-import classes from './index.module.scss'
 
 export type StatAndVideoBlockProps = Extract<
   Page['layout'][0],
@@ -89,7 +84,7 @@ export const StatsAndVideoBlock: React.FC<StatAndVideoBlockProps> = props => {
                 })}
             </div>
             <div className="w-full xl:w-1/2">
-              <YoutubeVideo />
+              <YoutubeVideo src={props.youtubeLink} title={`${title} video`} />
             </div>
           </div>
         </div>

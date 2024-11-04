@@ -16,8 +16,8 @@ import payload from 'payload'
 const app = express()
 
 const corsOptions = {
-	origin: 'https://lkycode.com',
-	credentials: true,
+  origin: process.env.PAYLOAD_PUBLIC_SERVER_URL,
+  credentials: true,
 }
 
 app.use(cors(corsOptions))

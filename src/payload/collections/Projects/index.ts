@@ -64,17 +64,19 @@ export const Projects: CollectionConfig = {
                   Field: AdminAddressSearch,
                 },
               },
-              // Able to get from map
             },
             {
               name: 'description',
-              type: 'text',
+              type: 'textarea',
               required: true,
             },
             {
               name: 'neighborhood',
               type: 'text',
               required: true,
+              admin: {
+                hidden: true,
+              },
             },
             {
               name: 'latitude',
@@ -101,6 +103,7 @@ export const Projects: CollectionConfig = {
           fields: [
             {
               name: 'price',
+              label: 'Price (in USD)',
               type: 'text',
               required: true,
             },
@@ -112,7 +115,6 @@ export const Projects: CollectionConfig = {
               relationTo: 'teammates', // required
               hasMany: true,
             },
-
             {
               name: 'slider', // required
               type: 'array', // required

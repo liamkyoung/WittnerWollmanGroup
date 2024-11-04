@@ -34,7 +34,7 @@ export const Testimonials: CollectionConfig = {
     {
       name: 'quote',
       label: 'Quote',
-      type: 'text',
+      type: 'textarea',
       required: true,
     },
     {

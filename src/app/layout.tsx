@@ -1,6 +1,7 @@
 import React from 'react'
 import { Metadata } from 'next'
 import { Montserrat } from 'next/font/google'
+
 import { AdminBar } from './_components/AdminBar'
 import { Providers } from './_providers'
 import { mergeOpenGraph } from './_utilities/mergeOpenGraph'
@@ -8,14 +9,11 @@ import Footer from './customComponents/Footer'
 import Header from './customComponents/Header'
 
 import './_css/app.scss'
-const montserrat = Montserrat({ subsets: ['latin'] })
-import { Toaster } from '../components/ui/toaster'
-import NewsletterPopup from './customComponents/Newsletter/NewsletterPopup'
-
+const montserrat = Montserrat({ subsets: ['latin'], preload: true })
 import { GoogleAnalytics } from '@next/third-parties/google'
 
-// Google Analytics
-// ReactGA.initialize(process.env.NEXT_PUBLIC_G_ANALYTICS_ID)
+import { Toaster } from '../components/ui/toaster'
+import NewsletterPopup from './customComponents/Newsletter/NewsletterPopup'
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -39,7 +37,9 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           </>
         </Providers>
       </body>
-      <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_G_ANALYTICS_ID} />
+      {process.env.NODE_ENV === 'production' && (
+        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_G_ANALYTICS_ID} />
+      )}
     </html>
   )
 }

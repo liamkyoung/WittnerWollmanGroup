@@ -162,7 +162,7 @@ const serialize = (children?: Children, textColor: string = 'text-black'): React
       default:
         return (
           <p key={i} className={textColor}>
-            {serialize(node?.children)}
+            {serialize(node?.children, textColor)}
           </p>
         )
     }

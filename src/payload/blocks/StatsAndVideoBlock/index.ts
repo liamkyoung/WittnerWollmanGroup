@@ -43,7 +43,7 @@ export const StatsAndVideoBlock: Block = {
     {
       name: 'youtubeLink',
       type: 'text',
-      label: 'YouTube Link',
+      label: 'YouTube Link (Use the Embedded URL)',
       required: true,
     },
     {

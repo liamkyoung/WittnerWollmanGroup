@@ -5,7 +5,42 @@ import { invertBackground } from '../../fields/invertBackground'
 export const ProjectBlock: Block = {
   slug: 'projectBlock',
   fields: [
-    invertBackground,
+    {
+      name: 'title',
+      type: 'text',
+      required: true,
+    },
+    {
+      name: 'subheading',
+      label: 'Subheading',
+      type: 'text',
+      required: false,
+    },
+    {
+      name: 'subheadingType',
+      label: 'Subheading Type',
+      type: 'select',
+      defaultValue: 'None',
+      options: [
+        {
+          label: 'None',
+          value: 'none',
+        },
+        {
+          label: 'Text',
+          value: 'text',
+        },
+        {
+          label: 'Location or Neighborhood',
+          value: 'location',
+        },
+      ],
+    },
+    {
+      name: 'description',
+      type: 'textarea',
+      required: true,
+    },
     {
       name: 'position',
       type: 'select',
@@ -23,7 +58,7 @@ export const ProjectBlock: Block = {
     },
     {
       name: 'bgColor',
-      label: 'BackgrondColor',
+      label: 'Background Color',
       type: 'select',
       defaultValue: 'white',
       options: [
@@ -36,28 +71,6 @@ export const ProjectBlock: Block = {
           value: 'red',
         },
       ],
-    },
-    {
-      name: 'title',
-      type: 'text',
-      required: true,
-    },
-    {
-      name: 'location',
-      label: 'Neighborhood or Address',
-      type: 'text',
-      required: false,
-    },
-    {
-      name: 'subheading',
-      label: 'Subheading',
-      type: 'text',
-      required: false,
-    },
-    {
-      name: 'description',
-      type: 'text',
-      required: true,
     },
     {
       name: 'facts', // required
@@ -93,8 +106,8 @@ export const ProjectBlock: Block = {
       required: true,
     },
     {
-      name: 'externalLink',
-      label: 'External Link',
+      name: 'link',
+      label: 'Link',
       type: 'text',
       required: false,
     },

@@ -27,9 +27,9 @@ export const MediaBlock: React.FC<Props> = props => {
         </div>
       )}
       {position === 'default' && (
-        <Gutter>
+        <div className="mx-auto w-1/2">
           <Media resource={media as MediaType} src={staticImage} />
-        </Gutter>
+        </div>
       )}
       {caption && (
         <Gutter className={classes.caption}>

@@ -16,7 +16,7 @@ export const StatBlock: Block = {
     {
       name: 'facts', // required
       type: 'array', // required
-      label: 'Project Facts',
+      label: 'Project Stats',
       minRows: 1,
       maxRows: 4,
       interfaceName: 'FactsList', // optional
@@ -42,7 +42,7 @@ export const StatBlock: Block = {
     },
     {
       name: 'bgColor',
-      label: 'BackgrondColor',
+      label: 'Background Color',
       type: 'select',
       defaultValue: 'white',
       options: [

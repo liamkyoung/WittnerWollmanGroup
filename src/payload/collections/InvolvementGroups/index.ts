@@ -38,7 +38,7 @@ export const InvolvementGroups: CollectionConfig = {
     {
       name: 'description',
       label: 'Group Description',
-      type: 'text',
+      type: 'textarea',
       required: true,
     },
     {

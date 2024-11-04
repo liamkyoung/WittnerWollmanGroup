@@ -45,7 +45,7 @@ export async function generateStaticParams() {
     return services?.map(({ slug }) => slug)
   } catch (error) {
     // console.log("Couldn't generate services", error)
-    return []
+    return ['/']
   }
 }
 

@@ -24,6 +24,8 @@
 
 
 
-
+### Common Errors:
+Prerendering errors
+- DO NOT SET NODE=development when building for production!!!!!
 
 ### NGINX Configuration

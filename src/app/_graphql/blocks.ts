@@ -25,7 +25,6 @@ export const CONTENT = `
 export const MEDIA_BLOCK = `
 ...on MediaBlock {
   blockType
-  invertBackground
   mediaPosition: position
   ${MEDIA}
 }
@@ -34,17 +33,17 @@ export const MEDIA_BLOCK = `
 export const PROJECT_BLOCK = `
 ...on ProjectBlock {
   blockType
-  invertBackground
   position
-  location
   title
+  subheading
+  subheadingType
   description
   bgColor
   facts {
     factStat
     factDescription
   }
-  externalLink
+  link
   ${MEDIA}
 }
 `

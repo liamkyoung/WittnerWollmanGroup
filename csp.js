@@ -23,6 +23,7 @@ const policies = {
   'font-src': ["'self'", 'https://fonts.gstatic.com'],
   'frame-src': ["'self'", 'https://www.youtube.com'],
   'connect-src': ["'self'", 'https://maps.googleapis.com', 'https://maps.gstatic.com'],
+  'script-src-elem': ["'self'", 'https://www.googletagmanager.com'],
 }
 
 module.exports = Object.entries(policies)

@@ -33,7 +33,7 @@ export const InvolvementEvents: CollectionConfig = {
     {
       name: 'description',
       label: 'Event Description',
-      type: 'text',
+      type: 'textarea',
       required: false,
     },
     {

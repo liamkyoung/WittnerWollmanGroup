@@ -5,14 +5,13 @@ import { invertBackground } from '../../fields/invertBackground'
 export const MediaBlock: Block = {
   slug: 'mediaBlock',
   fields: [
-    invertBackground,
     {
       name: 'position',
       type: 'select',
       defaultValue: 'default',
       options: [
         {
-          label: 'Default',
+          label: 'Center 50%',
           value: 'default',
         },
         {

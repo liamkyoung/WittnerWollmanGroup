@@ -8,11 +8,11 @@ import seo from '@payloadcms/plugin-seo'
 import type { GenerateTitle } from '@payloadcms/plugin-seo/types'
 import { slateEditor } from '@payloadcms/richtext-slate'
 import dotenv from 'dotenv'
+import fs from 'fs'
 import path from 'path'
 import { buildConfig } from 'payload/config'
 
 import Categories from './collections/Categories'
-import Comments from './collections/Comments'
 import { CommunityResources } from './collections/CommunityResources'
 import { Companies } from './collections/Companies'
 import { InvolvementEvents } from './collections/InvolvementEvents'
@@ -79,7 +79,7 @@ export default buildConfig({
           fs: false, // Prevents bundling 'fs' in the frontend
           os: false, // Prevents bundling 'os' in the frontend
           crypto: require.resolve('crypto-browserify'),
-          path: require.resolve('path-browserify'), // Use a browser-compatible path polyfill
+          path: require.resolve('path-browserify'),
           stream: require.resolve('stream-browserify'),
           vm: require.resolve('vm-browserify'),
         },
@@ -94,6 +94,10 @@ export default buildConfig({
   db: postgresAdapter({
     pool: {
       connectionString: process.env.DATABASE_URI,
+      ssl: {
+        rejectUnauthorized: false,
+        ca: fs.readFileSync(path.resolve(process.env.DATABASE_CA_CERT_PATH)).toString(),
+      },
     },
   }),
   serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL,
@@ -104,7 +108,6 @@ export default buildConfig({
     Media,
     Categories,
     Users,
-    Comments,
     Teammates,
     Listings,
     Testimonials,

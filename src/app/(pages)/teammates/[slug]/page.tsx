@@ -124,7 +124,7 @@ export async function generateStaticParams() {
     return teammates?.map(({ slug }) => slug)
   } catch (error) {
     // console.log("(Couldn't generate teammates)", error)
-    return []
+    return ['/']
   }
 }
 

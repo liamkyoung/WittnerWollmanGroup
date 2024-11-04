@@ -38,7 +38,6 @@ export interface Config {
     media: Media;
     categories: Category;
     users: User;
-    comments: Comment;
     teammates: Teammate;
     listings: Listing;
     testimonials: Testimonial;
@@ -124,7 +123,6 @@ export interface Page {
         blockType: 'content';
       }
     | {
-        invertBackground?: boolean | null;
         position?: ('default' | 'fullscreen') | null;
         media: number | Media;
         id?: string | null;
@@ -250,16 +248,15 @@ export interface Page {
         blockType: 'archive';
       }
     | {
-        invertBackground?: boolean | null;
+        title: string;
+        subheading?: string | null;
+        subheadingType?: ('none' | 'text' | 'location') | null;
+        description: string;
         position?: ('left' | 'right') | null;
         bgColor?: ('white' | 'red') | null;
-        title: string;
-        location?: string | null;
-        subheading?: string | null;
-        description: string;
         facts?: FactsList;
         media: number | Media;
-        externalLink?: string | null;
+        link?: string | null;
         id?: string | null;
         blockName?: string | null;
         blockType: 'projectBlock';
@@ -420,7 +417,6 @@ export interface Post {
         blockType: 'content';
       }
     | {
-        invertBackground?: boolean | null;
         position?: ('default' | 'fullscreen') | null;
         media: number | Media;
         id?: string | null;
@@ -583,7 +579,6 @@ export interface Post {
             blockType: 'content';
           }
         | {
-            invertBackground?: boolean | null;
             position?: ('default' | 'fullscreen') | null;
             media: number | Media;
             id?: string | null;
@@ -781,7 +776,6 @@ export interface Project {
         blockType: 'content';
       }
     | {
-        invertBackground?: boolean | null;
         position?: ('default' | 'fullscreen') | null;
         media: number | Media;
         id?: string | null;
@@ -907,16 +901,15 @@ export interface Project {
         blockType: 'archive';
       }
     | {
-        invertBackground?: boolean | null;
+        title: string;
+        subheading?: string | null;
+        subheadingType?: ('none' | 'text' | 'location') | null;
+        description: string;
         position?: ('left' | 'right') | null;
         bgColor?: ('white' | 'red') | null;
-        title: string;
-        location?: string | null;
-        subheading?: string | null;
-        description: string;
         facts?: FactsList;
         media: number | Media;
-        externalLink?: string | null;
+        link?: string | null;
         id?: string | null;
         blockName?: string | null;
         blockType: 'projectBlock';
@@ -1031,7 +1024,7 @@ export interface Listing {
   overview: string;
   areaOverview?: string | null;
   zoningType?: ('C' | 'r' | 'i') | null;
-  tenancyType?: ('singleTenant' | 'multiTenant') | null;
+  tenancyType?: ('Single Tenant' | 'Multi-Tenant') | null;
   yearBuilt?: number | null;
   occupancy?: number | null;
   layout: (
@@ -1063,7 +1056,6 @@ export interface Listing {
         blockType: 'content';
       }
     | {
-        invertBackground?: boolean | null;
         position?: ('default' | 'fullscreen') | null;
         media: number | Media;
         id?: string | null;
@@ -1189,16 +1181,15 @@ export interface Listing {
         blockType: 'archive';
       }
     | {
-        invertBackground?: boolean | null;
+        title: string;
+        subheading?: string | null;
+        subheadingType?: ('none' | 'text' | 'location') | null;
+        description: string;
         position?: ('left' | 'right') | null;
         bgColor?: ('white' | 'red') | null;
-        title: string;
-        location?: string | null;
-        subheading?: string | null;
-        description: string;
         facts?: FactsList;
         media: number | Media;
-        externalLink?: string | null;
+        link?: string | null;
         id?: string | null;
         blockName?: string | null;
         blockType: 'projectBlock';
@@ -1355,7 +1346,6 @@ export interface Service {
         blockType: 'content';
       }
     | {
-        invertBackground?: boolean | null;
         position?: ('default' | 'fullscreen') | null;
         media: number | Media;
         id?: string | null;
@@ -1481,16 +1471,15 @@ export interface Service {
         blockType: 'archive';
       }
     | {
-        invertBackground?: boolean | null;
+        title: string;
+        subheading?: string | null;
+        subheadingType?: ('none' | 'text' | 'location') | null;
+        description: string;
         position?: ('left' | 'right') | null;
         bgColor?: ('white' | 'red') | null;
-        title: string;
-        location?: string | null;
-        subheading?: string | null;
-        description: string;
         facts?: FactsList;
         media: number | Media;
-        externalLink?: string | null;
+        link?: string | null;
         id?: string | null;
         blockName?: string | null;
         blockType: 'projectBlock';
@@ -1553,23 +1542,6 @@ export interface User {
   loginAttempts?: number | null;
   lockUntil?: string | null;
   password: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "comments".
- */
-export interface Comment {
-  id: number;
-  user?: (number | null) | User;
-  populatedUser?: {
-    id?: string | null;
-    name?: string | null;
-  };
-  doc?: (number | null) | Post;
-  comment?: string | null;
-  updatedAt: string;
-  createdAt: string;
-  _status?: ('draft' | 'published') | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

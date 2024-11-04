@@ -1,7 +1,14 @@
 'use client'
 import { useEffect, useState } from 'react'
+import { VisuallyHidden } from '@radix-ui/react-visually-hidden'
 
-import { Dialog, DialogClose, DialogContent, DialogTrigger } from '../../../../components/ui/dialog'
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogTitle,
+  DialogTrigger,
+} from '../../../../components/ui/dialog'
 import { getCookie, setCookie } from '../../../_utilities/cookies'
 import NewsletterCard from '../NewsletterCard'
 
@@ -30,7 +37,10 @@ export default function NewsletterPopup() {
         <DialogTrigger asChild>
           <button style={{ display: 'none' }}>Open Dialog</button>
         </DialogTrigger>
-        <DialogContent className="max-w-3xl p-0 rounded-none">
+        <DialogContent className="max-w-3xl p-0 rounded-none" aria-describedby="newsletter-form">
+          <VisuallyHidden>
+            <DialogTitle>Newsletter Input Form</DialogTitle>
+          </VisuallyHidden>
           <NewsletterCard />
         </DialogContent>
         <DialogClose onClick={() => setCookie('ww-group-newsletter', false, 30)} />

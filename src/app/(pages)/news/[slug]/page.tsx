@@ -4,7 +4,6 @@ import { draftMode } from 'next/headers'
 import { notFound } from 'next/navigation'
 
 import { Comment, Post } from '../../../../payload/payload-types'
-import { fetchComments } from '../../../_api/fetchComments'
 import { fetchDoc } from '../../../_api/fetchDoc'
 import { fetchDocs } from '../../../_api/fetchDocs'
 import { Blocks } from '../../../_components/Blocks'
@@ -50,7 +49,7 @@ export async function generateStaticParams() {
     const posts = await fetchDocs<Post>('posts')
     return posts?.map(({ slug }) => slug)
   } catch (error) {
-    return []
+    return ['/']
   }
 }
 

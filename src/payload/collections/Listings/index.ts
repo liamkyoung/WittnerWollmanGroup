@@ -131,7 +131,7 @@ export const Listings: CollectionConfig = {
             },
             {
               name: 'price',
-              label: 'Listing Price (USD)',
+              label: 'Listing Price (in USD)',
               type: 'number',
               required: true,
               validate: value => {
@@ -243,13 +243,13 @@ export const Listings: CollectionConfig = {
             {
               name: 'overview',
               label: 'Property Overview',
-              type: 'text',
+              type: 'textarea',
               required: true,
             },
             {
               name: 'areaOverview',
               label: 'Area Overview',
-              type: 'text',
+              type: 'textarea',
             },
             {
               name: 'zoningType',
@@ -277,11 +277,11 @@ export const Listings: CollectionConfig = {
               options: [
                 {
                   label: 'Single Tenant',
-                  value: 'singleTenant',
+                  value: 'Single Tenant',
                 },
                 {
                   label: 'Multi-Tenant',
-                  value: 'multiTenant',
+                  value: 'Multi-Tenant',
                 },
               ],
             },

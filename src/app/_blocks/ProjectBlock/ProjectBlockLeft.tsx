@@ -102,7 +102,7 @@ function ProjectBlockLeft({
 
         {link && (
           <div className="flex justify-center lg:block py-8">
-            <Link href="/projects/reflection" className={`${buttonStyle} `}>
+            <Link href={link} className={`${buttonStyle} `}>
               LEARN MORE
             </Link>
           </div>

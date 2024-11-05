@@ -59,6 +59,14 @@ const storageAdapter = s3Adapter({
   acl: 'public-read',
 })
 
+const sslConfig =
+  process.env.NODE_ENV === 'production'
+    ? {
+        rejectUnauthorized: false,
+        ca: fs.readFileSync(path.resolve(process.env.DATABASE_CA_CERT_PATH)).toString(),
+      }
+    : undefined
+
 export default buildConfig({
   admin: {
     user: Users.slug,
@@ -78,10 +86,9 @@ export default buildConfig({
         fallback: {
           fs: false, // Prevents bundling 'fs' in the frontend
           os: false, // Prevents bundling 'os' in the frontend
-          crypto: require.resolve('crypto-browserify'),
           path: require.resolve('path-browserify'),
-          stream: require.resolve('stream-browserify'),
-          vm: require.resolve('vm-browserify'),
+          stream: false,
+          vm: false,
         },
         alias: {
           ...config.resolve.alias,
@@ -94,10 +101,7 @@ export default buildConfig({
   db: postgresAdapter({
     pool: {
       connectionString: process.env.DATABASE_URI,
-      ssl: {
-        rejectUnauthorized: false,
-        ca: fs.readFileSync(path.resolve(process.env.DATABASE_CA_CERT_PATH)).toString(),
-      },
+      ssl: sslConfig,
     },
   }),
   serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL,

@@ -213,25 +213,49 @@ export const CollectionArchive: React.FC<Props> = props => {
     if (!results.docs) return <></>
     switch (relationTo) {
       case 'testimonials':
-        return <TestimonialGallery testimonials={results.docs as Testimonial[]} />
+        return (
+          <TestimonialGallery
+            testimonials={results.docs as Testimonial[]}
+            displayHeader={displayHeader}
+          />
+        )
       case 'listings':
         return <ListingGallery listings={results.docs as Listing[]} displayHeader={displayHeader} />
       case 'teammates':
-        return <TeammateGallery teammates={results.docs as Teammate[]} />
+        return (
+          <TeammateGallery teammates={results.docs as Teammate[]} displayHeader={displayHeader} />
+        )
       case 'companies':
-        return <CompanyGallery companies={results.docs as Company[]} />
+        return (
+          <CompanyGallery companies={results.docs as Company[]} displayHeader={displayHeader} />
+        )
       case 'communityResources':
-        return <CommunityResourceGallery communityResources={results.docs as CommunityResource[]} />
+        return (
+          <CommunityResourceGallery
+            communityResources={results.docs as CommunityResource[]}
+            displayHeader={displayHeader}
+          />
+        )
       case 'involvementEvents':
-        return <InvolvementEventGallery events={results.docs as InvolvementEvent[]} />
+        return (
+          <InvolvementEventGallery
+            events={results.docs as InvolvementEvent[]}
+            displayHeader={displayHeader}
+          />
+        )
       case 'involvementGroups':
-        return <InvolvementGroupGallery groups={results.docs as InvolvementGroup[]} />
+        return (
+          <InvolvementGroupGallery
+            groups={results.docs as InvolvementGroup[]}
+            displayHeader={displayHeader}
+          />
+        )
       case 'services':
-        return <ServiceGallery services={results.docs as Service[]} />
+        return <ServiceGallery services={results.docs as Service[]} displayHeader={displayHeader} />
       case 'projects':
-        return <ProjectGallery projects={results.docs as Project[]} />
+        return <ProjectGallery projects={results.docs as Project[]} displayHeader={displayHeader} />
       case 'posts':
-        return <NewsGallery news={results.docs as Post[]} />
+        return <NewsGallery news={results.docs as Post[]} displayHeader={displayHeader} />
       default:
         return <></>
     }

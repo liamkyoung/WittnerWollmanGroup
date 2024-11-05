@@ -5,8 +5,11 @@ import { CommunityResourceCard } from '../CommunityResourceCard'
 
 import { Category, CommunityResource } from '@/payload/payload-types'
 
+import Link from 'next/link'
+
 type Props = {
   communityResources: CommunityResource[]
+  displayHeader: 'yes' | 'no'
 }
 
 type Option = {
@@ -15,7 +18,7 @@ type Option = {
   selected: boolean
 }
 
-export const CommunityResourceGallery = ({ communityResources }: Props) => {
+export const CommunityResourceGallery = ({ communityResources, displayHeader = 'no' }: Props) => {
   const nonSelectedStyle =
     'whitespace-nowrap border-b-2 border-transparent px-1 py-4 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700 hover:cursor-pointer'
   const selectedStyle =
@@ -74,6 +77,7 @@ export const CommunityResourceGallery = ({ communityResources }: Props) => {
 
   return (
     <>
+      {displayHeader === 'yes' && <h2 className="mb-16">Community Resources</h2>}
       {communityResources && communityResources.length > 0 && (
         <>
           <div className="global-margin-x">

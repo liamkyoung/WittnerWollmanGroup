@@ -90,7 +90,6 @@ export interface Page {
   };
   layout: (
     | {
-        type?: ('default' | 'listing' | 'agent') | null;
         id?: string | null;
         blockName?: string | null;
         blockType: 'cta';
@@ -241,7 +240,7 @@ export interface Page {
             )[]
           | null;
         populatedDocsTotal?: number | null;
-        bgColor?: ('Default' | 'red') | null;
+        bgColor?: ('default' | 'red') | null;
         displayHeader?: ('yes' | 'no') | null;
         id?: string | null;
         blockName?: string | null;
@@ -256,7 +255,13 @@ export interface Page {
         bgColor?: ('white' | 'red') | null;
         facts?: FactsList;
         media: number | Media;
-        link?: string | null;
+        links?:
+          | {
+              link: string;
+              buttonName: string;
+              id?: string | null;
+            }[]
+          | null;
         id?: string | null;
         blockName?: string | null;
         blockType: 'projectBlock';
@@ -384,7 +389,6 @@ export interface Post {
   };
   layout: (
     | {
-        type?: ('default' | 'listing' | 'agent') | null;
         id?: string | null;
         blockName?: string | null;
         blockType: 'cta';
@@ -535,7 +539,7 @@ export interface Post {
             )[]
           | null;
         populatedDocsTotal?: number | null;
-        bgColor?: ('Default' | 'red') | null;
+        bgColor?: ('default' | 'red') | null;
         displayHeader?: ('yes' | 'no') | null;
         id?: string | null;
         blockName?: string | null;
@@ -546,7 +550,6 @@ export interface Post {
   premiumContent?:
     | (
         | {
-            type?: ('default' | 'listing' | 'agent') | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'cta';
@@ -697,7 +700,7 @@ export interface Post {
                 )[]
               | null;
             populatedDocsTotal?: number | null;
-            bgColor?: ('Default' | 'red') | null;
+            bgColor?: ('default' | 'red') | null;
             displayHeader?: ('yes' | 'no') | null;
             id?: string | null;
             blockName?: string | null;
@@ -743,7 +746,6 @@ export interface Project {
   instagram?: string | null;
   layout: (
     | {
-        type?: ('default' | 'listing' | 'agent') | null;
         id?: string | null;
         blockName?: string | null;
         blockType: 'cta';
@@ -894,7 +896,7 @@ export interface Project {
             )[]
           | null;
         populatedDocsTotal?: number | null;
-        bgColor?: ('Default' | 'red') | null;
+        bgColor?: ('default' | 'red') | null;
         displayHeader?: ('yes' | 'no') | null;
         id?: string | null;
         blockName?: string | null;
@@ -909,7 +911,13 @@ export interface Project {
         bgColor?: ('white' | 'red') | null;
         facts?: FactsList;
         media: number | Media;
-        link?: string | null;
+        links?:
+          | {
+              link: string;
+              buttonName: string;
+              id?: string | null;
+            }[]
+          | null;
         id?: string | null;
         blockName?: string | null;
         blockType: 'projectBlock';
@@ -1174,7 +1182,7 @@ export interface Listing {
             )[]
           | null;
         populatedDocsTotal?: number | null;
-        bgColor?: ('Default' | 'red') | null;
+        bgColor?: ('default' | 'red') | null;
         displayHeader?: ('yes' | 'no') | null;
         id?: string | null;
         blockName?: string | null;
@@ -1189,7 +1197,13 @@ export interface Listing {
         bgColor?: ('white' | 'red') | null;
         facts?: FactsList;
         media: number | Media;
-        link?: string | null;
+        links?:
+          | {
+              link: string;
+              buttonName: string;
+              id?: string | null;
+            }[]
+          | null;
         id?: string | null;
         blockName?: string | null;
         blockType: 'projectBlock';
@@ -1313,7 +1327,6 @@ export interface Service {
   };
   layout: (
     | {
-        type?: ('default' | 'listing' | 'agent') | null;
         id?: string | null;
         blockName?: string | null;
         blockType: 'cta';
@@ -1464,7 +1477,7 @@ export interface Service {
             )[]
           | null;
         populatedDocsTotal?: number | null;
-        bgColor?: ('Default' | 'red') | null;
+        bgColor?: ('default' | 'red') | null;
         displayHeader?: ('yes' | 'no') | null;
         id?: string | null;
         blockName?: string | null;
@@ -1479,7 +1492,13 @@ export interface Service {
         bgColor?: ('white' | 'red') | null;
         facts?: FactsList;
         media: number | Media;
-        link?: string | null;
+        links?:
+          | {
+              link: string;
+              buttonName: string;
+              id?: string | null;
+            }[]
+          | null;
         id?: string | null;
         blockName?: string | null;
         blockType: 'projectBlock';

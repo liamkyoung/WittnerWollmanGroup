@@ -3,6 +3,7 @@ import type { CollectionConfig } from 'payload/types'
 import { admins } from '../../access/admins'
 import { adminsOrPublished } from '../../access/adminsOrPublished'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
+import AdminAddressSearch from '../../../payload/customComponents/AdminAddressSearch'
 
 export const CommunityResources: CollectionConfig = {
   slug: 'communityResources',
@@ -34,10 +35,15 @@ export const CommunityResources: CollectionConfig = {
       type: 'text',
       label: 'Address',
       required: true,
+      admin: {
+        components: {
+          Field: AdminAddressSearch,
+        },
+      },
     },
     {
       name: 'description',
-      type: 'text',
+      type: 'textarea',
       label: 'Description',
       required: true,
     },

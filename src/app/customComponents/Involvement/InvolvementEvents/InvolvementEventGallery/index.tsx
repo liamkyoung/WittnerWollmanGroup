@@ -4,14 +4,15 @@ import { InvolvementEvent } from '@/payload/payload-types'
 
 type Props = {
   events: InvolvementEvent[]
+  displayHeader: 'yes' | 'no'
 }
 
-export const InvolvementEventGallery = ({ events }: Props) => {
+export const InvolvementEventGallery = ({ events, displayHeader = 'no' }: Props) => {
   const now = Date.now()
   const upcomingEvents = events.filter(e => e.eventDate && Date.parse(e.eventDate) > now)
   return (
     <div className="global-margin-x space-y-16">
-      <h2 className="text-center lg:text-left">Upcoming Events</h2>
+      {displayHeader === 'yes' && <h2 className="text-center lg:text-left">Upcoming Events</h2>}
       <p className="text-center lg:text-left">
         Come and meet one or more of our team members at our next event we&apos;re participating in{' '}
       </p>

@@ -7,21 +7,21 @@ import { ColorScheme, FactStat } from '../../types/viewmodels'
 
 type Props = {
   colorScheme?: ColorScheme
-  link?: string
+  links?: { link: string; buttonName: string }[]
   title: string
-  location: string
   subheading: string
+  subheadingType: 'location' | 'text' | 'none'
   image: MType
   description: string
   facts: FactStat[]
 }
 
 function ProjectBlockLeft({
-  link,
+  links,
   colorScheme = ColorScheme.DEFAULT,
   title,
-  location,
   subheading,
+  subheadingType,
   image,
   description,
   facts,
@@ -44,7 +44,7 @@ function ProjectBlockLeft({
         <div className="relative md:py-10 lg:py-8">
           <h2 className={`${textColor} text-center lg:text-left`}>{title}</h2>
           <div className="lg:inline-flex flex gap-2 mt-2 justify-center">
-            {location && (
+            {subheading && subheadingType === 'location' && (
               <>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -58,16 +58,14 @@ function ProjectBlockLeft({
                     clipRule="evenodd"
                   />
                 </svg>
-                <p className={emphasisColor}>{location}</p>
+                <p className={emphasisColor}>{subheading}</p>
               </>
             )}
-            {subheading && <p className={emphasisColor}>{subheading}</p>}
+
+            {subheadingType === 'text' && subheading && (
+              <p className={emphasisColor}>{subheading}</p>
+            )}
           </div>
-          {/* <Image
-            src={PropertyLogo}
-            alt="property logo"
-            className="absolute top-0 right-16 opacity-30 size-32"
-          /> */}
         </div>
         {facts && (
           <div className={`hidden 2xl:flex gap-4 absolute top-32 ${bgColor} p-4`}>
@@ -100,13 +98,15 @@ function ProjectBlockLeft({
           </div>
         )}
 
-        {link && (
-          <div className="flex justify-center lg:block py-8">
-            <Link href={link} className={`${buttonStyle} `}>
-              LEARN MORE
-            </Link>
-          </div>
-        )}
+        {links &&
+          links.length > 0 &&
+          links.map(l => (
+            <div className="flex justify-center lg:block py-8">
+              <Link href={l.link} className={`${buttonStyle} `}>
+                {l.buttonName}
+              </Link>
+            </div>
+          ))}
       </div>
       <Media
         resource={image}

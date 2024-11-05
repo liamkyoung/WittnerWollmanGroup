@@ -162,8 +162,8 @@ export const Archive: Block = {
       defaultValue: 'default',
       options: [
         {
-          label: 'default',
-          value: 'Default',
+          label: 'Default',
+          value: 'default',
         },
         {
           label: 'Red',

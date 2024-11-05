@@ -1,5 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 
 import {
   Carousel,
@@ -14,11 +15,14 @@ import { TestimonialCard } from './TestimonialCard'
 
 type Props = {
   testimonials: Testimonial[]
+  displayHeader: 'yes' | 'no'
 }
 
-function TestimonialGallery({ testimonials }: Props) {
+function TestimonialGallery({ testimonials, displayHeader = 'no' }: Props) {
   return (
     <div className="relative">
+      {displayHeader === 'yes' && <h2>Testimonials</h2>}
+
       <Carousel className="pb-16 pt-24 sm:pb-24 sm:pt-32 xl:pb-32 mx-auto z-20">
         <CarouselContent className="py-24">
           {testimonials?.map((t, index) => (

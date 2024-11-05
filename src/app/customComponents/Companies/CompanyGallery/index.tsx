@@ -11,9 +11,10 @@ import { Company } from '@/payload/payload-types'
 
 type Props = {
   companies: Company[]
+  displayHeader: 'yes' | 'no'
 }
 
-export const CompanyGallery = ({ companies }: Props) => {
+export const CompanyGallery = ({ companies, displayHeader = 'no' }: Props) => {
   useEffect(() => {
     const scrollers = document.querySelectorAll('.scroller')
 
@@ -45,7 +46,7 @@ export const CompanyGallery = ({ companies }: Props) => {
 
   return (
     <div className="global-margin-y">
-      <h2 className="text-center mb-8">Companies We&apos;ve Helped</h2>
+      {displayHeader === 'yes' && <h2 className="text-center mb-8">Companies We&apos;ve Helped</h2>}
       <div className="scroller mx-auto" data-direction="left" data-speed="slow">
         <div className="scroller__inner">
           {companies?.map((c, i) => (

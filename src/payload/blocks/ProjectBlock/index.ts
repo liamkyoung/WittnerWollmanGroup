@@ -106,10 +106,26 @@ export const ProjectBlock: Block = {
       required: true,
     },
     {
-      name: 'link',
-      label: 'Link',
-      type: 'text',
-      required: false,
+      name: 'links', // required
+      type: 'array', // required
+      label: 'Links',
+      minRows: 1,
+      maxRows: 2,
+      fields: [
+        // required
+        {
+          name: 'link',
+          label: 'Link',
+          type: 'text',
+          required: true,
+        },
+        {
+          name: 'buttonName',
+          label: 'Button Name',
+          type: 'text',
+          required: true,
+        },
+      ],
     },
   ],
 }

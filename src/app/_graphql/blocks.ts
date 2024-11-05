@@ -5,7 +5,6 @@ import { META } from './meta'
 export const CALL_TO_ACTION = `
 ...on Cta {
   blockType
-  type
 }
 `
 

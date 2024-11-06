@@ -10,7 +10,7 @@ import LoginForm from './LoginForm'
 import classes from './index.module.scss'
 
 export default async function Login() {
-  if (process.env.NODE_ENV === 'production') return <></> // No Login Page if in Production
+  // if (process.env.NODE_ENV === 'production') return <></> // No Login Page if in Production
 
   await getMeUser({
     validUserRedirect: `/account?warning=${encodeURIComponent('You are already logged in.')}`,

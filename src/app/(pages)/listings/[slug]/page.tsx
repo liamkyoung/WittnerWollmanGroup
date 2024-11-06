@@ -13,9 +13,6 @@ import { fetchDoc } from '../../../_api/fetchDoc'
 import { fetchDocs } from '../../../_api/fetchDocs'
 import { generateListingMetadata } from '../../../_utilities/generateMeta'
 import Features from './Features'
-// import { ListingHeroProps } from '@/app/_heros/ListingHero'
-
-export const dynamic = 'force-dynamic'
 
 export default async function Page({ params: { slug } }) {
   const { isEnabled: isDraftMode } = draftMode()

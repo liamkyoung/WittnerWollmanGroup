@@ -21,11 +21,80 @@
 8. Sign In To Docker
 9. Pull Docker Image
 10. Run Docker Image with ENV file
-
-
+- `docker run --env-file .env -p '3000:3000' liamyoung/ww-webapp:1.94`
 
 ### Common Errors:
 Prerendering errors
-- DO NOT SET NODE=development when building for production!!!!!
+- DO NOT SET `NODE=development` when building for production!!!!!
+- DO Set `NODE_ENV=development`, can cause csp errors
+- for prod, docker needs to have lkycode.com
 
 ### NGINX Configuration
+```server {
+    server_name lkycode.com www.lkycode.com;
+    client_max_body_size 100M;
+
+    set $cspNonce $request_id;
+    sub_filter_once off;
+    sub_filter_types *;
+    sub_filter NGINX_CSP_NONCE $cspNonce;
+
+    add_header Content-Security-Policy "
+      default-src 'self' https://raw.githubusercontent.com https://maps.googleapis.com https://maps.gstatic.com https://ww-group.nyc3.cdn.digitaloceanspaces.com 'nonce-$cspNonce';
+      script-src 'self' 'unsafe-inline' 'unsafe-eval' https://maps.googleapis.com https://maps.gstatic.com 'nonce-$cspNonce';
+      child-src 'self';
+      style-src 'self' 'unsafe-inline' https://fonts.googleapis.com 'nonce-$cspNonce';
+      img-src 'self' https://maps.googleapis.com https://maps.gstatic.com https://www.googletagmanager.com https://ww-group.nyc3.cdn.digitaloceanspaces.com data:;
+      font-src 'self' https://fonts.gstatic.com;
+      frame-src 'self' https://www.youtube.com;
+      connect-src 'self' https://maps.googleapis.com https://maps.gstatic.com www.googletagmanager.com;
+      script-src-elem 'self' https://www.googletagmanager.com 'nonce-$cspNonce';
+    ";
+
+    location / {
+      proxy_pass http://localhost:3000;
+      proxy_http_version 1.1;
+      proxy_set_header Upgrade $http_upgrade;
+      proxy_set_header Connection 'upgrade';
+      proxy_set_header Host $host;
+      proxy_cache_bypass $http_upgrade;
+
+      add_header Access-Control-Allow-Origin *;
+      add_header Access-Control-Allow-Methods 'GET, POST, OPTIONS';
+      add_header Access-Control-Allow-Headers 'Authorization, Content-Type';
+      if ($request_method = OPTIONS) {
+              return 204;
+      }
+    }
+
+    location /admin {
+            proxy_pass http://localhost:3000/admin;
+            proxy_http_version 1.1;
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection 'upgrade';
+            proxy_set_header Host $host;
+            proxy_cache_bypass $http_upgrade;
+    }
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/lkycode.com/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/lkycode.com/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+}
+
+server {
+    if ($host = www.lkycode.com) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    if ($host = lkycode.com) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    listen 80;
+    server_name lkycode.com www.lkycode.com;
+    return 404; # managed by Certbot
+}```

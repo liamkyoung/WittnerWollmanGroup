@@ -8,6 +8,7 @@ import { Media as MType, Page } from '../../../payload/payload-types'
 import { Media } from '@/app/_components/Media'
 import RichText from '@/app/_components/RichText'
 import { DefaultSocials } from '@/globalData/general'
+import { ContactLink } from '@/globalData/navigation/contact/contact'
 
 export const DefaultHero: React.FC<Page['hero']> = ({ richText, media, links, headerText }) => {
   return (
@@ -21,7 +22,7 @@ export const DefaultHero: React.FC<Page['hero']> = ({ richText, media, links, he
         <div className="flex gap-8 items-center justify-center xl:justify-start">
           <div>
             <p className="text-sm text-wwRed mb-4 italic">Need help with your big idea?</p>
-            <Link href="/contact" className="btn-primary block text-center">
+            <Link href={ContactLink.relLink} className="btn-primary block text-center">
               SEND US A MESSAGE
             </Link>
           </div>

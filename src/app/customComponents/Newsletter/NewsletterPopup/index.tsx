@@ -31,11 +31,11 @@ export default function NewsletterPopup() {
   })
 
   return (
-    <div>
+    <div className={`${!isOpen && 'hidden'}`}>
       {/* Trigger is hidden because the dialog opens automatically */}
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogTrigger asChild>
-          <button style={{ display: 'none' }}>Open Dialog</button>
+          <button className="hidden">Open Dialog</button>
         </DialogTrigger>
         <DialogContent className="max-w-3xl p-0 rounded-none" aria-describedby="newsletter-form">
           <VisuallyHidden>

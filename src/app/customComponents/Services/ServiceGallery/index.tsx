@@ -3,6 +3,7 @@ import Link from 'next/link'
 
 import { Service } from '../../../../payload/payload-types'
 import { ServiceCard } from '../ServiceCard'
+import { ServiceLinks } from '@/globalData/navigation/services/services'
 
 type Props = {
   services: Service[]
@@ -16,7 +17,7 @@ export const ServiceGallery = ({ services, displayHeader = 'yes' }: Props) => {
         <div className="flex md:justify-between justify-center items-center">
           <h2 className="md:text-left text-center">Our Services</h2>
           <div className="hidden md:block">
-            <Link className="btn-primary" href="/services">
+            <Link className="btn-primary" href={ServiceLinks.relLink}>
               LEARN MORE
             </Link>
           </div>
@@ -30,7 +31,7 @@ export const ServiceGallery = ({ services, displayHeader = 'yes' }: Props) => {
       </div>
 
       <div className="md:hidden flex justify-center">
-        <Link className="btn-primary" href="/services">
+        <Link className="btn-primary" href={ServiceLinks.relLink}>
           LEARN MORE
         </Link>
       </div>

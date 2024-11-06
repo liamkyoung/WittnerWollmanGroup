@@ -3,6 +3,7 @@ import React from 'react'
 import { formatDateTime } from '../../../../app/_utilities/formatDateTime'
 import { Media as MType, Post } from '../../../../payload/payload-types'
 import DefaultCard from '../../DefaultCard'
+import { NewsLink } from '@/globalData/navigation/community/community'
 
 export const NewsCard: React.FC<{
   alignItems?: 'center'
@@ -21,7 +22,7 @@ export const NewsCard: React.FC<{
 
   const titleToUse = titleFromProps || title
   // const sanitizedDescription = description?.replace(/\s/g, ' ') // replace non-breaking space with white space
-  const href = `/news/${slug}`
+  const href = `${NewsLink.relLink}/${slug}`
 
   return (
     <DefaultCard

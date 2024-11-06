@@ -73,9 +73,9 @@ export const Projects: CollectionConfig = {
             {
               name: 'neighborhood',
               type: 'text',
-              required: true,
+              required: false,
               admin: {
-                hidden: true,
+                hidden: false,
               },
             },
             {
@@ -107,7 +107,6 @@ export const Projects: CollectionConfig = {
               type: 'text',
               required: true,
             },
-
             {
               name: 'agents', // required
               label: 'Teammates on Project',

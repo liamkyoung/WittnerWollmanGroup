@@ -5,11 +5,9 @@ import { CommunityResourceCard } from '../CommunityResourceCard'
 
 import { Category, CommunityResource } from '@/payload/payload-types'
 
-import Link from 'next/link'
-
 type Props = {
   communityResources: CommunityResource[]
-  displayHeader: 'yes' | 'no'
+  displayHeader?: 'yes' | 'no'
 }
 
 type Option = {

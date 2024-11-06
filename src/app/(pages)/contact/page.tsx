@@ -4,6 +4,8 @@ import { ContactForm } from '../../customComponents/inputs/ContactForm'
 import SocialList from '../../customComponents/SocialList'
 import { ColorScheme } from '../../types/viewmodels'
 
+import { Metadata } from 'next'
+
 function Page() {
   return (
     <div className="global-margin-x my-24 overflow-hidden">
@@ -27,3 +29,11 @@ function Page() {
 }
 
 export default Page
+
+export async function generateMetadata({ params: {} }): Promise<Metadata> {
+  return {
+    title: 'Contact Us | Wittner Wollman Group',
+    description:
+      'Send the Wittner Wollman Group a message to get in touch with one of our team members.',
+  }
+}

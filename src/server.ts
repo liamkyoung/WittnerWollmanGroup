@@ -16,7 +16,7 @@ import payload from 'payload'
 const app = express()
 
 const corsOptions = {
-  origin: process.env.PAYLOAD_PUBLIC_SERVER_URL,
+  origin: process.env.NEXT_PUBLIC_SERVER_URL,
   credentials: true,
 }
 

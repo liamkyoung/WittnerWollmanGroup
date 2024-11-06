@@ -1,14 +1,11 @@
 import React from 'react'
-import { Link } from 'lucide-react'
 import { Metadata } from 'next'
 import { draftMode } from 'next/headers'
-import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import payload from 'payload'
 
 import {
   CommunityResource,
-  Listing,
   Media as MType,
   Project,
   Teammate,
@@ -16,18 +13,14 @@ import {
 import { fetchDoc } from '../../../_api/fetchDoc'
 import { fetchDocs } from '../../../_api/fetchDocs'
 import { CallToActionBlock } from '../../../_blocks/CallToAction'
-import { Media } from '../../../_components/Media'
 import { generateTeammateMetadata } from '../../../_utilities/generateMeta'
 import ContactAndBio from './ContactAndBio'
 import TeammateHeader from './TeammateHeader'
 
-import { Blocks } from '@/app/_components/Blocks'
 import { CommunityResourceGallery } from '@/app/customComponents/CommunityResources/CommunityResourceGallery'
 import { GoogleMap } from '@/app/customComponents/GoogleMap/GoogleMap'
 import { ProjectGallery } from '@/app/customComponents/Projects/ProjectGallery'
 import { GoogleMapPin } from '@/app/types/viewmodels'
-
-export const dynamic = 'force-dynamic'
 
 export default async function Page({ params: { slug } }) {
   const { isEnabled: isDraftMode } = draftMode()
@@ -106,10 +99,15 @@ export default async function Page({ params: { slug } }) {
         {pins && pins.length > 0 && <GoogleMap pins={pins} fullscreen pinType="listing" />}
 
         <ProjectGallery projects={projects} />
+        {favoritePlaces && favoritePlaces.length > 0 && (
+          <CommunityResourceGallery
+            communityResources={favoritePlaces as CommunityResource[]}
+            displayHeader="yes"
+          />
+        )}
       </div>
       <div className="mt-24">
-        <CommunityResourceGallery communityResources={favoritePlaces as CommunityResource[]} />
-        <CallToActionBlock type={'agent'} blockType="cta" />
+        <CallToActionBlock blockType="cta" />
       </div>
     </>
   )
@@ -194,5 +192,5 @@ async function getAgentProjects(teammateId: number): Promise<Project[] | null> {
 
   //console.log('Projects', projects.docs)
 
-  return projects.docs
+  return projects?.docs
 }

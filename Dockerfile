@@ -15,8 +15,15 @@ RUN yarn install
 
 ENV NODE_ENV=production
 ENV PAYLOAD_CONFIG_PATH=dist/payload.config.js
+
+# Docker on Prod
 ENV PAYLOAD_PUBLIC_SERVER_URL=https://lkycode.com
 ENV NEXT_PUBLIC_SERVER_URL=https://lkycode.com
+
+# Docker on Local
+# ENV PAYLOAD_PUBLIC_SERVER_URL=http://localhost:3000
+# ENV NEXT_PUBLIC_SERVER_URL=http://localhost:3000
+
 
 RUN yarn build:payload
 RUN yarn build:server
@@ -36,6 +43,8 @@ COPY --from=builder /home/node/app/.next ./.next
 COPY --from=builder /home/node/app/next.config.js ./
 COPY --from=builder /home/node/app/csp.js ./
 COPY --from=builder /home/node/app/redirects.js ./
+COPY --from=builder /home/node/app/ca-certificate.crt ./
+COPY --from=builder /home/node/app/public ./public
 
 EXPOSE 3000
 

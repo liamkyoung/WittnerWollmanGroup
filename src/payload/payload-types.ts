@@ -29,6 +29,17 @@ export type FactsList =
       id?: string | null;
     }[]
   | null;
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Links".
+ */
+export type Links =
+  | {
+      link: string;
+      buttonName: string;
+      id?: string | null;
+    }[]
+  | null;
 
 export interface Config {
   collections: {
@@ -255,13 +266,7 @@ export interface Page {
         bgColor?: ('white' | 'red') | null;
         facts?: FactsList;
         media: number | Media;
-        links?:
-          | {
-              link: string;
-              buttonName: string;
-              id?: string | null;
-            }[]
-          | null;
+        links?: Links;
         id?: string | null;
         blockName?: string | null;
         blockType: 'projectBlock';
@@ -736,7 +741,7 @@ export interface Project {
   title: string;
   address: string;
   description: string;
-  neighborhood: string;
+  neighborhood?: string | null;
   latitude?: number | null;
   longitude?: number | null;
   price: string;
@@ -911,13 +916,7 @@ export interface Project {
         bgColor?: ('white' | 'red') | null;
         facts?: FactsList;
         media: number | Media;
-        links?:
-          | {
-              link: string;
-              buttonName: string;
-              id?: string | null;
-            }[]
-          | null;
+        links?: Links;
         id?: string | null;
         blockName?: string | null;
         blockType: 'projectBlock';
@@ -962,6 +961,7 @@ export interface Teammate {
   id: number;
   title: string;
   profilePic: number | Media;
+  jobTitle: string;
   profileIntroduction: string;
   bio: string;
   strengths?: ('Residential Real Estate' | 'Commercial Real Estate')[] | null;
@@ -1197,13 +1197,7 @@ export interface Listing {
         bgColor?: ('white' | 'red') | null;
         facts?: FactsList;
         media: number | Media;
-        links?:
-          | {
-              link: string;
-              buttonName: string;
-              id?: string | null;
-            }[]
-          | null;
+        links?: Links;
         id?: string | null;
         blockName?: string | null;
         blockType: 'projectBlock';
@@ -1492,13 +1486,7 @@ export interface Service {
         bgColor?: ('white' | 'red') | null;
         facts?: FactsList;
         media: number | Media;
-        links?:
-          | {
-              link: string;
-              buttonName: string;
-              id?: string | null;
-            }[]
-          | null;
+        links?: Links;
         id?: string | null;
         blockName?: string | null;
         blockType: 'projectBlock';

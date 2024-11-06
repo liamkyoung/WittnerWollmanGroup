@@ -1,3 +1,4 @@
+import { ContactLink } from '@/globalData/navigation/contact/contact'
 import Link from 'next/link'
 
 export default function NotFound() {
@@ -18,7 +19,7 @@ export default function NotFound() {
           >
             Go back home
           </Link>
-          <Link href="/contact" className="text-sm font-semibold text-gray-900">
+          <Link href={ContactLink.relLink} className="text-sm font-semibold text-gray-900">
             Contact a team member <span aria-hidden="true">&rarr;</span>
           </Link>
         </div>

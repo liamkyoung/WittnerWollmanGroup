@@ -2,6 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 
 import { formatDollarAmount } from '@/app/_utilities/formatDollarAmount'
+import { ListingLinks } from '@/globalData/navigation/listings/listings'
 
 export type ListingHeroProps = {
   streetAddress: string
@@ -27,7 +28,7 @@ export const ListingHero: React.FC<ListingHeroProps> = ({
   return (
     <div className="flex flex-col lg:flex-row gap-8 lg:gap-0 justify-between items-center">
       <div className="space-y-4">
-        <Link href="/listings">
+        <Link href={ListingLinks.relLink}>
           <h6 className="text-gray-600 hover:text-gray-400 text-center lg:text-left">Listings /</h6>
         </Link>
         <div className="text-center lg:text-left">

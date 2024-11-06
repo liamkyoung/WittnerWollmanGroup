@@ -8,7 +8,7 @@ import seo from '@payloadcms/plugin-seo'
 import type { GenerateTitle } from '@payloadcms/plugin-seo/types'
 import { slateEditor } from '@payloadcms/richtext-slate'
 import dotenv from 'dotenv'
-import fs from 'fs'
+// import fs from 'fs'
 import path from 'path'
 import { buildConfig } from 'payload/config'
 
@@ -59,13 +59,13 @@ const storageAdapter = s3Adapter({
   acl: 'public-read',
 })
 
-const sslConfig =
-  process.env.NODE_ENV === 'production'
-    ? {
-        rejectUnauthorized: false,
-        ca: fs.readFileSync(path.resolve(process.env.DATABASE_CA_CERT_PATH)).toString(),
-      }
-    : undefined
+// const sslConfig =
+//   process.env.NODE_ENV === 'production'
+//     ? {
+//         rejectUnauthorized: false,
+//         ca: fs.readFileSync(path.resolve(__dirname, '../../ca-certificate.crt')).toString(),
+//       }
+//     : undefined
 
 export default buildConfig({
   admin: {
@@ -86,9 +86,10 @@ export default buildConfig({
         fallback: {
           fs: false, // Prevents bundling 'fs' in the frontend
           os: false, // Prevents bundling 'os' in the frontend
+          crypto: require.resolve('crypto-browserify'),
           path: require.resolve('path-browserify'),
-          stream: false,
-          vm: false,
+          stream: require.resolve('stream-browserify'),
+          vm: require.resolve('vm-browserify'),
         },
         alias: {
           ...config.resolve.alias,
@@ -101,7 +102,7 @@ export default buildConfig({
   db: postgresAdapter({
     pool: {
       connectionString: process.env.DATABASE_URI,
-      ssl: sslConfig,
+      // ssl: sslConfig,
     },
   }),
   serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL,

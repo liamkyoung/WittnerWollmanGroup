@@ -4,6 +4,7 @@ import Link from 'next/link'
 
 import { Media } from '@/app/_components/Media'
 import { Media as MType } from '@/payload/payload-types'
+import { TeamLinks } from '../../../../globalData/navigation/about/about'
 
 type Props = {
   name: string
@@ -25,7 +26,7 @@ function TeammateHeader({
   return (
     <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
       <div>
-        <Link href="/teammates">
+        <Link href={TeamLinks.relLink}>
           <h6 className="text-gray-800 hidden xl:block">Team /</h6>
         </Link>
 

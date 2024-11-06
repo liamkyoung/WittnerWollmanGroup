@@ -1,10 +1,10 @@
-import React, { Fragment } from 'react'
-import Image from 'next/image'
+import React from 'react'
 import Link from 'next/link'
 
 import { Listing, Media as MediaType } from '../../../payload/payload-types'
 import { Media } from '../../_components/Media'
 import CardInfo from '../CardInfo'
+import { ListingLinks } from '@/globalData/navigation/listings/listings'
 
 export const ListingCard: React.FC<{
   className?: string
@@ -18,7 +18,7 @@ export const ListingCard: React.FC<{
 
   const titleToUse = titleFromProps || title
   const sanitizedDescription = description?.replace(/\s/g, ' ') // replace non-breaking space with white space
-  const href = `/listings/${slug}`
+  const href = `${ListingLinks.relLink}/${slug}`
 
   return (
     <div>
@@ -33,7 +33,7 @@ export const ListingCard: React.FC<{
         <div className="mx-auto">
           <CardInfo
             address={address}
-            additionalInfo={[`${sqFt} sq ft`, `${bedCount} beds`, `${bathroomCount} baths`]}
+            additionalInfo={[`${sqFt} sq ft`, `${bedCount} bedrooms`, `${bathroomCount} bathrooms`]}
           />
         </div>
       </div>

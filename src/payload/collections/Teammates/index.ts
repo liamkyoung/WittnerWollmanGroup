@@ -6,6 +6,7 @@ import { admins } from '../../access/admins'
 import { adminsOrPublished } from '../../access/adminsOrPublished'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
 import { revalidateTeammate } from './hooks/revalidateTeammate'
+import { TeamLinks } from '../../../globalData/navigation/about/about'
 
 export const Teammates: CollectionConfig = {
   slug: 'teammates',
@@ -13,7 +14,7 @@ export const Teammates: CollectionConfig = {
     useAsTitle: 'title',
     preview: doc => {
       return `${process.env.PAYLOAD_PUBLIC_SERVER_URL}/next/preview?url=${encodeURIComponent(
-        `${process.env.PAYLOAD_PUBLIC_SERVER_URL}/teammates/${doc?.slug}`,
+        `${process.env.PAYLOAD_PUBLIC_SERVER_URL}${TeamLinks.relLink}/${doc?.slug}`,
       )}&secret=${process.env.PAYLOAD_PUBLIC_DRAFT_SECRET}`
     },
   },
@@ -48,6 +49,12 @@ export const Teammates: CollectionConfig = {
               name: 'profilePic',
               type: 'upload',
               relationTo: 'media',
+              required: true,
+            },
+            {
+              name: 'jobTitle',
+              label: 'Job Title',
+              type: 'text',
               required: true,
             },
             {

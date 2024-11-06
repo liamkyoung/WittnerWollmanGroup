@@ -19,6 +19,7 @@ query Teammates($slug: String) {
         title
         bio
         profileIntroduction
+        jobTitle
         ${FAVORITE_PLACES}
         phoneNumber
         instagram

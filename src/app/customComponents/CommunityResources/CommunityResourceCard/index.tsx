@@ -29,22 +29,3 @@ export const CommunityResourceCard: React.FC<{
     </div>
   )
 }
-
-// function FavoritePlaceCard() {
-//   return (
-//     <div className="w-96 lg:w-72 space-y-4">
-//       <div className="space-y-2">
-//         <h4>Mangosteen</h4>
-//         <CardInfo address="777 3rd Ave N, St. Petersburg" />
-//       </div>
-
-//       <Image src={Mangosteen} alt="place-img" className="w-full h-full" />
-//       <p className="border-l-4 border-wwRed pl-2">
-//         “I love Mangosteen because X, Y, Z. It&apos;s a fantastic restaurant
-//         cause it is so tasty and good prices.”
-//       </p>
-//     </div>
-//   )
-// }
-
-// export default FavoritePlaceCard

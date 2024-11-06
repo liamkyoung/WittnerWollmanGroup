@@ -2,28 +2,28 @@ import type { MapSettings, Socials } from '@/app/types/viewmodels'
 
 export const DefaultSocials: Socials = {
   phoneNumber: '(813) 456-7890',
-  email: 'liamkingstonyoung@gmail.com',
+  email: 'contact@wwgre.com',
   address: '360 Central Ave, St. Petersburg, FL 33701',
-  linkedin: {
-    platformName: 'linkedin',
-    username: 'liamkyoung',
-    profileLink: 'https://www.linkedin.com/in/liamkyoung',
-  },
-  twitter: {
-    platformName: 'twitter',
-    username: 'liamkyoung',
-    profileLink: 'https://www.x.com/liamkyoung',
-  },
+  // linkedin: {
+  //   platformName: 'linkedin',
+  //   username: 'liamkyoung',
+  //   profileLink: 'https://www.linkedin.com/in/liamkyoung',
+  // },
+  // twitter: {
+  //   platformName: 'twitter',
+  //   username: 'liamkyoung',
+  //   profileLink: 'https://www.x.com/liamkyoung',
+  // },
 
   instagram: {
     platformName: 'instagram',
-    username: 'liamkyoung',
-    profileLink: 'https://www.instagram.com/liamkyoung',
+    username: 'wittnerwollmangroup',
+    profileLink: 'https://www.instagram.com/wittnerwollmangroup',
   },
   facebook: {
     platformName: 'facebook',
-    username: 'liamkyoung',
-    profileLink: 'https://www.facebook.com',
+    username: 'Wittner Wollman Group',
+    profileLink: 'https://www.facebook.com/profile.php?id=61564518925276',
   },
 }
 
@@ -58,4 +58,14 @@ export const GoogleMapsDefaults: MapSettings = {
   mapCenter: { lat: 27.77, lng: -82.64 },
 }
 
+export const GoogleMapOfficeURL = 'https://maps.app.goo.gl/sb8n7CoCXDeCm6Ss7'
+
 export const NewsletterEmail = 'liamkingstonyoung@gmail.com'
+
+export const MetaKeywords: string[] = [
+  'real estate',
+  'tampa bay',
+  'st. petersburg',
+  'commercial real estate',
+  'keller williams',
+]

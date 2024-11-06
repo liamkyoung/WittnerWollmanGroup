@@ -1,9 +1,9 @@
 import type { CollectionConfig } from 'payload/types'
 
+import AdminAddressSearch from '../../../payload/customComponents/AdminAddressSearch'
 import { admins } from '../../access/admins'
 import { adminsOrPublished } from '../../access/adminsOrPublished'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
-import AdminAddressSearch from '../../../payload/customComponents/AdminAddressSearch'
 
 export const CommunityResources: CollectionConfig = {
   slug: 'communityResources',

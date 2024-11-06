@@ -3,6 +3,7 @@ import React from 'react'
 import { formatDollarAmount } from '../../../../app/_utilities/formatDollarAmount'
 import { Media, Project } from '../../../../payload/payload-types'
 import DefaultCard from '../../DefaultCard'
+import { ProjectLinks } from '@/globalData/navigation/projects/projects'
 
 export const ProjectCard: React.FC<{
   className?: string
@@ -13,7 +14,7 @@ export const ProjectCard: React.FC<{
   const { slug, title, meta, price } = doc || {}
   const { image: metaImage } = meta || {}
 
-  const href = `/projects/${slug}`
+  const href = `${ProjectLinks.relLink}/${slug}`
 
   return (
     <DefaultCard

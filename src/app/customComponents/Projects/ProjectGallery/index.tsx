@@ -3,10 +3,11 @@ import Link from 'next/link'
 
 import { Project } from '../../../../payload/payload-types'
 import { ProjectCard } from './../ProjectCard'
+import { ProjectLinks } from '@/globalData/navigation/projects/projects'
 
 type Props = {
   projects: Project[]
-  displayHeader: 'yes' | 'no'
+  displayHeader?: 'yes' | 'no'
 }
 
 export const ProjectGallery = ({ projects, displayHeader = 'yes' }: Props) => {
@@ -18,7 +19,7 @@ export const ProjectGallery = ({ projects, displayHeader = 'yes' }: Props) => {
             <div className="flex justify-center md:justify-between items-center">
               <h2 className="text-center md:text-left">Previous Deals</h2>
               <div className="hidden md:block">
-                <Link className="btn-primary" href="/projects">
+                <Link className="btn-primary" href={ProjectLinks.relLink}>
                   VIEW ALL PROJECTS
                 </Link>
               </div>
@@ -34,7 +35,7 @@ export const ProjectGallery = ({ projects, displayHeader = 'yes' }: Props) => {
           </div>
 
           <div className="md:hidden flex justify-center">
-            <Link className="btn-primary" href="/projects">
+            <Link className="btn-primary" href={ProjectLinks.relLink}>
               VIEW ALL PROJECTS
             </Link>
           </div>

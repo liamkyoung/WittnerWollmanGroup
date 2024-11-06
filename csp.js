@@ -1,9 +1,12 @@
+// const nonce = Buffer.from(crypto.randomUUID()).toString('base64')
+
 const policies = {
   'default-src': [
     "'self'",
     'https://raw.githubusercontent.com',
     'https://maps.googleapis.com',
     'https://maps.gstatic.com',
+    'https://ww-group.nyc3.cdn.digitaloceanspaces.com',
   ],
   'script-src': [
     "'self'",
@@ -13,17 +16,17 @@ const policies = {
     'https://maps.gstatic.com',
   ],
   'child-src': ["'self'"],
-  'style-src': ["'self'", "'unsafe-inline'", 'https://fonts.googleapis.com'],
+  'style-src': ["'self'", 'https://fonts.googleapis.com', "'unsafe-inline'"],
   'img-src': [
     "'self'",
     'https://maps.googleapis.com',
     'https://maps.gstatic.com',
+    'https://ww-group.nyc3.cdn.digitaloceanspaces.com',
     'data:', // Allow data URIs if needed
   ],
   'font-src': ["'self'", 'https://fonts.gstatic.com'],
   'frame-src': ["'self'", 'https://www.youtube.com'],
   'connect-src': ["'self'", 'https://maps.googleapis.com', 'https://maps.gstatic.com'],
-  'script-src-elem': ["'self'", 'https://www.googletagmanager.com'],
 }
 
 module.exports = Object.entries(policies)

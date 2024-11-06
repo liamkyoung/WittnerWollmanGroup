@@ -42,7 +42,10 @@ export const PROJECT_BLOCK = `
     factStat
     factDescription
   }
-  link
+  links {
+    link
+    buttonName
+  }
   ${MEDIA}
 }
 `

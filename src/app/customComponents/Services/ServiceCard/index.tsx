@@ -4,6 +4,7 @@ import Link from 'next/link'
 
 import { Service } from '../../../../payload/payload-types'
 import { Media } from '../../../_components/Media'
+import { ServiceLinks } from '@/globalData/navigation/services/services'
 
 export const ServiceCard: React.FC<{
   className?: string
@@ -14,7 +15,7 @@ export const ServiceCard: React.FC<{
   const { title, shortDescription, slug } = doc || {}
 
   const sanitizedDescription = shortDescription?.replace(/\s/g, ' ') // replace non-breaking space with white space
-  const href = `/services/${slug}`
+  const href = `${ServiceLinks.relLink}/${slug}`
 
   const renderSvg = () => {
     switch (title?.toLowerCase()) {

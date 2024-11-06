@@ -15,7 +15,7 @@ import AccountForm from './AccountForm'
 import classes from './index.module.scss'
 
 export default async function Account() {
-  if (process.env.NODE_ENV === 'production') return <></> // No Login Page if in Production
+  //if (process.env.NODE_ENV === 'production') return <></> // No Login Page if in Production
 
   const { user } = await getMeUser({
     nullUserRedirect: `/login?error=${encodeURIComponent(

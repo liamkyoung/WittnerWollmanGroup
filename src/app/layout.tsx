@@ -10,10 +10,11 @@ import Header from './customComponents/Header'
 
 import './_css/app.scss'
 const montserrat = Montserrat({ subsets: ['latin'], preload: true })
-import { GoogleAnalytics } from '@next/third-parties/google'
+// import { GoogleAnalytics } from '@next/third-parties/google'
 
 import { Toaster } from '../components/ui/toaster'
 import NewsletterPopup from './customComponents/Newsletter/NewsletterPopup'
+import { MetaKeywords } from '../globalData/general'
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -37,9 +38,9 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           </>
         </Providers>
       </body>
-      {process.env.NODE_ENV === 'production' && (
+      {/* {process.env.NODE_ENV === 'production' && (
         <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_G_ANALYTICS_ID} />
-      )}
+      )} */}
     </html>
   )
 }
@@ -50,7 +51,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     creator: '@liamkyoung',
   },
-  keywords: ['real estate', 'tampa bay', 'st. petersburg', 'commercial real estate'],
+  keywords: MetaKeywords,
   robots: '../public/robots.txt',
   openGraph: mergeOpenGraph(),
 }

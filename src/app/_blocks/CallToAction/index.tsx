@@ -2,6 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 
 import { Page } from '../../../payload/payload-types'
+import { ContactLink } from '@/globalData/navigation/contact/contact'
 
 type Props = Extract<Page['layout'][0], { blockType: 'cta' }>
 
@@ -19,7 +20,7 @@ export const CallToActionBlock: React.FC<
             <br /> To Get Help with Your BIG Idea
           </h2>
           <div>
-            <Link className="btn-secondary" href="/contact">
+            <Link className="btn-secondary" href={ContactLink.relLink}>
               MESSAGE AN AGENT
             </Link>
           </div>

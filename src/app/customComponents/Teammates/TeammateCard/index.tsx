@@ -7,6 +7,7 @@ import Email from '../../Icons/Email'
 import Instagram from '../../Icons/Instagram'
 import LinkedinIcon from '../../Icons/LinkedinIcon'
 import Phone from '../../Icons/Phone'
+import { TeamLinks } from '../../../../globalData/navigation/about/about'
 
 export const TeammateCard: React.FC<{
   className?: string
@@ -31,7 +32,7 @@ export const TeammateCard: React.FC<{
 
   const titleToUse = titleFromProps || title
   const sanitizedDescription = description?.replace(/\s/g, ' ') // replace non-breaking space with white space
-  const href = `/teammates/${slug}`
+  const href = `${TeamLinks.relLink}/${slug}`
 
   return (
     <div key={title}>

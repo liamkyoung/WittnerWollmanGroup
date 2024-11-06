@@ -5,13 +5,14 @@ import { GoogleMapPin } from '../../../app/types/viewmodels'
 import { Listing, Media } from '../../../payload/payload-types'
 import { GoogleMap } from '../GoogleMap/GoogleMap'
 import { ListingCard } from './index'
+import { ListingLinks } from '@/globalData/navigation/listings/listings'
 
 type Props = {
   listings: Listing[]
   displayHeader: 'yes' | 'no'
 }
 
-export const ListingGallery = ({ listings, displayHeader }: Props) => {
+export const ListingGallery = ({ listings, displayHeader = 'yes' }: Props) => {
   const pins: GoogleMapPin[] = listings.map(m => {
     return {
       name: m.title,
@@ -23,11 +24,11 @@ export const ListingGallery = ({ listings, displayHeader }: Props) => {
     }
   })
   return (
-    <div className="global-margin-x global-margin-y">
+    <div className="global-margin-x global-margin-y overflow-x-hidden">
       {displayHeader === 'yes' && (
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-0 items-center justify-between mb-16">
           <h2>Current Listings</h2>
-          <Link href="/listings" className="btn-primary">
+          <Link href={ListingLinks.relLink} className="btn-primary">
             VIEW ALL LISTINGS
           </Link>
         </div>

@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { Media as MediaType, Project } from '../../../../payload/payload-types'
 import { Media } from '../../../_components/Media'
 import CardInfo from '../../CardInfo'
+import { ProjectLinks } from '@/globalData/navigation/projects/projects'
 
 export const SingularProjectHero: React.FC<{
   project: Project
@@ -24,7 +25,7 @@ export const SingularProjectHero: React.FC<{
     <div className="global-margin-x">
       <div className="grid grid-cols-2 gap-4 mb-12">
         <div>
-          <Link href="/projects">
+          <Link href={ProjectLinks.relLink}>
             <h6 className="text-gray-800">Projects /</h6>
           </Link>
 

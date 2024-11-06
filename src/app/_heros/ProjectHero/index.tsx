@@ -1,16 +1,15 @@
 'use client'
-import React, { Fragment, useEffect, useState } from 'react'
-import Image from 'next/image'
+import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 
-import RichText from '../../../app/_components/RichText'
 import { DefaultSocials } from '../../../globalData/general'
-import { Media as MediaType, Page, Project } from '../../../payload/payload-types'
-import { Media } from '../../_components/Media'
+import { Page, Project } from '../../../payload/payload-types'
 
 import { fetchDocs } from '@/app/_api/fetchDocs'
 import { GoogleMap } from '@/app/customComponents/GoogleMap/GoogleMap'
 import { GoogleMapPin } from '@/app/types/viewmodels'
+import RichText from '@/app/_components/RichText'
+import { ContactLink } from '@/globalData/navigation/contact/contact'
 
 async function getProjectPins() {
   try {
@@ -40,15 +39,13 @@ export const ProjectHero: React.FC<Page['hero']> = ({ richText, media, links, he
       <div className="mt-24">
         <h1 className="mb-10">Our Projects</h1>
         <p className="mb-8">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam porttitor eros vel augue
-          pulvinar ultrices. Orci varius natoque penatibus et magnis dis parturient montes, nascetur
-          ridiculus mus.
+          <RichText content={richText} />
         </p>
 
         <div className="flex gap-8 items-center">
           <div>
             <p className="text-sm text-wwRed mb-4 italic">Need help with your big idea?</p>
-            <Link href="/contact" className="btn-primary">
+            <Link href={ContactLink.relLink} className="btn-primary">
               SEND US A MESSAGE
             </Link>
           </div>

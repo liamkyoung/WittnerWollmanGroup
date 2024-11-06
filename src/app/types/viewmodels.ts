@@ -1,8 +1,8 @@
 import type { Media } from '../../payload/payload-types'
 
 export interface Socials {
-  linkedin: SocialMediaInfo
-  twitter: SocialMediaInfo
+  linkedin?: SocialMediaInfo
+  twitter?: SocialMediaInfo
   facebook: SocialMediaInfo
   instagram: SocialMediaInfo
   address: string

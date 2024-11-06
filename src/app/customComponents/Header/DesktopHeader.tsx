@@ -15,15 +15,8 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from '@/components/ui/sheet'
 import { InternalLinks } from '@/globalData/navigation'
+import { ContactLink } from '@/globalData/navigation/contact/contact'
 
 function DesktopHeader({}: Props) {
   return (
@@ -62,7 +55,7 @@ function DesktopHeader({}: Props) {
           }
         })}
       </div>
-      <Link className="btn-primary" href="/contact">
+      <Link className="btn-primary" href={ContactLink.relLink}>
         CONTACT
       </Link>
     </nav>

@@ -80,7 +80,11 @@ function ProjectBlockLeft({
           </div>
         )}
 
-        <p className={`mb-10 pt-8 md:pt-4 2xl:mt-48 ${textColor} text-center lg:text-left`}>
+        <p
+          className={`mb-10 pt-8 md:pt-4 ${
+            facts && '2xl:mt-48'
+          } ${textColor} text-center lg:text-left`}
+        >
           {description}
         </p>
         {facts && (

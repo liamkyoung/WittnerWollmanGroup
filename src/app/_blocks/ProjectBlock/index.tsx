@@ -11,17 +11,8 @@ export type ProjectBlockProps = Extract<Page['layout'][0], { blockType: 'project
 }
 
 export const ProjectBlock: React.FC<ProjectBlockProps> = props => {
-  const {
-    media,
-    position,
-    location,
-    subheading,
-    title,
-    bgColor,
-    externalLink,
-    description,
-    facts,
-  } = props
+  const { media, position, subheading, subheadingType, title, bgColor, links, description, facts } =
+    props
 
   let caption
   if (media && typeof media === 'object') caption = media.caption
@@ -37,12 +28,12 @@ export const ProjectBlock: React.FC<ProjectBlockProps> = props => {
   if (position === 'right') {
     return (
       <ProjectBlockLeft
-        link={externalLink}
+        links={links}
         colorScheme={color}
         title={title}
         image={media as MType}
         subheading={subheading}
-        location={location}
+        subheadingType={subheadingType}
         description={description}
         facts={facts}
       />
@@ -51,12 +42,12 @@ export const ProjectBlock: React.FC<ProjectBlockProps> = props => {
 
   return (
     <ProjectBlockRight
-      link={externalLink}
+      links={links}
       colorScheme={color}
       title={title}
       image={media as MType}
       subheading={subheading}
-      location={location}
+      subheadingType={subheadingType}
       description={description}
       facts={facts}
     />

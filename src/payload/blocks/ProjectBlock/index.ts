@@ -1,7 +1,5 @@
 import type { Block } from 'payload/types'
 
-import { invertBackground } from '../../fields/invertBackground'
-
 export const ProjectBlock: Block = {
   slug: 'projectBlock',
   fields: [
@@ -108,7 +106,11 @@ export const ProjectBlock: Block = {
     {
       name: 'links', // required
       type: 'array', // required
-      label: 'Links',
+      interfaceName: 'Links', // optional
+      labels: {
+        singular: 'Link',
+        plural: 'Links',
+      },
       minRows: 1,
       maxRows: 2,
       fields: [

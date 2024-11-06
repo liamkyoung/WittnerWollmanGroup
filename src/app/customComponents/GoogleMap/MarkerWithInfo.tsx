@@ -1,14 +1,13 @@
 import React, { useCallback, useState } from 'react'
 import { AdvancedMarker, InfoWindow, useAdvancedMarkerRef } from '@vis.gl/react-google-maps'
-import Link from 'next/link'
 
-import CardInfo from '../CardInfo'
 import DefaultCard from '../DefaultCard'
 
-import { Media } from '@/app/_components/Media'
 import { formatDollarAmount } from '@/app/_utilities/formatDollarAmount'
 import { MapCoords } from '@/app/types/viewmodels'
 import { Media as MediaType } from '@/payload/payload-types'
+import { ListingLinks } from '@/globalData/navigation/listings/listings'
+import { ProjectLinks } from '@/globalData/navigation/projects/projects'
 
 type Props = {
   position: MapCoords
@@ -41,7 +40,8 @@ export const MarkerWithInfo = ({
 
   // if the maps api closes the infowindow, we have to synchronize our state
   const handleClose = useCallback(() => setInfoWindowShown(false), [])
-  const finalHref = pinType === 'listing' ? `/listings/${href}` : `/projects/${href}`
+  const finalHref =
+    pinType === 'listing' ? `${ListingLinks.relLink}/${href}` : `${ProjectLinks.relLink}/${href}`
 
   return (
     <>

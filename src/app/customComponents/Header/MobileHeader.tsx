@@ -14,6 +14,7 @@ import {
   SheetTrigger,
 } from '@/components/ui/sheet'
 import { InternalLinks } from '@/globalData/navigation'
+import { ContactLink } from '@/globalData/navigation/contact/contact'
 
 type Props = {}
 
@@ -63,6 +64,11 @@ function MobileHeader({}: Props) {
                   ))}
                 </div>
               ))}
+              <div className="pt-12 justify-self-start">
+                <Link className="btn-primary" href={ContactLink.relLink}>
+                  CONTACT
+                </Link>
+              </div>
             </SheetDescription>
           </SheetHeader>
         </SheetContent>

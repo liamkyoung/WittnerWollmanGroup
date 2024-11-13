@@ -22,7 +22,7 @@ export type FactStat = {
 }
 
 export const StatsAndVideoBlock: React.FC<StatAndVideoBlockProps> = props => {
-  const { title, description, facts, bgImage } = props
+  const { title, description, facts, bgImage, youtubeThumbnail } = props
 
   return (
     <div className="relative">
@@ -84,7 +84,11 @@ export const StatsAndVideoBlock: React.FC<StatAndVideoBlockProps> = props => {
                 })}
             </div>
             <div className="w-full xl:w-1/2">
-              <YoutubeVideo src={props.youtubeLink} title={`${title} video`} />
+              <YoutubeVideo
+                src={props.youtubeLink}
+                title={`${title} video`}
+                coverImage={youtubeThumbnail}
+              />
             </div>
           </div>
         </div>

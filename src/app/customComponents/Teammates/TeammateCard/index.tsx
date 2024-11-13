@@ -1,13 +1,13 @@
 import React from 'react'
 import Link from 'next/link'
 
+import { TeamLinks } from '../../../../globalData/navigation/about/about'
 import { Media as MediaType, Teammate } from '../../../../payload/payload-types'
 import { Media } from '../../../_components/Media'
 import Email from '../../Icons/Email'
 import Instagram from '../../Icons/Instagram'
 import LinkedinIcon from '../../Icons/LinkedinIcon'
 import Phone from '../../Icons/Phone'
-import { TeamLinks } from '../../../../globalData/navigation/about/about'
 
 export const TeammateCard: React.FC<{
   className?: string
@@ -23,6 +23,7 @@ export const TeammateCard: React.FC<{
     strengths,
     instagram,
     Facebook,
+    jobTitle,
     Linkedin,
     email,
     phoneNumber,
@@ -60,7 +61,7 @@ export const TeammateCard: React.FC<{
             />
           </svg>
         </div>
-        <p className="text-white">Commercial Agent</p>
+        <p className="text-white">{jobTitle}</p>
       </Link>
       <div className={``}>
         <div className="flex gap-4 mt-4">

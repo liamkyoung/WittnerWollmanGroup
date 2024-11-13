@@ -86,6 +86,7 @@ export default buildConfig({
         fallback: {
           fs: false, // Prevents bundling 'fs' in the frontend
           os: false, // Prevents bundling 'os' in the frontend
+          util: false,
           crypto: require.resolve('crypto-browserify'),
           path: require.resolve('path-browserify'),
           stream: require.resolve('stream-browserify'),

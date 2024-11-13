@@ -17,8 +17,8 @@ export const AcquisitionService: NavGrouping = {
 }
 
 export const ConsultingService: NavGrouping = {
-  title: 'Acquisition',
-  relLink: '/services/acquisition',
+  title: 'Consulting',
+  relLink: '/services/consulting',
 }
 
 export const ServiceLinks: NavGrouping = {

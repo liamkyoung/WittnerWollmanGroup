@@ -82,7 +82,7 @@ function ProjectBlockLeft({
 
         <p
           className={`mb-10 pt-8 md:pt-4 ${
-            facts && '2xl:mt-48'
+            facts && facts.length > 0 && '2xl:mt-48'
           } ${textColor} text-center lg:text-left`}
         >
           {description}
@@ -104,8 +104,8 @@ function ProjectBlockLeft({
 
         {links &&
           links.length > 0 &&
-          links.map(l => (
-            <div className="flex justify-center lg:block py-8">
+          links.map((l, i) => (
+            <div className="flex justify-center lg:block py-8" key={i}>
               <Link href={l.link} className={`${buttonStyle} `}>
                 {l.buttonName}
               </Link>

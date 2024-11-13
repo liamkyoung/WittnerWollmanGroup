@@ -1,10 +1,9 @@
 import React from 'react'
+import { Metadata } from 'next'
 
 import { ContactForm } from '../../customComponents/inputs/ContactForm'
 import SocialList from '../../customComponents/SocialList'
 import { ColorScheme } from '../../types/viewmodels'
-
-import { Metadata } from 'next'
 
 function Page() {
   return (

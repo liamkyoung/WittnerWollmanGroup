@@ -1,12 +1,12 @@
 import type { CollectionConfig } from 'payload/types'
 
+import { TeamLinks } from '../../../globalData/navigation/about/about'
 import { slugField } from '../../../payload/fields/slug'
 // import { formatSocialMediaHandle } from '../../../payload/hooks/formatSocialMediaHandle'
 import { admins } from '../../access/admins'
 import { adminsOrPublished } from '../../access/adminsOrPublished'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
 import { revalidateTeammate } from './hooks/revalidateTeammate'
-import { TeamLinks } from '../../../globalData/navigation/about/about'
 
 export const Teammates: CollectionConfig = {
   slug: 'teammates',

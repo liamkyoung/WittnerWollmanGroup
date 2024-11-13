@@ -13,5 +13,7 @@ export const CompanyComponent: React.FC<{
 
   const { name, image } = doc || {}
 
-  return <Media imgClassName={'h-64'} resource={image as MType} alt={name} />
+  return (
+    <Media imgClassName={'h-full w-auto object-contain'} resource={image as MType} alt={name} />
+  )
 }

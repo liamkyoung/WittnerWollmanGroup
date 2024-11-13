@@ -1,5 +1,5 @@
 import { LINK_FIELDS } from './link'
-import { BACKGROUND_IMAGE, MEDIA } from './media'
+import { BACKGROUND_IMAGE, MEDIA, YOUTUBE_THUMBNAIL } from './media'
 import { META } from './meta'
 
 export const CALL_TO_ACTION = `
@@ -60,6 +60,7 @@ export const STATS_AND_VIDEO_BLOCK = `
     factStat
     factDescription
   }
+  ${YOUTUBE_THUMBNAIL}
   youtubeLink
 }
 `

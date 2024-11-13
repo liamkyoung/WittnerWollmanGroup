@@ -3,6 +3,7 @@ import Link from 'next/link'
 
 import { Service } from '../../../../payload/payload-types'
 import { ServiceCard } from '../ServiceCard'
+
 import { ServiceLinks } from '@/globalData/navigation/services/services'
 
 type Props = {

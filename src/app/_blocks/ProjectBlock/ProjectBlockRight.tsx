@@ -110,8 +110,8 @@ function ProjectBlockRight({
 
         {links &&
           links.length > 0 &&
-          links.map(l => (
-            <div className="flex justify-center lg:block py-8">
+          links.map((l, i) => (
+            <div className="flex justify-center lg:block py-8" key={i}>
               <Link href={l.link} className={`${buttonStyle} `}>
                 {l.buttonName}
               </Link>

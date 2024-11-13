@@ -1,7 +1,10 @@
 import React from 'react'
+import Image from 'next/image'
 import Link from 'next/link'
 
+import AgentImg from '../../../../public/agent_cta.png'
 import { Page } from '../../../payload/payload-types'
+
 import { ContactLink } from '@/globalData/navigation/contact/contact'
 
 type Props = Extract<Page['layout'][0], { blockType: 'cta' }>
@@ -26,7 +29,7 @@ export const CallToActionBlock: React.FC<
           </div>
         </div>
         <div className="hidden lg:block">
-          <div className="absolute -bottom-16 -right-16 z-50 size-64 bg-wwRed"></div>
+          <Image src={AgentImg} alt="agent" className="absolute -bottom-16 -right-16 z-50" />
         </div>
       </div>
     </div>

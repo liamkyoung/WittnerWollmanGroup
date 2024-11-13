@@ -2,9 +2,10 @@ import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
+import { TeamLinks } from '../../../../globalData/navigation/about/about'
+
 import { Media } from '@/app/_components/Media'
 import { Media as MType } from '@/payload/payload-types'
-import { TeamLinks } from '../../../../globalData/navigation/about/about'
 
 type Props = {
   name: string

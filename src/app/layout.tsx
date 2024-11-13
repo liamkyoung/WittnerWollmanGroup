@@ -13,8 +13,8 @@ const montserrat = Montserrat({ subsets: ['latin'], preload: true })
 // import { GoogleAnalytics } from '@next/third-parties/google'
 
 import { Toaster } from '../components/ui/toaster'
-import NewsletterPopup from './customComponents/Newsletter/NewsletterPopup'
 import { MetaKeywords } from '../globalData/general'
+import NewsletterPopup from './customComponents/Newsletter/NewsletterPopup'
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   return (

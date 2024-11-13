@@ -10,7 +10,7 @@ export const StatsAndVideoBlock: Block = {
     },
     {
       name: 'description',
-      type: 'text',
+      type: 'textarea',
       required: true,
     },
     {
@@ -44,6 +44,13 @@ export const StatsAndVideoBlock: Block = {
       name: 'youtubeLink',
       type: 'text',
       label: 'YouTube Link (Use the Embedded URL)',
+      required: true,
+    },
+    {
+      name: 'youtubeThumbnail',
+      type: 'upload',
+      relationTo: 'media',
+      label: 'YouTube Thumbnail Image (Displays As Video Until Clicked)',
       required: true,
     },
     {

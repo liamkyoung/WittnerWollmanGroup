@@ -2,8 +2,8 @@ import Link from 'next/link'
 
 import { TeammateCard } from '../TeammateCard'
 
-import { Teammate } from '@/payload/payload-types'
 import { ListingLinks } from '@/globalData/navigation/listings/listings'
+import { Teammate } from '@/payload/payload-types'
 
 type Props = {
   teammates: Teammate[]
@@ -23,7 +23,7 @@ export const TeammateGallery = ({ teammates, displayHeader = 'no' }: Props) => {
       )}
       <div className=" bg-wwRed place-items-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-24 py-24">
         {teammates.map(t => (
-          <TeammateCard doc={t} />
+          <TeammateCard doc={t} key={t.id} />
         ))}
       </div>
     </div>

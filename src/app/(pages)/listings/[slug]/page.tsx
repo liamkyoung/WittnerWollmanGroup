@@ -8,7 +8,7 @@ import { ListingHero } from '../../../../app/_heros/ListingHero'
 import { formatDollarAmount } from '../../../../app/_utilities/formatDollarAmount'
 import PhotoGallery from '../../../../app/customComponents/Gallery/PhotoGallery'
 import ListingCTA from '../../../../app/customComponents/Listings/ListingCTA'
-import { Listing, Teammate } from '../../../../payload/payload-types'
+import { Listing, Media, Teammate } from '../../../../payload/payload-types'
 import { fetchDoc } from '../../../_api/fetchDoc'
 import { fetchDocs } from '../../../_api/fetchDocs'
 import { generateListingMetadata } from '../../../_utilities/generateMeta'
@@ -60,6 +60,9 @@ export default async function Page({ params: { slug } }) {
   } = listing
 
   const agent = agents && agents.length > 0 ? agents[0] : null
+  const imgs: Media[] = imageGallery
+    .map(i => (typeof i.image !== 'number' ? (i.image as Media) : null))
+    .filter(i => i !== null)
   //const heroProps: ListingHeroProps = {streetAddress: streetAddress, price: price, city: city, zipCode: zipCode, state: state, propertyType: propertyType, sqFt: sqFt}
   return (
     <>
@@ -73,7 +76,7 @@ export default async function Page({ params: { slug } }) {
           propertyType={propertyType}
           sqFt={sqFt}
         />
-        <PhotoGallery imageGallery={imageGallery} />
+        <PhotoGallery imageGallery={imgs} />
         <Blocks blocks={[...layout]} />
         {/* {overview && coverImage && streetAddress && (
           <ProjectBlock

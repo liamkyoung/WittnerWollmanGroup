@@ -14,10 +14,6 @@ import { SingularProjectHero } from '../../../customComponents/Projects/Singular
 import { GoogleMap } from '@/app/customComponents/GoogleMap/GoogleMap'
 import { GoogleMapPin } from '@/app/types/viewmodels'
 
-// Force this page to be dynamic so that Next.js does not cache it
-// See the note in '../../../[slug]/page.tsx' about this
-export const dynamic = 'force-dynamic'
-
 export default async function Project({ params: { slug } }) {
   const { isEnabled: isDraftMode } = draftMode()
 
@@ -48,8 +44,10 @@ export default async function Project({ params: { slug } }) {
 
   return (
     <React.Fragment>
-      <SingularProjectHero project={project} />
-      <Blocks blocks={[...layout]} />
+      <div className="mt-24 space-y-24 global-margin-x">
+        <SingularProjectHero project={project} />
+        <Blocks blocks={[...layout]} />
+      </div>
       <GoogleMap fullscreen pins={[pin]} zoom="far" pinType="project" />
     </React.Fragment>
   )

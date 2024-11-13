@@ -1,5 +1,6 @@
-import { ContactLink } from '@/globalData/navigation/contact/contact'
 import Link from 'next/link'
+
+import { ContactLink } from '@/globalData/navigation/contact/contact'
 
 export default function NotFound() {
   return (

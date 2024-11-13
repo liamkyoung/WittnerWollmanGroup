@@ -3,6 +3,7 @@ import React from 'react'
 import { formatDateTime } from '../../../../app/_utilities/formatDateTime'
 import { Media as MType, Post } from '../../../../payload/payload-types'
 import DefaultCard from '../../DefaultCard'
+
 import { NewsLink } from '@/globalData/navigation/community/community'
 
 export const NewsCard: React.FC<{

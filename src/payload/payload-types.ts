@@ -276,6 +276,7 @@ export interface Page {
         description: string;
         facts?: FactsList;
         youtubeLink: string;
+        youtubeThumbnail: number | Media;
         bgImage?: number | Media | null;
         id?: string | null;
         blockName?: string | null;
@@ -783,6 +784,16 @@ export interface Project {
         blockType: 'content';
       }
     | {
+        title: string;
+        richText: {
+          [k: string]: unknown;
+        }[];
+        facts?: FactsList;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'contentAndStatsBlock';
+      }
+    | {
         position?: ('default' | 'fullscreen') | null;
         media: number | Media;
         id?: string | null;
@@ -926,6 +937,7 @@ export interface Project {
         description: string;
         facts?: FactsList;
         youtubeLink: string;
+        youtubeThumbnail: number | Media;
         bgImage?: number | Media | null;
         id?: string | null;
         blockName?: string | null;
@@ -1207,6 +1219,7 @@ export interface Listing {
         description: string;
         facts?: FactsList;
         youtubeLink: string;
+        youtubeThumbnail: number | Media;
         bgImage?: number | Media | null;
         id?: string | null;
         blockName?: string | null;
@@ -1496,6 +1509,7 @@ export interface Service {
         description: string;
         facts?: FactsList;
         youtubeLink: string;
+        youtubeThumbnail: number | Media;
         bgImage?: number | Media | null;
         id?: string | null;
         blockName?: string | null;

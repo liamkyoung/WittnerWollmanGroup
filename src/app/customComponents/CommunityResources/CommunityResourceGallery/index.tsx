@@ -89,8 +89,8 @@ export const CommunityResourceGallery = ({ communityResources, displayHeader = '
                 className="block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
               >
                 {options && options.length > 0 ? (
-                  options.map(o => (
-                    <option selected={o.selected} onSelect={() => handleSelect(o)}></option>
+                  options.map((o, i) => (
+                    <option key={i} selected={o.selected} onSelect={() => handleSelect(o)}></option>
                   ))
                 ) : (
                   <div className="flex glex-grow">There are no resources in this category</div>
@@ -100,10 +100,11 @@ export const CommunityResourceGallery = ({ communityResources, displayHeader = '
             <div className="hidden sm:block">
               <div className="border-b border-gray-200">
                 <nav className="-mb-px flex space-x-8" aria-label="Tabs">
-                  {options.map(o => (
+                  {options.map((o, i) => (
                     <div
                       className={o.selected ? selectedStyle : nonSelectedStyle}
                       onClick={() => handleSelect(o)}
+                      key={i}
                     >
                       {o.label}
                     </div>

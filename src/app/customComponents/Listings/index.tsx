@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { Listing, Media as MediaType } from '../../../payload/payload-types'
 import { Media } from '../../_components/Media'
 import CardInfo from '../CardInfo'
+
 import { ListingLinks } from '@/globalData/navigation/listings/listings'
 
 export const ListingCard: React.FC<{

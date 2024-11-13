@@ -5,9 +5,9 @@ import DefaultCard from '../DefaultCard'
 
 import { formatDollarAmount } from '@/app/_utilities/formatDollarAmount'
 import { MapCoords } from '@/app/types/viewmodels'
-import { Media as MediaType } from '@/payload/payload-types'
 import { ListingLinks } from '@/globalData/navigation/listings/listings'
 import { ProjectLinks } from '@/globalData/navigation/projects/projects'
+import { Media as MediaType } from '@/payload/payload-types'
 
 type Props = {
   position: MapCoords

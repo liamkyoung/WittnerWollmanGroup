@@ -32,18 +32,18 @@ export const FullscreenHero: React.FC<Page['hero']> = ({
 
         <div className="space-x-4 mt-4 sm:mt-0 mx-auto lg:mx-0 text-center sm:text-left">
           {links &&
-            links.map(l => {
+            links.map((l, i) => {
               const appearance = l.link?.appearance
 
               if (!appearance) return
 
               switch (appearance) {
                 case 'secondary':
-                  return <CMSLink className="btn-secondary" {...l.link} />
+                  return <CMSLink className="btn-secondary" {...l.link} key={i} />
                 case 'default':
                 case 'primary':
                 default:
-                  return <CMSLink className="btn-primary" {...l.link} />
+                  return <CMSLink className="btn-primary" {...l.link} key={i} />
               }
             })}
         </div>
@@ -57,10 +57,16 @@ export const FullscreenHero: React.FC<Page['hero']> = ({
         alt="hero-video-img"
         imgClassName="sm:w-full sm:h-screen lg:h-auto object-cover hidden sm:block"
         videoClassName="sm:w-full sm:h-screen lg:h-auto object-cover hidden sm:block"
+        priority
       />
 
       {!backupImage ? (
-        <Image src={HeroImg} alt="hero-img" className="w-full h-96 object-cover sm:hidden block" />
+        <Image
+          src={HeroImg}
+          alt="hero-img"
+          className="w-full h-96 object-cover sm:hidden block"
+          priority
+        />
       ) : (
         <Media
           resource={backupImage as MediaType}

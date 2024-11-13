@@ -23,7 +23,7 @@ export default function NewsletterCard({}: Props) {
             className="absolute left-1/2 top-1/2 -z-10 h-[64rem] w-[64rem] -translate-x-1/2"
             aria-hidden="true"
           >
-            <g clip-path="url(#clip0_208_1644)">
+            <g clipPath="url(#clip0_208_1644)">
               <path
                 d="M512 1024C794.77 1024 1024 794.77 1024 512C1024 229.23 794.77 0 512 0C229.23 0 0 229.23 0 512C0 794.77 229.23 1024 512 1024Z"
                 fill="url(#paint0_radial_208_1644)"

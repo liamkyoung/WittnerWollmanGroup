@@ -32,3 +32,7 @@ export const COVERIMAGE = `coverImage {
   ${MEDIA_FIELDS}
 }
 `
+
+export const YOUTUBE_THUMBNAIL = `youtubeThumbnail {
+  ${MEDIA_FIELDS}
+}`

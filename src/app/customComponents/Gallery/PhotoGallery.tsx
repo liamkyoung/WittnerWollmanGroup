@@ -7,13 +7,19 @@ import { Media } from '../../_components/Media'
 import 'yet-another-react-lightbox/styles.css'
 import { Media as Img } from '@/payload/payload-types'
 
-export default function PhotoGallery({ imageGallery }) {
-  const [open, setOpen] = useState(false)
-  const imgArray: Img[] = imageGallery?.map(i => typeof i !== 'number' && i.image)
+type Props = {
+  imageGallery: Img[]
+}
 
-  const slideImages = imgArray?.map(img => {
+export default function PhotoGallery({ imageGallery }: Props) {
+  const [open, setOpen] = useState(false)
+
+  const slideImages = imageGallery?.map(img => {
     return {
-      src: `${process.env.NEXT_PUBLIC_SERVER_URL}/media/${img.filename}`,
+      src:
+        process.env.NODE_ENV === 'production'
+          ? `${process.env.NEXT_PUBLIC_S3_CDN_ENDPOINT}/${img.filename}`
+          : `${process.env.NEXT_PUBLIC_SERVER_URL}/media/${img.filename}`,
       alt: `${img.alt}`,
       width: img.width,
       height: img.height,
@@ -30,7 +36,7 @@ export default function PhotoGallery({ imageGallery }) {
                 (img, index) =>
                   index === 0 && (
                     <div key={img.id}>
-                      <Media resource={img.image as Img} />
+                      <Media resource={img} />
                     </div>
                   ),
               )}
@@ -41,7 +47,7 @@ export default function PhotoGallery({ imageGallery }) {
                   index !== 0 &&
                   index < 3 && (
                     <div key={img.id}>
-                      <Media resource={img.image as Img} />
+                      <Media resource={img} />
                     </div>
                   ),
               )}

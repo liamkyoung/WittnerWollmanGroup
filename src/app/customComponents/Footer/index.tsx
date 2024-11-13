@@ -21,8 +21,8 @@ function Footer() {
           <NewsletterInputFooter />
         </div>
         <div className="grid grid-cols-2 md:grid-cols-5 justify-items-center gap-8">
-          {InternalLinks.map(group => (
-            <div>
+          {InternalLinks.map((group, i) => (
+            <div key={i}>
               <h6 className="text-white">{group.title}</h6>
               <div className="space-y-2 mt-4">
                 {group.subNavigation &&

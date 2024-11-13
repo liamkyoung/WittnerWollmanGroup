@@ -3,6 +3,7 @@ import Link from 'next/link'
 
 import { Project } from '../../../../payload/payload-types'
 import { ProjectCard } from './../ProjectCard'
+
 import { ProjectLinks } from '@/globalData/navigation/projects/projects'
 
 type Props = {

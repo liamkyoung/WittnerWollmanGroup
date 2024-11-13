@@ -5,6 +5,7 @@ import { GoogleMapPin } from '../../../app/types/viewmodels'
 import { Listing, Media } from '../../../payload/payload-types'
 import { GoogleMap } from '../GoogleMap/GoogleMap'
 import { ListingCard } from './index'
+
 import { ListingLinks } from '@/globalData/navigation/listings/listings'
 
 type Props = {

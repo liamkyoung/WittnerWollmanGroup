@@ -48,9 +48,9 @@ export const CompanyGallery = ({ companies, displayHeader = 'no' }: Props) => {
     <div className="global-margin-y">
       {displayHeader === 'yes' && <h2 className="text-center mb-8">Companies We&apos;ve Helped</h2>}
       <div className="scroller mx-auto" data-direction="left" data-speed="slow">
-        <div className="scroller__inner">
+        <div className="scroller__inner h-32">
           {companies?.map((c, i) => (
-            <CompanyComponent doc={c} key={`${i}`} />
+            <CompanyComponent doc={c} key={i} />
           ))}
         </div>
       </div>

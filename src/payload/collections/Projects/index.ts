@@ -1,6 +1,7 @@
 import type { RowLabelArgs } from 'payload/dist/admin/components/forms/RowLabel/types'
 import type { CollectionConfig } from 'payload/types'
 
+import { ContentAndStatsBlock } from '../../../payload/blocks/ContentAndStatsBlock'
 import { formatSocialMediaHandle } from '../../../payload/hooks/formatSocialMediaHandle'
 import { admins } from '../../access/admins'
 import { adminsOrPublished } from '../../access/adminsOrPublished'
@@ -183,6 +184,7 @@ export const Projects: CollectionConfig = {
               blocks: [
                 CallToAction,
                 Content,
+                ContentAndStatsBlock,
                 MediaBlock,
                 Archive,
                 ProjectBlock,

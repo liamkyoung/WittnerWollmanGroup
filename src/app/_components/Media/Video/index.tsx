@@ -25,10 +25,13 @@ export const Video: React.FC<MediaProps> = props => {
   if (resource && typeof resource !== 'string') {
     const { filename } = resource
 
-    const src =
-      process.env.NODE_ENV === 'production'
-        ? `${process.env.NEXT_PUBLIC_S3_CDN_ENDPOINT}/${filename}`
-        : `${process.env.NEXT_PUBLIC_SERVER_URL}/media/${filename}`
+    // const src =
+    //   process.env.NODE_ENV === 'production'
+    //     ? `${process.env.NEXT_PUBLIC_S3_CDN_ENDPOINT}/${filename}`
+    //     : `${process.env.NEXT_PUBLIC_SERVER_URL}/media/${filename}`
+
+    // Using links in bucket -- same as prod
+    const src = `${process.env.NEXT_PUBLIC_S3_CDN_ENDPOINT}/${filename}`
 
     return (
       <video

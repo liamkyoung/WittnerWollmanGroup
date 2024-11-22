@@ -11,6 +11,7 @@ import { MediaBlock } from '../../blocks/MediaBlock'
 import { ProjectBlock } from '../../blocks/ProjectBlock'
 import { StatBlock } from '../../blocks/StatBlock'
 import { StatsAndVideoBlock } from '../../blocks/StatsAndVideoBlock'
+import { VideoBlock } from '../../blocks/VideoBlock'
 import { hero } from '../../fields/hero'
 import { slugField } from '../../fields/slug'
 import { populateArchiveBlock } from '../../hooks/populateArchiveBlock'
@@ -30,7 +31,7 @@ export const Pages: CollectionConfig = {
   },
   hooks: {
     beforeChange: [populatePublishedAt],
-    //afterChange: [revalidatePage],
+    afterChange: [revalidatePage],
     afterRead: [populateArchiveBlock],
   },
   versions: {
@@ -77,6 +78,7 @@ export const Pages: CollectionConfig = {
                 ContentAndStatsBlock,
                 StatBlock,
                 GoogleMapsBlock,
+                VideoBlock,
               ],
             },
           ],

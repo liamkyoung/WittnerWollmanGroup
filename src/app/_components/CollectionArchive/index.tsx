@@ -78,7 +78,7 @@ export type Props = {
   selectedDocs?: ArchiveBlockProps['selectedDocs']
   showPageRange?: boolean
   sort?: string
-  displayHeader?: 'yes' | 'no'
+  displayHeader: 'yes' | 'no'
 }
 
 export const CollectionArchive: React.FC<Props> = props => {

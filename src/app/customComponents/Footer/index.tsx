@@ -17,7 +17,9 @@ function Footer() {
     <div className="bg-wwBlack text-white py-16">
       <div className="global-margin-x flex flex-col xl:flex-row justify-between gap-8 lg:gap-0">
         <div className="flex flex-col lg:flex-row items-center lg:items-start justify-center gap-8 lg:gap-16 lg:mb-16">
-          <Image src={Logo} alt="WW-Logo" />
+          <Link href="/">
+            <Image src={Logo} alt="WW-Logo" />
+          </Link>
           <NewsletterInputFooter />
         </div>
         <div className="grid grid-cols-2 md:grid-cols-5 justify-items-center gap-8">

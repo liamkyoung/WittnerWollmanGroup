@@ -33,9 +33,11 @@ query Listings($slug: String) {
         latitude
         longitude
         propertyType
+        propertySubtype
         sqFt
         neighborhood
         sqFtLand
+        sqFtLot
         bathroomCount
         bedCount
         price

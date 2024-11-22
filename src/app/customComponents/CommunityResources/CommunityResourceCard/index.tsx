@@ -18,7 +18,7 @@ export const CommunityResourceCard: React.FC<{
   const sanitizedDescription = description?.replace(/\s/g, ' ') // replace non-breaking space with white space
 
   return (
-    <div className={`${className} w-96 lg:w-72 space-y-4`}>
+    <div className={`${className} w-64 md:w-96 lg:w-72 space-y-4`}>
       <div className="space-y-2">
         <h4>{title}</h4>
         <CardInfo address={address} />

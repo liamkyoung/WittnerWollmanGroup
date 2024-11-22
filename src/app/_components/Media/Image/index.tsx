@@ -44,10 +44,12 @@ export const Image: React.FC<MediaProps> = props => {
     const filename = fullFilename
 
     // Used to differentiate between prod and dev
-    src =
-      process.env.NODE_ENV === 'production'
-        ? `${process.env.NEXT_PUBLIC_S3_CDN_ENDPOINT}/${filename}`
-        : `${process.env.NEXT_PUBLIC_SERVER_URL}/media/${filename}`
+    // src =
+    //   process.env.NODE_ENV === 'production'
+    //     ? `${process.env.NEXT_PUBLIC_S3_CDN_ENDPOINT}/${filename}`
+    //     : `${process.env.NEXT_PUBLIC_SERVER_URL}/media/${filename}`
+
+    src = `${process.env.NEXT_PUBLIC_S3_CDN_ENDPOINT}/${filename}`
   }
 
   // NOTE: this is used by the browser to determine which image to download at different screen sizes

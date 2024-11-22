@@ -4,7 +4,7 @@ import { AdvancedMarker, InfoWindow, useAdvancedMarkerRef } from '@vis.gl/react-
 import DefaultCard from '../DefaultCard'
 
 import { formatDollarAmount } from '@/app/_utilities/formatDollarAmount'
-import { MapCoords } from '@/app/types/viewmodels'
+import { CardSize, MapCoords } from '@/app/types/viewmodels'
 import { ListingLinks } from '@/globalData/navigation/listings/listings'
 import { ProjectLinks } from '@/globalData/navigation/projects/projects'
 import { Media as MediaType } from '@/payload/payload-types'
@@ -61,6 +61,7 @@ export const MarkerWithInfo = ({
                 address={address}
                 title={title}
                 image={image}
+                size={CardSize.SMALL}
               />
             </InfoWindow>
           )}

@@ -27,6 +27,8 @@ export const SingularProjectHero: React.FC<{
     .map(i => (typeof i.image !== 'number' ? (i.image as MediaType) : null))
     .filter(i => i !== null)
 
+  const instagramUsername = instagram?.replace('@', '')
+
   return (
     <div>
       <div className="grid grid-cols-2 gap-4 mb-12">
@@ -59,7 +61,7 @@ export const SingularProjectHero: React.FC<{
             </div>
           </Link>
 
-          <Link href={instagram}>
+          <Link href={`https://instagram.com/${instagramUsername}`}>
             <div className="inline-flex gap-2">
               <svg
                 xmlns="http://www.w3.org/2000/svg"

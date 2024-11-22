@@ -11,6 +11,7 @@ import { ProjectBlock, type ProjectBlockProps } from '../../_blocks/ProjectBlock
 import { RelatedPosts, type RelatedPostsProps } from '../../_blocks/RelatedPosts'
 import { StatBlock, type StatBlockProps } from '../../_blocks/StatBlock'
 import { type StatAndVideoBlockProps, StatsAndVideoBlock } from '../../_blocks/StatsAndVideoBlock'
+import { VideoBlock, type VideoBlockProps } from '../../_blocks/VideoBlock'
 import { toKebabCase } from '../../_utilities/toKebabCase'
 import { BackgroundColor } from '../BackgroundColor'
 import { VerticalPadding, VerticalPaddingOptions } from '../VerticalPadding'
@@ -26,6 +27,7 @@ const blockComponents = {
   archive: ArchiveBlock,
   relatedPosts: RelatedPosts,
   googleMapsBlock: GoogleMapsBlock,
+  videoBlock: VideoBlock,
 }
 
 export const Blocks: React.FC<{
@@ -34,6 +36,7 @@ export const Blocks: React.FC<{
     | RelatedPostsProps
     | ProjectBlockProps
     | StatAndVideoBlockProps
+    | VideoBlockProps
     | StatBlockProps
     | GoogleMapsBlockProps
   )[]

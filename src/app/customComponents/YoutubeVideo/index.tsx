@@ -20,7 +20,7 @@ export const YoutubeVideo = ({ title, src, coverImage }: Props) => {
       {!play ? (
         <Media
           resource={coverImage as MediaType}
-          imgClassName="w-full aspect-video cursor-pointer"
+          imgClassName="w-full max-w-5xl mx-auto aspect-video cursor-pointer"
           onClick={() => setPlay(true)}
         />
       ) : (

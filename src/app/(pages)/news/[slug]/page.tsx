@@ -1,6 +1,7 @@
 import React from 'react'
 import { Metadata } from 'next'
 import { draftMode } from 'next/headers'
+import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
 import { Post } from '../../../../payload/payload-types'
@@ -9,6 +10,8 @@ import { fetchDocs } from '../../../_api/fetchDocs'
 import { Blocks } from '../../../_components/Blocks'
 import { PostHero } from '../../../_heros/PostHero'
 import { generateMeta } from '../../../_utilities/generateMeta'
+
+import { NewsLink } from '@/globalData/navigation/community/community'
 
 export default async function News({ params: { slug } }) {
   const { isEnabled: isDraftMode } = draftMode()
@@ -32,10 +35,16 @@ export default async function News({ params: { slug } }) {
   const { layout, enablePremiumContent } = post
 
   return (
-    <main className="global-margin-x">
-      <PostHero post={post} />
+    <div className="">
+      <div className="global-margin-x global-margin-y">
+        <Link href={NewsLink.relLink}>
+          <h6 className="text-gray-800 hidden xl:block">News /</h6>
+        </Link>
+        <PostHero post={post} />
+      </div>
+
       <Blocks blocks={layout} />
-    </main>
+    </div>
   )
 }
 

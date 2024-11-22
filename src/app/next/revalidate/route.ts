@@ -9,10 +9,11 @@ export async function GET(request: NextRequest): Promise<Response> {
 
   if (
     !secret ||
-    secret !== process.env.NEXT_PRIVATE_REVALIDATION_KEY ||
+    secret !== process.env.REVALIDATION_KEY ||
     typeof collection !== 'string' ||
     typeof slug !== 'string'
   ) {
+    console.log('COULD NOT VALIDATE??? secret: ', secret) // eslint-disable-line no-console
     // Do not indicate that the revalidation key is incorrect in the response
     // This will protect this API route from being exploited
     return new Response('Invalid request', { status: 400 })

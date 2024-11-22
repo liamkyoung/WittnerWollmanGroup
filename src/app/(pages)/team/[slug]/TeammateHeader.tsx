@@ -32,7 +32,7 @@ function TeammateHeader({
         </Link>
 
         <div className="xl:hidden block">
-          <Media resource={fullBodyImg} alt="fullbody-img" imgClassName="mx-auto" />
+          <Media resource={fullBodyImg} alt="fullbody-img" imgClassName="mx-auto size-80" />
         </div>
         <h1 className="mb-2 mt-6 text-center xl:text-left">{name}</h1>
         <h6 className="mb-6 text-center xl:text-left">{jobTitle}</h6>
@@ -99,7 +99,7 @@ function TeammateHeader({
         </div>
       </div>
       <div className="hidden xl:block">
-        <Media resource={fullBodyImg as MType} alt="fullbody-img" imgClassName="" />
+        <Media resource={fullBodyImg as MType} alt="fullbody-img " imgClassName="w-96" />
       </div>
     </div>
   )

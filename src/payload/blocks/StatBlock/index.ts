@@ -10,7 +10,7 @@ export const StatBlock: Block = {
     },
     {
       name: 'description',
-      type: 'text',
+      type: 'textarea',
       required: false,
     },
     {

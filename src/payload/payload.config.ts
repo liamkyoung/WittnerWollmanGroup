@@ -27,7 +27,6 @@ import { Services } from './collections/Services'
 import { Teammates } from './collections/Teammates'
 import { Testimonials } from './collections/Testimonials'
 import Users from './collections/Users'
-import BeforeDashboard from './components/BeforeDashboard'
 import BeforeLogin from './components/BeforeLogin'
 import { sendEmail } from './endpoints/sendEmail'
 import { sendListingEmail } from './endpoints/sendListingEmail'
@@ -44,6 +43,8 @@ const generateTitle: GenerateTitle = () => {
 dotenv.config({
   path: path.resolve(__dirname, '../../.env'),
 })
+
+const isProduction = process.env.NODE_ENV === 'production'
 
 // Used to store images in s3 bucket on digital ocean.
 const storageAdapter = s3Adapter({
@@ -67,6 +68,31 @@ const storageAdapter = s3Adapter({
 //       }
 //     : undefined
 
+let plugins = [
+  redirects({
+    collections: ['pages', 'posts'],
+  }),
+  nestedDocs({
+    collections: ['categories'],
+  }),
+  seo({
+    collections: ['pages', 'posts', 'projects', 'listings', 'teammates', 'services'], // USED TO ADD "META" DETAILS
+    generateTitle,
+    uploadsCollection: 'media',
+    tabbedUI: true,
+  }),
+]
+
+if (isProduction) {
+  plugins.push(
+    cloudStorage({
+      collections: {
+        media: { adapter: storageAdapter },
+      },
+    }),
+  )
+}
+
 export default buildConfig({
   admin: {
     user: Users.slug,
@@ -75,12 +101,10 @@ export default buildConfig({
       // The `BeforeLogin` component renders a message that you see while logging into your admin panel.
       // Feel free to delete this at any time. Simply remove the line below and the import `BeforeLogin` statement on line 15.
       beforeLogin: [BeforeLogin],
-      // The `BeforeDashboard` component renders the 'welcome' block that you see after logging into your admin panel.
-      // Feel free to delete this at any time. Simply remove the line below and the import `BeforeDashboard` statement on line 15.
-      beforeDashboard: [BeforeDashboard],
     },
     webpack: config => ({
       ...config,
+      mode: isProduction ? 'production' : 'development',
       resolve: {
         ...config.resolve,
         fallback: {
@@ -151,27 +175,5 @@ export default buildConfig({
       handler: sendListingEmail,
     },
   ],
-  plugins: [
-    redirects({
-      collections: ['pages', 'posts'],
-    }),
-    nestedDocs({
-      collections: ['categories'],
-    }),
-    seo({
-      collections: ['pages', 'posts', 'projects', 'listings', 'teammates', 'services'], // USED TO ADD "META" DETAILS
-      generateTitle,
-      uploadsCollection: 'media',
-      tabbedUI: true,
-    }),
-    ...(process.env.NODE_ENV === 'production'
-      ? [
-          cloudStorage({
-            collections: {
-              media: { adapter: storageAdapter },
-            },
-          }),
-        ]
-      : []),
-  ],
+  plugins: plugins,
 })

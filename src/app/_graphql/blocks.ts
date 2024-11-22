@@ -65,6 +65,16 @@ export const STATS_AND_VIDEO_BLOCK = `
 }
 `
 
+export const VIDEO_BLOCK = `
+...on VideoBlock {
+  blockType
+  title
+  ${BACKGROUND_IMAGE}
+  ${YOUTUBE_THUMBNAIL}
+  youtubeLink
+}
+`
+
 export const CONTENT_AND_STATS_BLOCK = `
 ...on ContentAndStatsBlock {
   blockType
@@ -105,6 +115,7 @@ export const ARCHIVE_BLOCK = `
   populateBy
   relationTo
   limit
+  displayHeader
   selectedDocs {
     relationTo
     value {

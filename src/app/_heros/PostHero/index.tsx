@@ -23,53 +23,18 @@ export const PostHero: React.FC<{
   const img: MediaType = metaImage as MediaType
 
   return (
-    <Fragment>
-      <Gutter className={classes.postHero}>
-        <div className={classes.content}>
-          <h1 className={classes.title}>{title}</h1>
-          <p className={classes.meta}>
-            {populatedAuthors && (
-              <Fragment>
-                {'By '}
-                {populatedAuthors.map((author, index) => {
-                  const { name } = author
-
-                  const isLast = index === populatedAuthors.length - 1
-                  const secondToLast = index === populatedAuthors.length - 2
-
-                  return (
-                    <Fragment key={index}>
-                      {name}
-                      {secondToLast && populatedAuthors.length > 2 && <Fragment>, </Fragment>}
-                      {secondToLast && populatedAuthors.length === 2 && <Fragment> </Fragment>}
-                      {!isLast && populatedAuthors.length > 1 && <Fragment>and </Fragment>}
-                    </Fragment>
-                  )
-                })}
-              </Fragment>
-            )}
-            {publishedAt && (
-              <Fragment>
-                {' on '}
-                {formatDateTime(publishedAt)}
-              </Fragment>
-            )}
-          </p>
-          <div>
-            <p className={classes.description}>
-              {`${description ? `${description} ` : ''}To edit this post, `}
-              <Link href={`${process.env.NEXT_PUBLIC_SERVER_URL}/admin/collections/posts/${id}`}>
-                navigate to the admin dashboard
-              </Link>
-              {'.'}
-            </p>
-          </div>
-        </div>
+    <main className="mt-12">
+      <Gutter className={`flex items-center justify-between gap-4 lg:flex-row flex-col-reverse`}>
+        <h1 className={`${classes.title} leading-tight text-center lg:text-left`}>{title}</h1>
+        {/* <p className={classes.meta}>{publishedAt && <p>{formatDateTime(publishedAt)}</p>}</p> */}
         <div className={classes.media}>
           <div className={classes.mediaWrapper}>
             {!metaImage && <div className={classes.placeholder}>No image</div>}
             {metaImage && typeof metaImage !== 'string' && (
-              <Media imgClassName={classes.image} resource={metaImage as MediaType} fill />
+              <Media
+                imgClassName="object-fit-cover w-3/4 my-auto mx-auto min-w-64"
+                resource={metaImage as MediaType}
+              />
             )}
           </div>
           {img && typeof metaImage !== 'string' && img?.caption && (
@@ -77,6 +42,9 @@ export const PostHero: React.FC<{
           )}
         </div>
       </Gutter>
-    </Fragment>
+      <div className="mt-24 lg:w-3/4">
+        <h5 className="text-center lg:text-left">{description}</h5>
+      </div>
+    </main>
   )
 }

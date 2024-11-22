@@ -84,7 +84,7 @@ export const ServiceCard: React.FC<{
 
   return (
     <Link href={href}>
-      <div className="space-y-6 max-w-64">
+      <div className="space-y-6 min-w-64">
         <div className="border-b-4 border-wwSecondary border-opacity-50">
           <div className="bg-wwRed p-4 mb-4 rounded-full inline-flex">{renderSvg()}</div>
           <div className="flex items-center gap-6 mb-2">

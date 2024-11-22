@@ -11,6 +11,7 @@ import { Blocks } from '../../../_components/Blocks'
 import { generateMeta } from '../../../_utilities/generateMeta'
 import { SingularProjectHero } from '../../../customComponents/Projects/SingularProjectHero'
 
+import CTA from '@/app/customComponents/CTA'
 import { GoogleMap } from '@/app/customComponents/GoogleMap/GoogleMap'
 import { GoogleMapPin } from '@/app/types/viewmodels'
 
@@ -49,6 +50,7 @@ export default async function Project({ params: { slug } }) {
         <Blocks blocks={[...layout]} />
       </div>
       <GoogleMap fullscreen pins={[pin]} zoom="far" pinType="project" />
+      <CTA />
     </React.Fragment>
   )
 }

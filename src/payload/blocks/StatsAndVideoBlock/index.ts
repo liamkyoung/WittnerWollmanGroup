@@ -11,7 +11,7 @@ export const StatsAndVideoBlock: Block = {
     {
       name: 'description',
       type: 'textarea',
-      required: true,
+      required: false,
     },
     {
       name: 'facts', // required

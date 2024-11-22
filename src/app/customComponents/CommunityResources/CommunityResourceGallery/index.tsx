@@ -18,9 +18,9 @@ type Option = {
 
 export const CommunityResourceGallery = ({ communityResources, displayHeader = 'no' }: Props) => {
   const nonSelectedStyle =
-    'whitespace-nowrap border-b-2 border-transparent px-1 py-4 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700 hover:cursor-pointer'
+    'text-black whitespace-nowrap border-b-2 border-transparent px-1 py-4 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700 hover:cursor-pointer'
   const selectedStyle =
-    'whitespace-nowrap border-b-2 border-wwRed px-1 py-4 text-sm font-medium text-wwRed'
+    'text-black whitespace-nowrap border-b-2 border-wwRed px-1 py-4 text-sm font-medium text-wwRed'
 
   const [options, setOptions] = useState<Option[]>([
     {
@@ -60,6 +60,8 @@ export const CommunityResourceGallery = ({ communityResources, displayHeader = '
     },
   ])
 
+  const findOptionByShorthand = (sh: string) => options.find(o => o.shorthand === sh)
+
   const selectedOption = options.find(o => o.selected)
 
   useEffect(() => {}, [options])
@@ -74,32 +76,43 @@ export const CommunityResourceGallery = ({ communityResources, displayHeader = '
   }
 
   return (
-    <>
-      {displayHeader === 'yes' && <h2 className="mb-16">Community Resources</h2>}
+    <div className="global-margin-x">
+      {displayHeader === 'yes' && (
+        <h2 className="mb-16 text-center lg:hidden block">Community Resources</h2>
+      )}
       {communityResources && communityResources.length > 0 && (
         <>
-          <div className="global-margin-x">
-            <div className="sm:hidden">
+          <div className="">
+            <div className="md:hidden">
               <label htmlFor="tabs" className="sr-only">
                 Select a tab
               </label>
               <select
                 id="tabs"
                 name="tabs"
-                className="block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                className="text-black block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-wwRed focus:outline-none focus:ring-wwRed sm:text-sm"
+                onChange={e => handleSelect(findOptionByShorthand(e.target.value))}
               >
                 {options && options.length > 0 ? (
                   options.map((o, i) => (
-                    <option key={i} selected={o.selected} onSelect={() => handleSelect(o)}></option>
+                    <option
+                      key={i}
+                      selected={o.selected}
+                      onSelect={() => handleSelect(o)}
+                      className=""
+                      value={o.shorthand}
+                    >
+                      {o.label}
+                    </option>
                   ))
                 ) : (
                   <div className="flex glex-grow">There are no resources in this category</div>
                 )}
               </select>
             </div>
-            <div className="hidden sm:block">
+            <div className="hidden md:block">
               <div className="border-b border-gray-200">
-                <nav className="-mb-px flex space-x-8" aria-label="Tabs">
+                <nav className="-mb-px flex space-x-8 justify-center" aria-label="Tabs">
                   {options.map((o, i) => (
                     <div
                       className={o.selected ? selectedStyle : nonSelectedStyle}
@@ -114,7 +127,7 @@ export const CommunityResourceGallery = ({ communityResources, displayHeader = '
             </div>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-16 my-24 place-items-center mx-20">
+          <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-16 my-24 lg:place-items-start place-items-center mx-20">
             {/* TODO: Put Category Selector Here */}
             {communityResources &&
               communityResources.length > 0 &&
@@ -136,6 +149,6 @@ export const CommunityResourceGallery = ({ communityResources, displayHeader = '
           )}
         </>
       )}
-    </>
+    </div>
   )
 }

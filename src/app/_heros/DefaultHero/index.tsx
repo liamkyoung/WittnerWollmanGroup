@@ -13,20 +13,20 @@ import { ContactLink } from '@/globalData/navigation/contact/contact'
 export const DefaultHero: React.FC<Page['hero']> = ({ richText, media, links, headerText }) => {
   return (
     <div className="grid xl:grid-cols-2 place-items-center py-16">
-      <div className="global-margin-x mt-24">
+      <div className="global-margin-x sm:mt-24">
         <div className="text-center xl:text-left">
           {headerText && <h1 className="mb-10">{headerText}</h1>}
           <RichText content={richText} className="mb-8" />
         </div>
 
-        <div className="flex gap-8 items-center justify-center xl:justify-start">
+        <div className="flex flex-col sm:flex-row gap-8 items-center justify-center xl:justify-start">
           <div>
             <p className="text-sm text-wwRed mb-4 italic">Need help with your big idea?</p>
             <Link href={ContactLink.relLink} className="btn-primary block text-center">
               SEND US A MESSAGE
             </Link>
           </div>
-          <div className="flex items-center gap-2 border-l-2 border-wwRed pl-8">
+          <div className="flex items-center gap-2 sm:border-l-2 border-wwRed sm:pl-8 border-t-2 sm:border-t-0 pt-4 sm:pt-0">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -54,7 +54,7 @@ export const DefaultHero: React.FC<Page['hero']> = ({ richText, media, links, he
           <Media
             resource={media as MType}
             alt="service-img"
-            imgClassName="my-12 lg:my-0 lg:pr-36 pr-0"
+            imgClassName="my-12 lg:my-0 lg:pr-36 pr-0 hidden sm:block"
           />
         )}
       </div>

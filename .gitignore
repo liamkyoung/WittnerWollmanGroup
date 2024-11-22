@@ -5,7 +5,7 @@ node_modules
 .DS_Store
 .env.production
 .env.prod
-.env
+.env*
 .next
 .vercel
 *.crt

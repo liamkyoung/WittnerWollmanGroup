@@ -307,6 +307,16 @@ export interface Page {
         blockName?: string | null;
         blockType: 'googleMapsBlock';
       }
+    | {
+        title?: string | null;
+        description?: string | null;
+        youtubeLink: string;
+        youtubeThumbnail: number | Media;
+        bgImage?: number | Media | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'videoBlock';
+      }
   )[];
   meta?: {
     title?: string | null;
@@ -1037,8 +1047,10 @@ export interface Listing {
       }[]
     | null;
   propertyType?: ('shoppingCenter' | 'bizOpportunity' | 'multiFamily' | 'office' | 'mixedUse')[] | null;
+  propertySubtype?: string | null;
   sqFt: number;
   sqFtLand?: number | null;
+  sqFtLot?: number | null;
   bedCount?: number | null;
   bathroomCount?: number | null;
   overview: string;

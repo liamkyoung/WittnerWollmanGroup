@@ -10,7 +10,7 @@ import { Blocks } from '../../_components/Blocks'
 import { Hero } from '../../_components/Hero'
 import { generateMeta } from '../../_utilities/generateMeta'
 
-// const dynamic = 'force-dynamic'
+const dynamic = 'force-dynamic'
 
 export default async function Page({ params: { slug = 'home' } }) {
   const { isEnabled: isDraftMode } = draftMode()
@@ -52,7 +52,7 @@ export async function generateStaticParams() {
     const pages = await fetchDocs<PageType>('pages')
     return pages?.map(({ slug }) => slug)
   } catch (error) {
-    return ['/']
+    return []
   }
 }
 

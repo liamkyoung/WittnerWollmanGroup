@@ -6,6 +6,7 @@ import payload from 'payload'
 
 import {
   CommunityResource,
+  Listing,
   Media as MType,
   Project,
   Teammate,
@@ -19,14 +20,15 @@ import TeammateHeader from './TeammateHeader'
 
 import { CommunityResourceGallery } from '@/app/customComponents/CommunityResources/CommunityResourceGallery'
 import { GoogleMap } from '@/app/customComponents/GoogleMap/GoogleMap'
+import { ListingGallery } from '@/app/customComponents/Listings/ListingGallery'
 import { ProjectGallery } from '@/app/customComponents/Projects/ProjectGallery'
 import { GoogleMapPin } from '@/app/types/viewmodels'
 
 export default async function Page({ params: { slug } }) {
   const { isEnabled: isDraftMode } = draftMode()
   let teammate: Teammate | null = null
-  let pins: GoogleMapPin[]
-  let projects: Project[]
+  let listings: Listing[] | null = null
+  let projects: Project[] | null = null
 
   try {
     teammate = await fetchDoc<Teammate>({
@@ -40,7 +42,7 @@ export default async function Page({ params: { slug } }) {
   if (!teammate) {
     notFound()
   } else {
-    pins = await getAgentListings(teammate.id)
+    listings = await getAgentListings(teammate.id)
     projects = await getAgentProjects(teammate.id)
   }
 
@@ -95,10 +97,14 @@ export default async function Page({ params: { slug } }) {
             }
           }
         />
+      </div>
+      <div>
+        {listings && listings.length > 0 && (
+          <ListingGallery listings={listings} displayHeader="yes" />
+        )}
 
-        {pins && pins.length > 0 && <GoogleMap pins={pins} fullscreen pinType="listing" />}
+        {projects && projects.length > 0 && <ProjectGallery projects={projects} />}
 
-        <ProjectGallery projects={projects} />
         {favoritePlaces && favoritePlaces.length > 0 && (
           <CommunityResourceGallery
             communityResources={favoritePlaces as CommunityResource[]}
@@ -142,9 +148,8 @@ export async function generateMetadata({ params: { slug } }): Promise<Metadata> 
   return generateTeammateMetadata({ doc: teammates })
 }
 
-async function getAgentListings(teammateId: number): Promise<GoogleMapPin[] | null> {
-  let listings
-  let pins: GoogleMapPin[]
+async function getAgentListings(teammateId: number): Promise<Listing[] | null> {
+  let listings = null
   // Next, fetch listings that reference the teammate in the 'agents' field
   try {
     listings = await payload.find({
@@ -153,25 +158,16 @@ async function getAgentListings(teammateId: number): Promise<GoogleMapPin[] | nu
         agents: {
           contains: teammateId, // This filters listings by the agent's ID
         },
+        _status: { equals: 'published' },
       },
     })
   } catch (error) {
     //console.error('Error fetching teammate or listings:', error)
   }
 
-  if (listings && listings.docs) {
-    // console.log(listings)
-    pins = listings.docs.map(l => {
-      return {
-        name: l.title,
-        coords: { lat: l.latitude, lng: l.longitude },
-        slug: l.slug,
-        coverImg: l.coverImage as MType,
-      }
-    })
-  }
+  // console.log('listings', listings) // eslint-disable-line no-console
 
-  return pins
+  return listings?.docs
 }
 
 async function getAgentProjects(teammateId: number): Promise<Project[] | null> {
@@ -184,10 +180,11 @@ async function getAgentProjects(teammateId: number): Promise<Project[] | null> {
         agents: {
           contains: teammateId, // This filters listings by the agent's ID
         },
+        _status: { equals: 'published' },
       },
     })
   } catch (error) {
-    //console.error('Error fetching teammate or listings:', error)
+    console.error('Error fetching teammate or listings:', error) // eslint-disable-line no-console
   }
 
   //console.log('Projects', projects.docs)

@@ -28,6 +28,8 @@ Prerendering errors
 - DO NOT SET `NODE=development` when building for production!!!!!
 - DO Set `NODE_ENV=development`, can cause csp errors
 - for prod, docker needs to have lkycode.com
+- use yarn only for building -- npm can cause versioning errors between drizzle orm and payload
+
 
 ### NGINX Configuration
 ```server {

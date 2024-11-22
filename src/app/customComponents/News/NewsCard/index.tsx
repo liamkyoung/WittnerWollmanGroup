@@ -21,7 +21,15 @@ export const NewsCard: React.FC<{
   const { slug, title, meta, publishedAt } = doc || {}
   const { description, image: metaImage } = meta || {}
 
-  const titleToUse = titleFromProps || title
+  let titleToUse = titleFromProps || title
+  titleToUse = titleToUse.length < 50 ? titleToUse : titleToUse.substring(0, 47) + '...'
+
+  const descriptionToUse = !description
+    ? ''
+    : description && description?.length < 150
+    ? description
+    : description.substring(0, 150) + '...'
+
   // const sanitizedDescription = description?.replace(/\s/g, ' ') // replace non-breaking space with white space
   const href = `${NewsLink.relLink}/${slug}`
 
@@ -30,8 +38,9 @@ export const NewsCard: React.FC<{
       title={titleToUse}
       image={metaImage as MType}
       accentText={formatDateTime(publishedAt)}
-      description={description}
+      description={descriptionToUse}
       link={href}
+      squareImage
     />
   )
 }

@@ -20,10 +20,13 @@ export default function NewsletterPopup() {
     // Only triggers popup if there is no cookie.
     // Newsletter cookie: ww-group-newsletter
     // If signed up - exists for 1 year, no sign up - 30 days.
+
     const secondsUntilPopupAppears = 20 // 20 seconds
-    if (!cookie) {
+    const hasBeenOpened = sessionStorage.getItem('ww-newsletter-opened')
+    if (!cookie && !hasBeenOpened) {
       const timer = setTimeout(() => {
         setIsOpen(true)
+        sessionStorage.setItem('ww-newsletter-opened', 'true')
       }, secondsUntilPopupAppears * 1000)
       // Cleanup timer on component unmount
       return () => clearTimeout(timer)
@@ -43,7 +46,11 @@ export default function NewsletterPopup() {
           </VisuallyHidden>
           <NewsletterCard />
         </DialogContent>
-        <DialogClose onClick={() => setCookie('ww-group-newsletter', false, 30)} />
+        <DialogClose
+          onClick={() => {
+            setCookie('ww-group-newsletter', false, 30)
+          }}
+        />
       </Dialog>
     </div>
   )

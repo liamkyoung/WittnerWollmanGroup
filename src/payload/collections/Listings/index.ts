@@ -218,7 +218,11 @@ export const Listings: CollectionConfig = {
                 },
               ],
             },
-
+            {
+              name: 'propertySubtype',
+              label: 'Subtype',
+              type: 'text',
+            },
             {
               name: 'sqFt',
               label: 'Square Footage',
@@ -228,6 +232,11 @@ export const Listings: CollectionConfig = {
             {
               name: 'sqFtLand',
               label: 'Land Size (Sq Ft)',
+              type: 'number',
+            },
+            {
+              name: 'sqFtLot',
+              label: 'Lot Size (Acres)',
               type: 'number',
             },
             {

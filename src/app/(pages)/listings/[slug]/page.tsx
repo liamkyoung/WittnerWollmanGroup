@@ -14,6 +14,9 @@ import { fetchDocs } from '../../../_api/fetchDocs'
 import { generateListingMetadata } from '../../../_utilities/generateMeta'
 import Features from './Features'
 
+import { CallToActionBlock } from '@/app/_blocks/CallToAction'
+import CTA from '@/app/customComponents/CTA'
+
 export default async function Page({ params: { slug } }) {
   const { isEnabled: isDraftMode } = draftMode()
 
@@ -104,7 +107,7 @@ export default async function Page({ params: { slug } }) {
           occupancy={occupancy}
         />
       </div>
-      {agent && <ListingCTA agent={agent as Teammate} address={streetAddress} />}
+      {agent ? <ListingCTA agent={agent as Teammate} address={streetAddress} /> : <CTA />}
     </>
   )
   //   return <div>This is a Listing {slug}</div>

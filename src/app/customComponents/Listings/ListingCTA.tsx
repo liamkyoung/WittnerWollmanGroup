@@ -29,7 +29,7 @@ function ListingCTA({ address, agent }: Props) {
         <Media
           resource={agent.profilePic as MType}
           alt="teammate-image"
-          imgClassName="absolute z-10 bottom-0 right-0 mr-24 max-w-80 hidden xl:block"
+          imgClassName="absolute z-10 bottom-0 right-0 mr-24 w-80 hidden xl:block"
         />
       </div>
     </div>

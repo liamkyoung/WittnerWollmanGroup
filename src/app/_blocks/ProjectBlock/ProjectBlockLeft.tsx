@@ -67,7 +67,7 @@ function ProjectBlockLeft({
             )}
           </div>
         </div>
-        {facts && (
+        {facts && facts.length > 0 && (
           <div className={`hidden 2xl:flex gap-4 absolute top-32 ${bgColor} p-4`}>
             {facts.map((f, i) => (
               <ProjectStat

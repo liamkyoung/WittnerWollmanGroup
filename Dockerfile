@@ -20,11 +20,6 @@ ENV PAYLOAD_CONFIG_PATH=dist/payload.config.js
 ENV PAYLOAD_PUBLIC_SERVER_URL=https://lkycode.com
 ENV NEXT_PUBLIC_SERVER_URL=https://lkycode.com
 
-# Docker on Local
-# ENV PAYLOAD_PUBLIC_SERVER_URL=http://localhost:3000
-# ENV NEXT_PUBLIC_SERVER_URL=http://localhost:3000
-
-
 RUN yarn build:payload
 RUN yarn build:server
 RUN yarn copyfiles

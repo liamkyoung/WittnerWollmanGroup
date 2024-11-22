@@ -8,6 +8,7 @@ import {
   PROJECT_BLOCK,
   STAT_BLOCK,
   STATS_AND_VIDEO_BLOCK,
+  VIDEO_BLOCK,
 } from './blocks'
 import { LINK_FIELDS } from './link'
 import { BACKUP_IMAGE, MEDIA } from './media'
@@ -33,11 +34,11 @@ export const PAGE = `
           type
           richText
           headerText
-          ${BACKUP_IMAGE}
           links {
             link ${LINK_FIELDS()}
           }
           ${MEDIA}
+          ${BACKUP_IMAGE}
         }
         layout {
           ${CONTENT}
@@ -47,6 +48,7 @@ export const PAGE = `
           ${PROJECT_BLOCK}
           ${ARCHIVE_BLOCK}
           ${STATS_AND_VIDEO_BLOCK}
+          ${VIDEO_BLOCK}
           ${CONTENT_AND_STATS_BLOCK}
           ${STAT_BLOCK}
           ${GOOGLE_MAPS_BLOCK}

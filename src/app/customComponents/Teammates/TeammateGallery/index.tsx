@@ -15,10 +15,7 @@ export const TeammateGallery = ({ teammates, displayHeader = 'no' }: Props) => {
     <div>
       {displayHeader === 'yes' && (
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-0 items-center justify-between mb-16">
-          <h2>Testimonials</h2>
-          <Link href={ListingLinks.relLink} className="btn-primary">
-            VIEW ALL LISTINGS
-          </Link>
+          <h2>Our Team</h2>
         </div>
       )}
       <div className=" bg-wwRed place-items-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-24 py-24">

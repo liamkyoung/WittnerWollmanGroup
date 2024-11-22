@@ -17,6 +17,7 @@ type Props = {
   address?: string
   additionalInfo?: string[]
   textOnRight?: boolean
+  squareImage?: boolean
   link?: string
 }
 
@@ -29,17 +30,30 @@ function DefaultCard({
   address,
   additionalInfo,
   textOnRight = false,
+  squareImage = false,
   link,
 }: Props) {
   let width = '64' // default size
 
-  if (size === CardSize.MEDIUM) {
-    width = '72'
-  } else if (size === CardSize.LARGE) {
-    width = '80'
-  } else if (size === CardSize.EXTRALARGE) {
-    width = '96'
+  switch (size) {
+    case CardSize.SMALL:
+      width = '24'
+      break
+    case CardSize.MEDIUM:
+      width = '72'
+      break
+    case CardSize.LARGE:
+      width = '80'
+      break
+    case CardSize.EXTRALARGE:
+      width = '96'
+      break
+    default:
+      width = '64'
   }
+
+  const imgCSS = 'rounded-lg' + squareImage ? `size-${width}` : `w-full`
+
   return (
     <div>
       {/* {TODO: MAKE IT SO IT CAN BE LINK OR NOT LINK} */}
@@ -47,7 +61,7 @@ function DefaultCard({
         {!textOnRight ? (
           <div className={`max-w-${width}`}>
             <div className="relative">
-              <Media resource={image} imgClassName={`rounded-lg size-${width}`} />
+              <Media resource={image} imgClassName={'size-64'} />
               {accentText && (
                 <div className="bg-gray-50 absolute -bottom-1 -left-1 p-3 rounded-md">
                   <p className="text-wwRed font-bold">{accentText}</p>
@@ -66,7 +80,7 @@ function DefaultCard({
         ) : (
           <div className={`flex gap-4`}>
             <div className="relative">
-              <Media resource={image} imgClassName={`rounded-lg size-${width}`} />
+              <Media resource={image} imgClassName={'size-64'} />
               {accentText && (
                 <div className="bg-gray-50 absolute -bottom-1 -left-1 p-3 rounded-md">
                   <p className="text-wwRed font-bold">{accentText}</p>

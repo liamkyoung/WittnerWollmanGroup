@@ -13,7 +13,7 @@ type Props = {
   displayHeader: 'yes' | 'no'
 }
 
-export const ListingGallery = ({ listings, displayHeader = 'yes' }: Props) => {
+export const ListingGallery = ({ listings, displayHeader }: Props) => {
   const pins: GoogleMapPin[] = listings.map(m => {
     return {
       name: m.title,
@@ -24,6 +24,7 @@ export const ListingGallery = ({ listings, displayHeader = 'yes' }: Props) => {
       price: m.price,
     }
   })
+
   return (
     <div className="global-margin-x global-margin-y overflow-x-hidden">
       {displayHeader === 'yes' && (

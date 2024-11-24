@@ -43,8 +43,7 @@ export const PROJECT_BLOCK = `
     factDescription
   }
   links {
-    link
-    buttonName
+    link ${LINK_FIELDS()}
   }
   ${MEDIA}
 }

@@ -34,6 +34,7 @@ export const InvolvementEvents: CollectionConfig = {
       name: 'description',
       label: 'Event Description',
       type: 'textarea',
+      maxLength: 150,
       required: false,
     },
     {
@@ -48,8 +49,8 @@ export const InvolvementEvents: CollectionConfig = {
       type: 'date',
       admin: {
         date: {
-          pickerAppearance: 'dayOnly',
-          displayFormat: 'd MMM yyy',
+          pickerAppearance: 'dayAndTime',
+          displayFormat: 'd MMM yyy h:mm',
         },
       },
     },

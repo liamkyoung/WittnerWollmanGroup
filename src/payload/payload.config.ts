@@ -32,8 +32,6 @@ import { sendEmail } from './endpoints/sendEmail'
 import { sendListingEmail } from './endpoints/sendListingEmail'
 import { signUpNewsletter } from './endpoints/signUpNewsletter'
 // import { seed } from './endpoints/seed'
-import { Footer } from './globals/Footer'
-import { Header } from './globals/Header'
 import { Settings } from './globals/Settings'
 
 const generateTitle: GenerateTitle = () => {
@@ -147,7 +145,7 @@ export default buildConfig({
     InvolvementGroups,
     CommunityResources,
   ],
-  globals: [Settings, Header, Footer],
+  globals: [Settings],
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),
   },
@@ -157,8 +155,7 @@ export default buildConfig({
   cors: [process.env.PAYLOAD_PUBLIC_SERVER_URL || ''].filter(Boolean),
   csrf: [process.env.PAYLOAD_PUBLIC_SERVER_URL || ''].filter(Boolean),
   endpoints: [
-    // The seed endpoint is used to populate the database with some example data
-    // You should delete this endpoint before deploying your site to production
+    // Place custom NextJs Endpoints Here -- Ex: Sending Emails using Resend.
     {
       path: '/sendEmail',
       method: 'post',

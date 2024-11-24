@@ -36,3 +36,7 @@ export const COVERIMAGE = `coverImage {
 export const YOUTUBE_THUMBNAIL = `youtubeThumbnail {
   ${MEDIA_FIELDS}
 }`
+
+export const LISTING_FLYER = `listingFlyer {
+  ${MEDIA_FIELDS}
+}`

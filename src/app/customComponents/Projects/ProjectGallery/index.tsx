@@ -27,7 +27,7 @@ export const ProjectGallery = ({ projects, displayHeader = 'yes' }: Props) => {
             </div>
           )}
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 2xl:gap-16 3xl:gap-32 justify-items-center">
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 2xl:gap-16 3xl:gap-32 justify-items-center lg:justify-items-start">
             {projects.map(p => (
               <div key={p.id}>
                 <ProjectCard doc={p} />

@@ -1,19 +1,36 @@
 import Link from 'next/link'
 
 import { Media } from '../../../app/_components/Media'
-import { Media as MType } from '../../../payload/payload-types'
+import { Media as MType, Page } from '../../../payload/payload-types'
 import ProjectStat from '../../customComponents/Projects/ProjectStat'
 import { ColorScheme, FactStat } from '../../types/viewmodels'
 
+import { CMSLink } from '@/app/_components/Link'
+
 type Props = {
   colorScheme?: ColorScheme
-  links?: { link: string; buttonName: string }[]
+  links?:
+    | {
+        link: {
+          type?: ('reference' | 'custom') | null
+          newTab?: boolean | null
+          reference?: {
+            relationTo: 'pages'
+            value: number | Page
+          } | null
+          url?: string | null
+          label: string
+          appearance?: ('default' | 'primary' | 'secondary') | null
+        }
+        id?: string | null
+      }[]
+    | null
   title: string
   subheading: string
   subheadingType: 'location' | 'text' | 'none'
   image: MType
   description: string
-  facts: FactStat[]
+  facts?: FactStat[]
 }
 
 function ProjectBlockLeft({
@@ -101,16 +118,8 @@ function ProjectBlockLeft({
             ))}
           </div>
         )}
-
         {links &&
-          links.length > 0 &&
-          links.map((l, i) => (
-            <div className="flex justify-center lg:block py-8" key={i}>
-              <Link href={l.link} className={`${buttonStyle} `}>
-                {l.buttonName}
-              </Link>
-            </div>
-          ))}
+          links.map((l, i) => <CMSLink className={`${buttonStyle} `} {...l.link} key={i} />)}
       </div>
       <Media
         resource={image}

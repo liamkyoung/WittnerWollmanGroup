@@ -130,16 +130,27 @@ export const Listings: CollectionConfig = {
               // Able to get from map
             },
             {
+              name: 'isPriceNegotiable',
+              label: 'Is Price Negotiable?',
+              type: 'checkbox',
+              required: true,
+              defaultValue: false,
+            },
+            {
               name: 'price',
               label: 'Listing Price (in USD)',
               type: 'number',
               required: true,
+              defaultValue: 0,
               validate: value => {
-                if (value < 1) {
-                  return 'Value must be greater than or equal to 1'
+                if (value < 0) {
+                  return 'Value must be greater than or equal to 0'
                 }
 
                 return true
+              },
+              admin: {
+                condition: (data, siblingData) => siblingData?.isPriceNegotiable === false, // Only show if price is not-negotiable
               },
             },
             {
@@ -148,6 +159,13 @@ export const Listings: CollectionConfig = {
               type: 'relationship', // required
               relationTo: 'teammates', // required
               hasMany: true,
+            },
+            {
+              name: 'listingFlyer',
+              label: 'Information Flyer (PDF)',
+              type: 'upload',
+              relationTo: 'media',
+              required: false,
             },
           ],
         },
@@ -173,12 +191,6 @@ export const Listings: CollectionConfig = {
                   relationTo: 'media', // Replace 'media' with the slug of your media collection
                 },
                 {
-                  name: 'altText',
-                  label: 'Alt Text',
-                  type: 'text',
-                  required: true,
-                },
-                {
                   name: 'caption',
                   label: 'Caption',
                   type: 'text',
@@ -194,7 +206,6 @@ export const Listings: CollectionConfig = {
               name: 'propertyType',
               label: 'Property Type',
               type: 'select',
-              hasMany: true,
               options: [
                 {
                   label: 'Shopping Center',
@@ -280,6 +291,25 @@ export const Listings: CollectionConfig = {
               ],
             },
             {
+              name: 'buildingClass',
+              label: 'Building Class',
+              type: 'select',
+              options: [
+                {
+                  label: 'A',
+                  value: 'A',
+                },
+                {
+                  label: 'B',
+                  value: 'B',
+                },
+                {
+                  label: 'C',
+                  value: 'C',
+                },
+              ],
+            },
+            {
               name: 'tenancyType',
               label: 'Tenancy Type',
               type: 'select',
@@ -317,6 +347,213 @@ export const Listings: CollectionConfig = {
 
                 if (value > 100) {
                   return 'Value must be less than or equal to 100'
+                }
+
+                return true
+              },
+            },
+          ],
+        },
+        {
+          label: 'Additional Information',
+          fields: [
+            {
+              name: 'highlights',
+              type: 'array',
+              minRows: 1,
+              maxRows: 10,
+              fields: [
+                {
+                  name: 'highlightText',
+                  type: 'text',
+                },
+              ],
+            },
+            {
+              name: 'heat',
+              label: 'Heating',
+              type: 'select',
+              hasMany: false,
+              defaultValue: 'n/a',
+              options: [
+                {
+                  label: 'N/A',
+                  value: 'n/a',
+                },
+                {
+                  label: 'Yes',
+                  value: 'yes',
+                },
+                {
+                  label: 'No',
+                  value: 'no',
+                },
+              ],
+            },
+            {
+              name: 'cool',
+              label: 'Cooling',
+              type: 'select',
+              hasMany: false,
+              defaultValue: 'n/a',
+              options: [
+                {
+                  label: 'N/A',
+                  value: 'n/a',
+                },
+                {
+                  label: 'Yes',
+                  value: 'yes',
+                },
+                {
+                  label: 'No',
+                  value: 'no',
+                },
+              ],
+            },
+            {
+              name: 'electricity',
+              label: 'Electricity',
+              type: 'select',
+              hasMany: false,
+              defaultValue: 'n/a',
+              options: [
+                {
+                  label: 'N/A',
+                  value: 'n/a',
+                },
+                {
+                  label: 'Yes',
+                  value: 'yes',
+                },
+                {
+                  label: 'No',
+                  value: 'no',
+                },
+              ],
+            },
+            {
+              name: 'water',
+              label: 'Water',
+              type: 'select',
+              hasMany: false,
+              defaultValue: 'n/a',
+              options: [
+                {
+                  label: 'N/A',
+                  value: 'n/a',
+                },
+                {
+                  label: 'Yes',
+                  value: 'yes',
+                },
+                {
+                  label: 'No',
+                  value: 'no',
+                },
+              ],
+            },
+            {
+              name: 'waste',
+              label: 'Waste',
+              type: 'select',
+              hasMany: false,
+              defaultValue: 'n/a',
+              options: [
+                {
+                  label: 'N/A',
+                  value: 'n/a',
+                },
+                {
+                  label: 'Yes',
+                  value: 'yes',
+                },
+                {
+                  label: 'No',
+                  value: 'no',
+                },
+              ],
+            },
+            {
+              name: 'sewer',
+              label: 'Sewer',
+              type: 'select',
+              hasMany: false,
+              defaultValue: 'n/a',
+              options: [
+                {
+                  label: 'N/A',
+                  value: 'n/a',
+                },
+                {
+                  label: 'Yes',
+                  value: 'yes',
+                },
+                {
+                  label: 'No',
+                  value: 'no',
+                },
+              ],
+            },
+            {
+              name: 'internet',
+              label: 'Internet',
+              type: 'select',
+              hasMany: false,
+              defaultValue: 'n/a',
+              options: [
+                {
+                  label: 'N/A',
+                  value: 'n/a',
+                },
+                {
+                  label: 'Yes',
+                  value: 'yes',
+                },
+                {
+                  label: 'No',
+                  value: 'no',
+                },
+              ],
+            },
+            {
+              name: 'lighting',
+              label: 'Lighting',
+              type: 'select',
+              hasMany: false,
+              defaultValue: 'n/a',
+              options: [
+                {
+                  label: 'N/A',
+                  value: 'n/a',
+                },
+                {
+                  label: 'Yes',
+                  value: 'yes',
+                },
+                {
+                  label: 'No',
+                  value: 'no',
+                },
+              ],
+            },
+            {
+              name: 'hasParking',
+              label: 'Parking',
+              type: 'checkbox',
+              defaultValue: false,
+            },
+            {
+              name: 'parkingSpots',
+              label: 'Parking Spots',
+              type: 'number',
+              defaultValue: 1,
+              admin: {
+                condition: (data, siblingData) => siblingData?.hasParking === true, // Only show if price is not-negotiable
+              },
+              validate: value => {
+                if (value < 0) {
+                  return 'Value must be greater than or equal to 1'
                 }
 
                 return true

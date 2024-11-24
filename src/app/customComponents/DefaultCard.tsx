@@ -55,7 +55,7 @@ function DefaultCard({
   const imgCSS = 'rounded-lg' + squareImage ? `size-${width}` : `w-full`
 
   return (
-    <div>
+    <div className={`min-w-${width}`}>
       {/* {TODO: MAKE IT SO IT CAN BE LINK OR NOT LINK} */}
       <Link href={link ? link : '/'} className="hover:opacity-90">
         {!textOnRight ? (

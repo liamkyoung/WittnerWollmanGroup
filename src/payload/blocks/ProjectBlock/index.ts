@@ -1,5 +1,7 @@
 import type { Block } from 'payload/types'
 
+import linkGroup from '../../../payload/fields/linkGroup'
+
 export const ProjectBlock: Block = {
   slug: 'projectBlock',
   fields: [
@@ -9,16 +11,10 @@ export const ProjectBlock: Block = {
       required: true,
     },
     {
-      name: 'subheading',
-      label: 'Subheading',
-      type: 'text',
-      required: false,
-    },
-    {
       name: 'subheadingType',
       label: 'Subheading Type',
       type: 'select',
-      defaultValue: 'None',
+      defaultValue: 'none',
       options: [
         {
           label: 'None',
@@ -33,6 +29,15 @@ export const ProjectBlock: Block = {
           value: 'location',
         },
       ],
+    },
+    {
+      name: 'subheading',
+      label: 'Subheading',
+      type: 'text',
+      required: false,
+      admin: {
+        condition: (data, siblingData) => siblingData?.subheadingType !== 'none',
+      },
     },
     {
       name: 'description',
@@ -103,31 +108,10 @@ export const ProjectBlock: Block = {
       relationTo: 'media',
       required: true,
     },
-    {
-      name: 'links', // required
-      type: 'array', // required
-      interfaceName: 'Links', // optional
-      labels: {
-        singular: 'Link',
-        plural: 'Links',
+    linkGroup({
+      overrides: {
+        maxRows: 2,
       },
-      minRows: 1,
-      maxRows: 2,
-      fields: [
-        // required
-        {
-          name: 'link',
-          label: 'Link',
-          type: 'text',
-          required: true,
-        },
-        {
-          name: 'buttonName',
-          label: 'Button Name',
-          type: 'text',
-          required: true,
-        },
-      ],
-    },
+    }),
   ],
 }

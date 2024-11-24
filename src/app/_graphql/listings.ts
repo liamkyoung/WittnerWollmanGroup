@@ -6,7 +6,7 @@ import {
   STAT_BLOCK,
   STATS_AND_VIDEO_BLOCK,
 } from './blocks'
-import { COVERIMAGE, IMAGE } from './media'
+import { COVERIMAGE, IMAGE, LISTING_FLYER } from './media'
 import { LISTING_AGENT } from './teammates'
 
 export const LISTINGS = `
@@ -40,13 +40,29 @@ query Listings($slug: String) {
         sqFtLot
         bathroomCount
         bedCount
+        isPriceNegotiable
         price
+        ${LISTING_FLYER}
         yearBuilt
         overview
         areaOverview
         tenancyType
         occupancy
         zoningType
+        buildingClass
+        highlights {
+          highlightText
+        }
+        heat
+        cool
+        electricity
+        water
+        waste
+        sewer
+        internet
+        lighting
+        hasParking
+        parkingSpots
         ${LISTING_AGENT}
         ${COVERIMAGE}
         imageGallery {

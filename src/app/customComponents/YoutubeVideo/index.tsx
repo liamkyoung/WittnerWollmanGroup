@@ -30,7 +30,7 @@ export const YoutubeVideo = ({ title, src, coverImage }: Props) => {
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           referrerPolicy="strict-origin-when-cross-origin"
           allowFullScreen
-          className="w-full aspect-video"
+          className="w-full max-w-5xl mx-auto aspect-video"
         ></iframe>
       )}
     </>

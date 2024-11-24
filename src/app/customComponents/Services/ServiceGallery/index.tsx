@@ -25,7 +25,7 @@ export const ServiceGallery = ({ services, displayHeader = 'yes' }: Props) => {
         </div>
       )}
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 xl:grid-cols-4 justify-items-center">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-16 xl:grid-cols-4 lg:justify-items-start justify-items-center">
         {services.map((s, i) => (
           <ServiceCard doc={s} key={i} />
         ))}

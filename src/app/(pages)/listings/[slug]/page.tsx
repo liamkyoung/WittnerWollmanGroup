@@ -13,9 +13,13 @@ import { fetchDoc } from '../../../_api/fetchDoc'
 import { fetchDocs } from '../../../_api/fetchDocs'
 import { generateListingMetadata } from '../../../_utilities/generateMeta'
 import Features from './Features'
+import ProjectBlockLeft from '@/app/_blocks/ProjectBlock/ProjectBlockLeft'
 
 import { CallToActionBlock } from '@/app/_blocks/CallToAction'
 import CTA from '@/app/customComponents/CTA'
+import { formatPropertyType } from '@/app/_utilities/propertyTypeFormatter'
+import { ColorScheme, GoogleMapPin } from '@/app/types/viewmodels'
+import { GoogleMap } from '@/app/customComponents/GoogleMap/GoogleMap'
 
 export default async function Page({ params: { slug } }) {
   const { isEnabled: isDraftMode } = draftMode()
@@ -36,6 +40,7 @@ export default async function Page({ params: { slug } }) {
 
   const {
     title,
+    isPriceNegotiable,
     price,
     sqFt,
     streetAddress,
@@ -43,6 +48,7 @@ export default async function Page({ params: { slug } }) {
     address,
     state,
     sqFtLand,
+    sqFtLot,
     coverImage,
     propertyType,
     bedCount,
@@ -59,6 +65,17 @@ export default async function Page({ params: { slug } }) {
     zipCode,
     imageGallery,
     agents,
+    cool,
+    heat,
+    lighting,
+    electricity,
+    water,
+    waste,
+    sewer,
+    internet,
+    hasParking,
+    parkingSpots,
+    buildingClass,
     layout,
   } = listing
 
@@ -66,7 +83,18 @@ export default async function Page({ params: { slug } }) {
   const imgs: Media[] = imageGallery
     .map(i => (typeof i.image !== 'number' ? (i.image as Media) : null))
     .filter(i => i !== null)
-  //const heroProps: ListingHeroProps = {streetAddress: streetAddress, price: price, city: city, zipCode: zipCode, state: state, propertyType: propertyType, sqFt: sqFt}
+  const listingPin: GoogleMapPin = {
+    name: '',
+    coords: {
+      lat: latitude,
+      lng: longitude,
+    },
+    slug: slug,
+    coverImg: coverImage as Media,
+    address: streetAddress,
+    price: price,
+  }
+  //const heroProps: ListingHeroProps = {s,treetAddress: streetAddress, price: price, city: city, zipCode: zipCode, state: state, propertyType: propertyType, sqFt: sqFt}
   return (
     <>
       <div className="global-margin-x mt-24 space-y-24">
@@ -80,37 +108,53 @@ export default async function Page({ params: { slug } }) {
           sqFt={sqFt}
         />
         <PhotoGallery imageGallery={imgs} />
-        <Blocks blocks={[...layout]} />
-        {/* {overview && coverImage && streetAddress && (
-          <ProjectBlock
+      </div>
+
+      {overview && coverImage && streetAddress && (
+        <div className="my-24">
+          <ProjectBlockLeft
             title={title}
-            location={streetAddress}
-            media={coverImage}
-            bgColor={'white'}
-            position={'left'}
+            subheading={streetAddress}
+            subheadingType={'location'}
+            image={coverImage as Media}
+            colorScheme={ColorScheme.RED}
             description={overview}
           />
-        )} */}
+        </div>
+      )}
 
+      <div className="global-margin-x">
         <Features
           sqFtLand={sqFtLand}
           sqFt={sqFt}
+          sqFtLot={sqFtLot}
           yearBuilt={yearBuilt}
           bedrooms={bedCount}
           bathrooms={bathroomCount}
           area={neighborhood}
           zipCode={zipCode}
-          price={formatDollarAmount(price)}
+          isPriceNegotiable={isPriceNegotiable}
+          price={price}
+          buildingClass={buildingClass}
           propertyType={propertyType}
           status={'Active'}
-          zoningType={'Placeholder'}
+          zoningType={zoningType}
           occupancy={occupancy}
+          cool={cool}
+          heat={heat}
+          electricity={electricity}
+          water={water}
+          internet={internet}
+          hasParking={hasParking}
+          parkingSpots={parkingSpots}
         />
       </div>
+
+      <GoogleMap fullscreen pins={[listingPin]} />
+
       {agent ? <ListingCTA agent={agent as Teammate} address={streetAddress} /> : <CTA />}
     </>
   )
-  //   return <div>This is a Listing {slug}</div>
 }
 
 export async function generateStaticParams() {

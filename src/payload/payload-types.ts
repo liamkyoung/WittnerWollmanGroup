@@ -29,17 +29,6 @@ export type FactsList =
       id?: string | null;
     }[]
   | null;
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Links".
- */
-export type Links =
-  | {
-      link: string;
-      buttonName: string;
-      id?: string | null;
-    }[]
-  | null;
 
 export interface Config {
   collections: {
@@ -63,8 +52,6 @@ export interface Config {
   };
   globals: {
     settings: Settings;
-    header: Header;
-    footer: Footer;
   };
 }
 /**
@@ -259,21 +246,36 @@ export interface Page {
       }
     | {
         title: string;
-        subheading?: string | null;
         subheadingType?: ('none' | 'text' | 'location') | null;
+        subheading?: string | null;
         description: string;
         position?: ('left' | 'right') | null;
         bgColor?: ('white' | 'red') | null;
         facts?: FactsList;
         media: number | Media;
-        links?: Links;
+        links?:
+          | {
+              link: {
+                type?: ('reference' | 'custom') | null;
+                newTab?: boolean | null;
+                reference?: {
+                  relationTo: 'pages';
+                  value: number | Page;
+                } | null;
+                url?: string | null;
+                label: string;
+                appearance?: ('default' | 'primary' | 'secondary') | null;
+              };
+              id?: string | null;
+            }[]
+          | null;
         id?: string | null;
         blockName?: string | null;
         blockType: 'projectBlock';
       }
     | {
         title: string;
-        description: string;
+        description?: string | null;
         facts?: FactsList;
         youtubeLink: string;
         youtubeThumbnail: number | Media;
@@ -335,7 +337,7 @@ export interface Page {
  */
 export interface Media {
   id: number;
-  alt: string;
+  alt?: string | null;
   caption?:
     | {
         [k: string]: unknown;
@@ -930,21 +932,36 @@ export interface Project {
       }
     | {
         title: string;
-        subheading?: string | null;
         subheadingType?: ('none' | 'text' | 'location') | null;
+        subheading?: string | null;
         description: string;
         position?: ('left' | 'right') | null;
         bgColor?: ('white' | 'red') | null;
         facts?: FactsList;
         media: number | Media;
-        links?: Links;
+        links?:
+          | {
+              link: {
+                type?: ('reference' | 'custom') | null;
+                newTab?: boolean | null;
+                reference?: {
+                  relationTo: 'pages';
+                  value: number | Page;
+                } | null;
+                url?: string | null;
+                label: string;
+                appearance?: ('default' | 'primary' | 'secondary') | null;
+              };
+              id?: string | null;
+            }[]
+          | null;
         id?: string | null;
         blockName?: string | null;
         blockType: 'projectBlock';
       }
     | {
         title: string;
-        description: string;
+        description?: string | null;
         facts?: FactsList;
         youtubeLink: string;
         youtubeThumbnail: number | Media;
@@ -1035,18 +1052,19 @@ export interface Listing {
   state: string;
   latitude: number;
   longitude: number;
-  price: number;
+  isPriceNegotiable: boolean;
+  price?: number | null;
   agents?: (number | Teammate)[] | null;
+  listingFlyer?: number | Media | null;
   coverImage: number | Media;
   imageGallery?:
     | {
         image?: number | Media | null;
-        altText: string;
         caption?: string | null;
         id?: string | null;
       }[]
     | null;
-  propertyType?: ('shoppingCenter' | 'bizOpportunity' | 'multiFamily' | 'office' | 'mixedUse')[] | null;
+  propertyType?: ('shoppingCenter' | 'bizOpportunity' | 'multiFamily' | 'office' | 'mixedUse') | null;
   propertySubtype?: string | null;
   sqFt: number;
   sqFtLand?: number | null;
@@ -1056,9 +1074,26 @@ export interface Listing {
   overview: string;
   areaOverview?: string | null;
   zoningType?: ('C' | 'r' | 'i') | null;
+  buildingClass?: ('A' | 'B' | 'C') | null;
   tenancyType?: ('Single Tenant' | 'Multi-Tenant') | null;
   yearBuilt?: number | null;
   occupancy?: number | null;
+  highlights?:
+    | {
+        highlightText?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  heat?: ('n/a' | 'yes' | 'no') | null;
+  cool?: ('n/a' | 'yes' | 'no') | null;
+  electricity?: ('n/a' | 'yes' | 'no') | null;
+  water?: ('n/a' | 'yes' | 'no') | null;
+  waste?: ('n/a' | 'yes' | 'no') | null;
+  sewer?: ('n/a' | 'yes' | 'no') | null;
+  internet?: ('n/a' | 'yes' | 'no') | null;
+  lighting?: ('n/a' | 'yes' | 'no') | null;
+  hasParking?: boolean | null;
+  parkingSpots?: number | null;
   layout: (
     | {
         invertBackground?: boolean | null;
@@ -1214,21 +1249,36 @@ export interface Listing {
       }
     | {
         title: string;
-        subheading?: string | null;
         subheadingType?: ('none' | 'text' | 'location') | null;
+        subheading?: string | null;
         description: string;
         position?: ('left' | 'right') | null;
         bgColor?: ('white' | 'red') | null;
         facts?: FactsList;
         media: number | Media;
-        links?: Links;
+        links?:
+          | {
+              link: {
+                type?: ('reference' | 'custom') | null;
+                newTab?: boolean | null;
+                reference?: {
+                  relationTo: 'pages';
+                  value: number | Page;
+                } | null;
+                url?: string | null;
+                label: string;
+                appearance?: ('default' | 'primary' | 'secondary') | null;
+              };
+              id?: string | null;
+            }[]
+          | null;
         id?: string | null;
         blockName?: string | null;
         blockType: 'projectBlock';
       }
     | {
         title: string;
-        description: string;
+        description?: string | null;
         facts?: FactsList;
         youtubeLink: string;
         youtubeThumbnail: number | Media;
@@ -1504,21 +1554,36 @@ export interface Service {
       }
     | {
         title: string;
-        subheading?: string | null;
         subheadingType?: ('none' | 'text' | 'location') | null;
+        subheading?: string | null;
         description: string;
         position?: ('left' | 'right') | null;
         bgColor?: ('white' | 'red') | null;
         facts?: FactsList;
         media: number | Media;
-        links?: Links;
+        links?:
+          | {
+              link: {
+                type?: ('reference' | 'custom') | null;
+                newTab?: boolean | null;
+                reference?: {
+                  relationTo: 'pages';
+                  value: number | Page;
+                } | null;
+                url?: string | null;
+                label: string;
+                appearance?: ('default' | 'primary' | 'secondary') | null;
+              };
+              id?: string | null;
+            }[]
+          | null;
         id?: string | null;
         blockName?: string | null;
         blockType: 'projectBlock';
       }
     | {
         title: string;
-        description: string;
+        description?: string | null;
         facts?: FactsList;
         youtubeLink: string;
         youtubeThumbnail: number | Media;
@@ -1641,54 +1706,6 @@ export interface Settings {
   id: number;
   postsPage?: (number | null) | Page;
   projectsPage?: (number | null) | Page;
-  updatedAt?: string | null;
-  createdAt?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "header".
- */
-export interface Header {
-  id: number;
-  navItems?:
-    | {
-        link: {
-          type?: ('reference' | 'custom') | null;
-          newTab?: boolean | null;
-          reference?: {
-            relationTo: 'pages';
-            value: number | Page;
-          } | null;
-          url?: string | null;
-          label: string;
-        };
-        id?: string | null;
-      }[]
-    | null;
-  updatedAt?: string | null;
-  createdAt?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "footer".
- */
-export interface Footer {
-  id: number;
-  navItems?:
-    | {
-        link: {
-          type?: ('reference' | 'custom') | null;
-          newTab?: boolean | null;
-          reference?: {
-            relationTo: 'pages';
-            value: number | Page;
-          } | null;
-          url?: string | null;
-          label: string;
-        };
-        id?: string | null;
-      }[]
-    | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }

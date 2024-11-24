@@ -3,14 +3,16 @@ import Link from 'next/link'
 
 import { formatDollarAmount } from '@/app/_utilities/formatDollarAmount'
 import { ListingLinks } from '@/globalData/navigation/listings/listings'
+import { formatPropertyType } from '@/app/_utilities/propertyTypeFormatter'
 
 export type ListingHeroProps = {
   streetAddress: string
+  isPriceNegotiable?: boolean
   city: string
   state: string
   zipCode: string
   sqFt: number
-  propertyType: ('shoppingCenter' | 'bizOpportunity' | 'multiFamily' | 'office' | 'mixedUse')[]
+  propertyType: 'shoppingCenter' | 'bizOpportunity' | 'multiFamily' | 'office' | 'mixedUse'
   price: number
 }
 
@@ -23,6 +25,7 @@ export const ListingHero: React.FC<ListingHeroProps> = ({
   zipCode,
   sqFt,
   propertyType,
+  isPriceNegotiable,
   price,
 }) => {
   return (
@@ -67,11 +70,13 @@ export const ListingHero: React.FC<ListingHeroProps> = ({
                 clipRule="evenodd"
               />
             </svg>
-            {propertyType}
+            {formatPropertyType(propertyType)}
           </span>
         </div>
       </div>
-      <h1 className="bg-wwRed p-6 text-white">{formatDollarAmount(price)}</h1>
+      <h1 className="bg-wwRed p-6 text-white">
+        {!isPriceNegotiable ? 'Negotiable' : formatDollarAmount(price)}
+      </h1>
     </div>
   )
 }

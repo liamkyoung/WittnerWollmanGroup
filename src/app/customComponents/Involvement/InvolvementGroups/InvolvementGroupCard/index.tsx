@@ -19,6 +19,7 @@ export const InvolvementGroupCard: React.FC<{
       image={image as MType}
       description={sanitizedDescription}
       link={linkToGroupWebsite}
+      squareImage
     />
   )
 }

@@ -89,6 +89,18 @@ EXCEPTION
 END $$;
 
 DO $$ BEGIN
+ CREATE TYPE "public"."enum_pages_blocks_project_block_links_link_type" AS ENUM('reference', 'custom');
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ CREATE TYPE "public"."enum_pages_blocks_project_block_links_link_appearance" AS ENUM('default', 'primary', 'secondary');
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
  CREATE TYPE "public"."enum_pages_blocks_stat_block_bg_color" AS ENUM('white', 'red');
 EXCEPTION
  WHEN duplicate_object THEN null;
@@ -180,6 +192,18 @@ END $$;
 
 DO $$ BEGIN
  CREATE TYPE "public"."enum__pages_v_blocks_project_block_bg_color" AS ENUM('white', 'red');
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ CREATE TYPE "public"."enum__pages_v_blocks_project_block_links_link_type" AS ENUM('reference', 'custom');
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ CREATE TYPE "public"."enum__pages_v_blocks_project_block_links_link_appearance" AS ENUM('default', 'primary', 'secondary');
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
@@ -407,6 +431,18 @@ EXCEPTION
 END $$;
 
 DO $$ BEGIN
+ CREATE TYPE "public"."enum_projects_blocks_project_block_links_link_type" AS ENUM('reference', 'custom');
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ CREATE TYPE "public"."enum_projects_blocks_project_block_links_link_appearance" AS ENUM('default', 'primary', 'secondary');
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
  CREATE TYPE "public"."enum_projects_blocks_stat_block_bg_color" AS ENUM('white', 'red');
 EXCEPTION
  WHEN duplicate_object THEN null;
@@ -485,6 +521,18 @@ EXCEPTION
 END $$;
 
 DO $$ BEGIN
+ CREATE TYPE "public"."enum__projects_v_blocks_project_block_links_link_type" AS ENUM('reference', 'custom');
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ CREATE TYPE "public"."enum__projects_v_blocks_project_block_links_link_appearance" AS ENUM('default', 'primary', 'secondary');
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
  CREATE TYPE "public"."enum__projects_v_blocks_stat_block_bg_color" AS ENUM('white', 'red');
 EXCEPTION
  WHEN duplicate_object THEN null;
@@ -539,7 +587,61 @@ EXCEPTION
 END $$;
 
 DO $$ BEGIN
+ CREATE TYPE "public"."enum_listings_building_class" AS ENUM('A', 'B', 'C');
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
  CREATE TYPE "public"."enum_listings_tenancy_type" AS ENUM('Single Tenant', 'Multi-Tenant');
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ CREATE TYPE "public"."enum_listings_heat" AS ENUM('n/a', 'yes', 'no');
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ CREATE TYPE "public"."enum_listings_cool" AS ENUM('n/a', 'yes', 'no');
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ CREATE TYPE "public"."enum_listings_electricity" AS ENUM('n/a', 'yes', 'no');
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ CREATE TYPE "public"."enum_listings_water" AS ENUM('n/a', 'yes', 'no');
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ CREATE TYPE "public"."enum_listings_waste" AS ENUM('n/a', 'yes', 'no');
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ CREATE TYPE "public"."enum_listings_sewer" AS ENUM('n/a', 'yes', 'no');
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ CREATE TYPE "public"."enum_listings_internet" AS ENUM('n/a', 'yes', 'no');
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ CREATE TYPE "public"."enum_listings_lighting" AS ENUM('n/a', 'yes', 'no');
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
@@ -611,6 +713,18 @@ EXCEPTION
 END $$;
 
 DO $$ BEGIN
+ CREATE TYPE "public"."enum_listings_blocks_project_block_links_link_type" AS ENUM('reference', 'custom');
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ CREATE TYPE "public"."enum_listings_blocks_project_block_links_link_appearance" AS ENUM('default', 'primary', 'secondary');
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
  CREATE TYPE "public"."enum_listings_blocks_stat_block_bg_color" AS ENUM('white', 'red');
 EXCEPTION
  WHEN duplicate_object THEN null;
@@ -635,7 +749,61 @@ EXCEPTION
 END $$;
 
 DO $$ BEGIN
+ CREATE TYPE "public"."enum__listings_v_version_building_class" AS ENUM('A', 'B', 'C');
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
  CREATE TYPE "public"."enum__listings_v_version_tenancy_type" AS ENUM('Single Tenant', 'Multi-Tenant');
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ CREATE TYPE "public"."enum__listings_v_version_heat" AS ENUM('n/a', 'yes', 'no');
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ CREATE TYPE "public"."enum__listings_v_version_cool" AS ENUM('n/a', 'yes', 'no');
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ CREATE TYPE "public"."enum__listings_v_version_electricity" AS ENUM('n/a', 'yes', 'no');
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ CREATE TYPE "public"."enum__listings_v_version_water" AS ENUM('n/a', 'yes', 'no');
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ CREATE TYPE "public"."enum__listings_v_version_waste" AS ENUM('n/a', 'yes', 'no');
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ CREATE TYPE "public"."enum__listings_v_version_sewer" AS ENUM('n/a', 'yes', 'no');
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ CREATE TYPE "public"."enum__listings_v_version_internet" AS ENUM('n/a', 'yes', 'no');
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ CREATE TYPE "public"."enum__listings_v_version_lighting" AS ENUM('n/a', 'yes', 'no');
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
@@ -702,6 +870,18 @@ END $$;
 
 DO $$ BEGIN
  CREATE TYPE "public"."enum__listings_v_blocks_project_block_bg_color" AS ENUM('white', 'red');
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ CREATE TYPE "public"."enum__listings_v_blocks_project_block_links_link_type" AS ENUM('reference', 'custom');
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ CREATE TYPE "public"."enum__listings_v_blocks_project_block_links_link_appearance" AS ENUM('default', 'primary', 'secondary');
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
@@ -815,6 +995,18 @@ EXCEPTION
 END $$;
 
 DO $$ BEGIN
+ CREATE TYPE "public"."enum_services_blocks_project_block_links_link_type" AS ENUM('reference', 'custom');
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ CREATE TYPE "public"."enum_services_blocks_project_block_links_link_appearance" AS ENUM('default', 'primary', 'secondary');
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
  CREATE TYPE "public"."enum_services_blocks_stat_block_bg_color" AS ENUM('white', 'red');
 EXCEPTION
  WHEN duplicate_object THEN null;
@@ -911,6 +1103,18 @@ EXCEPTION
 END $$;
 
 DO $$ BEGIN
+ CREATE TYPE "public"."enum__services_v_blocks_project_block_links_link_type" AS ENUM('reference', 'custom');
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ CREATE TYPE "public"."enum__services_v_blocks_project_block_links_link_appearance" AS ENUM('default', 'primary', 'secondary');
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
  CREATE TYPE "public"."enum__services_v_blocks_stat_block_bg_color" AS ENUM('white', 'red');
 EXCEPTION
  WHEN duplicate_object THEN null;
@@ -972,18 +1176,6 @@ END $$;
 
 DO $$ BEGIN
  CREATE TYPE "public"."enum_redirects_to_type" AS ENUM('reference', 'custom');
-EXCEPTION
- WHEN duplicate_object THEN null;
-END $$;
-
-DO $$ BEGIN
- CREATE TYPE "public"."enum_header_nav_items_link_type" AS ENUM('reference', 'custom');
-EXCEPTION
- WHEN duplicate_object THEN null;
-END $$;
-
-DO $$ BEGIN
- CREATE TYPE "public"."enum_footer_nav_items_link_type" AS ENUM('reference', 'custom');
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
@@ -1066,8 +1258,11 @@ CREATE TABLE IF NOT EXISTS "pages_blocks_project_block_links" (
 	"_order" integer NOT NULL,
 	"_parent_id" varchar NOT NULL,
 	"id" varchar PRIMARY KEY NOT NULL,
-	"link" varchar,
-	"button_name" varchar
+	"link_type" "enum_pages_blocks_project_block_links_link_type",
+	"link_new_tab" boolean,
+	"link_url" varchar,
+	"link_label" varchar,
+	"link_appearance" "enum_pages_blocks_project_block_links_link_appearance"
 );
 
 CREATE TABLE IF NOT EXISTS "pages_blocks_project_block" (
@@ -1076,8 +1271,8 @@ CREATE TABLE IF NOT EXISTS "pages_blocks_project_block" (
 	"_path" text NOT NULL,
 	"id" varchar PRIMARY KEY NOT NULL,
 	"title" varchar,
-	"subheading" varchar,
 	"subheadingType" "enum_pages_blocks_project_block_subheading_type",
+	"subheading" varchar,
 	"description" varchar,
 	"position" "enum_pages_blocks_project_block_position",
 	"bgColor" "enum_pages_blocks_project_block_bg_color",
@@ -1279,8 +1474,11 @@ CREATE TABLE IF NOT EXISTS "_pages_v_blocks_project_block_links" (
 	"_order" integer NOT NULL,
 	"_parent_id" integer NOT NULL,
 	"id" serial PRIMARY KEY NOT NULL,
-	"link" varchar,
-	"button_name" varchar,
+	"link_type" "enum__pages_v_blocks_project_block_links_link_type",
+	"link_new_tab" boolean,
+	"link_url" varchar,
+	"link_label" varchar,
+	"link_appearance" "enum__pages_v_blocks_project_block_links_link_appearance",
 	"_uuid" varchar
 );
 
@@ -1290,8 +1488,8 @@ CREATE TABLE IF NOT EXISTS "_pages_v_blocks_project_block" (
 	"_path" text NOT NULL,
 	"id" serial PRIMARY KEY NOT NULL,
 	"title" varchar,
-	"subheading" varchar,
 	"subheadingType" "enum__pages_v_blocks_project_block_subheading_type",
+	"subheading" varchar,
 	"description" varchar,
 	"position" "enum__pages_v_blocks_project_block_position",
 	"bgColor" "enum__pages_v_blocks_project_block_bg_color",
@@ -1743,8 +1941,11 @@ CREATE TABLE IF NOT EXISTS "projects_blocks_project_block_links" (
 	"_order" integer NOT NULL,
 	"_parent_id" varchar NOT NULL,
 	"id" varchar PRIMARY KEY NOT NULL,
-	"link" varchar,
-	"button_name" varchar
+	"link_type" "enum_projects_blocks_project_block_links_link_type",
+	"link_new_tab" boolean,
+	"link_url" varchar,
+	"link_label" varchar,
+	"link_appearance" "enum_projects_blocks_project_block_links_link_appearance"
 );
 
 CREATE TABLE IF NOT EXISTS "projects_blocks_project_block" (
@@ -1753,8 +1954,8 @@ CREATE TABLE IF NOT EXISTS "projects_blocks_project_block" (
 	"_path" text NOT NULL,
 	"id" varchar PRIMARY KEY NOT NULL,
 	"title" varchar,
-	"subheading" varchar,
 	"subheadingType" "enum_projects_blocks_project_block_subheading_type",
+	"subheading" varchar,
 	"description" varchar,
 	"position" "enum_projects_blocks_project_block_position",
 	"bgColor" "enum_projects_blocks_project_block_bg_color",
@@ -1941,8 +2142,11 @@ CREATE TABLE IF NOT EXISTS "_projects_v_blocks_project_block_links" (
 	"_order" integer NOT NULL,
 	"_parent_id" integer NOT NULL,
 	"id" serial PRIMARY KEY NOT NULL,
-	"link" varchar,
-	"button_name" varchar,
+	"link_type" "enum__projects_v_blocks_project_block_links_link_type",
+	"link_new_tab" boolean,
+	"link_url" varchar,
+	"link_label" varchar,
+	"link_appearance" "enum__projects_v_blocks_project_block_links_link_appearance",
 	"_uuid" varchar
 );
 
@@ -1952,8 +2156,8 @@ CREATE TABLE IF NOT EXISTS "_projects_v_blocks_project_block" (
 	"_path" text NOT NULL,
 	"id" serial PRIMARY KEY NOT NULL,
 	"title" varchar,
-	"subheading" varchar,
 	"subheadingType" "enum__projects_v_blocks_project_block_subheading_type",
+	"subheading" varchar,
 	"description" varchar,
 	"position" "enum__projects_v_blocks_project_block_position",
 	"bgColor" "enum__projects_v_blocks_project_block_bg_color",
@@ -2048,7 +2252,7 @@ CREATE TABLE IF NOT EXISTS "_projects_v_rels" (
 
 CREATE TABLE IF NOT EXISTS "media" (
 	"id" serial PRIMARY KEY NOT NULL,
-	"alt" varchar NOT NULL,
+	"alt" varchar,
 	"caption" jsonb,
 	"updated_at" timestamp(3) with time zone DEFAULT now() NOT NULL,
 	"created_at" timestamp(3) with time zone DEFAULT now() NOT NULL,
@@ -2186,15 +2390,14 @@ CREATE TABLE IF NOT EXISTS "listings_image_gallery" (
 	"_order" integer NOT NULL,
 	"_parent_id" integer NOT NULL,
 	"id" varchar PRIMARY KEY NOT NULL,
-	"alt_text" varchar,
 	"caption" varchar
 );
 
-CREATE TABLE IF NOT EXISTS "listings_property_type" (
-	"order" integer NOT NULL,
-	"parent_id" integer NOT NULL,
-	"value" "enum_listings_property_type",
-	"id" serial PRIMARY KEY NOT NULL
+CREATE TABLE IF NOT EXISTS "listings_highlights" (
+	"_order" integer NOT NULL,
+	"_parent_id" integer NOT NULL,
+	"id" varchar PRIMARY KEY NOT NULL,
+	"highlight_text" varchar
 );
 
 CREATE TABLE IF NOT EXISTS "listings_blocks_content_columns" (
@@ -2256,8 +2459,11 @@ CREATE TABLE IF NOT EXISTS "listings_blocks_project_block_links" (
 	"_order" integer NOT NULL,
 	"_parent_id" varchar NOT NULL,
 	"id" varchar PRIMARY KEY NOT NULL,
-	"link" varchar,
-	"button_name" varchar
+	"link_type" "enum_listings_blocks_project_block_links_link_type",
+	"link_new_tab" boolean,
+	"link_url" varchar,
+	"link_label" varchar,
+	"link_appearance" "enum_listings_blocks_project_block_links_link_appearance"
 );
 
 CREATE TABLE IF NOT EXISTS "listings_blocks_project_block" (
@@ -2266,8 +2472,8 @@ CREATE TABLE IF NOT EXISTS "listings_blocks_project_block" (
 	"_path" text NOT NULL,
 	"id" varchar PRIMARY KEY NOT NULL,
 	"title" varchar,
-	"subheading" varchar,
 	"subheadingType" "enum_listings_blocks_project_block_subheading_type",
+	"subheading" varchar,
 	"description" varchar,
 	"position" "enum_listings_blocks_project_block_position",
 	"bgColor" "enum_listings_blocks_project_block_bg_color",
@@ -2324,7 +2530,9 @@ CREATE TABLE IF NOT EXISTS "listings" (
 	"state" varchar,
 	"latitude" numeric,
 	"longitude" numeric,
+	"is_price_negotiable" boolean,
 	"price" numeric,
+	"propertyType" "enum_listings_property_type",
 	"property_subtype" varchar,
 	"sq_ft" numeric,
 	"sq_ft_land" numeric,
@@ -2334,9 +2542,20 @@ CREATE TABLE IF NOT EXISTS "listings" (
 	"overview" varchar,
 	"area_overview" varchar,
 	"zoningType" "enum_listings_zoning_type",
+	"buildingClass" "enum_listings_building_class",
 	"tenancyType" "enum_listings_tenancy_type",
 	"year_built" numeric,
 	"occupancy" numeric,
+	"heat" "enum_listings_heat",
+	"cool" "enum_listings_cool",
+	"electricity" "enum_listings_electricity",
+	"water" "enum_listings_water",
+	"waste" "enum_listings_waste",
+	"sewer" "enum_listings_sewer",
+	"internet" "enum_listings_internet",
+	"lighting" "enum_listings_lighting",
+	"has_parking" boolean,
+	"parking_spots" numeric,
 	"meta_title" varchar,
 	"meta_description" varchar,
 	"slug" varchar,
@@ -2369,16 +2588,16 @@ CREATE TABLE IF NOT EXISTS "_listings_v_version_image_gallery" (
 	"_order" integer NOT NULL,
 	"_parent_id" integer NOT NULL,
 	"id" serial PRIMARY KEY NOT NULL,
-	"alt_text" varchar,
 	"caption" varchar,
 	"_uuid" varchar
 );
 
-CREATE TABLE IF NOT EXISTS "_listings_v_version_property_type" (
-	"order" integer NOT NULL,
-	"parent_id" integer NOT NULL,
-	"value" "enum__listings_v_version_property_type",
-	"id" serial PRIMARY KEY NOT NULL
+CREATE TABLE IF NOT EXISTS "_listings_v_version_highlights" (
+	"_order" integer NOT NULL,
+	"_parent_id" integer NOT NULL,
+	"id" serial PRIMARY KEY NOT NULL,
+	"highlight_text" varchar,
+	"_uuid" varchar
 );
 
 CREATE TABLE IF NOT EXISTS "_listings_v_blocks_content_columns" (
@@ -2445,8 +2664,11 @@ CREATE TABLE IF NOT EXISTS "_listings_v_blocks_project_block_links" (
 	"_order" integer NOT NULL,
 	"_parent_id" integer NOT NULL,
 	"id" serial PRIMARY KEY NOT NULL,
-	"link" varchar,
-	"button_name" varchar,
+	"link_type" "enum__listings_v_blocks_project_block_links_link_type",
+	"link_new_tab" boolean,
+	"link_url" varchar,
+	"link_label" varchar,
+	"link_appearance" "enum__listings_v_blocks_project_block_links_link_appearance",
 	"_uuid" varchar
 );
 
@@ -2456,8 +2678,8 @@ CREATE TABLE IF NOT EXISTS "_listings_v_blocks_project_block" (
 	"_path" text NOT NULL,
 	"id" serial PRIMARY KEY NOT NULL,
 	"title" varchar,
-	"subheading" varchar,
 	"subheadingType" "enum__listings_v_blocks_project_block_subheading_type",
+	"subheading" varchar,
 	"description" varchar,
 	"position" "enum__listings_v_blocks_project_block_position",
 	"bgColor" "enum__listings_v_blocks_project_block_bg_color",
@@ -2519,7 +2741,9 @@ CREATE TABLE IF NOT EXISTS "_listings_v" (
 	"version_state" varchar,
 	"version_latitude" numeric,
 	"version_longitude" numeric,
+	"version_is_price_negotiable" boolean,
 	"version_price" numeric,
+	"version_propertyType" "enum__listings_v_version_property_type",
 	"version_property_subtype" varchar,
 	"version_sq_ft" numeric,
 	"version_sq_ft_land" numeric,
@@ -2529,9 +2753,20 @@ CREATE TABLE IF NOT EXISTS "_listings_v" (
 	"version_overview" varchar,
 	"version_area_overview" varchar,
 	"version_zoningType" "enum__listings_v_version_zoning_type",
+	"version_buildingClass" "enum__listings_v_version_building_class",
 	"version_tenancyType" "enum__listings_v_version_tenancy_type",
 	"version_year_built" numeric,
 	"version_occupancy" numeric,
+	"version_heat" "enum__listings_v_version_heat",
+	"version_cool" "enum__listings_v_version_cool",
+	"version_electricity" "enum__listings_v_version_electricity",
+	"version_water" "enum__listings_v_version_water",
+	"version_waste" "enum__listings_v_version_waste",
+	"version_sewer" "enum__listings_v_version_sewer",
+	"version_internet" "enum__listings_v_version_internet",
+	"version_lighting" "enum__listings_v_version_lighting",
+	"version_has_parking" boolean,
+	"version_parking_spots" numeric,
 	"version_meta_title" varchar,
 	"version_meta_description" varchar,
 	"version_slug" varchar,
@@ -2681,8 +2916,11 @@ CREATE TABLE IF NOT EXISTS "services_blocks_project_block_links" (
 	"_order" integer NOT NULL,
 	"_parent_id" varchar NOT NULL,
 	"id" varchar PRIMARY KEY NOT NULL,
-	"link" varchar,
-	"button_name" varchar
+	"link_type" "enum_services_blocks_project_block_links_link_type",
+	"link_new_tab" boolean,
+	"link_url" varchar,
+	"link_label" varchar,
+	"link_appearance" "enum_services_blocks_project_block_links_link_appearance"
 );
 
 CREATE TABLE IF NOT EXISTS "services_blocks_project_block" (
@@ -2691,8 +2929,8 @@ CREATE TABLE IF NOT EXISTS "services_blocks_project_block" (
 	"_path" text NOT NULL,
 	"id" varchar PRIMARY KEY NOT NULL,
 	"title" varchar,
-	"subheading" varchar,
 	"subheadingType" "enum_services_blocks_project_block_subheading_type",
+	"subheading" varchar,
 	"description" varchar,
 	"position" "enum_services_blocks_project_block_position",
 	"bgColor" "enum_services_blocks_project_block_bg_color",
@@ -2875,8 +3113,11 @@ CREATE TABLE IF NOT EXISTS "_services_v_blocks_project_block_links" (
 	"_order" integer NOT NULL,
 	"_parent_id" integer NOT NULL,
 	"id" serial PRIMARY KEY NOT NULL,
-	"link" varchar,
-	"button_name" varchar,
+	"link_type" "enum__services_v_blocks_project_block_links_link_type",
+	"link_new_tab" boolean,
+	"link_url" varchar,
+	"link_label" varchar,
+	"link_appearance" "enum__services_v_blocks_project_block_links_link_appearance",
 	"_uuid" varchar
 );
 
@@ -2886,8 +3127,8 @@ CREATE TABLE IF NOT EXISTS "_services_v_blocks_project_block" (
 	"_path" text NOT NULL,
 	"id" serial PRIMARY KEY NOT NULL,
 	"title" varchar,
-	"subheading" varchar,
 	"subheadingType" "enum__services_v_blocks_project_block_subheading_type",
+	"subheading" varchar,
 	"description" varchar,
 	"position" "enum__services_v_blocks_project_block_position",
 	"bgColor" "enum__services_v_blocks_project_block_bg_color",
@@ -3202,54 +3443,6 @@ CREATE TABLE IF NOT EXISTS "settings" (
 );
 
 CREATE TABLE IF NOT EXISTS "settings_rels" (
-	"id" serial PRIMARY KEY NOT NULL,
-	"order" integer,
-	"parent_id" integer NOT NULL,
-	"path" varchar NOT NULL,
-	"pages_id" integer
-);
-
-CREATE TABLE IF NOT EXISTS "header_nav_items" (
-	"_order" integer NOT NULL,
-	"_parent_id" integer NOT NULL,
-	"id" varchar PRIMARY KEY NOT NULL,
-	"link_type" "enum_header_nav_items_link_type",
-	"link_new_tab" boolean,
-	"link_url" varchar,
-	"link_label" varchar NOT NULL
-);
-
-CREATE TABLE IF NOT EXISTS "header" (
-	"id" serial PRIMARY KEY NOT NULL,
-	"updated_at" timestamp(3) with time zone,
-	"created_at" timestamp(3) with time zone
-);
-
-CREATE TABLE IF NOT EXISTS "header_rels" (
-	"id" serial PRIMARY KEY NOT NULL,
-	"order" integer,
-	"parent_id" integer NOT NULL,
-	"path" varchar NOT NULL,
-	"pages_id" integer
-);
-
-CREATE TABLE IF NOT EXISTS "footer_nav_items" (
-	"_order" integer NOT NULL,
-	"_parent_id" integer NOT NULL,
-	"id" varchar PRIMARY KEY NOT NULL,
-	"link_type" "enum_footer_nav_items_link_type",
-	"link_new_tab" boolean,
-	"link_url" varchar,
-	"link_label" varchar NOT NULL
-);
-
-CREATE TABLE IF NOT EXISTS "footer" (
-	"id" serial PRIMARY KEY NOT NULL,
-	"updated_at" timestamp(3) with time zone,
-	"created_at" timestamp(3) with time zone
-);
-
-CREATE TABLE IF NOT EXISTS "footer_rels" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"order" integer,
 	"parent_id" integer NOT NULL,
@@ -4326,7 +4519,7 @@ EXCEPTION
 END $$;
 
 DO $$ BEGIN
- ALTER TABLE "listings_property_type" ADD CONSTRAINT "listings_property_type_parent_fk" FOREIGN KEY ("parent_id") REFERENCES "public"."listings"("id") ON DELETE cascade ON UPDATE no action;
+ ALTER TABLE "listings_highlights" ADD CONSTRAINT "listings_highlights_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."listings"("id") ON DELETE cascade ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
@@ -4488,7 +4681,7 @@ EXCEPTION
 END $$;
 
 DO $$ BEGIN
- ALTER TABLE "_listings_v_version_property_type" ADD CONSTRAINT "_listings_v_version_property_type_parent_fk" FOREIGN KEY ("parent_id") REFERENCES "public"."_listings_v"("id") ON DELETE cascade ON UPDATE no action;
+ ALTER TABLE "_listings_v_version_highlights" ADD CONSTRAINT "_listings_v_version_highlights_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_listings_v"("id") ON DELETE cascade ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
@@ -5195,42 +5388,6 @@ EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
 
-DO $$ BEGIN
- ALTER TABLE "header_nav_items" ADD CONSTRAINT "header_nav_items_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."header"("id") ON DELETE cascade ON UPDATE no action;
-EXCEPTION
- WHEN duplicate_object THEN null;
-END $$;
-
-DO $$ BEGIN
- ALTER TABLE "header_rels" ADD CONSTRAINT "header_rels_parent_fk" FOREIGN KEY ("parent_id") REFERENCES "public"."header"("id") ON DELETE cascade ON UPDATE no action;
-EXCEPTION
- WHEN duplicate_object THEN null;
-END $$;
-
-DO $$ BEGIN
- ALTER TABLE "header_rels" ADD CONSTRAINT "header_rels_pages_fk" FOREIGN KEY ("pages_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
-EXCEPTION
- WHEN duplicate_object THEN null;
-END $$;
-
-DO $$ BEGIN
- ALTER TABLE "footer_nav_items" ADD CONSTRAINT "footer_nav_items_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."footer"("id") ON DELETE cascade ON UPDATE no action;
-EXCEPTION
- WHEN duplicate_object THEN null;
-END $$;
-
-DO $$ BEGIN
- ALTER TABLE "footer_rels" ADD CONSTRAINT "footer_rels_parent_fk" FOREIGN KEY ("parent_id") REFERENCES "public"."footer"("id") ON DELETE cascade ON UPDATE no action;
-EXCEPTION
- WHEN duplicate_object THEN null;
-END $$;
-
-DO $$ BEGIN
- ALTER TABLE "footer_rels" ADD CONSTRAINT "footer_rels_pages_fk" FOREIGN KEY ("pages_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
-EXCEPTION
- WHEN duplicate_object THEN null;
-END $$;
-
 CREATE INDEX IF NOT EXISTS "pages_hero_links_order_idx" ON "pages_hero_links" USING btree ("_order");
 CREATE INDEX IF NOT EXISTS "pages_hero_links_parent_id_idx" ON "pages_hero_links" USING btree ("_parent_id");
 CREATE INDEX IF NOT EXISTS "pages_blocks_cta_order_idx" ON "pages_blocks_cta" USING btree ("_order");
@@ -5595,8 +5752,8 @@ CREATE INDEX IF NOT EXISTS "_teammates_v_rels_media_id_idx" ON "_teammates_v_rel
 CREATE INDEX IF NOT EXISTS "_teammates_v_rels_community_resources_id_idx" ON "_teammates_v_rels" USING btree ("community_resources_id");
 CREATE INDEX IF NOT EXISTS "listings_image_gallery_order_idx" ON "listings_image_gallery" USING btree ("_order");
 CREATE INDEX IF NOT EXISTS "listings_image_gallery_parent_id_idx" ON "listings_image_gallery" USING btree ("_parent_id");
-CREATE INDEX IF NOT EXISTS "listings_property_type_order_idx" ON "listings_property_type" USING btree ("order");
-CREATE INDEX IF NOT EXISTS "listings_property_type_parent_idx" ON "listings_property_type" USING btree ("parent_id");
+CREATE INDEX IF NOT EXISTS "listings_highlights_order_idx" ON "listings_highlights" USING btree ("_order");
+CREATE INDEX IF NOT EXISTS "listings_highlights_parent_id_idx" ON "listings_highlights" USING btree ("_parent_id");
 CREATE INDEX IF NOT EXISTS "listings_blocks_content_columns_order_idx" ON "listings_blocks_content_columns" USING btree ("_order");
 CREATE INDEX IF NOT EXISTS "listings_blocks_content_columns_parent_id_idx" ON "listings_blocks_content_columns" USING btree ("_parent_id");
 CREATE INDEX IF NOT EXISTS "listings_blocks_content_order_idx" ON "listings_blocks_content" USING btree ("_order");
@@ -5646,8 +5803,8 @@ CREATE INDEX IF NOT EXISTS "listings_rels_services_id_idx" ON "listings_rels" US
 CREATE INDEX IF NOT EXISTS "listings_rels_community_resources_id_idx" ON "listings_rels" USING btree ("community_resources_id");
 CREATE INDEX IF NOT EXISTS "_listings_v_version_image_gallery_order_idx" ON "_listings_v_version_image_gallery" USING btree ("_order");
 CREATE INDEX IF NOT EXISTS "_listings_v_version_image_gallery_parent_id_idx" ON "_listings_v_version_image_gallery" USING btree ("_parent_id");
-CREATE INDEX IF NOT EXISTS "_listings_v_version_property_type_order_idx" ON "_listings_v_version_property_type" USING btree ("order");
-CREATE INDEX IF NOT EXISTS "_listings_v_version_property_type_parent_idx" ON "_listings_v_version_property_type" USING btree ("parent_id");
+CREATE INDEX IF NOT EXISTS "_listings_v_version_highlights_order_idx" ON "_listings_v_version_highlights" USING btree ("_order");
+CREATE INDEX IF NOT EXISTS "_listings_v_version_highlights_parent_id_idx" ON "_listings_v_version_highlights" USING btree ("_parent_id");
 CREATE INDEX IF NOT EXISTS "_listings_v_blocks_content_columns_order_idx" ON "_listings_v_blocks_content_columns" USING btree ("_order");
 CREATE INDEX IF NOT EXISTS "_listings_v_blocks_content_columns_parent_id_idx" ON "_listings_v_blocks_content_columns" USING btree ("_parent_id");
 CREATE INDEX IF NOT EXISTS "_listings_v_blocks_content_order_idx" ON "_listings_v_blocks_content" USING btree ("_order");
@@ -5914,19 +6071,7 @@ CREATE INDEX IF NOT EXISTS "payload_migrations_created_at_idx" ON "payload_migra
 CREATE INDEX IF NOT EXISTS "settings_rels_order_idx" ON "settings_rels" USING btree ("order");
 CREATE INDEX IF NOT EXISTS "settings_rels_parent_idx" ON "settings_rels" USING btree ("parent_id");
 CREATE INDEX IF NOT EXISTS "settings_rels_path_idx" ON "settings_rels" USING btree ("path");
-CREATE INDEX IF NOT EXISTS "settings_rels_pages_id_idx" ON "settings_rels" USING btree ("pages_id");
-CREATE INDEX IF NOT EXISTS "header_nav_items_order_idx" ON "header_nav_items" USING btree ("_order");
-CREATE INDEX IF NOT EXISTS "header_nav_items_parent_id_idx" ON "header_nav_items" USING btree ("_parent_id");
-CREATE INDEX IF NOT EXISTS "header_rels_order_idx" ON "header_rels" USING btree ("order");
-CREATE INDEX IF NOT EXISTS "header_rels_parent_idx" ON "header_rels" USING btree ("parent_id");
-CREATE INDEX IF NOT EXISTS "header_rels_path_idx" ON "header_rels" USING btree ("path");
-CREATE INDEX IF NOT EXISTS "header_rels_pages_id_idx" ON "header_rels" USING btree ("pages_id");
-CREATE INDEX IF NOT EXISTS "footer_nav_items_order_idx" ON "footer_nav_items" USING btree ("_order");
-CREATE INDEX IF NOT EXISTS "footer_nav_items_parent_id_idx" ON "footer_nav_items" USING btree ("_parent_id");
-CREATE INDEX IF NOT EXISTS "footer_rels_order_idx" ON "footer_rels" USING btree ("order");
-CREATE INDEX IF NOT EXISTS "footer_rels_parent_idx" ON "footer_rels" USING btree ("parent_id");
-CREATE INDEX IF NOT EXISTS "footer_rels_path_idx" ON "footer_rels" USING btree ("path");
-CREATE INDEX IF NOT EXISTS "footer_rels_pages_id_idx" ON "footer_rels" USING btree ("pages_id");`);
+CREATE INDEX IF NOT EXISTS "settings_rels_pages_id_idx" ON "settings_rels" USING btree ("pages_id");`);
 
 };
 
@@ -6036,7 +6181,7 @@ DROP TABLE "_teammates_v_version_strengths";
 DROP TABLE "_teammates_v";
 DROP TABLE "_teammates_v_rels";
 DROP TABLE "listings_image_gallery";
-DROP TABLE "listings_property_type";
+DROP TABLE "listings_highlights";
 DROP TABLE "listings_blocks_content_columns";
 DROP TABLE "listings_blocks_content";
 DROP TABLE "listings_blocks_media_block";
@@ -6051,7 +6196,7 @@ DROP TABLE "listings_blocks_stat_block";
 DROP TABLE "listings";
 DROP TABLE "listings_rels";
 DROP TABLE "_listings_v_version_image_gallery";
-DROP TABLE "_listings_v_version_property_type";
+DROP TABLE "_listings_v_version_highlights";
 DROP TABLE "_listings_v_blocks_content_columns";
 DROP TABLE "_listings_v_blocks_content";
 DROP TABLE "_listings_v_blocks_media_block";
@@ -6125,12 +6270,6 @@ DROP TABLE "payload_preferences";
 DROP TABLE "payload_preferences_rels";
 DROP TABLE "payload_migrations";
 DROP TABLE "settings";
-DROP TABLE "settings_rels";
-DROP TABLE "header_nav_items";
-DROP TABLE "header";
-DROP TABLE "header_rels";
-DROP TABLE "footer_nav_items";
-DROP TABLE "footer";
-DROP TABLE "footer_rels";`);
+DROP TABLE "settings_rels";`);
 
 };

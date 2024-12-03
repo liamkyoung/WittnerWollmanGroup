@@ -3,11 +3,10 @@ import Link from 'next/link'
 
 import { Listing, Media as MediaType } from '../../../payload/payload-types'
 import { Media } from '../../_components/Media'
+import { formatDollarAmount } from '../../_utilities/formatDollarAmount'
 import CardInfo from '../CardInfo'
 
 import { ListingLinks } from '@/globalData/navigation/listings/listings'
-
-import { formatDollarAmount } from '../../_utilities/formatDollarAmount'
 
 export const ListingCard: React.FC<{
   className?: string

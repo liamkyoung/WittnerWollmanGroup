@@ -18,8 +18,10 @@ import { generateTeammateMetadata } from '../../../_utilities/generateMeta'
 import ContactAndBio from './ContactAndBio'
 import TeammateHeader from './TeammateHeader'
 
+import { CommunityResourceCard } from '@/app/customComponents/CommunityResources/CommunityResourceCard'
 import { CommunityResourceGallery } from '@/app/customComponents/CommunityResources/CommunityResourceGallery'
 import { GoogleMap } from '@/app/customComponents/GoogleMap/GoogleMap'
+import { ListingCard } from '@/app/customComponents/Listings'
 import { ListingGallery } from '@/app/customComponents/Listings/ListingGallery'
 import { ProjectGallery } from '@/app/customComponents/Projects/ProjectGallery'
 import { GoogleMapPin } from '@/app/types/viewmodels'
@@ -53,6 +55,7 @@ export default async function Page({ params: { slug } }) {
     profileIntroduction,
     strengths,
     yearsOfExperience,
+    jobTitle,
     email,
     phoneNumber,
     instagram,
@@ -67,7 +70,7 @@ export default async function Page({ params: { slug } }) {
           name={title}
           fullBodyImg={profilePic as MType}
           shortDescription={profileIntroduction}
-          jobTitle="Commercial Real Estate Agent"
+          jobTitle={jobTitle}
           yearsOfExperience={yearsOfExperience}
           strength={strengths[0]}
         />
@@ -100,16 +103,23 @@ export default async function Page({ params: { slug } }) {
       </div>
       <div>
         {listings && listings.length > 0 && (
-          <ListingGallery listings={listings} displayHeader="yes" />
+          <div className="global-margin-y">
+            <h2 className="mb-16 text-center md:text-start global-margin-x">My Listings</h2>
+            <ListingGallery listings={listings} displayHeader="no" />
+          </div>
         )}
 
         {projects && projects.length > 0 && <ProjectGallery projects={projects} />}
 
         {favoritePlaces && favoritePlaces.length > 0 && (
-          <CommunityResourceGallery
-            communityResources={favoritePlaces as CommunityResource[]}
-            displayHeader="yes"
-          />
+          <div className="global-margin-x">
+            <h2 className=" mb-16 text-center md:text-start">My Favorite Places in Tampa Bay</h2>
+            <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-16 my-24 lg:place-items-start place-items-center">
+              {favoritePlaces.map((place, i) => (
+                <CommunityResourceCard doc={place as CommunityResource} key={i} />
+              ))}
+            </div>
+          </div>
         )}
       </div>
       <div className="mt-24">

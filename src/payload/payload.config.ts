@@ -157,17 +157,17 @@ export default buildConfig({
   endpoints: [
     // Place custom NextJs Endpoints Here -- Ex: Sending Emails using Resend.
     {
-      path: '/sendEmail',
+      path: '/email/sendEmail',
       method: 'post',
       handler: sendEmail,
     },
     {
-      path: '/signUpNewsletter',
+      path: '/email/signUpNewsletter',
       method: 'post',
       handler: signUpNewsletter,
     },
     {
-      path: '/sendListingEmail',
+      path: '/email/sendListingEmail',
       method: 'post',
       handler: sendListingEmail,
     },

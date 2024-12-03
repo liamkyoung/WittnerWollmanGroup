@@ -22,7 +22,7 @@ function MobileHeader({}: Props) {
   return (
     <nav className="flex justify-between lg:hidden global-margin-x my-5">
       <Link href="/">
-        <Image priority src={Logo} alt="WW-Logo" />
+        <Image priority src={Logo} alt="Logo" />
       </Link>
 
       <Sheet>

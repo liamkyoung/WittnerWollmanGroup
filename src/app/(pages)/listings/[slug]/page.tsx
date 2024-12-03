@@ -13,13 +13,13 @@ import { fetchDoc } from '../../../_api/fetchDoc'
 import { fetchDocs } from '../../../_api/fetchDocs'
 import { generateListingMetadata } from '../../../_utilities/generateMeta'
 import Features from './Features'
-import ProjectBlockLeft from '@/app/_blocks/ProjectBlock/ProjectBlockLeft'
 
 import { CallToActionBlock } from '@/app/_blocks/CallToAction'
-import CTA from '@/app/customComponents/CTA'
+import ProjectBlockLeft from '@/app/_blocks/ProjectBlock/ProjectBlockLeft'
 import { formatPropertyType } from '@/app/_utilities/propertyTypeFormatter'
-import { ColorScheme, GoogleMapPin } from '@/app/types/viewmodels'
+import CTA from '@/app/customComponents/CTA'
 import { GoogleMap } from '@/app/customComponents/GoogleMap/GoogleMap'
+import { ColorScheme, GoogleMapPin } from '@/app/types/viewmodels'
 
 export default async function Page({ params: { slug } }) {
   const { isEnabled: isDraftMode } = draftMode()
@@ -99,6 +99,7 @@ export default async function Page({ params: { slug } }) {
     <>
       <div className="global-margin-x mt-24 space-y-24">
         <ListingHero
+          isPriceNegotiable={isPriceNegotiable}
           streetAddress={streetAddress}
           price={price}
           city={city}

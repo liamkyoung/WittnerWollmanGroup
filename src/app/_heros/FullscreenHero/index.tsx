@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -72,6 +72,7 @@ export const FullscreenHero: React.FC<Page['hero']> = ({
           resource={backupImage as MediaType}
           alt="hero-img"
           imgClassName="w-full h-[32rem] object-cover sm:hidden block"
+          priority
         />
       )}
     </div>

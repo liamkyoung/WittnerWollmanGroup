@@ -14,6 +14,7 @@ const policies = {
     "'unsafe-eval'",
     'https://maps.googleapis.com',
     'https://maps.gstatic.com',
+    'https://*.googletagmanager.com',
   ],
   'child-src': ["'self'"],
   'style-src': ["'self'", 'https://fonts.googleapis.com', "'unsafe-inline'"],
@@ -22,11 +23,20 @@ const policies = {
     'https://maps.googleapis.com',
     'https://maps.gstatic.com',
     'https://ww-group.nyc3.cdn.digitaloceanspaces.com',
+    'https://*.googletagmanager.com',
+    'https://*.google-analytics.com',
     'data:', // Allow data URIs if needed
   ],
   'font-src': ["'self'", 'https://fonts.gstatic.com'],
   'frame-src': ["'self'", 'https://www.youtube.com'],
-  'connect-src': ["'self'", 'https://maps.googleapis.com', 'https://maps.gstatic.com'],
+  'connect-src': [
+    "'self'",
+    'https://maps.googleapis.com',
+    'https://maps.gstatic.com',
+    'https://*.googletagmanager.com',
+    'https://*.google-analytics.com',
+    'https://*.analytics.google.com',
+  ],
 }
 
 module.exports = Object.entries(policies)

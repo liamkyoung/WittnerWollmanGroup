@@ -10,7 +10,7 @@ import Header from './customComponents/Header'
 
 import './_css/app.scss'
 const montserrat = Montserrat({ subsets: ['latin'], preload: true })
-// import { GoogleAnalytics } from '@next/third-parties/google'
+import { GoogleAnalytics } from '@next/third-parties/google'
 
 import { Toaster } from '../components/ui/toaster'
 import { MetaKeywords } from '../globalData/general'
@@ -38,9 +38,9 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           </>
         </Providers>
       </body>
-      {/* {process.env.NODE_ENV === 'production' && (
+      {process.env.NODE_ENV === 'production' && (
         <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_G_ANALYTICS_ID} />
-      )} */}
+      )}
     </html>
   )
 }

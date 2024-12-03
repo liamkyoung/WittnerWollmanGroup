@@ -2,15 +2,14 @@ import type { PayloadHandler } from 'payload/config'
 import { Resend } from 'resend'
 
 import { NewsletterEmailTemplate } from '../../app/emailTemplates/newsletterEmail'
-import { NewsletterEmail } from '../../globalData/general'
 
 const resend = new Resend(process.env.PAYLOAD_PUBLIC_RESEND_API_KEY)
 
 export const signUpNewsletter: PayloadHandler = async (req, res) => {
-  const { email } = req.body
+  const { email } = req.body // Sign Up Email
   const { data, error } = await resend.emails.send({
-    from: 'Acme <onboarding@resend.dev>',
-    to: NewsletterEmail, // TODO: Make into a env variable
+    from: process.env.PAYLOAD_PUBLIC_SENDING_EMAIL,
+    to: process.env.PAYLOAD_PUBLIC_RECEIVING_EMAIL,
     subject: `Newsletter Signup | ${email}`,
     react: NewsletterEmailTemplate({
       email: email,

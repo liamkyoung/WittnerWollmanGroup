@@ -3,15 +3,14 @@ import { Resend } from 'resend'
 
 import { formatDateTime } from '../../app/_utilities/formatDateTime'
 import { EmailTemplate } from '../../app/emailTemplates/listingEmail'
-import { DefaultSocials } from '../../globalData/general'
 
 const resend = new Resend(process.env.PAYLOAD_PUBLIC_RESEND_API_KEY)
 
 export const sendListingEmail: PayloadHandler = async (req, res) => {
   const { firstName, lastName, email, phoneNumber, date, address } = req.body
   const { data, error } = await resend.emails.send({
-    from: 'Acme <onboarding@resend.dev>',
-    to: DefaultSocials.email,
+    from: process.env.PAYLOAD_PUBLIC_SENDING_EMAIL,
+    to: process.env.PAYLOAD_PUBLIC_RECEIVING_EMAIL,
     subject: `Listing Showing for ${formatDateTime(date)}`,
     react: EmailTemplate({
       firstName: firstName,

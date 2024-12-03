@@ -1,6 +1,6 @@
 // "shoppingCenter" | "bizOpportunity" | "multiFamily" | "office" | "mixedUse"
 
-export function formatPropertyType(propType: string) {
+export function formatPropertyType(propType: string): string {
   if (!propType) return ''
   switch (propType[0]) {
     case 'shoppingCenter':

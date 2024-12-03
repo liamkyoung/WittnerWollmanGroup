@@ -112,7 +112,7 @@ export const CommunityResourceGallery = ({ communityResources, displayHeader = '
             </div>
             <div className="hidden md:block">
               <div className="border-b border-gray-200">
-                <nav className="-mb-px flex space-x-8 justify-center" aria-label="Tabs">
+                <nav className="-mb-px flex space-x-8 justify-start" aria-label="Tabs">
                   {options.map((o, i) => (
                     <div
                       className={o.selected ? selectedStyle : nonSelectedStyle}
@@ -127,7 +127,7 @@ export const CommunityResourceGallery = ({ communityResources, displayHeader = '
             </div>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-16 my-24 lg:place-items-start place-items-center mx-20">
+          <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-16 my-24 lg:place-items-start place-items-center">
             {/* TODO: Put Category Selector Here */}
             {communityResources &&
               communityResources.length > 0 &&

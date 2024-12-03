@@ -4,6 +4,8 @@ import next from 'next'
 import nextBuild from 'next/dist/build'
 import path from 'path'
 
+import rateLimit from 'express-rate-limit'
+
 dotenv.config({
   path: path.resolve(__dirname, '../.env'),
 })
@@ -13,6 +15,15 @@ import payload from 'payload'
 
 // import { seed } from './payload/seed'
 
+const emailRateLimiter = rateLimit({
+  windowMs: 1 * 60 * 1000,
+  max: 3,
+  message: {
+    status: 429,
+    message: 'Too many requests, please try again later.',
+  },
+})
+
 const app = express()
 
 const corsOptions = {
@@ -21,6 +32,7 @@ const corsOptions = {
 }
 
 app.use(cors(corsOptions))
+app.use('/api/email/', emailRateLimiter)
 
 const PORT = process.env.PORT || 3000
 

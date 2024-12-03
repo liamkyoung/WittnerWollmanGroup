@@ -11,7 +11,7 @@ RUN rm -rf ./dist
 RUN rm -rf ./.next
 
 COPY . .
-RUN yarn install
+RUN yarn install --network-timeout 100000
 
 ENV NODE_ENV=production
 ENV PAYLOAD_CONFIG_PATH=dist/payload.config.js

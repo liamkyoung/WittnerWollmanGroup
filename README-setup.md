@@ -23,6 +23,14 @@
 10. Run Docker Image with ENV file
 - `docker run --env-file .env -p '3000:3000' liamyoung/ww-webapp:1.94`
 
+### Building Docker Image
+1. Make sure that NEXT_PUBLIC_URL and PAYLOAD_PUBLIC are the set URL in .env
+  - ex: lkycode.com instead of localhost:3000
+2. Docker image building
+  - `docker build -t liamyoung/ww-webapp:2.23 --platform linux/amd64 .`
+3. Pushing Docker Image
+  - `docker push liamyoung/ww-webapp:2.23`
+
 ### Common Errors:
 Prerendering errors
 - DO NOT SET `NODE=development` when building for production!!!!!

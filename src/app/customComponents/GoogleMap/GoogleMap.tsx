@@ -38,7 +38,7 @@ export const GoogleMap = ({
           defaultZoom={mapZoom}
           gestureHandling={'greedy'}
           disableDefaultUI={true}
-          mapId={'1'}
+          mapId={process.env.NEXT_PUBLIC_GOOGLE_MAPS_ID}
         >
           {pins &&
             pins.map((p, i) => (

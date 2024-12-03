@@ -2,8 +2,8 @@ import React from 'react'
 import Link from 'next/link'
 
 import { formatDollarAmount } from '@/app/_utilities/formatDollarAmount'
-import { ListingLinks } from '@/globalData/navigation/listings/listings'
 import { formatPropertyType } from '@/app/_utilities/propertyTypeFormatter'
+import { ListingLinks } from '@/globalData/navigation/listings/listings'
 
 export type ListingHeroProps = {
   streetAddress: string
@@ -75,7 +75,7 @@ export const ListingHero: React.FC<ListingHeroProps> = ({
         </div>
       </div>
       <h1 className="bg-wwRed p-6 text-white">
-        {!isPriceNegotiable ? 'Negotiable' : formatDollarAmount(price)}
+        {isPriceNegotiable ? 'Negotiable' : formatDollarAmount(price)}
       </h1>
     </div>
   )

@@ -1,5 +1,7 @@
 import React from 'react'
+
 import { formatDollarAmount } from '../../../_utilities/formatDollarAmount'
+
 import { formatPropertyType } from '@/app/_utilities/propertyTypeFormatter'
 
 type FeatureProps = {

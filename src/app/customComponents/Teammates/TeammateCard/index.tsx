@@ -68,7 +68,9 @@ export const TeammateCard: React.FC<{
           {email && <Email emailAddress={email} />}
           {phoneNumber && <Phone phoneNumber={phoneNumber} />}
           {Linkedin && <LinkedinIcon profileLink={Linkedin} />}
-          {instagram && <Instagram profileLink={instagram} />}
+          {instagram && (
+            <Instagram profileLink={`https://instagram.com/${instagram.replace('@', '')}`} />
+          )}
         </div>
       </div>
     </div>

@@ -35,15 +35,15 @@ export const ProjectHero: React.FC<Page['hero']> = ({ richText, media, links, he
   }, [])
 
   return (
-    <div className="grid lg:grid-cols-2 grid-cols-1 global-margin-x lg:gap-8 gap-16 lg:mt-16">
-      <div className="mt-24">
+    <div className="grid lg:grid-cols-2 grid-cols-1 lg:gap-0 gap-16 lg:mt-16">
+      <div className="mt-24 pl-0 lg:pl-16 sm:pl-10 md:pl-20 xl:pl-36 text-center sm:text-start">
         <h1 className="mb-10">Our Projects</h1>
-        <p className="mb-8">
+        <p className="mb-8 w-full md:w-5/6 xl:w-3/4">
           <RichText content={richText} />
         </p>
 
-        <div className="flex gap-8 items-center">
-          <div>
+        <div className="flex gap-8 items-center justify-center sm:justify-normal">
+          <div className="">
             <p className="text-sm text-wwRed mb-4 italic">Need help with your big idea?</p>
             <Link href={ContactLink.relLink} className="btn-primary">
               SEND US A MESSAGE

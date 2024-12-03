@@ -2,7 +2,7 @@ import type { MapSettings, Socials } from '@/app/types/viewmodels'
 
 export const DefaultSocials: Socials = {
   phoneNumber: '(813) 456-7890',
-  email: 'contact@lkycreative.com',
+  email: 'liamkingstonyoung@gmail.com',
   address: '360 Central Ave, St. Petersburg, FL 33701',
   // linkedin: {
   //   platformName: 'linkedin',

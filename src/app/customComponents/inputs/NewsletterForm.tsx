@@ -36,7 +36,7 @@ export function NewsletterForm() {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
     try {
-      const response = await fetch('/api/signUpNewsletter', {
+      const response = await fetch('/api/email/signUpNewsletter', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

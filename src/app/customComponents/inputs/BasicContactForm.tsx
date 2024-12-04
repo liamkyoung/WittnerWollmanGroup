@@ -78,7 +78,7 @@ export function BasicContactForm({ address, colorScheme = ColorScheme.DEFAULT }:
     // console.log('VALUES: ', values)
     setSending(true)
     try {
-      const response = await fetch('/api/sendListingEmail', {
+      const response = await fetch('/api/email/sendListingEmail', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

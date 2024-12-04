@@ -1,10 +1,9 @@
 import cors from 'cors'
 import dotenv from 'dotenv'
+import rateLimit from 'express-rate-limit'
 import next from 'next'
 import nextBuild from 'next/dist/build'
 import path from 'path'
-
-import rateLimit from 'express-rate-limit'
 
 dotenv.config({
   path: path.resolve(__dirname, '../.env'),

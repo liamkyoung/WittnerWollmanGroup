@@ -8,7 +8,6 @@ import seo from '@payloadcms/plugin-seo'
 import type { GenerateTitle } from '@payloadcms/plugin-seo/types'
 import { slateEditor } from '@payloadcms/richtext-slate'
 import dotenv from 'dotenv'
-// import fs from 'fs'
 import path from 'path'
 import { buildConfig } from 'payload/config'
 
@@ -43,6 +42,7 @@ dotenv.config({
 })
 
 const isProduction = process.env.NODE_ENV === 'production'
+const isUsingLocalDB = process.env.DATABASE_URI?.includes('localhost')
 
 // Used to store images in s3 bucket on digital ocean.
 const storageAdapter = s3Adapter({
@@ -58,13 +58,17 @@ const storageAdapter = s3Adapter({
   acl: 'public-read',
 })
 
-// const sslConfig =
-//   process.env.NODE_ENV === 'production'
-//     ? {
-//         rejectUnauthorized: false,
-//         ca: fs.readFileSync(path.resolve(__dirname, '../../ca-certificate.crt')).toString(),
-//       }
-//     : undefined
+// Storing SSL Cert in env variable so no need to bundle the fs module
+const sslCert = process.env.NEXT_PUBLIC_CA_CERT?.replace(/\\n/g, '\n')
+
+// Used to be able to query prod DB from local
+const sslConfig =
+  isProduction || !isUsingLocalDB
+    ? {
+        rejectUnauthorized: true,
+        ca: sslCert,
+      }
+    : false
 
 let plugins = [
   redirects({
@@ -125,7 +129,7 @@ export default buildConfig({
   db: postgresAdapter({
     pool: {
       connectionString: process.env.DATABASE_URI,
-      // ssl: sslConfig,
+      ssl: sslConfig,
     },
   }),
   serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL,

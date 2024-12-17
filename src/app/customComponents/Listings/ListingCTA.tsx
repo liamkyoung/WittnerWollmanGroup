@@ -23,6 +23,7 @@ function ListingCTA({ address, agent }: Props) {
             <span className="text-wwYellow">Schedule A Tour</span> With {agent.title}
           </h2>
           <div className="flex gap-16 items-center">
+            {/* {TODO: Replace with contact info} */}
             <BasicContactForm colorScheme={ColorScheme.WHITE} address={address} />
           </div>
         </div>

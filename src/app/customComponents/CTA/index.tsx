@@ -2,7 +2,7 @@ import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import AgentImg from '../../../../public/agent_cta.png'
+import AgentImg from '../../../../public/amber_cta.png'
 
 import { ContactLink } from '@/globalData/navigation/contact/contact'
 
@@ -14,12 +14,12 @@ function CTA({}: Props) {
       <div className="global-margin-x relative">
         <div className="mx-auto lg:mx-0 md:max-w-none w-full md:w-1/2 xl:w-3/4 space-y-8 text-center lg:text-left">
           <h2 className="text-white">
-            <span className="text-wwYellow">Message An Agent</span>
-            <br /> To Get Help with Your BIG Idea
+            <span className="text-wwYellow">Let&apos;s get in contact</span>
+            <br /> Let us know how we can help you
           </h2>
           <div>
             <Link className="btn-secondary" href={ContactLink.relLink}>
-              MESSAGE AN AGENT
+              CONTACT US
             </Link>
           </div>
         </div>

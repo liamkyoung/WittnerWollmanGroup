@@ -77,6 +77,7 @@ export default async function Page({ params: { slug } }) {
     parkingSpots,
     buildingClass,
     layout,
+    listingFlyer,
   } = listing
 
   const agent = agents && agents.length > 0 ? agents[0] : null
@@ -107,6 +108,9 @@ export default async function Page({ params: { slug } }) {
           state={state}
           propertyType={propertyType}
           sqFt={sqFt}
+          sqFtLand={sqFtLand}
+          sqFtLot={sqFtLot}
+          flyer={listingFlyer as Media}
         />
         <PhotoGallery imageGallery={imgs} />
       </div>
@@ -144,7 +148,10 @@ export default async function Page({ params: { slug } }) {
           cool={cool}
           heat={heat}
           electricity={electricity}
+          lighting={lighting}
           water={water}
+          waste={waste}
+          sewer={sewer}
           internet={internet}
           hasParking={hasParking}
           parkingSpots={parkingSpots}

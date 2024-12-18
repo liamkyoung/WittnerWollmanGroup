@@ -54,6 +54,26 @@ export const CommunityResourceGallery = ({ communityResources, displayHeader = '
       selected: false,
     },
     {
+      label: 'Disaster Relief',
+      shorthand: 'dr',
+      selected: false,
+    },
+    {
+      label: 'Realtor Resources',
+      shorthand: 'rr',
+      selected: false,
+    },
+    {
+      label: 'Dining',
+      shorthand: 'din',
+      selected: false,
+    },
+    {
+      label: 'Shopping',
+      shorthand: 'sh',
+      selected: false,
+    },
+    {
       label: 'Volunteering',
       shorthand: 'v',
       selected: false,

@@ -61,3 +61,9 @@ export interface FactStat {
   factDescription: string
   id?: string | null
 }
+
+export enum SortListingsEnum {
+  NEWEST,
+  LEAST_EXPENSIVE,
+  MOST_EXPENSIVE,
+}

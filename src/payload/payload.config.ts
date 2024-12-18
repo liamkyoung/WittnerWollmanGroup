@@ -63,7 +63,7 @@ const sslCert = process.env.NEXT_PUBLIC_CA_CERT?.replace(/\\n/g, '\n')
 
 // Used to be able to query prod DB from local
 const sslConfig =
-  isProduction || !isUsingLocalDB
+  isProduction && !isUsingLocalDB
     ? {
         rejectUnauthorized: true,
         ca: sslCert,
@@ -117,6 +117,7 @@ export default buildConfig({
           path: require.resolve('path-browserify'),
           stream: require.resolve('stream-browserify'),
           vm: require.resolve('vm-browserify'),
+          url: require.resolve('url/'),
         },
         alias: {
           ...config.resolve.alias,

@@ -7,6 +7,8 @@ const resend = new Resend(process.env.PAYLOAD_PUBLIC_RESEND_API_KEY)
 
 export const sendEmail: PayloadHandler = async (req, res) => {
   const { firstName, lastName, email, subject, phoneNumber, message } = req.body
+  console.log(process.env.PAYLOAD_PUBLIC_SENDING_EMAIL)
+
   const { data, error } = await resend.emails.send({
     from: process.env.PAYLOAD_PUBLIC_SENDING_EMAIL,
     to: process.env.PAYLOAD_PUBLIC_RECEIVING_EMAIL,

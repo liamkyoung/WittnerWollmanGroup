@@ -1,5 +1,5 @@
 'use client'
-import React from 'react'
+import React, { useState } from 'react'
 import { APIProvider, Map } from '@vis.gl/react-google-maps'
 
 import { MarkerWithInfo } from './MarkerWithInfo'
@@ -24,6 +24,12 @@ export const GoogleMap = ({
   const widthValue = !fullscreen ? '100%' : '100vw'
   const heightValue = !fullscreen ? '44rem' : '500px'
 
+  const [activePinId, setActivePinId] = useState<string | null>(null) // State for active pin ID
+
+  const handlePinClick = id => {
+    setActivePinId(id) // Set the clicked pin as active
+  }
+
   let mapZoom = 11
 
   if (zoom === 'close') mapZoom = 14
@@ -43,6 +49,8 @@ export const GoogleMap = ({
           {pins &&
             pins.map((p, i) => (
               <MarkerWithInfo
+                id={p.slug}
+                activePinId={activePinId}
                 position={{ lat: p.coords.lat, lng: p.coords.lng }}
                 title={p.name}
                 href={p.slug}
@@ -51,6 +59,7 @@ export const GoogleMap = ({
                 price={p.price}
                 pinType={pinType}
                 key={i}
+                handlePinClicked={handlePinClick}
               />
             ))}
         </Map>

@@ -2,6 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 
 import { ColorScheme } from '../../types/viewmodels'
+import { formatPhoneNumber } from '@/app/_utilities/formatPhoneNumber'
 
 type Props = {
   phoneNumber?: string
@@ -37,7 +38,7 @@ function Phone({ phoneNumber, show, colorScheme = ColorScheme.DEFAULT }: Props) 
           />
         </svg>
 
-        {show && phoneNumber}
+        {show && formatPhoneNumber(phoneNumber)}
       </span>
     </Link>
   )

@@ -10,6 +10,8 @@ import { ProjectLinks } from '@/globalData/navigation/projects/projects'
 import { Media as MediaType } from '@/payload/payload-types'
 
 type Props = {
+  id: string
+  activePinId: string
   position: MapCoords
   pinType: 'listing' | 'project'
   title: string
@@ -17,9 +19,11 @@ type Props = {
   image?: MediaType
   address?: string
   price?: number
+  handlePinClicked: (id: any) => void
 }
 
 export const MarkerWithInfo = ({
+  id,
   position,
   title,
   href,
@@ -27,19 +31,16 @@ export const MarkerWithInfo = ({
   address,
   price,
   pinType,
+  activePinId,
+  handlePinClicked,
 }: Props) => {
   // `markerRef` and `marker` are needed to establish the connection between
   // the marker and infowindow (if you're using the Marker component, you
   // can use the `useMarkerRef` hook instead).
   const [markerRef, marker] = useAdvancedMarkerRef()
-
-  const [infoWindowShown, setInfoWindowShown] = useState(false)
-
   // clicking the marker will toggle the infowindow
-  const handleMarkerClick = useCallback(() => setInfoWindowShown(isShown => !isShown), [])
 
   // if the maps api closes the infowindow, we have to synchronize our state
-  const handleClose = useCallback(() => setInfoWindowShown(false), [])
   const finalHref =
     pinType === 'listing' ? `${ListingLinks.relLink}/${href}` : `${ProjectLinks.relLink}/${href}`
 
@@ -50,18 +51,17 @@ export const MarkerWithInfo = ({
           <AdvancedMarker
             ref={markerRef}
             position={new google.maps.LatLng(position.lat, position.lng)}
-            onClick={handleMarkerClick}
+            onClick={() => handlePinClicked(id)}
           />
 
-          {infoWindowShown && (
-            <InfoWindow anchor={marker} onClose={handleClose}>
+          {activePinId === id && (
+            <InfoWindow anchor={marker} onClose={() => handlePinClicked(null)} className="">
               <DefaultCard
                 link={finalHref}
-                accentText={formatDollarAmount(price)}
                 address={address}
                 title={title}
                 image={image}
-                size={CardSize.SMALL}
+                size={CardSize.FULL_SCREEN}
               />
             </InfoWindow>
           )}

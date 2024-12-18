@@ -11,6 +11,8 @@ interface EmailTemplateProps {
   date: Date
 }
 
+// NOTE: DEPRECATED DUE TO NOT USING CALENDAR
+
 export const EmailTemplate: React.FC<Readonly<EmailTemplateProps>> = ({
   firstName,
   lastName,

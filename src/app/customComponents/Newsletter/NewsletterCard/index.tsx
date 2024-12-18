@@ -13,8 +13,7 @@ export default function NewsletterCard({}: Props) {
             Sign up for our Newsletter!
           </h2>
           <p className="mx-auto mt-2 max-w-xl text-center text-lg leading-8 text-gray-300">
-            Get news of the latest developments across St. Pete and the Tampa Bay and updates about
-            the WW Group!
+            Get updates on the latest developments across St. Pete, Tampa Bay, and the the WW Group!
           </p>
           <NewsletterForm />
 

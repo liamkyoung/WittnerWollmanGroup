@@ -54,7 +54,10 @@ export const ListingCard: React.FC<{
           </div>
           {!coverImage && <div className={``}>No image</div>}
           {coverImage && typeof coverImage !== 'string' && (
-            <Media imgClassName={`mx-auto rounded-md`} resource={coverImage as MediaType} />
+            <Media
+              imgClassName={`mx-auto rounded-md h-64 object-cover`}
+              resource={coverImage as MediaType}
+            />
           )}
         </div>
       </Link>

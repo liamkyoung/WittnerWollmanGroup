@@ -29,7 +29,7 @@ function ContactAndBio({ bio, email, linkedin, phoneNumber, facebook, instagram 
         </div>
         <div className="space-y-8">
           <h2 className="text-white text-center lg:text-left pl-10">Biography</h2>
-          <p className="text-white lg:border-l-2 lg:border-white pl-10 text-center lg:text-left">
+          <p className="text-white lg:border-l-2 lg:border-white pl-10 text-center lg:text-left leading-loose">
             {bio}
           </p>
         </div>

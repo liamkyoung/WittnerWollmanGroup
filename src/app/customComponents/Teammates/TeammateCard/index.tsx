@@ -38,16 +38,16 @@ export const TeammateCard: React.FC<{
   return (
     <div key={title}>
       <Link href={href}>
-        <div className="bg-gradient-to-b from-gray-50 to-[#949495] w-72 rounded-md mb-2">
+        <div className="bg-gradient-to-b from-gray-50 to-[#949495] w-72 rounded-md mb-2 shadow-md">
           {profilePic && typeof metaImage !== 'string' && (
-            <Media imgClassName={`size-72`} resource={profilePic as MediaType} />
+            <Media imgClassName={`size-72 object-contain`} resource={profilePic as MediaType} />
           )}
 
-          <p className="bg-wwYellow px-3 py-4 rounded-md font-bold text-wwBlack">{strengths}</p>
+          <p className="bg-wwYellow px-3 py-4 font-bold text-wwBlack">{strengths}</p>
         </div>
 
         <div className="inline-flex gap-2 items-center">
-          <h4 className="text-white">{titleToUse}</h4>
+          <h4 className="text-white whitespace-nowrap font-semibold">{titleToUse}</h4>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"

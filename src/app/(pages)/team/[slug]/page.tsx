@@ -112,7 +112,7 @@ export default async function Page({ params: { slug } }) {
         {projects && projects.length > 0 && <ProjectGallery projects={projects} />}
 
         {favoritePlaces && favoritePlaces.length > 0 && (
-          <div className="global-margin-x">
+          <div className="global-margin-x global-margin-y">
             <h2 className=" mb-16 text-center md:text-start">My Favorite Places in Tampa Bay</h2>
             <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-16 my-24 lg:place-items-start place-items-center">
               {favoritePlaces.map((place, i) => (

@@ -4,6 +4,8 @@ import Link from 'next/link'
 import { formatDollarAmount } from '@/app/_utilities/formatDollarAmount'
 import { formatPropertyType } from '@/app/_utilities/propertyTypeFormatter'
 import { ListingLinks } from '@/globalData/navigation/listings/listings'
+import { Media } from '@/payload/payload-types'
+import { ArrowUpRightIcon } from '@heroicons/react/24/solid'
 
 export type ListingHeroProps = {
   streetAddress: string
@@ -12,8 +14,11 @@ export type ListingHeroProps = {
   state: string
   zipCode: string
   sqFt: number
+  sqFtLand: number
+  sqFtLot: number
   propertyType: 'shoppingCenter' | 'bizOpportunity' | 'multiFamily' | 'office' | 'mixedUse'
   price: number
+  flyer: Media
 }
 
 //import { Page } from '../../../payload/payload-types'
@@ -24,9 +29,12 @@ export const ListingHero: React.FC<ListingHeroProps> = ({
   state,
   zipCode,
   sqFt,
+  sqFtLand,
+  sqFtLot,
   propertyType,
   isPriceNegotiable,
   price,
+  flyer,
 }) => {
   return (
     <div className="flex flex-col lg:flex-row gap-8 lg:gap-0 justify-between items-center">
@@ -56,27 +64,44 @@ export const ListingHero: React.FC<ListingHeroProps> = ({
             </svg>
             {sqFt} sq ft
           </span>
-          <span className="inline-flex items-center gap-2">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              className="size-6"
-            >
-              <path d="M19.006 3.705a.75.75 0 1 0-.512-1.41L6 6.838V3a.75.75 0 0 0-.75-.75h-1.5A.75.75 0 0 0 3 3v4.93l-1.006.365a.75.75 0 0 0 .512 1.41l16.5-6Z" />
-              <path
-                fillRule="evenodd"
-                d="M3.019 11.114 18 5.667v3.421l4.006 1.457a.75.75 0 1 1-.512 1.41l-.494-.18v8.475h.75a.75.75 0 0 1 0 1.5H2.25a.75.75 0 0 1 0-1.5H3v-9.129l.019-.007ZM18 20.25v-9.566l1.5.546v9.02H18Zm-9-6a.75.75 0 0 0-.75.75v4.5c0 .414.336.75.75.75h3a.75.75 0 0 0 .75-.75V15a.75.75 0 0 0-.75-.75H9Z"
-                clipRule="evenodd"
-              />
-            </svg>
-            {formatPropertyType(propertyType)}
-          </span>
+
+          {sqFtLand && <span>{sqFtLand} sq ft land</span>}
+          {sqFtLot && <span>{sqFtLot} sq ft lot</span>}
+
+          {propertyType && (
+            <span className="inline-flex items-center gap-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                className="size-6"
+              >
+                <path d="M19.006 3.705a.75.75 0 1 0-.512-1.41L6 6.838V3a.75.75 0 0 0-.75-.75h-1.5A.75.75 0 0 0 3 3v4.93l-1.006.365a.75.75 0 0 0 .512 1.41l16.5-6Z" />
+                <path
+                  fillRule="evenodd"
+                  d="M3.019 11.114 18 5.667v3.421l4.006 1.457a.75.75 0 1 1-.512 1.41l-.494-.18v8.475h.75a.75.75 0 0 1 0 1.5H2.25a.75.75 0 0 1 0-1.5H3v-9.129l.019-.007ZM18 20.25v-9.566l1.5.546v9.02H18Zm-9-6a.75.75 0 0 0-.75.75v4.5c0 .414.336.75.75.75h3a.75.75 0 0 0 .75-.75V15a.75.75 0 0 0-.75-.75H9Z"
+                  clipRule="evenodd"
+                />
+              </svg>
+              {formatPropertyType(propertyType)}
+            </span>
+          )}
         </div>
       </div>
-      <h1 className="bg-wwRed p-6 text-white">
-        {isPriceNegotiable ? 'Negotiable' : formatDollarAmount(price)}
-      </h1>
+      <div>
+        <h1 className="bg-wwRed p-6 text-white">
+          {isPriceNegotiable ? 'Negotiable' : formatDollarAmount(price)}
+        </h1>
+        {flyer && (
+          <Link href={flyer?.url} className="">
+            <div className="btn-primary max-w-min mt-2">
+              <span className="flex items-center gap-2 text-white font-bold whitespace-nowrap">
+                Listing Flyer <ArrowUpRightIcon className="size-4" />
+              </span>
+            </div>
+          </Link>
+        )}
+      </div>
     </div>
   )
 }

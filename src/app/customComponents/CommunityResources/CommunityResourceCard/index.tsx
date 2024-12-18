@@ -17,14 +17,22 @@ export const CommunityResourceCard: React.FC<{
   const hasCategories = categories && Array.isArray(categories) && categories.length > 0
   const sanitizedDescription = description?.replace(/\s/g, ' ') // replace non-breaking space with white space
 
+  const shortenedAddress = address?.split(',') // Only return streetAddress, city
+
   return (
     <div className={`${className} w-64 md:w-96 lg:w-72 space-y-4`}>
       <div className="space-y-2">
-        <h4>{title}</h4>
-        <CardInfo address={address} />
+        <h5>{title}</h5>
+        <CardInfo
+          address={
+            shortenedAddress && shortenedAddress.length >= 2
+              ? `${shortenedAddress[0]}, ${shortenedAddress[1]}`
+              : `${address}`
+          }
+        />
       </div>
 
-      <Media imgClassName={`w-full h-full`} resource={image as MediaType} />
+      <Media imgClassName={`size-64 object-contain`} resource={image as MediaType} />
       <p className="border-l-4 border-wwRed pl-2">{sanitizedDescription}</p>
     </div>
   )

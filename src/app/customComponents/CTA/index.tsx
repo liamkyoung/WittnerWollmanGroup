@@ -12,19 +12,25 @@ function CTA({}: Props) {
   return (
     <div className="bg-wwRed py-16">
       <div className="global-margin-x relative">
-        <div className="mx-auto lg:mx-0 md:max-w-none w-full md:w-1/2 xl:w-3/4 space-y-8 text-center lg:text-left">
-          <h2 className="text-white">
-            <span className="text-wwYellow">Let&apos;s get in contact</span>
-            <br /> Let us know how we can help you
-          </h2>
-          <div>
-            <Link className="btn-secondary" href={ContactLink.relLink}>
-              CONTACT US
-            </Link>
+        <div className="relative max-w-7xl mx-auto">
+          <div className="mx-auto lg:mx-0 md:max-w-none w-full md:w-1/2 xl:w-3/4 space-y-8 text-center lg:text-left">
+            <h2 className="text-white">
+              <span className="text-wwYellow">Let&apos;s get in contact!</span>
+              <br /> Let us know how we can help you.
+            </h2>
+            <div>
+              <Link className="btn-secondary" href={ContactLink.relLink}>
+                CONTACT US
+              </Link>
+            </div>
           </div>
-        </div>
-        <div className="hidden lg:block">
-          <Image src={AgentImg} alt="agent" className="absolute -bottom-16 -right-16 z-50" />
+          <div className="hidden lg:block absolute -bottom-16 right-0 z-50">
+            <Image
+              src={AgentImg}
+              alt="agent fullbody"
+              className="h-[32rem] object-contain max-w-min"
+            />
+          </div>
         </div>
       </div>
     </div>

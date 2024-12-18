@@ -2,7 +2,7 @@ import React from 'react'
 
 import { formatDollarAmount } from '../../../_utilities/formatDollarAmount'
 
-import { formatPropertyType } from '@/app/_utilities/propertyTypeFormatter'
+import { formatPropertyType, formatZoningType } from '@/app/_utilities/propertyTypeFormatter'
 
 type FeatureProps = {
   name: string
@@ -10,6 +10,8 @@ type FeatureProps = {
 }
 
 function Feature({ name, description }: FeatureProps) {
+  if (description === null || description === 'n_a') return
+
   return (
     <div className="flex justify-between items-end">
       <h6>{name}</h6>
@@ -88,7 +90,7 @@ function Features({
     { label: 'Year Built', description: yearBuilt },
     { label: 'Building Type', description: propertyType ? formatPropertyType(propertyType) : null },
     { label: 'Building Class', description: buildingClass },
-    { label: 'Zoning Type', description: zoningType },
+    { label: 'Zoning Type', description: zoningType ? formatZoningType(zoningType) : null },
     { label: 'Area', description: area },
     { label: 'Zip Code', description: zipCode },
     { label: 'Occupancy', description: occupancy ? `${occupancy}%` : null },
@@ -112,7 +114,8 @@ function Features({
     { label: 'Parking Spots', description: hasParking ? parkingSpots : null },
   ].filter(f => f.description)
 
-  const listLength = features.length / 2
+  const listLength =
+    features.filter(f => f.description !== null && f.description !== 'n_a').length / 2
 
   const leftFeatures = features.slice(0, listLength)
   const rightFeatures = features.slice(listLength)

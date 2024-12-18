@@ -58,24 +58,28 @@ export const Image: React.FC<MediaProps> = props => {
     .join(', ')
 
   return (
-    <NextImage
-      className={[isLoading && classes.placeholder, classes.image, imgClassName]
-        .filter(Boolean)
-        .join(' ')}
-      src={src}
-      alt={alt || ''}
-      onClick={onClick}
-      onLoad={() => {
-        setIsLoading(false)
-        if (typeof onLoadFromProps === 'function') {
-          onLoadFromProps()
-        }
-      }}
-      fill={fill}
-      width={!fill ? width : undefined}
-      height={!fill ? height : undefined}
-      sizes={sizes}
-      priority={priority}
-    />
+    <>
+      {src && (
+        <NextImage
+          className={[isLoading && classes.placeholder, classes.image, imgClassName]
+            .filter(Boolean)
+            .join(' ')}
+          src={src}
+          alt={alt || ''}
+          onClick={onClick}
+          onLoad={() => {
+            setIsLoading(false)
+            if (typeof onLoadFromProps === 'function') {
+              onLoadFromProps()
+            }
+          }}
+          fill={fill}
+          width={!fill ? width : undefined}
+          height={!fill ? height : undefined}
+          sizes={sizes}
+          priority={priority}
+        />
+      )}
+    </>
   )
 }

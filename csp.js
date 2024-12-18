@@ -16,7 +16,7 @@ const policies = {
     'https://maps.gstatic.com',
     'https://*.googletagmanager.com',
   ],
-  'child-src': ["'self'"],
+  'child-src': ["'self'", 'blob:'],
   'style-src': ["'self'", 'https://fonts.googleapis.com', "'unsafe-inline'"],
   'img-src': [
     "'self'",
@@ -31,8 +31,9 @@ const policies = {
   'frame-src': ["'self'", 'https://www.youtube.com'],
   'connect-src': [
     "'self'",
+    'data:',
     'https://maps.googleapis.com',
-    'https://maps.gstatic.com',
+    'https://*.gstatic.com',
     'https://*.googletagmanager.com',
     'https://*.google-analytics.com',
     'https://*.analytics.google.com',

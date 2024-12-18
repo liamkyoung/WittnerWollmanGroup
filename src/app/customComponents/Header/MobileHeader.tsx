@@ -1,5 +1,5 @@
 'use client'
-import React from 'react'
+import React, { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -12,6 +12,7 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
+  SheetClose,
 } from '@/components/ui/sheet'
 import { InternalLinks } from '@/globalData/navigation'
 import { ContactLink } from '@/globalData/navigation/contact/contact'
@@ -52,22 +53,30 @@ function MobileHeader({}: Props) {
             <SheetDescription>
               {InternalLinks.map(navGroup => (
                 <div className="my-4 text-left" key={navGroup.title}>
-                  <Link href={navGroup.relLink}>
-                    <p className="text-xl hover:text-gray-500 cursor-pointer">{navGroup.title}</p>
-                  </Link>
-                  {navGroup.subNavigation?.map(subNav => (
-                    <Link href={subNav.relLink} key={navGroup.title}>
-                      <p className="mx-4 hover:text-gray-500 cursor-pointer text-left">
-                        {subNav.title}
-                      </p>
+                  <SheetClose asChild>
+                    <Link href={navGroup.relLink}>
+                      <p className="text-xl hover:text-gray-500 cursor-pointer">{navGroup.title}</p>
                     </Link>
+                  </SheetClose>
+
+                  {navGroup.subNavigation?.map(subNav => (
+                    <SheetClose asChild key={navGroup.title}>
+                      <Link href={subNav.relLink}>
+                        <p className="mx-4 hover:text-gray-500 cursor-pointer text-left">
+                          {subNav.title}
+                        </p>
+                      </Link>
+                    </SheetClose>
                   ))}
                 </div>
               ))}
+
               <div className="pt-12 justify-self-start">
-                <Link className="btn-primary" href={ContactLink.relLink}>
-                  CONTACT
-                </Link>
+                <SheetClose asChild>
+                  <Link className="btn-primary" href={ContactLink.relLink}>
+                    CONTACT
+                  </Link>
+                </SheetClose>
               </div>
             </SheetDescription>
           </SheetHeader>

@@ -3,7 +3,7 @@ import { ColorScheme, FactStat } from '../../types/viewmodels'
 
 import { CMSLink } from '@/app/_components/Link'
 import { Media } from '@/app/_components/Media'
-import { Media as MType,Page } from '@/payload/payload-types'
+import { Media as MType, Page } from '@/payload/payload-types'
 
 type Props = {
   colorScheme?: ColorScheme
@@ -62,7 +62,7 @@ function ProjectBlockRight({
       />
       <div className="p-8 lg:p-0 lg:ml-16 lg:mr-32 my-auto relative">
         <div className="relative md:py-10 lg:py-8">
-          <h2 className={`${textColor} text-center lg:text-left`}>{title}</h2>
+          <h2 className={`${textColor} text-center lg:text-left text-4xl lg:text-5xl`}>{title}</h2>
           <div className="lg:inline-flex flex gap-2 mt-2 justify-center">
             {subheading && subheadingType === 'location' && (
               <>

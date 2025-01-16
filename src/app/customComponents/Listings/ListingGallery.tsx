@@ -6,9 +6,9 @@ import { GoogleMapPin, SortListingsEnum } from '../../../app/types/viewmodels'
 import { Listing, Media, Teammate } from '../../../payload/payload-types'
 import { GoogleMap } from '../GoogleMap/GoogleMap'
 import { ListingCard } from './index'
+import ListingFilter from './ListingFilter'
 
 import { ListingLinks } from '@/globalData/navigation/listings/listings'
-import ListingFilter from './ListingFilter'
 
 type Props = {
   listings: Listing[]
@@ -85,7 +85,9 @@ const filterByPropertyType = (
   if (propertyTypes.get('All')) return listings
 
   const filteredListings = listings.filter(i => {
-    return i.propertyType && propertyTypes.has(i.propertyType) && propertyTypes.get(i.propertyType)
+    return (
+      i.propertyTypes && propertyTypes.has(i.propertyTypes) && propertyTypes.get(i.propertyTypes)
+    )
   })
 
   return filteredListings

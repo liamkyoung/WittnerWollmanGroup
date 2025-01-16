@@ -1,8 +1,8 @@
 import type { MapSettings, Socials } from '@/app/types/viewmodels'
 
 export const DefaultSocials: Socials = {
-  phoneNumber: '(813) 456-7890',
-  email: 'liamkingstonyoung@gmail.com',
+  phoneNumber: '(727) 777-4808',
+  email: 'contact@wwgre.com',
   address: '360 Central Ave, St. Petersburg, FL 33701',
   // linkedin: {
   //   platformName: 'linkedin',
@@ -60,7 +60,7 @@ export const GoogleMapsDefaults: MapSettings = {
 
 export const GoogleMapOfficeURL = 'https://maps.app.goo.gl/sb8n7CoCXDeCm6Ss7'
 
-export const NewsletterEmail = 'liamkingstonyoung@gmail.com'
+export const NewsletterEmail = 'contact@wwgre.com'
 
 export const MetaKeywords: string[] = [
   'real estate',

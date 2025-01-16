@@ -35,7 +35,7 @@ export default function PhotoGallery({ imageGallery }: Props) {
               {imageGallery.map(
                 (img, index) =>
                   index === 0 && (
-                    <div key={img.id}>
+                    <div key={img.id || index}>
                       <Media resource={img} />
                     </div>
                   ),
@@ -46,7 +46,7 @@ export default function PhotoGallery({ imageGallery }: Props) {
                 (img, index) =>
                   index !== 0 &&
                   index < 3 && (
-                    <div key={img.id}>
+                    <div key={img.id || index}>
                       <Media resource={img} />
                     </div>
                   ),

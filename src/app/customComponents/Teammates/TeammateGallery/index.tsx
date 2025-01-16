@@ -11,8 +11,9 @@ type Props = {
 }
 
 export const TeammateGallery = ({ teammates, displayHeader = 'no' }: Props) => {
+  const sortedTeammates = teammates.sort((a, b) => a.rank - b.rank)
   return (
-    <div className="bg-wwRed">
+    <div className="bg-wwRed pb-36">
       <div className="global-margin-x">
         {displayHeader === 'yes' && (
           <div className="bg-wwRed pt-24">
@@ -20,8 +21,8 @@ export const TeammateGallery = ({ teammates, displayHeader = 'no' }: Props) => {
           </div>
         )}
         <div className="bg-wwRed place-items-center lg:place-items-start grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-24 py-24">
-          {teammates.map(t => (
-            <TeammateCard doc={t} key={t.id} />
+          {sortedTeammates.map((t, i) => (
+            <TeammateCard doc={t} key={i} />
           ))}
         </div>
       </div>

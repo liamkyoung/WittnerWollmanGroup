@@ -34,6 +34,8 @@ export const PAGE = `
           type
           richText
           headerText
+          centeredText
+          gradient
           links {
             link ${LINK_FIELDS()}
           }

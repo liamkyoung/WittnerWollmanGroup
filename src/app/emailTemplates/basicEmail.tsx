@@ -1,6 +1,6 @@
+import * as React from 'react'
 import { EnvelopeIcon } from '@heroicons/react/20/solid'
 import { PhoneIcon } from '@heroicons/react/24/solid'
-import * as React from 'react'
 import { Head, Html, Img, Tailwind } from '@react-email/components'
 
 interface EmailTemplateProps {

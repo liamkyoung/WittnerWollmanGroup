@@ -32,7 +32,7 @@ export const CommunityResourceCard: React.FC<{
         />
       </div>
 
-      <Media imgClassName={`size-64 object-contain`} resource={image as MediaType} />
+      <Media imgClassName={`size-64 object-cover`} resource={image as MediaType} />
       <p className="border-l-4 border-wwRed pl-2">{sanitizedDescription}</p>
     </div>
   )

@@ -2,7 +2,7 @@ import { MigrateUpArgs, MigrateDownArgs } from '@payloadcms/db-postgres'
 import { sql } from 'drizzle-orm'
 
 export async function up({ payload }: MigrateUpArgs): Promise<void> {
-await payload.db.drizzle.execute(sql`
+  await payload.db.drizzle.execute(sql`
 
 DO $$ BEGIN
  CREATE TYPE "public"."enum_pages_hero_type" AS ENUM('none', 'highImpact', 'mediumImpact', 'lowImpact', 'default', 'fullscreen', 'projectHero');
@@ -574,12 +574,62 @@ EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
 
-DO $$ BEGIN
- CREATE TYPE "public"."enum_listings_property_type" AS ENUM('shoppingCenter', 'bizOpportunity', 'multiFamily', 'office', 'mixedUse');
-EXCEPTION
- WHEN duplicate_object THEN null;
+DO $$ 
+BEGIN
+  -- Check if the ENUM type exists
+  IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'enum__listings_v_version_property_type') THEN
+    -- Create the ENUM type if it doesn't exist
+    CREATE TYPE "public"."enum__listings_v_version_property_type" AS ENUM(
+      'singleFamily', 'multiFamily', 'townhouse', 'condo', 'co-op', 'apt', 
+      'mobileHome', 'vacationHome', 'seniorLivingHome', 'shoppingCenter', 
+      'bizOpportunity', 'office', 'retail', 'industrial', 'mixedUse', 'hotel', 
+      'motel', 'restaurant', 'healthcareFacility', 'storageUnit', 'vacantLand', 
+      'agriculturalLand', 'timberland', 'ranchLand', 'recreationalLand', 
+      'developmentLand', 'religion', 'school', 'university', 'governmentBuilding', 
+      'cemetery', 'airport', 'utility', 'reit', 'rentalProperty', 'fixAndFlip'
+    );
+  ELSE
+    -- Add missing ENUM values if the type already exists
+    BEGIN
+      ALTER TYPE "public"."enum__listings_v_version_property_type" ADD VALUE IF NOT EXISTS 'singleFamily';
+      ALTER TYPE "public"."enum__listings_v_version_property_type" ADD VALUE IF NOT EXISTS 'multiFamily';
+      ALTER TYPE "public"."enum__listings_v_version_property_type" ADD VALUE IF NOT EXISTS 'townhouse';
+      ALTER TYPE "public"."enum__listings_v_version_property_type" ADD VALUE IF NOT EXISTS 'condo';
+      ALTER TYPE "public"."enum__listings_v_version_property_type" ADD VALUE IF NOT EXISTS 'co-op';
+      ALTER TYPE "public"."enum__listings_v_version_property_type" ADD VALUE IF NOT EXISTS 'apt';
+      ALTER TYPE "public"."enum__listings_v_version_property_type" ADD VALUE IF NOT EXISTS 'mobileHome';
+      ALTER TYPE "public"."enum__listings_v_version_property_type" ADD VALUE IF NOT EXISTS 'vacationHome';
+      ALTER TYPE "public"."enum__listings_v_version_property_type" ADD VALUE IF NOT EXISTS 'seniorLivingHome';
+      ALTER TYPE "public"."enum__listings_v_version_property_type" ADD VALUE IF NOT EXISTS 'shoppingCenter';
+      ALTER TYPE "public"."enum__listings_v_version_property_type" ADD VALUE IF NOT EXISTS 'bizOpportunity';
+      ALTER TYPE "public"."enum__listings_v_version_property_type" ADD VALUE IF NOT EXISTS 'office';
+      ALTER TYPE "public"."enum__listings_v_version_property_type" ADD VALUE IF NOT EXISTS 'retail';
+      ALTER TYPE "public"."enum__listings_v_version_property_type" ADD VALUE IF NOT EXISTS 'industrial';
+      ALTER TYPE "public"."enum__listings_v_version_property_type" ADD VALUE IF NOT EXISTS 'mixedUse';
+      ALTER TYPE "public"."enum__listings_v_version_property_type" ADD VALUE IF NOT EXISTS 'hotel';
+      ALTER TYPE "public"."enum__listings_v_version_property_type" ADD VALUE IF NOT EXISTS 'motel';
+      ALTER TYPE "public"."enum__listings_v_version_property_type" ADD VALUE IF NOT EXISTS 'restaurant';
+      ALTER TYPE "public"."enum__listings_v_version_property_type" ADD VALUE IF NOT EXISTS 'healthcareFacility';
+      ALTER TYPE "public"."enum__listings_v_version_property_type" ADD VALUE IF NOT EXISTS 'storageUnit';
+      ALTER TYPE "public"."enum__listings_v_version_property_type" ADD VALUE IF NOT EXISTS 'vacantLand';
+      ALTER TYPE "public"."enum__listings_v_version_property_type" ADD VALUE IF NOT EXISTS 'agriculturalLand';
+      ALTER TYPE "public"."enum__listings_v_version_property_type" ADD VALUE IF NOT EXISTS 'timberland';
+      ALTER TYPE "public"."enum__listings_v_version_property_type" ADD VALUE IF NOT EXISTS 'ranchLand';
+      ALTER TYPE "public"."enum__listings_v_version_property_type" ADD VALUE IF NOT EXISTS 'recreationalLand';
+      ALTER TYPE "public"."enum__listings_v_version_property_type" ADD VALUE IF NOT EXISTS 'developmentLand';
+      ALTER TYPE "public"."enum__listings_v_version_property_type" ADD VALUE IF NOT EXISTS 'religion';
+      ALTER TYPE "public"."enum__listings_v_version_property_type" ADD VALUE IF NOT EXISTS 'school';
+      ALTER TYPE "public"."enum__listings_v_version_property_type" ADD VALUE IF NOT EXISTS 'university';
+      ALTER TYPE "public"."enum__listings_v_version_property_type" ADD VALUE IF NOT EXISTS 'governmentBuilding';
+      ALTER TYPE "public"."enum__listings_v_version_property_type" ADD VALUE IF NOT EXISTS 'cemetery';
+      ALTER TYPE "public"."enum__listings_v_version_property_type" ADD VALUE IF NOT EXISTS 'airport';
+      ALTER TYPE "public"."enum__listings_v_version_property_type" ADD VALUE IF NOT EXISTS 'utility';
+      ALTER TYPE "public"."enum__listings_v_version_property_type" ADD VALUE IF NOT EXISTS 'reit';
+      ALTER TYPE "public"."enum__listings_v_version_property_type" ADD VALUE IF NOT EXISTS 'rentalProperty';
+      ALTER TYPE "public"."enum__listings_v_version_property_type" ADD VALUE IF NOT EXISTS 'fixAndFlip';
+    END;
+  END IF;
 END $$;
-
 DO $$ BEGIN
  CREATE TYPE "public"."enum_listings_zoning_type" AS ENUM('C', 'r', 'i');
 EXCEPTION
@@ -736,10 +786,61 @@ EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
 
-DO $$ BEGIN
- CREATE TYPE "public"."enum__listings_v_version_property_type" AS ENUM('shoppingCenter', 'bizOpportunity', 'multiFamily', 'office', 'mixedUse');
-EXCEPTION
- WHEN duplicate_object THEN null;
+DO $$ 
+BEGIN
+  -- Check if the ENUM type exists
+  IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'enum__listings_v_version_property_type') THEN
+    -- Create the ENUM type if it doesn't exist
+    CREATE TYPE "public"."enum__listings_v_version_property_type" AS ENUM(
+      'singleFamily', 'multiFamily', 'townhouse', 'condo', 'co-op', 'apt', 
+      'mobileHome', 'vacationHome', 'seniorLivingHome', 'shoppingCenter', 
+      'bizOpportunity', 'office', 'retail', 'industrial', 'mixedUse', 'hotel', 
+      'motel', 'restaurant', 'healthcareFacility', 'storageUnit', 'vacantLand', 
+      'agriculturalLand', 'timberland', 'ranchLand', 'recreationalLand', 
+      'developmentLand', 'religion', 'school', 'university', 'governmentBuilding', 
+      'cemetery', 'airport', 'utility', 'reit', 'rentalProperty', 'fixAndFlip'
+    );
+  ELSE
+    -- Add missing ENUM values if the type already exists
+    BEGIN
+      ALTER TYPE "public"."enum__listings_v_version_property_type" ADD VALUE IF NOT EXISTS 'singleFamily';
+      ALTER TYPE "public"."enum__listings_v_version_property_type" ADD VALUE IF NOT EXISTS 'multiFamily';
+      ALTER TYPE "public"."enum__listings_v_version_property_type" ADD VALUE IF NOT EXISTS 'townhouse';
+      ALTER TYPE "public"."enum__listings_v_version_property_type" ADD VALUE IF NOT EXISTS 'condo';
+      ALTER TYPE "public"."enum__listings_v_version_property_type" ADD VALUE IF NOT EXISTS 'co-op';
+      ALTER TYPE "public"."enum__listings_v_version_property_type" ADD VALUE IF NOT EXISTS 'apt';
+      ALTER TYPE "public"."enum__listings_v_version_property_type" ADD VALUE IF NOT EXISTS 'mobileHome';
+      ALTER TYPE "public"."enum__listings_v_version_property_type" ADD VALUE IF NOT EXISTS 'vacationHome';
+      ALTER TYPE "public"."enum__listings_v_version_property_type" ADD VALUE IF NOT EXISTS 'seniorLivingHome';
+      ALTER TYPE "public"."enum__listings_v_version_property_type" ADD VALUE IF NOT EXISTS 'shoppingCenter';
+      ALTER TYPE "public"."enum__listings_v_version_property_type" ADD VALUE IF NOT EXISTS 'bizOpportunity';
+      ALTER TYPE "public"."enum__listings_v_version_property_type" ADD VALUE IF NOT EXISTS 'office';
+      ALTER TYPE "public"."enum__listings_v_version_property_type" ADD VALUE IF NOT EXISTS 'retail';
+      ALTER TYPE "public"."enum__listings_v_version_property_type" ADD VALUE IF NOT EXISTS 'industrial';
+      ALTER TYPE "public"."enum__listings_v_version_property_type" ADD VALUE IF NOT EXISTS 'mixedUse';
+      ALTER TYPE "public"."enum__listings_v_version_property_type" ADD VALUE IF NOT EXISTS 'hotel';
+      ALTER TYPE "public"."enum__listings_v_version_property_type" ADD VALUE IF NOT EXISTS 'motel';
+      ALTER TYPE "public"."enum__listings_v_version_property_type" ADD VALUE IF NOT EXISTS 'restaurant';
+      ALTER TYPE "public"."enum__listings_v_version_property_type" ADD VALUE IF NOT EXISTS 'healthcareFacility';
+      ALTER TYPE "public"."enum__listings_v_version_property_type" ADD VALUE IF NOT EXISTS 'storageUnit';
+      ALTER TYPE "public"."enum__listings_v_version_property_type" ADD VALUE IF NOT EXISTS 'vacantLand';
+      ALTER TYPE "public"."enum__listings_v_version_property_type" ADD VALUE IF NOT EXISTS 'agriculturalLand';
+      ALTER TYPE "public"."enum__listings_v_version_property_type" ADD VALUE IF NOT EXISTS 'timberland';
+      ALTER TYPE "public"."enum__listings_v_version_property_type" ADD VALUE IF NOT EXISTS 'ranchLand';
+      ALTER TYPE "public"."enum__listings_v_version_property_type" ADD VALUE IF NOT EXISTS 'recreationalLand';
+      ALTER TYPE "public"."enum__listings_v_version_property_type" ADD VALUE IF NOT EXISTS 'developmentLand';
+      ALTER TYPE "public"."enum__listings_v_version_property_type" ADD VALUE IF NOT EXISTS 'religion';
+      ALTER TYPE "public"."enum__listings_v_version_property_type" ADD VALUE IF NOT EXISTS 'school';
+      ALTER TYPE "public"."enum__listings_v_version_property_type" ADD VALUE IF NOT EXISTS 'university';
+      ALTER TYPE "public"."enum__listings_v_version_property_type" ADD VALUE IF NOT EXISTS 'governmentBuilding';
+      ALTER TYPE "public"."enum__listings_v_version_property_type" ADD VALUE IF NOT EXISTS 'cemetery';
+      ALTER TYPE "public"."enum__listings_v_version_property_type" ADD VALUE IF NOT EXISTS 'airport';
+      ALTER TYPE "public"."enum__listings_v_version_property_type" ADD VALUE IF NOT EXISTS 'utility';
+      ALTER TYPE "public"."enum__listings_v_version_property_type" ADD VALUE IF NOT EXISTS 'reit';
+      ALTER TYPE "public"."enum__listings_v_version_property_type" ADD VALUE IF NOT EXISTS 'rentalProperty';
+      ALTER TYPE "public"."enum__listings_v_version_property_type" ADD VALUE IF NOT EXISTS 'fixAndFlip';
+    END;
+  END IF;
 END $$;
 
 DO $$ BEGIN
@@ -6071,12 +6172,11 @@ CREATE INDEX IF NOT EXISTS "payload_migrations_created_at_idx" ON "payload_migra
 CREATE INDEX IF NOT EXISTS "settings_rels_order_idx" ON "settings_rels" USING btree ("order");
 CREATE INDEX IF NOT EXISTS "settings_rels_parent_idx" ON "settings_rels" USING btree ("parent_id");
 CREATE INDEX IF NOT EXISTS "settings_rels_path_idx" ON "settings_rels" USING btree ("path");
-CREATE INDEX IF NOT EXISTS "settings_rels_pages_id_idx" ON "settings_rels" USING btree ("pages_id");`);
-
-};
+CREATE INDEX IF NOT EXISTS "settings_rels_pages_id_idx" ON "settings_rels" USING btree ("pages_id");`)
+}
 
 export async function down({ payload }: MigrateDownArgs): Promise<void> {
-await payload.db.drizzle.execute(sql`
+  await payload.db.drizzle.execute(sql`
 
 DROP TABLE "pages_hero_links";
 DROP TABLE "pages_blocks_cta";
@@ -6270,6 +6370,5 @@ DROP TABLE "payload_preferences";
 DROP TABLE "payload_preferences_rels";
 DROP TABLE "payload_migrations";
 DROP TABLE "settings";
-DROP TABLE "settings_rels";`);
-
-};
+DROP TABLE "settings_rels";`)
+}

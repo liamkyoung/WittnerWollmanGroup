@@ -107,4 +107,11 @@ server {
     listen 80;
     server_name lkycode.com www.lkycode.com;
     return 404; # managed by Certbot
-}```
+}
+```
+
+### Prod DB Migrations
+1. Download Current DB using PGAdmin
+2. Make new local DB
+3. Do local changes /w new migrations
+4. 

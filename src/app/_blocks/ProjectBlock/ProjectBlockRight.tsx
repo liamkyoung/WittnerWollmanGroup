@@ -54,13 +54,13 @@ function ProjectBlockRight({
   }
 
   return (
-    <div className={`grid lg:grid-cols-2 ${bgColor}`}>
+    <div className={`grid lg:grid-cols-2 ${bgColor} overflow-x-hidden`}>
       <Media
         resource={image}
         alt="property image"
-        imgClassName="w-full max-h-96 lg:max-h-none lg:h-full object-cover"
+        imgClassName="sm:w-full max-h-96 lg:max-h-none lg:h-full object-cover"
       />
-      <div className="p-8 lg:p-0 lg:ml-16 lg:mr-32 my-auto relative">
+      <div className="p-8 lg:ml-8 2xl:ml-16 2xl:mr-32 my-auto relative">
         <div className="relative md:py-10 lg:py-8">
           <h2 className={`${textColor} text-center lg:text-left text-4xl lg:text-5xl`}>{title}</h2>
           <div className="lg:inline-flex flex gap-2 mt-2 justify-center">
@@ -102,7 +102,7 @@ function ProjectBlockRight({
 
         <p
           className={`mb-10 pt-8 md:pt-4 ${
-            facts && '2xl:mt-48'
+            facts && facts.length > 0 && '2xl:mt-48'
           } ${textColor} text-center lg:text-left`}
         >
           {description}

@@ -80,6 +80,9 @@ export const CommunityResourceGallery = ({ communityResources, displayHeader = '
     },
   ])
 
+  const sortedResources = communityResources.sort((a, b) =>
+    a.title?.toLowerCase().localeCompare(b.title?.toLowerCase()),)
+
   const findOptionByShorthand = (sh: string) => options.find(o => o.shorthand === sh)
 
   const selectedOption = options.find(o => o.selected)
@@ -100,7 +103,7 @@ export const CommunityResourceGallery = ({ communityResources, displayHeader = '
       {displayHeader === 'yes' && (
         <h2 className="mb-16 text-center lg:hidden block">Community Resources</h2>
       )}
-      {communityResources && communityResources.length > 0 && (
+      {sortedResources && sortedResources.length > 0 && (
         <>
           <div className="">
             <div className="md:hidden">
@@ -149,9 +152,9 @@ export const CommunityResourceGallery = ({ communityResources, displayHeader = '
 
           <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-16 my-24 lg:place-items-start place-items-center">
             {/* TODO: Put Category Selector Here */}
-            {communityResources &&
-              communityResources.length > 0 &&
-              communityResources?.map(r => {
+            {sortedResources &&
+              sortedResources.length > 0 &&
+              sortedResources?.map(r => {
                 const category = r.categories as Category
                 if (
                   selectedOption.label === 'All' ||

@@ -3,16 +3,17 @@ import React, { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
+import KWLogo from '../../assets/branding/kw_logo.png'
 import Logo from '../../assets/branding/logo.svg'
 
 import {
   Sheet,
+  SheetClose,
   SheetContent,
   SheetDescription,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-  SheetClose,
 } from '@/components/ui/sheet'
 import { InternalLinks } from '@/globalData/navigation'
 import { ContactLink } from '@/globalData/navigation/contact/contact'
@@ -22,8 +23,9 @@ type Props = {}
 function MobileHeader({}: Props) {
   return (
     <nav className="flex justify-between lg:hidden global-margin-x my-5">
-      <Link href="/">
-        <Image priority src={Logo} alt="Logo" />
+      <Link href="/" className="flex items-center gap-6">
+        <Image priority src={Logo} alt="WW-Logo" className="h-12 w-auto" />
+        <Image priority src={KWLogo} alt="KW-Logo" className="h-7 w-auto" />
       </Link>
 
       <Sheet>
@@ -45,9 +47,10 @@ function MobileHeader({}: Props) {
         </SheetTrigger>
         <SheetContent side={'left'}>
           <SheetHeader>
-            <SheetTitle className="ml-32">
-              <Link href="/">
-                <Image priority src={Logo} alt="WW-Logo" />
+            <SheetTitle>
+              <Link href="/" className="flex items-center gap-6">
+                <Image priority src={Logo} alt="WW-Logo" className="h-12 w-auto" />
+                <Image priority src={KWLogo} alt="KW-Logo" className="h-7 w-auto" />
               </Link>
             </SheetTitle>
             <SheetDescription>

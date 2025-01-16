@@ -32,7 +32,7 @@ query Listings($slug: String) {
         city
         latitude
         longitude
-        propertyType
+        propertyTypes
         propertySubtype
         sqFt
         neighborhood
@@ -42,8 +42,13 @@ query Listings($slug: String) {
         bedCount
         isPriceNegotiable
         price
+        paymentFrequency
+        listingType
         ${LISTING_FLYER}
+        zillowLink
+        virtualTourLink
         yearBuilt
+        yearRenovated
         overview
         areaOverview
         tenancyType
@@ -94,7 +99,7 @@ query ListingsByAgents($agentIds: [JSON]!, $limit: Int = 300) {
       streetAddress
       latitude
       longitude
-      propertyType
+      propertyTypes
       sqFt
       bathroomCount
       bedCount

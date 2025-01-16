@@ -17,15 +17,10 @@ export const ServiceGallery = ({ services, displayHeader = 'yes' }: Props) => {
       {displayHeader === 'yes' && (
         <div className="flex md:justify-between justify-center items-center">
           <h2 className="md:text-left text-center">Our Services</h2>
-          <div className="hidden md:block">
-            <Link className="btn-primary" href={ServiceLinks.relLink}>
-              LEARN MORE
-            </Link>
-          </div>
         </div>
       )}
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-16 xl:grid-cols-4 lg:justify-items-start justify-items-center">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-16 lg:justify-items-start justify-items-center">
         {services.map((s, i) => (
           <ServiceCard doc={s} key={i} />
         ))}

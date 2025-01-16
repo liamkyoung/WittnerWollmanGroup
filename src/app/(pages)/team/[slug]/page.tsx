@@ -58,6 +58,7 @@ export default async function Page({ params: { slug } }) {
     jobTitle,
     email,
     phoneNumber,
+    officeNumber,
     instagram,
     Facebook,
     Linkedin,
@@ -65,64 +66,64 @@ export default async function Page({ params: { slug } }) {
   } = teammate
   return (
     <>
-      <div className="global-margin-x space-y-24 mt-16">
-        <TeammateHeader
-          name={title}
-          fullBodyImg={profilePic as MType}
-          shortDescription={profileIntroduction}
-          jobTitle={jobTitle}
-          yearsOfExperience={yearsOfExperience}
-          strength={strengths[0]}
-        />
-        <ContactAndBio
-          bio={bio}
-          email={email}
-          phoneNumber={phoneNumber}
-          instagram={
-            instagram && {
-              platformName: 'instagram',
-              profileLink: `https://www.instagram.com/${instagram}`,
-              username: instagram,
+      <div className="max-w-[100rem] mx-auto">
+        <div className="global-margin-x space-y-16 mt-16">
+          <TeammateHeader
+            name={title}
+            fullBodyImg={profilePic as MType}
+            shortDescription={profileIntroduction}
+            jobTitle={jobTitle}
+            yearsOfExperience={yearsOfExperience}
+            strength={strengths}
+          />
+          <ContactAndBio
+            bio={bio}
+            email={email}
+            phoneNumber={phoneNumber}
+            officeNumber={officeNumber}
+            instagram={
+              instagram && {
+                platformName: 'instagram',
+                profileLink: `https://www.instagram.com/${instagram}`,
+                username: instagram,
+              }
             }
-          }
-          facebook={
-            Facebook && {
-              platformName: 'facebook',
-              profileLink: `https://www.facebook.com/${Facebook}`,
-              username: Facebook,
+            facebook={
+              Facebook && {
+                platformName: 'facebook',
+                profileLink: `https://www.facebook.com/${Facebook}`,
+                username: Facebook,
+              }
             }
-          }
-          linkedin={
-            Linkedin && {
-              platformName: 'linkedin',
-              profileLink: `https://www.linkedin.com/in/${Linkedin}`,
-              username: Linkedin,
+            linkedin={
+              Linkedin && {
+                platformName: 'linkedin',
+                profileLink: `https://www.linkedin.com/in/${Linkedin}`,
+                username: Linkedin,
+              }
             }
-          }
-        />
-      </div>
-      <div>
-        {listings && listings.length > 0 && (
-          <div className="global-margin-y">
-            <h2 className="mb-16 text-center md:text-start global-margin-x">My Listings</h2>
+          />
+        </div>
+        <div>
+          {listings && listings.length > 0 && (
             <ListingGallery listings={listings} displayHeader="no" />
-          </div>
-        )}
+          )}
 
-        {projects && projects.length > 0 && <ProjectGallery projects={projects} />}
+          {projects && projects.length > 0 && <ProjectGallery projects={projects} />}
 
-        {favoritePlaces && favoritePlaces.length > 0 && (
-          <div className="global-margin-x global-margin-y">
-            <h2 className=" mb-16 text-center md:text-start">My Favorite Places in Tampa Bay</h2>
-            <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-16 my-24 lg:place-items-start place-items-center">
-              {favoritePlaces.map((place, i) => (
-                <CommunityResourceCard doc={place as CommunityResource} key={i} />
-              ))}
+          {favoritePlaces && favoritePlaces.length > 0 && (
+            <div className="global-margin-x global-margin-y">
+              <h2 className=" mb-16 text-center md:text-start">My Favorite Places in Tampa Bay</h2>
+              <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-16 my-24 lg:place-items-start place-items-center">
+                {favoritePlaces.map((place, i) => (
+                  <CommunityResourceCard doc={place as CommunityResource} key={i} />
+                ))}
+              </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
-      <div className="mt-24">
+      <div className="mt-36">
         <CallToActionBlock blockType="cta" />
       </div>
     </>
@@ -194,7 +195,7 @@ async function getAgentProjects(teammateId: number): Promise<Project[] | null> {
       },
     })
   } catch (error) {
-    console.error('Error fetching teammate or listings:', error) // eslint-disable-line no-console
+    // console.error('Error fetching teammate or listings:', error) // eslint-disable-line no-console
   }
 
   //console.log('Projects', projects.docs)

@@ -132,6 +132,7 @@ export default buildConfig({
       connectionString: process.env.DATABASE_URI,
       ssl: sslConfig,
     },
+    push: false, // Stop Auto-Pushing to Dev DB
   }),
   serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL,
   collections: [

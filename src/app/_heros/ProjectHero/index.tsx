@@ -42,14 +42,13 @@ export const ProjectHero: React.FC<Page['hero']> = ({ richText, media, links, he
           <RichText content={richText} />
         </p>
 
-        <div className="flex gap-8 items-center justify-center sm:justify-normal">
-          <div className="">
-            <p className="text-sm text-wwRed mb-4 italic">Need help with your big idea?</p>
-            <Link href={ContactLink.relLink} className="btn-primary">
+        <div className="flex flex-col sm:flex-row gap-8 justify-center items-center sm:justify-normal w-5/6 mx-auto sm:mx-0">
+          <div>
+            <Link href={ContactLink.relLink} className="btn-primary block">
               SEND US A MESSAGE
             </Link>
           </div>
-          <div className="flex items-center gap-2 border-l-2 border-wwRed pl-8">
+          <div className="flex items-center gap-2 border-t-2 sm:border-t-0 sm:border-l-2 border-wwRed sm:pl-8 pt-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"

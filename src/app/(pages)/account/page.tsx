@@ -29,6 +29,8 @@ export default async function Account() {
         <RenderParams className={classes.params} />
       </Gutter>
       <LowImpactHero
+        centeredText={false}
+        gradient={'none'}
         type="lowImpact"
         media={null}
         richText={[

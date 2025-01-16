@@ -71,25 +71,20 @@ export const Teammates: CollectionConfig = {
             {
               name: 'strengths',
               label: 'Specializtion',
-              type: 'select', // required
-              hasMany: true,
-              admin: {
-                isClearable: true,
-                isSortable: true, // use mouse to drag and drop different values, and sort them according to your choice
-              },
-              options: [
-                {
-                  label: 'Residential',
-                  value: 'Residential Real Estate',
-                },
-                {
-                  label: 'Commercial',
-                  value: 'Commercial Real Estate',
-                },
-              ],
+              type: 'text',
+              required: true,
             },
             {
               name: 'yearsOfExperience',
+              type: 'number',
+              required: true,
+              admin: {
+                step: 1,
+              },
+            },
+            {
+              name: 'rank',
+              label: 'Order in List',
               type: 'number',
               required: true,
               admin: {
@@ -118,6 +113,20 @@ export const Teammates: CollectionConfig = {
                 const phoneRegex = /^\d{10}$/
                 if (!phoneRegex.test(value)) {
                   return 'Phone number must be exactly 10 digits'
+                }
+                return true
+              },
+            },
+            {
+              name: 'officeNumber',
+              label: 'Office Number',
+              type: 'text',
+              required: false,
+              validate: value => {
+                // Custom validation logic for phone number
+                const phoneRegex = /^\d{10}$/
+                if (!phoneRegex.test(value)) {
+                  return 'Office number must be exactly 10 digits'
                 }
                 return true
               },

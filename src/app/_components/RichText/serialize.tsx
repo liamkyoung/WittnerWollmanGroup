@@ -69,6 +69,7 @@ const serialize = (children?: Children, textColor: string = 'text-black'): React
       return (
         <span key={i} className={textColor}>
           {text}
+          <br />
         </span>
       )
     }

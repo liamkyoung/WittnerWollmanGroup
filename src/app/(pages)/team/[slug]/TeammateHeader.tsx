@@ -25,7 +25,7 @@ function TeammateHeader({
   fullBodyImg,
 }: Props) {
   return (
-    <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
+    <div className="flex items-center xl:justify-between flex-col xl:flex-row justify-center">
       <div className="block xl:flex items-center">
         <Link href={TeamLinks.relLink} className="block xl:hidden">
           <h6 className="text-gray-800 hidden xl:block">Team /</h6>
@@ -35,7 +35,7 @@ function TeammateHeader({
           <Media
             resource={fullBodyImg}
             alt="fullbody-img"
-            imgClassName="mx-auto size-80 shadow-md"
+            imgClassName="w-full max-w-96 object-contain mx-auto shadow-md"
           />
         </div>
         <div>
@@ -51,7 +51,7 @@ function TeammateHeader({
         <Media
           resource={fullBodyImg as MType}
           alt="fullbody-img"
-          imgClassName="w-[30rem] shadow-md"
+          imgClassName="xl:min-w-96 max-w-[20rem] shadow-md"
         />
       </div>
     </div>

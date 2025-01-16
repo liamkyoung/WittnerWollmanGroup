@@ -6,6 +6,7 @@ type Props = {}
 import Image from 'next/image'
 import Link from 'next/link'
 
+import KWLogo from '../../assets/branding/kw_logo.png'
 import Logo from '../../assets/branding/logo.svg'
 
 import {
@@ -21,8 +22,9 @@ import { ContactLink } from '@/globalData/navigation/contact/contact'
 function DesktopHeader({}: Props) {
   return (
     <nav className="bg-gray-50 font-semibold items-center justify-between my-5 hidden lg:flex global-margin-x">
-      <Link href="/">
-        <Image priority src={Logo} alt="WW-Logo" />
+      <Link href="/" className="flex items-center gap-6">
+        <Image priority src={Logo} alt="WW-Logo" className="h-14 w-auto" />
+        <Image priority src={KWLogo} alt="KW-Logo" className="h-9 w-auto" />
       </Link>
 
       <div className="flex items-center space-x-8">

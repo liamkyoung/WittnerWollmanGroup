@@ -13,6 +13,7 @@ export const PROJECTS = `
   query Projects {
     Projects(limit: 300) {
       docs {
+        id
         slug
         title
         latitude

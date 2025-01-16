@@ -63,6 +63,8 @@ export interface Page {
   title: string;
   hero: {
     type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact' | 'default' | 'fullscreen' | 'projectHero';
+    centeredText: boolean;
+    gradient: 'none' | 'red' | 'white';
     headerText?: string | null;
     richText: {
       [k: string]: unknown;
@@ -382,6 +384,8 @@ export interface Post {
   title: string;
   hero: {
     type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact' | 'default' | 'fullscreen' | 'projectHero';
+    centeredText: boolean;
+    gradient: 'none' | 'red' | 'white';
     headerText?: string | null;
     richText: {
       [k: string]: unknown;
@@ -1003,10 +1007,12 @@ export interface Teammate {
   jobTitle: string;
   profileIntroduction: string;
   bio: string;
-  strengths?: ('Residential Real Estate' | 'Commercial Real Estate')[] | null;
+  strengths: string;
   yearsOfExperience: number;
+  rank: number;
   favoritePlaces?: (number | CommunityResource)[] | null;
   phoneNumber: string;
+  officeNumber?: string | null;
   email: string;
   instagram?: string | null;
   Facebook?: string | null;
@@ -1044,6 +1050,7 @@ export interface Listing {
   id: number;
   title: string;
   address: string;
+  listingType?: ('forSale' | 'lease') | null;
   streetAddress: string;
   neighborhood?: string | null;
   city: string;
@@ -1054,8 +1061,11 @@ export interface Listing {
   longitude: number;
   isPriceNegotiable: boolean;
   price?: number | null;
+  paymentFrequency?: ('oneTime' | 'dollarPerSqPerYear' | 'monthly' | 'yearly') | null;
   agents?: (number | Teammate)[] | null;
   listingFlyer?: number | Media | null;
+  zillowLink?: string | null;
+  virtualTourLink?: string | null;
   coverImage: number | Media;
   imageGallery?:
     | {
@@ -1064,9 +1074,48 @@ export interface Listing {
         id?: string | null;
       }[]
     | null;
-  propertyType?: ('shoppingCenter' | 'bizOpportunity' | 'multiFamily' | 'office' | 'mixedUse') | null;
+  propertyTypes?:
+    | (
+        | 'singleFamily'
+        | 'multiFamily'
+        | 'townhouse'
+        | 'condo'
+        | 'co-op'
+        | 'apt'
+        | 'mobileHome'
+        | 'vacationHome'
+        | 'seniorLivingHome'
+        | 'shoppingCenter'
+        | 'bizOpportunity'
+        | 'office'
+        | 'retail'
+        | 'industrial'
+        | 'mixedUse'
+        | 'hotel'
+        | 'motel'
+        | 'restaurant'
+        | 'healthcareFacility'
+        | 'storageUnit'
+        | 'vacantLand'
+        | 'agriculturalLand'
+        | 'timberland'
+        | 'ranchLand'
+        | 'recreationalLand'
+        | 'developmentLand'
+        | 'religion'
+        | 'school'
+        | 'university'
+        | 'governmentBuilding'
+        | 'cemetery'
+        | 'airport'
+        | 'utility'
+        | 'reit'
+        | 'rentalProperty'
+        | 'fixAndFlip'
+      )
+    | null;
   propertySubtype?: string | null;
-  sqFt: number;
+  sqFt?: number | null;
   sqFtLand?: number | null;
   sqFtLot?: number | null;
   bedCount?: number | null;
@@ -1077,6 +1126,7 @@ export interface Listing {
   buildingClass?: ('A' | 'B' | 'C') | null;
   tenancyType?: ('Single Tenant' | 'Multi-Tenant') | null;
   yearBuilt?: number | null;
+  yearRenovated?: number | null;
   occupancy?: number | null;
   highlights?:
     | {
@@ -1314,6 +1364,7 @@ export interface Listing {
 export interface InvolvementGroup {
   id: number;
   title: string;
+  highlight: string;
   description: string;
   image: number | Media;
   linkToGroupWebsite?: string | null;
@@ -1371,6 +1422,8 @@ export interface Service {
   shortDescription: string;
   hero: {
     type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact' | 'default' | 'fullscreen' | 'projectHero';
+    centeredText: boolean;
+    gradient: 'none' | 'red' | 'white';
     headerText?: string | null;
     richText: {
       [k: string]: unknown;

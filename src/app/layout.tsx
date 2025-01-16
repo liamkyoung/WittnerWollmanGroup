@@ -26,7 +26,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <link rel="icon" href="/android-chrome-512x512.png" sizes="512x512" />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
       </head>
-      <body className={`${montserrat.className} antialiased bg-gray-50 mx-auto`}>
+      <body className={`${montserrat.className} antialiased bg-gray-50 mx-auto overflow-x-hidden`}>
         <Providers>
           <AdminBar />
           <>

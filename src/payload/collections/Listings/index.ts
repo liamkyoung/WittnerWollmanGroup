@@ -14,6 +14,233 @@ import { populatePublishedAt } from '../../hooks/populatePublishedAt'
 // import AdminAddressSearch from '../../../components/custom/GoogleMap/AdminAddressSearch'
 import { revalidateListing } from './hooks/revalidateListing'
 
+const PropertyTypes = [
+  // Residential
+  {
+    label: 'Single-Family',
+    value: 'singleFamily',
+  },
+  {
+    label: 'Multi-Family',
+    value: 'multiFamily',
+  },
+  {
+    label: 'Townhouse',
+    value: 'townhouse',
+  },
+  {
+    label: 'Condominium',
+    value: 'condo',
+  },
+  {
+    label: 'Co-op',
+    value: 'co-op',
+  },
+  {
+    label: 'Apartment',
+    value: 'apt',
+  },
+  {
+    label: 'Mobile Home',
+    value: 'mobileHome',
+  },
+  {
+    label: 'Vacation Home',
+    value: 'vacationHome',
+  },
+  {
+    label: 'Senior Living Home',
+    value: 'seniorLivingHome',
+  },
+  {
+    label: 'Shopping Center',
+    value: 'shoppingCenter',
+  },
+  {
+    label: 'Business Opportunity',
+    value: 'bizOpportunity',
+  },
+  // Commercial
+  {
+    label: 'Office',
+    value: 'office',
+  },
+  {
+    label: 'Retail Property',
+    value: 'retail',
+  },
+  {
+    label: 'Industrial Property',
+    value: 'industrial',
+  },
+  {
+    label: 'Mixed Use',
+    value: 'mixedUse',
+  },
+  {
+    label: 'Hotel',
+    value: 'hotel',
+  },
+  {
+    label: 'Motel',
+    value: 'motel',
+  },
+  {
+    label: 'Restaurant',
+    value: 'restaurant',
+  },
+  {
+    label: 'Healthcare Facility',
+    value: 'healthcareFacility',
+  },
+  {
+    label: 'Storage Unit',
+    value: 'storageUnit',
+  },
+  // Land
+  {
+    label: 'Vacant Land',
+    value: 'vacantLand',
+  },
+  {
+    label: 'Agricultiral Land',
+    value: 'agriculturalLand',
+  },
+  {
+    label: 'Timberland',
+    value: 'timberland',
+  },
+  {
+    label: 'Ranch Land',
+    value: 'ranchLand',
+  },
+  {
+    label: 'Recreational Land',
+    value: 'recreationalLand',
+  },
+  {
+    label: 'Development Land',
+    value: 'developmentLand',
+  },
+  // Special Use
+  {
+    label: 'Religious Building',
+    value: 'religion',
+  },
+  {
+    label: 'School',
+    value: 'school',
+  },
+  {
+    label: 'University',
+    value: 'university',
+  },
+  {
+    label: 'Government Building',
+    value: 'governmentBuilding',
+  },
+  {
+    label: 'Cemetery',
+    value: 'cemetery',
+  },
+  {
+    label: 'Airport',
+    value: 'airport',
+  },
+  {
+    label: 'Utility',
+    value: 'utility',
+  },
+  // Investment
+  {
+    label: 'Real Estate Investment Trusts (REITs)',
+    value: 'reit',
+  },
+  {
+    label: 'Rental Property',
+    value: 'rentalProperty',
+  },
+  {
+    label: 'Fix-and-Flip Properties',
+    value: 'fixAndFlip',
+  },
+]
+
+const ZoningType = [
+  {
+    label: 'Commercial',
+    value: 'C',
+  },
+  {
+    label: 'Residential',
+    value: 'r',
+  },
+  {
+    label: 'Industrial',
+    value: 'i',
+  },
+]
+
+const BuildingClass = [
+  {
+    label: 'A',
+    value: 'A',
+  },
+  {
+    label: 'B',
+    value: 'B',
+  },
+  {
+    label: 'C',
+    value: 'C',
+  },
+]
+
+const TenancyType = [
+  {
+    label: 'Single Tenant',
+    value: 'Single Tenant',
+  },
+  {
+    label: 'Multi-Tenant',
+    value: 'Multi-Tenant',
+  },
+]
+
+const UtilitySelect = [
+  {
+    label: 'N/A',
+    value: 'n/a',
+  },
+  {
+    label: 'Yes',
+    value: 'yes',
+  },
+  {
+    label: 'No',
+    value: 'no',
+  },
+]
+
+const PaymentFrequencyOptions = [
+  {
+    label: 'One Time',
+    value: 'oneTime',
+  },
+  {
+    label: 'Dollar / SQ FT / Year',
+    value: 'dollarPerSqPerYear',
+  },
+  {
+    label: 'Monthly',
+    value: 'monthly',
+  },
+  {
+    label: 'Yearly',
+    value: 'yearly',
+  },
+]
+
 export const Listings: CollectionConfig = {
   slug: 'listings',
   admin: {
@@ -61,6 +288,22 @@ export const Listings: CollectionConfig = {
                 },
               },
               // Able to get from map
+            },
+            {
+              name: 'listingType',
+              label: 'Listing Type',
+              type: 'select',
+              defaultValue: 'forSale',
+              options: [
+                {
+                  label: 'For Sale',
+                  value: 'forSale',
+                },
+                {
+                  label: 'Lease',
+                  value: 'lease',
+                },
+              ],
             },
             {
               name: 'streetAddress',
@@ -154,6 +397,16 @@ export const Listings: CollectionConfig = {
               },
             },
             {
+              name: 'paymentFrequency',
+              label: 'Payment Frequency',
+              type: 'select',
+              defaultValue: 'oneTime',
+              options: PaymentFrequencyOptions,
+              admin: {
+                condition: (data, siblingData) => siblingData?.isPriceNegotiable === false, // Only show if price is not-negotiable
+              },
+            },
+            {
               name: 'agents', // required
               label: 'Agent(s) on Listing',
               type: 'relationship', // required
@@ -165,6 +418,18 @@ export const Listings: CollectionConfig = {
               label: 'Information Flyer (PDF)',
               type: 'upload',
               relationTo: 'media',
+              required: false,
+            },
+            {
+              name: 'zillowLink',
+              label: 'Zillow Link',
+              type: 'text',
+              required: false,
+            },
+            {
+              name: 'virtualTourLink',
+              label: 'Virtual Tour Link',
+              type: 'text',
               required: false,
             },
           ],
@@ -203,31 +468,10 @@ export const Listings: CollectionConfig = {
           label: 'Features',
           fields: [
             {
-              name: 'propertyType',
+              name: 'propertyTypes', // DO NOT RENAME TO propertyType, had to switch for new enum
               label: 'Property Type',
               type: 'select',
-              options: [
-                {
-                  label: 'Shopping Center',
-                  value: 'shoppingCenter',
-                },
-                {
-                  label: 'Business Opportunity',
-                  value: 'bizOpportunity',
-                },
-                {
-                  label: 'Multi-Family',
-                  value: 'multiFamily',
-                },
-                {
-                  label: 'Office',
-                  value: 'office',
-                },
-                {
-                  label: 'Mixed Use',
-                  value: 'mixedUse',
-                },
-              ],
+              options: PropertyTypes,
             },
             {
               name: 'propertySubtype',
@@ -238,7 +482,6 @@ export const Listings: CollectionConfig = {
               name: 'sqFt',
               label: 'Square Footage',
               type: 'number',
-              required: true,
             },
             {
               name: 'sqFtLand',
@@ -275,54 +518,19 @@ export const Listings: CollectionConfig = {
               name: 'zoningType',
               label: 'Zone',
               type: 'select',
-              options: [
-                {
-                  label: 'Commercial',
-                  value: 'C',
-                },
-                {
-                  label: 'Residential',
-                  value: 'r',
-                },
-                {
-                  label: 'Industrial',
-                  value: 'i',
-                },
-              ],
+              options: ZoningType,
             },
             {
               name: 'buildingClass',
               label: 'Building Class',
               type: 'select',
-              options: [
-                {
-                  label: 'A',
-                  value: 'A',
-                },
-                {
-                  label: 'B',
-                  value: 'B',
-                },
-                {
-                  label: 'C',
-                  value: 'C',
-                },
-              ],
+              options: BuildingClass,
             },
             {
               name: 'tenancyType',
               label: 'Tenancy Type',
               type: 'select',
-              options: [
-                {
-                  label: 'Single Tenant',
-                  value: 'Single Tenant',
-                },
-                {
-                  label: 'Multi-Tenant',
-                  value: 'Multi-Tenant',
-                },
-              ],
+              options: TenancyType,
             },
             {
               name: 'yearBuilt',
@@ -335,6 +543,12 @@ export const Listings: CollectionConfig = {
 
                 return true
               },
+            },
+            {
+              name: 'yearRenovated',
+              label: 'Year Renovated',
+              type: 'number',
+              required: false,
             },
             {
               name: 'occupancy',
@@ -375,20 +589,7 @@ export const Listings: CollectionConfig = {
               type: 'select',
               hasMany: false,
               defaultValue: 'n/a',
-              options: [
-                {
-                  label: 'N/A',
-                  value: 'n/a',
-                },
-                {
-                  label: 'Yes',
-                  value: 'yes',
-                },
-                {
-                  label: 'No',
-                  value: 'no',
-                },
-              ],
+              options: UtilitySelect,
             },
             {
               name: 'cool',
@@ -396,20 +597,7 @@ export const Listings: CollectionConfig = {
               type: 'select',
               hasMany: false,
               defaultValue: 'n/a',
-              options: [
-                {
-                  label: 'N/A',
-                  value: 'n/a',
-                },
-                {
-                  label: 'Yes',
-                  value: 'yes',
-                },
-                {
-                  label: 'No',
-                  value: 'no',
-                },
-              ],
+              options: UtilitySelect,
             },
             {
               name: 'electricity',
@@ -417,20 +605,7 @@ export const Listings: CollectionConfig = {
               type: 'select',
               hasMany: false,
               defaultValue: 'n/a',
-              options: [
-                {
-                  label: 'N/A',
-                  value: 'n/a',
-                },
-                {
-                  label: 'Yes',
-                  value: 'yes',
-                },
-                {
-                  label: 'No',
-                  value: 'no',
-                },
-              ],
+              options: UtilitySelect,
             },
             {
               name: 'water',
@@ -438,20 +613,7 @@ export const Listings: CollectionConfig = {
               type: 'select',
               hasMany: false,
               defaultValue: 'n/a',
-              options: [
-                {
-                  label: 'N/A',
-                  value: 'n/a',
-                },
-                {
-                  label: 'Yes',
-                  value: 'yes',
-                },
-                {
-                  label: 'No',
-                  value: 'no',
-                },
-              ],
+              options: UtilitySelect,
             },
             {
               name: 'waste',
@@ -459,20 +621,7 @@ export const Listings: CollectionConfig = {
               type: 'select',
               hasMany: false,
               defaultValue: 'n/a',
-              options: [
-                {
-                  label: 'N/A',
-                  value: 'n/a',
-                },
-                {
-                  label: 'Yes',
-                  value: 'yes',
-                },
-                {
-                  label: 'No',
-                  value: 'no',
-                },
-              ],
+              options: UtilitySelect,
             },
             {
               name: 'sewer',
@@ -480,20 +629,7 @@ export const Listings: CollectionConfig = {
               type: 'select',
               hasMany: false,
               defaultValue: 'n/a',
-              options: [
-                {
-                  label: 'N/A',
-                  value: 'n/a',
-                },
-                {
-                  label: 'Yes',
-                  value: 'yes',
-                },
-                {
-                  label: 'No',
-                  value: 'no',
-                },
-              ],
+              options: UtilitySelect,
             },
             {
               name: 'internet',
@@ -501,20 +637,7 @@ export const Listings: CollectionConfig = {
               type: 'select',
               hasMany: false,
               defaultValue: 'n/a',
-              options: [
-                {
-                  label: 'N/A',
-                  value: 'n/a',
-                },
-                {
-                  label: 'Yes',
-                  value: 'yes',
-                },
-                {
-                  label: 'No',
-                  value: 'no',
-                },
-              ],
+              options: UtilitySelect,
             },
             {
               name: 'lighting',
@@ -522,20 +645,7 @@ export const Listings: CollectionConfig = {
               type: 'select',
               hasMany: false,
               defaultValue: 'n/a',
-              options: [
-                {
-                  label: 'N/A',
-                  value: 'n/a',
-                },
-                {
-                  label: 'Yes',
-                  value: 'yes',
-                },
-                {
-                  label: 'No',
-                  value: 'no',
-                },
-              ],
+              options: UtilitySelect,
             },
             {
               name: 'hasParking',

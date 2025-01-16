@@ -2,7 +2,7 @@ import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import Logo from '../../assets/branding/logo.svg'
+import Logo from '../../assets/branding/wwg_fullmark.png'
 import { ColorScheme } from '../../types/viewmodels'
 import Facebook from '../Icons/Facebook'
 import Instagram from '../Icons/Instagram'
@@ -15,14 +15,14 @@ import { InternalLinks } from '@/globalData/navigation'
 function Footer() {
   return (
     <div className="bg-wwBlack text-white py-16">
-      <div className="global-margin-x flex flex-col xl:flex-row justify-between gap-8 lg:gap-0">
-        <div className="flex flex-col lg:flex-row items-center lg:items-start justify-center gap-8 lg:gap-16 lg:mb-16">
-          <Link href="/">
-            <Image src={Logo} alt="WW-Logo" />
+      <div className="global-margin-x flex flex-col xl:flex-row justify-between gap-8">
+        <div className="flex flex-col xl:flex-row items-center xl:items-start justify-center gap-8 xl:gap-16 xl:mb-16">
+          <Link href="/" className="block">
+            <Image src={Logo} alt="WW-Logo" className="w-36 md:w-30 xl:w-36" />
           </Link>
           <NewsletterInputFooter />
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-5 justify-items-center gap-8">
+        <div className="flex flex-col text-center xl:text-left items-center md:items-start md:grid grid-cols-1 md:grid-cols-4 xl:justify-items-center gap-8">
           {InternalLinks.map((group, i) => (
             <div key={i}>
               <h6 className="text-white">{group.title}</h6>
@@ -84,8 +84,8 @@ function Footer() {
                 clipRule="evenodd"
               />
             </svg>
-
-            {DefaultSocials.address}
+            Keller Williams St. Pete
+            <br /> {DefaultSocials.address}
           </span>
         </div>
 

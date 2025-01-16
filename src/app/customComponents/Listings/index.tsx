@@ -37,8 +37,9 @@ export const ListingCard: React.FC<{
   const additionalInfo = [
     sqFt !== null ? `${sqFt} sq ft` : '',
     sqFtLot !== null ? `${sqFtLot} acres` : '',
-    bedCount !== null ? ` ${bedCount} bedrooms` : '',
-    bathroomCount !== null ? ` ${bathroomCount} bathrooms` : '',
+    sqFtLand !== null ? `${sqFtLand} sq ft land` : '',
+    bedCount !== null ? ` ${bedCount} bed` : '',
+    bathroomCount !== null ? ` ${bathroomCount} bath` : '',
   ]
     .filter(info => info !== '') // Do not render empty items
     .filter((_, i) => i < 3) // Only take first 3 items

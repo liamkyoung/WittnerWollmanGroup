@@ -38,12 +38,40 @@ export const hero: Field = {
           value: 'default',
         },
         {
-          label: 'Fullscreen Video',
+          label: 'Fullscreen Hero',
           value: 'fullscreen',
         },
         {
           label: 'Project Hero',
           value: 'projectHero',
+        },
+      ],
+    },
+    {
+      name: 'centeredText',
+      label: 'Content Centered',
+      type: 'checkbox',
+      defaultValue: false,
+      required: true,
+    },
+    {
+      name: 'gradient',
+      label: 'Bottom Gradient',
+      type: 'select',
+      defaultValue: 'none',
+      required: true,
+      options: [
+        {
+          label: 'None',
+          value: 'none',
+        },
+        {
+          label: 'Red',
+          value: 'red',
+        },
+        {
+          label: 'White',
+          value: 'white',
         },
       ],
     },

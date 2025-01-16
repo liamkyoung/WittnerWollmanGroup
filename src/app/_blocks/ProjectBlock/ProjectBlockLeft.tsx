@@ -56,8 +56,8 @@ function ProjectBlockLeft({
   }
 
   return (
-    <div className={`grid lg:grid-cols-2 ${bgColor}`}>
-      <div className="lg:ml-32 mr-8 my-auto relative p-8 lg:p-0 lg:mr-16">
+    <div className={`grid lg:grid-cols-2 ${bgColor} overflow-x-hidden`}>
+      <div className="p-8 ml-8 lg:mr-8 my-auto relative 2xl:ml-32 2xl:mr-16">
         <div className="relative md:py-10 lg:py-8">
           <h2 className={`${textColor} text-center lg:text-left text-4xl lg:text-5xl`}>{title}</h2>
           <div className="lg:inline-flex flex gap-2 mt-2 justify-center">
@@ -85,7 +85,7 @@ function ProjectBlockLeft({
           </div>
         </div>
         {facts && facts.length > 0 && (
-          <div className={`hidden 2xl:flex gap-4 absolute top-32 ${bgColor} p-4`}>
+          <div className={`hidden 2xl:flex gap-4 absolute top-48 ${bgColor} p-4`}>
             {facts.map((f, i) => (
               <ProjectStat
                 colorScheme={colorScheme}
@@ -129,7 +129,7 @@ function ProjectBlockLeft({
       <Media
         resource={image}
         alt="property image"
-        imgClassName="w-full max-h-96 lg:max-h-none lg:h-full object-cover"
+        imgClassName="sm:w-full max-h-96 lg:max-h-none lg:h-full object-cover"
       />
     </div>
   )

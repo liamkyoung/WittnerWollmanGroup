@@ -9,6 +9,8 @@ export const INVOLVEMENT_GROUPS = `
         categories {
           title
         }
+        description
+        highlight
         ${IMAGE}
       }
     }

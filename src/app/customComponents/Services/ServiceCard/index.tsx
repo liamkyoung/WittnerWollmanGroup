@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import { Service } from '../../../../payload/payload-types'
+import { Media as MediaType, Service } from '../../../../payload/payload-types'
 import { Media } from '../../../_components/Media'
 
 import { ServiceLinks } from '@/globalData/navigation/services/services'
@@ -13,7 +13,7 @@ export const ServiceCard: React.FC<{
 }> = props => {
   const { doc, className } = props
 
-  const { title, shortDescription, slug } = doc || {}
+  const { title, shortDescription, slug, hero } = doc || {}
 
   const sanitizedDescription = shortDescription?.replace(/\s/g, ' ') // replace non-breaking space with white space
   const href = `${ServiceLinks.relLink}/${slug}`
@@ -84,8 +84,8 @@ export const ServiceCard: React.FC<{
 
   return (
     <Link href={href}>
-      <div className="space-y-6 min-w-64">
-        <div className="border-b-4 border-wwSecondary border-opacity-50">
+      <div className="flex gap-2 relative group">
+        <div className="w-full h-full lg:h-auto lg:w-64 border-b-4 border-wwSecondary border-opacity-50 bg-gray-50/75 absolute top-0 left-0 px-4 lg:px-8 py-4 z-10">
           <div className="bg-wwRed p-4 mb-4 rounded-full inline-flex">{renderSvg()}</div>
           <div className="flex items-center gap-6 mb-2">
             <h5 className="font-bold">{title}</h5>
@@ -105,7 +105,8 @@ export const ServiceCard: React.FC<{
             </svg>
           </div>
         </div>
-        <p className="text-wwSecondary">{sanitizedDescription}</p>
+        <div className="transition-opacity opacity-0 group-hover:opacity-20 bg-gray-50 w-full h-full absolute top-0 left-0"></div>
+        <Media resource={hero?.media as MediaType} className="w-auto" />
       </div>
     </Link>
   )

@@ -25,6 +25,7 @@ type ListingFeaturesProps = {
   bathrooms?: number
   sqFt?: number
   yearBuilt?: number
+  yearRenovated?: number
   propertyType?: string
   isPriceNegotiable?: boolean
   price?: number
@@ -60,6 +61,7 @@ function Features({
   bathrooms,
   sqFt,
   yearBuilt,
+  yearRenovated,
   propertyType,
   isPriceNegotiable,
   price,
@@ -88,6 +90,7 @@ function Features({
     { label: 'Bathrooms', description: bathrooms },
     { label: 'Square Footage', description: sqFt },
     { label: 'Year Built', description: yearBuilt },
+    { label: 'Year Renovated', description: yearRenovated },
     { label: 'Building Type', description: propertyType ? formatPropertyType(propertyType) : null },
     { label: 'Building Class', description: buildingClass },
     { label: 'Zoning Type', description: zoningType ? formatZoningType(zoningType) : null },

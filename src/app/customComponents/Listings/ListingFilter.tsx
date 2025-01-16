@@ -17,10 +17,11 @@ import {
   PopoverGroup,
   PopoverPanel,
 } from '@headlessui/react'
-import { XMarkIcon } from '@heroicons/react/24/outline'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
-import { SortListingsEnum } from '@/app/types/viewmodels'
+import { XMarkIcon } from '@heroicons/react/24/outline'
+
 import { formatPropertyType } from '@/app/_utilities/propertyTypeFormatter'
+import { SortListingsEnum } from '@/app/types/viewmodels'
 
 const sortOptions = [
   { name: 'Most Expensive', sort: SortListingsEnum.MOST_EXPENSIVE },
@@ -67,7 +68,7 @@ export default function ListingFilter({
       options: [],
     },
     {
-      id: 'propertyType',
+      id: 'propertyTypes',
       name: 'Property Type',
       options: [],
     },
@@ -86,7 +87,7 @@ export default function ListingFilter({
   })
 
   filters.find(i => i.id == 'agent').options = agentOptions
-  filters.find(i => i.id == 'propertyType').options = propertyTypeOptions
+  filters.find(i => i.id == 'propertyTypes').options = propertyTypeOptions
 
   const [open, setOpen] = useState(false)
 

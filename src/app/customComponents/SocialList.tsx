@@ -7,11 +7,13 @@ import Instagram from '../customComponents/Icons/Instagram'
 import Linkedin from '../customComponents/Icons/LinkedinIcon'
 import Phone from '../customComponents/Icons/Phone'
 import { ColorScheme, SocialMediaInfo } from '../types/viewmodels'
+import OfficePhone from './Icons/OfficePhone'
 
 type Props = {
   colorScheme?: ColorScheme
   email?: string
   phoneNumber?: string
+  officeNumber?: string
   instagram?: SocialMediaInfo
   facebook?: SocialMediaInfo
   linkedin?: SocialMediaInfo
@@ -20,6 +22,7 @@ type Props = {
 function SocialList({
   email = DefaultSocials.email,
   phoneNumber = DefaultSocials.phoneNumber,
+  officeNumber = DefaultSocials.phoneNumber,
   instagram = DefaultSocials.instagram,
   facebook = DefaultSocials.facebook,
   linkedin = DefaultSocials.linkedin,
@@ -29,6 +32,7 @@ function SocialList({
     <div className="flex flex-col items-center lg:items-start gap-8 mx-auto">
       <Email emailAddress={email} show colorScheme={colorScheme} />
       <Phone phoneNumber={phoneNumber} show colorScheme={colorScheme} />
+      <OfficePhone phoneNumber={officeNumber} show colorScheme={colorScheme} />
       {instagram && (
         <Instagram
           profileLink={instagram.profileLink}

@@ -1,5 +1,5 @@
 {
-  "id": "5cf482ff-3ea2-4463-ba6a-93c7a821f254",
+  "id": "73106752-5bf5-4bc5-bb83-0d7269893f29",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -13562,86 +13562,6 @@
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
-    "public.teammates_strengths": {
-      "name": "teammates_strengths",
-      "schema": "",
-      "columns": {
-        "order": {
-          "name": "order",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "parent_id": {
-          "name": "parent_id",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "value": {
-          "name": "value",
-          "type": "enum_teammates_strengths",
-          "typeSchema": "public",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "id": {
-          "name": "id",
-          "type": "serial",
-          "primaryKey": true,
-          "notNull": true
-        }
-      },
-      "indexes": {
-        "teammates_strengths_order_idx": {
-          "name": "teammates_strengths_order_idx",
-          "columns": [
-            {
-              "expression": "order",
-              "isExpression": false,
-              "asc": true,
-              "nulls": "last"
-            }
-          ],
-          "isUnique": false,
-          "concurrently": false,
-          "method": "btree",
-          "with": {}
-        },
-        "teammates_strengths_parent_idx": {
-          "name": "teammates_strengths_parent_idx",
-          "columns": [
-            {
-              "expression": "parent_id",
-              "isExpression": false,
-              "asc": true,
-              "nulls": "last"
-            }
-          ],
-          "isUnique": false,
-          "concurrently": false,
-          "method": "btree",
-          "with": {}
-        }
-      },
-      "foreignKeys": {
-        "teammates_strengths_parent_fk": {
-          "name": "teammates_strengths_parent_fk",
-          "tableFrom": "teammates_strengths",
-          "tableTo": "teammates",
-          "columnsFrom": [
-            "parent_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
-        }
-      },
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {}
-    },
     "public.teammates": {
       "name": "teammates",
       "schema": "",
@@ -13676,14 +13596,32 @@
           "primaryKey": false,
           "notNull": false
         },
+        "strengths": {
+          "name": "strengths",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
         "years_of_experience": {
           "name": "years_of_experience",
           "type": "numeric",
           "primaryKey": false,
           "notNull": false
         },
+        "rank": {
+          "name": "rank",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
         "phone_number": {
           "name": "phone_number",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "office_number": {
+          "name": "office_number",
           "type": "varchar",
           "primaryKey": false,
           "notNull": false
@@ -13965,86 +13903,6 @@
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
-    "public._teammates_v_version_strengths": {
-      "name": "_teammates_v_version_strengths",
-      "schema": "",
-      "columns": {
-        "order": {
-          "name": "order",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "parent_id": {
-          "name": "parent_id",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "value": {
-          "name": "value",
-          "type": "enum__teammates_v_version_strengths",
-          "typeSchema": "public",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "id": {
-          "name": "id",
-          "type": "serial",
-          "primaryKey": true,
-          "notNull": true
-        }
-      },
-      "indexes": {
-        "_teammates_v_version_strengths_order_idx": {
-          "name": "_teammates_v_version_strengths_order_idx",
-          "columns": [
-            {
-              "expression": "order",
-              "isExpression": false,
-              "asc": true,
-              "nulls": "last"
-            }
-          ],
-          "isUnique": false,
-          "concurrently": false,
-          "method": "btree",
-          "with": {}
-        },
-        "_teammates_v_version_strengths_parent_idx": {
-          "name": "_teammates_v_version_strengths_parent_idx",
-          "columns": [
-            {
-              "expression": "parent_id",
-              "isExpression": false,
-              "asc": true,
-              "nulls": "last"
-            }
-          ],
-          "isUnique": false,
-          "concurrently": false,
-          "method": "btree",
-          "with": {}
-        }
-      },
-      "foreignKeys": {
-        "_teammates_v_version_strengths_parent_fk": {
-          "name": "_teammates_v_version_strengths_parent_fk",
-          "tableFrom": "_teammates_v_version_strengths",
-          "tableTo": "_teammates_v",
-          "columnsFrom": [
-            "parent_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
-        }
-      },
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {}
-    },
     "public._teammates_v": {
       "name": "_teammates_v",
       "schema": "",
@@ -14079,14 +13937,32 @@
           "primaryKey": false,
           "notNull": false
         },
+        "version_strengths": {
+          "name": "version_strengths",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
         "version_years_of_experience": {
           "name": "version_years_of_experience",
           "type": "numeric",
           "primaryKey": false,
           "notNull": false
         },
+        "version_rank": {
+          "name": "version_rank",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
         "version_phone_number": {
           "name": "version_phone_number",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "version_office_number": {
+          "name": "version_office_number",
           "type": "varchar",
           "primaryKey": false,
           "notNull": false
@@ -15921,6 +15797,12 @@
         "price": {
           "name": "price",
           "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "zillow_link": {
+          "name": "zillow_link",
+          "type": "varchar",
           "primaryKey": false,
           "notNull": false
         },
@@ -18241,6 +18123,12 @@
         "version_price": {
           "name": "version_price",
           "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "version_zillow_link": {
+          "name": "version_zillow_link",
+          "type": "varchar",
           "primaryKey": false,
           "notNull": false
         },
@@ -27975,28 +27863,12 @@
         "user"
       ]
     },
-    "public.enum_teammates_strengths": {
-      "name": "enum_teammates_strengths",
-      "schema": "public",
-      "values": [
-        "Residential Real Estate",
-        "Commercial Real Estate"
-      ]
-    },
     "public.enum_teammates_status": {
       "name": "enum_teammates_status",
       "schema": "public",
       "values": [
         "draft",
         "published"
-      ]
-    },
-    "public.enum__teammates_v_version_strengths": {
-      "name": "enum__teammates_v_version_strengths",
-      "schema": "public",
-      "values": [
-        "Residential Real Estate",
-        "Commercial Real Estate"
       ]
     },
     "public.enum__teammates_v_version_status": {
@@ -28011,11 +27883,43 @@
       "name": "enum_listings_property_type",
       "schema": "public",
       "values": [
+        "singleFamily",
+        "multiFamily",
+        "townhouse",
+        "condo",
+        "co-op",
+        "apt",
+        "apt",
+        "mobileHome",
+        "vacationHome",
+        "seniorLivingHome",
         "shoppingCenter",
         "bizOpportunity",
-        "multiFamily",
         "office",
-        "mixedUse"
+        "retail",
+        "industrial",
+        "mixedUse",
+        "hotel",
+        "motel",
+        "restaurant",
+        "healthcareFacility",
+        "storageUnit",
+        "vacantLand",
+        "agriculturalLand",
+        "timberland",
+        "ranchLand",
+        "recreationalLand",
+        "developmentLand",
+        "religion",
+        "school",
+        "university",
+        "governmentBuilding",
+        "cemetery",
+        "airport",
+        "utility",
+        "reit",
+        "rentalProperty",
+        "fixAndFlip"
       ]
     },
     "public.enum_listings_zoning_type": {
@@ -28253,11 +28157,43 @@
       "name": "enum__listings_v_version_property_type",
       "schema": "public",
       "values": [
+        "singleFamily",
+        "multiFamily",
+        "townhouse",
+        "condo",
+        "co-op",
+        "apt",
+        "apt",
+        "mobileHome",
+        "vacationHome",
+        "seniorLivingHome",
         "shoppingCenter",
         "bizOpportunity",
-        "multiFamily",
         "office",
-        "mixedUse"
+        "retail",
+        "industrial",
+        "mixedUse",
+        "hotel",
+        "motel",
+        "restaurant",
+        "healthcareFacility",
+        "storageUnit",
+        "vacantLand",
+        "agriculturalLand",
+        "timberland",
+        "ranchLand",
+        "recreationalLand",
+        "developmentLand",
+        "religion",
+        "school",
+        "university",
+        "governmentBuilding",
+        "cemetery",
+        "airport",
+        "utility",
+        "reit",
+        "rentalProperty",
+        "fixAndFlip"
       ]
     },
     "public.enum__listings_v_version_zoning_type": {

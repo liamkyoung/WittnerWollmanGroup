@@ -21,7 +21,6 @@ export const DefaultHero: React.FC<Page['hero']> = ({ richText, media, links, he
 
         <div className="flex flex-col sm:flex-row gap-8 items-center justify-center xl:justify-start">
           <div>
-            <p className="text-sm text-wwRed mb-4 italic">Need help with your big idea?</p>
             <Link href={ContactLink.relLink} className="btn-primary block text-center">
               SEND US A MESSAGE
             </Link>

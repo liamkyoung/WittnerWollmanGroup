@@ -50,13 +50,16 @@ export default async function Page({ params: { slug } }) {
     sqFtLand,
     sqFtLot,
     coverImage,
-    propertyType,
+    propertyTypes,
     bedCount,
     bathroomCount,
     yearBuilt,
+    yearRenovated,
     overview,
     areaOverview,
     tenancyType,
+    listingType,
+    paymentFrequency,
     occupancy,
     zoningType,
     neighborhood,
@@ -78,6 +81,8 @@ export default async function Page({ params: { slug } }) {
     buildingClass,
     layout,
     listingFlyer,
+    zillowLink,
+    virtualTourLink,
   } = listing
 
   const agent = agents && agents.length > 0 ? agents[0] : null
@@ -106,11 +111,15 @@ export default async function Page({ params: { slug } }) {
           city={city}
           zipCode={zipCode}
           state={state}
-          propertyType={propertyType}
+          zillowLink={zillowLink}
+          virtualTourLink={virtualTourLink}
+          propertyType={propertyTypes}
+          paymentFrequency={paymentFrequency}
           sqFt={sqFt}
           sqFtLand={sqFtLand}
           sqFtLot={sqFtLot}
           flyer={listingFlyer as Media}
+          listingType={listingType}
         />
         <PhotoGallery imageGallery={imgs} />
       </div>
@@ -134,6 +143,7 @@ export default async function Page({ params: { slug } }) {
           sqFt={sqFt}
           sqFtLot={sqFtLot}
           yearBuilt={yearBuilt}
+          yearRenovated={yearRenovated}
           bedrooms={bedCount}
           bathrooms={bathroomCount}
           area={neighborhood}
@@ -141,7 +151,7 @@ export default async function Page({ params: { slug } }) {
           isPriceNegotiable={isPriceNegotiable}
           price={price}
           buildingClass={buildingClass}
-          propertyType={propertyType}
+          propertyType={propertyTypes}
           status={'Active'}
           zoningType={zoningType}
           occupancy={occupancy}

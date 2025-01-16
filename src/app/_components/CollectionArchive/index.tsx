@@ -23,6 +23,7 @@ import { CommunityResourceGallery } from '@/app/customComponents/CommunityResour
 import { CompanyGallery } from '@/app/customComponents/Companies/CompanyGallery'
 import { InvolvementEventGallery } from '@/app/customComponents/Involvement/InvolvementEvents/InvolvementEventGallery'
 import { InvolvementGroupGallery } from '@/app/customComponents/Involvement/InvolvementGroups/InvolvementGroupGallery'
+import { ListingGallery } from '@/app/customComponents/Listings/ListingGallery'
 import { NewsGallery } from '@/app/customComponents/News/NewsGallery'
 import { ProjectGallery } from '@/app/customComponents/Projects/ProjectGallery'
 import { ServiceGallery } from '@/app/customComponents/Services/ServiceGallery'
@@ -30,7 +31,6 @@ import { TeammateGallery } from '@/app/customComponents/Teammates/TeammateGaller
 import TestimonialGallery from '@/app/customComponents/Testimonials/TestimonialGallery'
 
 import classes from './index.module.scss'
-import { ListingGallery } from '@/app/customComponents/Listings/ListingGallery'
 
 type Result = {
   docs: (

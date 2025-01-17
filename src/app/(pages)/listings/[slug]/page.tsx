@@ -39,6 +39,7 @@ export default async function Page({ params: { slug } }) {
     title,
     isPriceNegotiable,
     price,
+    rentalPrice,
     sqFt,
     streetAddress,
     city,
@@ -106,6 +107,7 @@ export default async function Page({ params: { slug } }) {
           isPriceNegotiable={isPriceNegotiable}
           streetAddress={streetAddress}
           price={price}
+          rentalPrice={rentalPrice}
           city={city}
           zipCode={zipCode}
           state={state}

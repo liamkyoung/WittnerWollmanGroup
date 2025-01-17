@@ -85,24 +85,28 @@ export const ServiceCard: React.FC<{
   return (
     <Link href={href}>
       <div className="flex gap-2 relative group">
-        <div className="w-full h-full lg:h-auto lg:w-64 border-b-4 border-wwSecondary border-opacity-50 bg-gray-50/75 absolute top-0 left-0 px-4 lg:px-8 py-4 z-10">
-          <div className="bg-wwRed p-4 mb-4 rounded-full inline-flex">{renderSvg()}</div>
-          <div className="flex items-center gap-6 mb-2">
-            <h5 className="font-bold">{title}</h5>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth="1.5"
-              stroke="currentColor"
-              className="size-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25"
-              />
-            </svg>
+        <div className="flex items-center justify-center sm:block w-full h-full lg:h-auto lg:w-64 border-b-4 border-wwSecondary border-opacity-50 bg-gray-50/75 absolute top-0 left-0 px-4 lg:px-8 py-4 z-10">
+          <div className="">
+            <div className="flex flex-col items-center sm:block sm:items-start max-w-min">
+              <div className="bg-wwRed p-4 mb-4 rounded-full inline-flex">{renderSvg()}</div>
+              <div className="flex items-center gap-6 mb-2">
+                <h5 className="font-bold">{title}</h5>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth="1.5"
+                  stroke="currentColor"
+                  className="hidden sm:block size-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25"
+                  />
+                </svg>
+              </div>
+            </div>
           </div>
         </div>
         <div className="transition-opacity opacity-0 group-hover:opacity-20 bg-gray-50 w-full h-full absolute top-0 left-0"></div>

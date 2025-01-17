@@ -24,15 +24,15 @@ export const PostHero: React.FC<{
 
   return (
     <main className="mt-12">
-      <Gutter className={`flex items-center justify-between gap-4 lg:flex-row flex-col-reverse`}>
-        <h1 className={`${classes.title} leading-tight text-center lg:text-left`}>{title}</h1>
-        {/* <p className={classes.meta}>{publishedAt && <p>{formatDateTime(publishedAt)}</p>}</p> */}
-        <div className={classes.media}>
-          <div className={classes.mediaWrapper}>
+      <Gutter
+        className={`flex xl:items-center justify-between gap-4 lg:gap-16 xl:flex-row flex-col`}
+      >
+        <div>
+          <div className="xl:max-w-[44rem]">
             {!metaImage && <div>No image</div>}
             {metaImage && typeof metaImage !== 'string' && (
               <Media
-                imgClassName="object-cover w-3/4 my-auto mx-auto min-w-64"
+                imgClassName="object-cover min-w-64 h-auto"
                 resource={metaImage as MediaType}
               />
             )}
@@ -41,9 +41,19 @@ export const PostHero: React.FC<{
             <RichText content={img.caption} className={classes.caption} />
           )}
         </div>
+        <div className="">
+          <h1 className={`leading-tight`}>{title}</h1>
+          <div className="mt-4">
+            {publishedAt && (
+              <p className="bg-wwRed py-2 px-4 rounded-md text-white font-semibold whitespace-nowrap max-w-min">
+                {formatDateTime(publishedAt)}
+              </p>
+            )}
+          </div>
+        </div>
       </Gutter>
       <div className="mt-24 lg:w-3/4">
-        <h5 className="text-center lg:text-left">{description}</h5>
+        <h5>{description}</h5>
       </div>
     </main>
   )

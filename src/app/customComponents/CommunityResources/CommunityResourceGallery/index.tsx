@@ -100,9 +100,7 @@ export const CommunityResourceGallery = ({ communityResources, displayHeader = '
 
   return (
     <div className="global-margin-x">
-      {displayHeader === 'yes' && (
-        <h2 className="mb-16 text-center lg:hidden block">Community Resources</h2>
-      )}
+      {displayHeader === 'yes' && <h2 className="mb-16 lg:hidden block">Community Resources</h2>}
       {sortedResources && sortedResources.length > 0 && (
         <>
           <div className="">

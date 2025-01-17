@@ -35,7 +35,7 @@ export const generateTeammateMetadata = async (args: { doc: Teammate }): Promise
 
   return {
     title: `${doc?.title} | Wittner Wollman Group`,
-    description: doc?.bio,
+    description: `Learn about ${doc?.title}, a ${doc?.jobTitle} on the Wittner Wollman Group specializing in ${doc?.strengths}.`,
   }
 }
 

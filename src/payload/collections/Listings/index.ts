@@ -402,6 +402,16 @@ export const Listings: CollectionConfig = {
               },
             },
             {
+              name: 'rentalPrice',
+              label: 'Rental Price (in USD)',
+              type: 'number',
+              defaultValue: 0,
+              required: false,
+              admin: {
+                condition: (data, siblingData) => siblingData?.isPriceNegotiable === false, // Only show if price is not-negotiable
+              },
+            },
+            {
               name: 'paymentFrequency',
               label: 'Payment Frequency',
               type: 'select',
@@ -546,13 +556,7 @@ export const Listings: CollectionConfig = {
               name: 'yearBuilt',
               label: 'Year Built',
               type: 'number',
-              validate: value => {
-                if (value < 1492) {
-                  return 'Value must be greater than or equal to 1492'
-                }
-
-                return true
-              },
+              required: false,
             },
             {
               name: 'yearRenovated',

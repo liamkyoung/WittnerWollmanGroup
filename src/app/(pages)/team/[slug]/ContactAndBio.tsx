@@ -1,5 +1,6 @@
 import React from 'react'
 
+import RichText from '@/app/_components/RichText'
 import SocialList from '@/app/customComponents/SocialList'
 import { ColorScheme, SocialMediaInfo } from '@/app/types/viewmodels'
 
@@ -10,7 +11,9 @@ type Props = {
   officeNumber?: string
   facebook: SocialMediaInfo
   instagram: SocialMediaInfo
-  bio: string
+  bio: {
+    [k: string]: unknown
+  }[]
 }
 
 function ContactAndBio({
@@ -38,9 +41,11 @@ function ContactAndBio({
         </div>
         <div className="space-y-8">
           <h2 className="text-white text-center lg:text-left pl-0 sm:pl-10">Biography</h2>
-          <p className="text-white lg:border-l-2 lg:border-white pl-0 sm:pl-10 text-center lg:text-left leading-loose">
-            {bio}
-          </p>
+          <RichText
+            className="lg:border-l-2 lg:border-white pl-0 sm:pl-10 text-center lg:text-left leading-loose"
+            content={bio}
+            textColor="text-white"
+          />
         </div>
       </div>
     </div>

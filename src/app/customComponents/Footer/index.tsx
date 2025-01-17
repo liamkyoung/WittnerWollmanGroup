@@ -39,7 +39,7 @@ function Footer() {
         </div>
       </div>
 
-      <div className="global-margin-x flex justify-between mt-24">
+      <div className="global-margin-x flex justify-center md:justify-between mt-24">
         <div className="hidden md:flex flex-col gap-4">
           <span className="text-white inline-flex gap-2">
             <svg

@@ -61,8 +61,8 @@ function ProjectBlockRight({
       />
       <div className="p-8 ml-8 2xl:ml-16 2xl:mr-32 my-auto relative">
         <div className="relative md:py-10 lg:py-8">
-          <h2 className={`${textColor} text-center lg:text-left text-4xl lg:text-5xl`}>{title}</h2>
-          <div className="lg:inline-flex flex gap-2 mt-2 justify-center">
+          <h2 className={`${textColor} text-left text-4xl lg:text-5xl`}>{title}</h2>
+          <div className="lg:inline-flex flex gap-2 mt-2">
             {subheading && subheadingType === 'location' && (
               <>
                 <svg
@@ -100,16 +100,14 @@ function ProjectBlockRight({
         )}
 
         <p
-          className={`mb-10 pt-8 md:pt-4 ${
-            facts && facts.length > 0 && '2xl:mt-8'
-          } ${textColor} text-center lg:text-left`}
+          className={`pt-8 md:pt-4 ${
+            facts && facts.length > 0 && 'mb-10 2xl:mt-8'
+          } ${textColor} text-left`}
         >
           {description}
         </p>
         {facts && (
-          <div
-            className={`2xl:hidden flex flex-row flex-wrap justify-center lg:justify-start gap-8 p-4`}
-          >
+          <div className={`2xl:hidden flex flex-row flex-wrap lg:justify-start gap-8 p-4`}>
             {facts.map((f, i) => (
               <ProjectStat
                 colorScheme={colorScheme}
@@ -122,9 +120,13 @@ function ProjectBlockRight({
         )}
 
         {links && (
-          <div className="flex flex-col lg:justify-start justify-center sm:flex-row items-center gap-4 py-8">
+          <div className="flex flex-col lg:justify-start sm:flex-row sm:items-center gap-4 py-8">
             {links.map((l, i) => (
-              <CMSLink className={`${buttonStyle}`} {...l.link} key={l.id || i} />
+              <CMSLink
+                className={`${buttonStyle} whitespace-nowrap max-w-min`}
+                {...l.link}
+                key={l.id || i}
+              />
             ))}
           </div>
         )}

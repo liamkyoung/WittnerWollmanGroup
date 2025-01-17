@@ -6,6 +6,7 @@ import { GoogleMapPin, SortListingsEnum } from '../../../app/types/viewmodels'
 import { PropertyTypes } from '../../../payload/collections/Listings'
 import { Listing, Media, Teammate } from '../../../payload/payload-types'
 import { GoogleMap } from '../GoogleMap/GoogleMap'
+import Loader from '../Loader'
 import { ListingCard } from './index'
 import ListingFilter from './ListingFilter'
 
@@ -148,7 +149,7 @@ export const ListingGallery = ({ listings, displayHeader }: Props) => {
       {displayHeader === 'yes' ? (
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-0 items-center justify-between mb-16">
           <h2>Current Listings</h2>
-          <Link href={ListingLinks.relLink} className="btn-primary">
+          <Link href={ListingLinks.relLink} className="btn-primary hidden lg:block">
             VIEW ALL LISTINGS
           </Link>
         </div>
@@ -168,16 +169,25 @@ export const ListingGallery = ({ listings, displayHeader }: Props) => {
 
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-8 xl:gap-4">
         <div className="grid grid-cols-1 md:grid-cols-2 justify-items-center gap-8 overflow-y-scroll h-[44rem]">
-          {filteredListings.map((l, i) => (
-            <div key={l.id || `${l.title}-${i}`}>
-              <ListingCard doc={l} />
-            </div>
-          ))}
+          {filteredListings &&
+            filteredListings.map((l, i) => (
+              <div key={l.id || `${l.title}-${i}`}>
+                <ListingCard doc={l} />
+              </div>
+            ))}
         </div>
         <div className="">
           <GoogleMap pins={pins} pinType="listing" />
         </div>
       </div>
+
+      {displayHeader === 'yes' && (
+        <div className="lg:hidden flex flex-col gap-8 lg:gap-0 items-center my-8">
+          <Link href={ListingLinks.relLink} className="btn-primary">
+            VIEW ALL LISTINGS
+          </Link>
+        </div>
+      )}
     </div>
   )
 }

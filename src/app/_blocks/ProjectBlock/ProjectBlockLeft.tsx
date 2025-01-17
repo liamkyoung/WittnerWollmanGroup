@@ -58,9 +58,9 @@ function ProjectBlockLeft({
   return (
     <div className={`grid lg:grid-cols-2 ${bgColor} overflow-x-hidden`}>
       <div className="p-8 ml-8 lg:mr-8 my-auto relative 2xl:ml-32 2xl:mr-16">
-        <div className="relative md:py-10 lg:py-8">
-          <h2 className={`${textColor} text-center lg:text-left text-4xl lg:text-5xl`}>{title}</h2>
-          <div className="lg:inline-flex flex gap-2 mt-2 justify-center">
+        <div className="relative md:py-10 lg:pt-8 lg:pb-4">
+          <h2 className={`${textColor} text-left text-4xl lg:text-5xl`}>{title}</h2>
+          <div className="lg:inline-flex flex gap-2 mt-2">
             {subheading && subheadingType === 'location' && (
               <>
                 <svg
@@ -98,16 +98,14 @@ function ProjectBlockLeft({
         )}
 
         <p
-          className={`mb-10 pt-8 md:pt-4 ${
-            facts && facts.length > 0 && '2xl:mt-8'
-          } ${textColor} text-center lg:text-left`}
+          className={` pt-8 md:pt-4 ${
+            facts && facts.length > 0 && 'mb-10 2xl:mt-8'
+          } ${textColor} text-left`}
         >
           {description}
         </p>
         {facts && (
-          <div
-            className={`2xl:hidden flex flex-row flex-wrap justify-center lg:justify-start gap-8 p-4`}
-          >
+          <div className={`2xl:hidden flex flex-row flex-wrap lg:justify-start gap-8 p-4`}>
             {facts.map((f, i) => (
               <ProjectStat
                 colorScheme={colorScheme}
@@ -119,9 +117,13 @@ function ProjectBlockLeft({
           </div>
         )}
         {links && (
-          <div className="flex flex-col lg:justify-start justify-center sm:flex-row items-center gap-4 py-8">
+          <div className="flex flex-col lg:justify-start sm:flex-row sm:items-center gap-4 py-8">
             {links.map((l, i) => (
-              <CMSLink className={`${buttonStyle}`} {...l.link} key={l.id || i} />
+              <CMSLink
+                className={`${buttonStyle} whitespace-nowrap max-w-min`}
+                {...l.link}
+                key={l.id || i}
+              />
             ))}
           </div>
         )}

@@ -23,14 +23,14 @@ export const StatBlock: React.FC<StatBlockProps> = props => {
 
   return (
     <div className="relative">
-      <div className="absolute z-10 w-full h-screen xl:h-auto mt-16">
+      <div className="absolute z-10 w-full xl:h-auto mt-16">
         <div className="global-margin-x py-0 lg:py-16">
-          <div className="flex flex-col xl:flex-row items-center xl:items-start justify-between gap-4 mb-16">
-            <h2 className="flex-1 text-center xl:text-left">{title}</h2>
+          <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-4 mb-16">
+            <h2 className="flex-1">{title}</h2>
             <p className="text-center xl:text-right max-w-3xl">{description}</p>
           </div>
 
-          <div className="grid grid-cols-2 xl:grid-cols-4 gap-4 global-space-x global-space-y">
+          <div className="grid grid-cols-1 sm:grid-cols-2 2xl:grid-cols-4 gap-4 global-space-x global-space-y">
             {facts &&
               facts?.map((f, i) => {
                 const bgIndex = i % 4

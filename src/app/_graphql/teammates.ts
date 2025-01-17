@@ -19,7 +19,7 @@ query Teammates($slug: String) {
       docs {
         id
         title
-        bio
+        bioParagraph
         profileIntroduction
         jobTitle
         rank

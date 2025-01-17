@@ -8,6 +8,17 @@
 
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FactsList".
+ */
+export type FactsList =
+  | {
+      factStat: string;
+      factDescription: string;
+      id?: string | null;
+    }[]
+  | null;
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "CardSlider".
  */
 export type CardSlider =
@@ -15,17 +26,6 @@ export type CardSlider =
       title?: string | null;
       image: number | Media;
       caption?: string | null;
-      id?: string | null;
-    }[]
-  | null;
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "FactsList".
- */
-export type FactsList =
-  | {
-      factStat: string;
-      factDescription: string;
       id?: string | null;
     }[]
   | null;
@@ -122,7 +122,7 @@ export interface Page {
         blockType: 'content';
       }
     | {
-        position?: ('default' | 'fullscreen') | null;
+        imgPosition?: ('default' | 'left' | 'right' | 'fullscreen') | null;
         media: number | Media;
         id?: string | null;
         blockName?: string | null;
@@ -444,11 +444,40 @@ export interface Post {
         blockType: 'content';
       }
     | {
-        position?: ('default' | 'fullscreen') | null;
+        imgPosition?: ('default' | 'left' | 'right' | 'fullscreen') | null;
         media: number | Media;
         id?: string | null;
         blockName?: string | null;
         blockType: 'mediaBlock';
+      }
+    | {
+        title: string;
+        subheadingType?: ('none' | 'text' | 'location') | null;
+        subheading?: string | null;
+        description: string;
+        position?: ('left' | 'right') | null;
+        bgColor?: ('white' | 'red') | null;
+        facts?: FactsList;
+        media: number | Media;
+        links?:
+          | {
+              link: {
+                type?: ('reference' | 'custom') | null;
+                newTab?: boolean | null;
+                reference?: {
+                  relationTo: 'pages';
+                  value: number | Page;
+                } | null;
+                url?: string | null;
+                label: string;
+                appearance?: ('default' | 'primary' | 'secondary') | null;
+              };
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'projectBlock';
       }
     | {
         introContent?:
@@ -605,11 +634,40 @@ export interface Post {
             blockType: 'content';
           }
         | {
-            position?: ('default' | 'fullscreen') | null;
+            imgPosition?: ('default' | 'left' | 'right' | 'fullscreen') | null;
             media: number | Media;
             id?: string | null;
             blockName?: string | null;
             blockType: 'mediaBlock';
+          }
+        | {
+            title: string;
+            subheadingType?: ('none' | 'text' | 'location') | null;
+            subheading?: string | null;
+            description: string;
+            position?: ('left' | 'right') | null;
+            bgColor?: ('white' | 'red') | null;
+            facts?: FactsList;
+            media: number | Media;
+            links?:
+              | {
+                  link: {
+                    type?: ('reference' | 'custom') | null;
+                    newTab?: boolean | null;
+                    reference?: {
+                      relationTo: 'pages';
+                      value: number | Page;
+                    } | null;
+                    url?: string | null;
+                    label: string;
+                    appearance?: ('default' | 'primary' | 'secondary') | null;
+                  };
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'projectBlock';
           }
         | {
             introContent?:
@@ -811,7 +869,7 @@ export interface Project {
         blockType: 'contentAndStatsBlock';
       }
     | {
-        position?: ('default' | 'fullscreen') | null;
+        imgPosition?: ('default' | 'left' | 'right' | 'fullscreen') | null;
         media: number | Media;
         id?: string | null;
         blockName?: string | null;
@@ -1008,7 +1066,9 @@ export interface Teammate {
   profilePic: number | Media;
   jobTitle: string;
   profileIntroduction: string;
-  bio: string;
+  bioParagraph: {
+    [k: string]: unknown;
+  }[];
   strengths: string;
   yearsOfExperience: number;
   rank: number;
@@ -1063,6 +1123,7 @@ export interface Listing {
   longitude: number;
   isPriceNegotiable: boolean;
   price?: number | null;
+  rentalPrice?: number | null;
   paymentFrequency?: ('oneTime' | 'dollarPerSqPerYear' | 'monthly' | 'yearly') | null;
   agents?: (number | Teammate)[] | null;
   listingFlyer?: number | Media | null;
@@ -1180,7 +1241,7 @@ export interface Listing {
         blockType: 'content';
       }
     | {
-        position?: ('default' | 'fullscreen') | null;
+        imgPosition?: ('default' | 'left' | 'right' | 'fullscreen') | null;
         media: number | Media;
         id?: string | null;
         blockName?: string | null;
@@ -1489,7 +1550,7 @@ export interface Service {
         blockType: 'content';
       }
     | {
-        position?: ('default' | 'fullscreen') | null;
+        imgPosition?: ('default' | 'left' | 'right' | 'fullscreen') | null;
         media: number | Media;
         id?: string | null;
         blockName?: string | null;

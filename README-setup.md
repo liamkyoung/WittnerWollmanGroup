@@ -39,7 +39,7 @@ Prerendering errors
 - DO Set `NODE_ENV=development`, can cause csp errors
 - for prod, docker needs to have lkycode.com
 - use yarn only for building -- npm can cause versioning errors between drizzle orm and payload
-
+- Make sure env variables are updated across docker, local, prod
 
 ### NGINX Configuration
 ```server {

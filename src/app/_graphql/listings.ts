@@ -91,8 +91,8 @@ query Listings($slug: String) {
 // Must have agentId input as an array (ex: { "agentIds": [2] })
 // TODO: ADD BACK ADDRESS
 export const LISTINGBYAGENT = `
-query ListingsByAgents($agentIds: [JSON]!, $limit: Int = 300) {
-  Listings(limit: $limit, where: { agent: { in: $agentIds } }) {
+query ListingsByAgents($agentIds: [JSON]!, $limit: Int = 100) {
+  Listings(limit: $limit, where: { agents: { in: $agentIds } }) {
     docs {
       id
       slug

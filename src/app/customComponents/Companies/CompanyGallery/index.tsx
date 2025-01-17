@@ -49,7 +49,7 @@ export const CompanyGallery = ({ companies, displayHeader = 'no' }: Props) => {
         <h2 className="text-center mb-12">Companies We&apos;ve Helped</h2>
       )}
       <div className="global-margin-x">
-        <Marquee className="" speed={150} gradient gradientColor="#f9fafb">
+        <Marquee speed={150} gradient gradientColor="#f9fafb">
           {companies?.map((c, i) => (
             <CompanyComponent doc={c} key={i} />
           ))}

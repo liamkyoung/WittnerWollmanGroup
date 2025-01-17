@@ -17,8 +17,8 @@ ENV NODE_ENV=production
 ENV PAYLOAD_CONFIG_PATH=dist/payload.config.js
 
 # Docker on Prod
-ENV PAYLOAD_PUBLIC_SERVER_URL=https://lkycode.com
-ENV NEXT_PUBLIC_SERVER_URL=https://lkycode.com
+ENV PAYLOAD_PUBLIC_SERVER_URL=https://wittnerwollman.com
+ENV NEXT_PUBLIC_SERVER_URL=https://wittnerwollman.com
 
 RUN yarn build:payload
 RUN yarn build:server

@@ -45,7 +45,7 @@ export default async function Page({ params: { slug } }) {
 
   const {
     title,
-    bio,
+    bioParagraph,
     profilePic,
     profileIntroduction,
     strengths,
@@ -72,7 +72,7 @@ export default async function Page({ params: { slug } }) {
             strength={strengths}
           />
           <ContactAndBio
-            bio={bio}
+            bio={bioParagraph}
             email={email}
             phoneNumber={phoneNumber}
             officeNumber={officeNumber}

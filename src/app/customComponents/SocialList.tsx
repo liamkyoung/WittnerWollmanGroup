@@ -29,7 +29,7 @@ function SocialList({
   colorScheme = ColorScheme.DEFAULT,
 }: Props) {
   return (
-    <div className="flex flex-col items-center lg:items-start gap-8 mx-auto">
+    <div className="flex flex-col items-start gap-8 mx-auto">
       <Email emailAddress={email} show colorScheme={colorScheme} />
       <Phone phoneNumber={phoneNumber} show colorScheme={colorScheme} />
       <OfficePhone phoneNumber={officeNumber} show colorScheme={colorScheme} />

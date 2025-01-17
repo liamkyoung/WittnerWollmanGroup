@@ -36,14 +36,13 @@ export default async function News({ params: { slug } }) {
 
   return (
     <div className="">
-      <div className="global-margin-x global-margin-y">
+      <div className="global-margin-x my-16">
         <Link href={NewsLink.relLink}>
           <h6 className="text-gray-800 hidden xl:block">News /</h6>
         </Link>
         <PostHero post={post} />
+        <Blocks blocks={layout} />
       </div>
-
-      <Blocks blocks={layout} />
     </div>
   )
 }

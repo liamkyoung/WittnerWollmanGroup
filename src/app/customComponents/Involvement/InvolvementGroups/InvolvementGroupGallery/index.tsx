@@ -12,7 +12,7 @@ export const InvolvementGroupGallery = ({ groups, displayHeader = 'yes' }: Props
     <div className="my-24">
       <div className="w-full h-full mt-16">
         <div className="global-margin-x space-y-16">
-          {displayHeader === 'yes' && <h2 className="text-center lg:text-left">Our Involvement</h2>}
+          {displayHeader === 'yes' && <h2 className="text-center sm:text-left">Our Involvement</h2>}
           <div className="grid sm:grid-cols-2 xl:grid-cols-4 lg:place-items-start place-items-center gap-16">
             {groups.map(g => (
               <InvolvementGroupCard doc={g} key={g.id} />

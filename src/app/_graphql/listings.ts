@@ -42,6 +42,7 @@ query Listings($slug: String) {
         bedCount
         isPriceNegotiable
         price
+        rentalPrice
         paymentFrequency
         listingType
         ${LISTING_FLYER}
@@ -98,13 +99,20 @@ query ListingsByAgents($agentIds: [JSON]!, $limit: Int = 100) {
       slug
       title
       streetAddress
+      propertyTypes
+      propertySubtype
       latitude
       longitude
       propertyTypes
       sqFt
+      sqFtLand
+      paymentFrequency
+      sqFtLot
       bathroomCount
       bedCount
       price
+      rentalPrice
+      isPriceNegotiable
       ${COVERIMAGE}
     }
   }

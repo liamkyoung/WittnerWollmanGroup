@@ -24,7 +24,7 @@ export const CONTENT = `
 export const MEDIA_BLOCK = `
 ...on MediaBlock {
   blockType
-  mediaPosition: position
+  imgPosition
   ${MEDIA}
 }
 `

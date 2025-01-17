@@ -17,7 +17,7 @@ export const TeammateGallery = ({ teammates, displayHeader = 'no' }: Props) => {
       <div className="global-margin-x">
         {displayHeader === 'yes' && (
           <div className="bg-wwRed pt-24">
-            <h2 className="text-white text-center">The Wittner Wollman Group</h2>
+            <h2 className="text-white text-center sm:text-left">The Wittner Wollman Group</h2>
           </div>
         )}
         <div className="bg-wwRed place-items-center lg:place-items-start grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-24 py-24">

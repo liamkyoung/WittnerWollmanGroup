@@ -14,18 +14,21 @@ export const DefaultHero: React.FC<Page['hero']> = ({ richText, media, links, he
   return (
     <div className="grid xl:grid-cols-2 place-items-center py-16">
       <div className="global-margin-x sm:mt-24">
-        <div className="text-center xl:text-left">
+        <div>
           {headerText && <h1 className="mb-10">{headerText}</h1>}
-          <RichText content={richText} className="mb-8" />
+          <RichText content={richText} className="" />
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-8 items-center justify-center xl:justify-start">
+        <div className="flex flex-col sm:flex-row gap-8 sm:items-center justify-center xl:justify-start mt-8">
           <div>
-            <Link href={ContactLink.relLink} className="btn-primary block text-center">
+            <Link
+              href={ContactLink.relLink}
+              className="btn-primary whitespace-nowrap block max-w-min"
+            >
               SEND US A MESSAGE
             </Link>
           </div>
-          <div className="flex items-center gap-2 sm:border-l-2 border-wwRed sm:pl-8 border-t-2 sm:border-t-0 pt-4 sm:pt-0">
+          <div className="flex items-center gap-2 sm:border-l-2 border-wwRed sm:pl-8 border-t-2 sm:border-t-0 pt-4 sm:pt-0 w-48">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"

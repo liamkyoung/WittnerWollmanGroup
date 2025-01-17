@@ -37,14 +37,14 @@ export const FullscreenHero: React.FC<Page['hero']> = ({
           }  flex flex-col h-full justify-center md:space-y-16 space-y-4 global-margin-x`}
         >
           <div
-            className={`space-y-8 text-center ${
+            className={`space-y-8  ${
               !centeredText && 'lg:text-left'
             } opacity-100 md:opacity-0 group-hover:opacity-100 transition-opacity`}
           >
-            <h1 className="md:font-normal text-white text-2xl sm:text-3xl font-semibold md:text-5xl lg:text-6xl">
+            <h1 className="md:font-normal text-white text-3xl sm:text-3xl font-semibold md:text-5xl lg:text-6xl">
               {headerText}
             </h1>
-            <div className="overflow-y-scroll max-h-64 xl:max-h-96 no-scrollbar">
+            <div className="overflow-y-scroll max-h-64 sm:max-h-96 no-scrollbar">
               <RichText
                 content={richText}
                 className={`md:text-lg font-medium ${!centeredText && 'lg:w-full'} text-sm`}
@@ -54,9 +54,7 @@ export const FullscreenHero: React.FC<Page['hero']> = ({
           </div>
 
           <div
-            className={`opacity-100 md:opacity-0 group-hover:opacity-100 transition-opacity space-x-4 mt-4 sm:mt-0 mx-auto lg:mx-0 text-center ${
-              !centeredText && 'sm:text-left'
-            }`}
+            className={`flex gap-4 opacity-100 md:opacity-0 group-hover:opacity-100 transition-opacity`}
           >
             {links &&
               links.map((l, i) => {

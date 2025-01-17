@@ -1,6 +1,7 @@
 import type { CollectionConfig } from 'payload/types'
 
 import { TeamLinks } from '../../../globalData/navigation/about/about'
+import richText from '../../../payload/fields/richText'
 import { slugField } from '../../../payload/fields/slug'
 // import { formatSocialMediaHandle } from '../../../payload/hooks/formatSocialMediaHandle'
 import { admins } from '../../access/admins'
@@ -63,11 +64,10 @@ export const Teammates: CollectionConfig = {
               type: 'textarea',
               required: true,
             },
-            {
-              name: 'bio',
-              type: 'textarea',
+            richText({
+              name: 'bioParagraph',
               required: true,
-            },
+            }),
             {
               name: 'strengths',
               label: 'Specializtion',

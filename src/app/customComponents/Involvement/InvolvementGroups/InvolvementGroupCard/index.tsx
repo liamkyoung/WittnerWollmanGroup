@@ -29,12 +29,12 @@ export const InvolvementGroupCard: React.FC<{
               {highlight && (
                 <div className="flex items-center gap-2">
                   <div className="inline-flex gap-2">
-                    <div className="p-2 rounded-full bg-wwRed">
+                    <div className="p-1 rounded-full bg-wwRed">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
                         fill="currentColor"
-                        className="size-5 text-white"
+                        className="size-4 text-white"
                       >
                         <path
                           fillRule="evenodd"
@@ -62,12 +62,12 @@ export const InvolvementGroupCard: React.FC<{
             {highlight && (
               <div className="flex items-center gap-2">
                 <div className="inline-flex gap-2">
-                  <div className="p-2 rounded-full bg-wwRed">
+                  <div className="p-1 rounded-full bg-wwRed">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 24 24"
                       fill="currentColor"
-                      className="size-5 text-white"
+                      className="size-4 text-white"
                     >
                       <path
                         fillRule="evenodd"

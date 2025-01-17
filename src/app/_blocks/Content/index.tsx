@@ -17,8 +17,8 @@ export const ContentBlock: React.FC<
   const { columns } = props
 
   return (
-    <Gutter className={classes.content}>
-      <div className={classes.grid}>
+    <Gutter className={''}>
+      <div className={`${classes.grid}`}>
         {columns &&
           columns.length > 0 &&
           columns.map((col, index) => {

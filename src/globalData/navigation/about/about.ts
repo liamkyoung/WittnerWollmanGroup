@@ -7,7 +7,7 @@ export const TeamLinks: NavGrouping = {
 }
 
 export const InvolvementLinks: NavGrouping = {
-  title: 'Our Involvement',
+  title: 'Community Involvement',
   relLink: '/involvement',
 }
 

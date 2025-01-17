@@ -55,7 +55,7 @@ export const Services: CollectionConfig = {
               name: 'shortDescription',
               label: 'Short Description',
               type: 'textarea',
-              required: true,
+              required: false,
             },
           ],
         },

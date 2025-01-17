@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 
 import { GoogleMapPin, SortListingsEnum } from '../../../app/types/viewmodels'
+import { PropertyTypes } from '../../../payload/collections/Listings'
 import { Listing, Media, Teammate } from '../../../payload/payload-types'
 import { GoogleMap } from '../GoogleMap/GoogleMap'
 import { ListingCard } from './index'
@@ -99,6 +100,11 @@ export const ListingGallery = ({ listings, displayHeader }: Props) => {
   const [selectedAgents, setSelectedAgents] = useState<Map<string, boolean>>(
     new Map([
       ['All', true],
+      ['Kyla Flesher', false],
+      ['Gregg Rossman', false],
+      ['Marlee Wittner', false],
+      ['Wayne Tubel', false],
+      ['Nicole Potts Hart', false],
       ['Jon Wittner', false],
       ['Jay Wittner', false],
       ['Justine Fite', false],
@@ -109,14 +115,15 @@ export const ListingGallery = ({ listings, displayHeader }: Props) => {
   )
 
   const [selectedPropertyTypes, setSelectedPropertyTypes] = useState<Map<string, boolean>>(
-    new Map([
-      ['All', true],
-      ['shoppingCenter', false],
-      ['bizOpportunity', false],
-      ['multiFamily', false],
-      ['office', false],
-      ['mixedUse', false],
-    ]),
+    new Map(
+      [
+        { label: 'All', value: 'All' }, // Add "All" to the array
+        ...PropertyTypes,
+      ]
+        .sort((a, b) =>
+          a.value === 'All' ? -1 : b.value === 'All' ? 1 : a.value.localeCompare(b.value),)
+        .map(({ value }) => [value, value === 'All']), // Map values to entries, setting "All" to true
+    ),
   )
 
   const sorted = sortListings(listings, sortType)

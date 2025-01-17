@@ -271,28 +271,31 @@ export const CollectionArchive: React.FC<Props> = props => {
         <Gutter>
           {/* Rendering Proper Showcases for Each Item */}
           {renderGallery()}
-          <div className={classes.grid}>
-            {/* {results.docs?.map((result, index) => {
-              if (typeof result === 'object' && result !== null) {
-                switch (relationTo) {
-                  default:
-                    return <></>
-                }
-              }
-
-              return null
-            })} */}
-          </div>
-          {results.totalPages > 1 && populateBy !== 'selection' && (
-            <Pagination
-              className={classes.pagination}
-              onClick={setPage}
-              page={results.page}
-              totalPages={results.totalPages}
-            />
-          )}
         </Gutter>
       </Fragment>
     </div>
   )
 }
+
+// TODO: ADD BACK PAGINATION AND OTHER STUFF
+
+// <div className={classes.grid}>
+//             {/* {results.docs?.map((result, index) => {
+//               if (typeof result === 'object' && result !== null) {
+//                 switch (relationTo) {
+//                   default:
+//                     return <></>
+//                 }
+//               }
+
+//               return null
+//             })} */}
+//           </div>
+//           {/* {results.totalPages > 1 && populateBy !== 'selection' && (
+//             <Pagination
+//               className={classes.pagination}
+//               onClick={setPage}
+//               page={results.page}
+//               totalPages={results.totalPages}
+//             />
+//           )} */}

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 
 import { DefaultSocials } from '../../../globalData/general'
-import { Page, Project } from '../../../payload/payload-types'
+import { Media, Page, Project } from '../../../payload/payload-types'
 
 import { fetchDocs } from '@/app/_api/fetchDocs'
 import RichText from '@/app/_components/RichText'
@@ -14,16 +14,23 @@ import { ContactLink } from '@/globalData/navigation/contact/contact'
 async function getProjectPins() {
   try {
     const projects = await fetchDocs<Project>('projects')
-    let pins: GoogleMapPin[] = projects?.map(({ slug, title, latitude, longitude }) => {
-      return { name: title, slug: slug, coords: { lat: latitude, lng: longitude } }
+    let pins: GoogleMapPin[] = projects?.map(({ slug, title, latitude, longitude, meta }) => {
+      return {
+        name: title,
+        slug: slug,
+        coords: { lat: latitude, lng: longitude },
+        coverImg: meta?.image as Media,
+      }
     })
+    // console.log('Project Pins: ', pins) // eslint-disable-line no-console
     return pins
   } catch (error) {
+    // console.error('Error fetching projects: ', error) // eslint-disable-line no-console
     return []
   }
 }
 
-export const ProjectHero: React.FC<Page['hero']> = ({ richText, media, links, headerText }) => {
+export const ProjectHero: React.FC<Page['hero']> = ({ richText }) => {
   const [pins, setPins] = useState<GoogleMapPin[]>()
   useEffect(() => {
     const fetchData = async () => {
@@ -37,10 +44,10 @@ export const ProjectHero: React.FC<Page['hero']> = ({ richText, media, links, he
   return (
     <div className="grid lg:grid-cols-2 grid-cols-1 lg:gap-0 gap-16 lg:mt-16">
       <div className="mt-24 pl-0 lg:pl-16 sm:pl-10 md:pl-20 xl:pl-36 text-center sm:text-start">
-        <h1 className="mb-10">Our Projects</h1>
-        <p className="mb-8 w-full md:w-5/6 xl:w-3/4">
+        <h1 className="mb-10">Featured Deals</h1>
+        <div className="mb-8 w-full md:w-5/6 xl:w-3/4">
           <RichText content={richText} />
-        </p>
+        </div>
 
         <div className="flex flex-col sm:flex-row gap-8 justify-center items-center sm:justify-normal w-5/6 mx-auto sm:mx-0">
           <div>

@@ -29,28 +29,18 @@ export const CommunityResourceGallery = ({ communityResources, displayHeader = '
       selected: true,
     },
     {
-      label: 'Exercise',
-      shorthand: 'ex',
+      label: 'Bars & Breweries',
+      shorthand: 'bb',
       selected: false,
     },
     {
-      label: 'Enrichment',
-      shorthand: 'en',
+      label: 'Coffee',
+      shorthand: 'cof',
       selected: false,
     },
     {
-      label: 'Government',
-      shorthand: 'gov',
-      selected: false,
-    },
-    {
-      label: 'Entertainment',
-      shorthand: 'ent',
-      selected: false,
-    },
-    {
-      label: 'Parks and Rec',
-      shorthand: 'pr',
+      label: 'Dining',
+      shorthand: 'din',
       selected: false,
     },
     {
@@ -59,13 +49,23 @@ export const CommunityResourceGallery = ({ communityResources, displayHeader = '
       selected: false,
     },
     {
-      label: 'Realtor Resources',
-      shorthand: 'rr',
+      label: 'Entertainment',
+      shorthand: 'ent',
       selected: false,
     },
     {
-      label: 'Dining',
-      shorthand: 'din',
+      label: 'Exercise',
+      shorthand: 'ex',
+      selected: false,
+    },
+    {
+      label: 'Parks and Rec',
+      shorthand: 'pr',
+      selected: false,
+    },
+    {
+      label: 'Realtor Resources',
+      shorthand: 'rr',
       selected: false,
     },
     {
@@ -81,7 +81,8 @@ export const CommunityResourceGallery = ({ communityResources, displayHeader = '
   ])
 
   const sortedResources = communityResources.sort((a, b) =>
-    a.title?.toLowerCase().localeCompare(b.title?.toLowerCase()),)
+    a.title?.toLowerCase().localeCompare(b.title?.toLowerCase()),
+  )
 
   const findOptionByShorthand = (sh: string) => options.find(o => o.shorthand === sh)
 

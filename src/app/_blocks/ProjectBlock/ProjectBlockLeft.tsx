@@ -85,7 +85,7 @@ function ProjectBlockLeft({
           </div>
         </div>
         {facts && facts.length > 0 && (
-          <div className={`hidden 2xl:flex gap-4 absolute top-48 ${bgColor} p-4`}>
+          <div className={`hidden 2xl:flex gap-4 ${bgColor} p-4`}>
             {facts.map((f, i) => (
               <ProjectStat
                 colorScheme={colorScheme}
@@ -99,7 +99,7 @@ function ProjectBlockLeft({
 
         <p
           className={`mb-10 pt-8 md:pt-4 ${
-            facts && facts.length > 0 && '2xl:mt-48'
+            facts && facts.length > 0 && '2xl:mt-8'
           } ${textColor} text-center lg:text-left`}
         >
           {description}
@@ -119,16 +119,15 @@ function ProjectBlockLeft({
           </div>
         )}
         {links && (
-          <div className="flex items-center justify-center lg:block pb-0 lg:py-8">
+          <div className="flex flex-col lg:justify-start justify-center sm:flex-row items-center gap-4 py-8">
             {links.map((l, i) => (
-              <CMSLink className={`${buttonStyle}`} {...l.link} key={i} />
+              <CMSLink className={`${buttonStyle}`} {...l.link} key={l.id || i} />
             ))}
           </div>
         )}
       </div>
       <Media
         resource={image}
-        alt="property image"
         imgClassName="sm:w-full max-h-96 lg:max-h-none lg:h-full object-cover"
       />
     </div>

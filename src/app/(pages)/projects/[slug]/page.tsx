@@ -3,7 +3,7 @@ import { Metadata } from 'next'
 import { draftMode } from 'next/headers'
 import { notFound } from 'next/navigation'
 
-import { Project } from '../../../../payload/payload-types'
+import { Media, Project } from '../../../../payload/payload-types'
 import { fetchDoc } from '../../../_api/fetchDoc'
 import { fetchDocs } from '../../../_api/fetchDocs'
 import { RelatedPosts } from '../../../_blocks/RelatedPosts'
@@ -34,12 +34,12 @@ export default async function Project({ params: { slug } }) {
     notFound()
   }
 
-  const { layout, title, latitude, longitude } = project
+  const { layout, title, latitude, longitude, meta } = project
 
   const pin: GoogleMapPin = {
     name: title,
     coords: { lat: latitude, lng: longitude },
-    coverImg: null,
+    coverImg: meta?.image as Media,
     slug: slug,
   }
 

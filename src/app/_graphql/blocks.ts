@@ -91,6 +91,7 @@ export const STAT_BLOCK = `
   blockType
   title
   description
+  ${BACKGROUND_IMAGE}
   facts {
     factStat
     factDescription

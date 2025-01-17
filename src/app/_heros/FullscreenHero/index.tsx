@@ -37,18 +37,20 @@ export const FullscreenHero: React.FC<Page['hero']> = ({
           }  flex flex-col h-full justify-center md:space-y-16 space-y-4 global-margin-x`}
         >
           <div
-            className={`space-y-4 text-center ${
+            className={`space-y-8 text-center ${
               !centeredText && 'lg:text-left'
             } opacity-100 md:opacity-0 group-hover:opacity-100 transition-opacity`}
           >
             <h1 className="md:font-normal text-white text-2xl sm:text-3xl font-semibold md:text-5xl lg:text-6xl">
               {headerText}
             </h1>
-            <RichText
-              content={richText}
-              className={`md:text-lg font-medium ${!centeredText && 'lg:w-full'} text-sm`}
-              textColor="text-white"
-            />
+            <div className="overflow-y-scroll max-h-64 xl:max-h-96 no-scrollbar">
+              <RichText
+                content={richText}
+                className={`md:text-lg font-medium ${!centeredText && 'lg:w-full'} text-sm`}
+                textColor="text-white"
+              />
+            </div>
           </div>
 
           <div
@@ -74,7 +76,7 @@ export const FullscreenHero: React.FC<Page['hero']> = ({
           </div>
         </div>
         {/* Black overlay */}
-        <div className="bg-wwBlack absolute inset-0 z-10 opacity-80 md:opacity-0 group-hover:opacity-80 transition-opacity pointer-events-none"></div>
+        <div className="bg-wwBlack absolute inset-0 z-10 opacity-90 md:opacity-0 group-hover:opacity-90 transition-opacity pointer-events-none"></div>
 
         {/* Media (image or video) */}
         <Media

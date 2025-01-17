@@ -29,10 +29,10 @@ export const PostHero: React.FC<{
         {/* <p className={classes.meta}>{publishedAt && <p>{formatDateTime(publishedAt)}</p>}</p> */}
         <div className={classes.media}>
           <div className={classes.mediaWrapper}>
-            {!metaImage && <div className={classes.placeholder}>No image</div>}
+            {!metaImage && <div>No image</div>}
             {metaImage && typeof metaImage !== 'string' && (
               <Media
-                imgClassName="object-fit-cover w-3/4 my-auto mx-auto min-w-64"
+                imgClassName="object-cover w-3/4 my-auto mx-auto min-w-64"
                 resource={metaImage as MediaType}
               />
             )}

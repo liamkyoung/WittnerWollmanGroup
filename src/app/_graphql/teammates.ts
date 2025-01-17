@@ -5,6 +5,7 @@ export const TEAMMATES = `
   query Teammates {
     Teammates(limit: 300) {
       docs {
+        id
         title
         slug
       }

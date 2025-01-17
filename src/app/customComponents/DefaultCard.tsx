@@ -61,7 +61,7 @@ function DefaultCard({
         {!textOnRight ? (
           <div className={`max-w-${width}`}>
             <div className="relative">
-              <Media resource={image} imgClassName={'size-64 object-contain'} />
+              <Media resource={image} imgClassName={'size-64 object-cover'} />
               {accentText && (
                 <div className="bg-gray-50 absolute -bottom-1 -left-1 p-3 rounded-md">
                   <p className="text-wwRed font-bold">{accentText}</p>

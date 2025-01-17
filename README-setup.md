@@ -30,6 +30,8 @@
   - `docker build -t liamyoung/ww-webapp:2.23 --platform linux/amd64 .`
 3. Pushing Docker Image
   - `docker push liamyoung/ww-webapp:2.23`
+4. Pulling Docker Image
+  - `docker pull liamyoung/ww-webapp:2.4`
 
 ### Common Errors:
 Prerendering errors

@@ -106,7 +106,7 @@ export const Projects: CollectionConfig = {
               name: 'price',
               label: 'Price (in USD)',
               type: 'text',
-              required: true,
+              required: false,
             },
             {
               name: 'agents', // required

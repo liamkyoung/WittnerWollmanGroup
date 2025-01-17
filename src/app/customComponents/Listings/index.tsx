@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { Listing, Media as MediaType } from '../../../payload/payload-types'
 import { Media } from '../../_components/Media'
 import { formatDollarAmount } from '../../_utilities/formatDollarAmount'
+import { formatListingType, formatPaymentFrequency } from '../../_utilities/propertyTypeFormatter'
 import CardInfo from '../CardInfo'
 
 import { ListingLinks } from '@/globalData/navigation/listings/listings'
@@ -28,6 +29,8 @@ export const ListingCard: React.FC<{
     coverImage,
     price,
     isPriceNegotiable,
+    listingType,
+    paymentFrequency,
   } = doc || {}
   const { description, image: metaImage } = meta || {}
 
@@ -51,7 +54,14 @@ export const ListingCard: React.FC<{
       <Link href={href}>
         <div className="relative">
           <div className="bg-gray-50 absolute -bottom-1 -left-1 p-3 rounded-md">
-            <p className="text-wwRed font-bold">{accentText}</p>
+            {accentText && (
+              <span className="text-wwRed font-bold">
+                {accentText} {formatPaymentFrequency(paymentFrequency)}
+              </span>
+            )}
+            {listingType && (
+              <span className="text-wwBlack font-medium"> | {formatListingType(listingType)}</span>
+            )}
           </div>
           {!coverImage && <div className={``}>No image</div>}
           {coverImage && typeof coverImage !== 'string' && (

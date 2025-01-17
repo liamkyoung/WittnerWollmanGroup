@@ -56,5 +56,11 @@ export const StatBlock: Block = {
         },
       ],
     },
+    {
+      name: 'bgImage',
+      type: 'upload',
+      relationTo: 'media',
+      label: 'Background Image',
+    },
   ],
 }

@@ -22,10 +22,10 @@ export const ProjectCard: React.FC<{
   return (
     <DefaultCard
       title={title}
-      accentText={formatDollarAmount(price)}
       description={limitedDescription}
       link={href}
       image={metaImage as Media}
+      squareImage
     />
   )
 }

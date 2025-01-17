@@ -46,7 +46,7 @@ type ListingFeaturesProps = {
   sewer?: string
   internet?: string
   hasParking?: boolean
-  parkingSpots?: number
+  parkingDescription?: string
   buildingClass?: string
   sqFtLot?: number
 }
@@ -80,7 +80,7 @@ function Features({
   sewer,
   internet,
   hasParking,
-  parkingSpots,
+  parkingDescription,
   buildingClass,
   sqFtLot,
 }: ListingFeaturesProps) {
@@ -114,7 +114,7 @@ function Features({
     { label: 'Waste', description: waste },
     { label: 'Internet', description: internet },
     { label: 'Parking', description: hasParking ? 'Yes' : 'No' },
-    { label: 'Parking Spots', description: hasParking ? parkingSpots : null },
+    { label: 'Parking Spots', description: hasParking ? parkingDescription : null },
   ].filter(f => f.description)
 
   const listLength =

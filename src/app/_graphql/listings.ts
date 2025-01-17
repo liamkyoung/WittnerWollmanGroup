@@ -51,6 +51,7 @@ query Listings($slug: String) {
         yearRenovated
         overview
         areaOverview
+        fullDescription
         tenancyType
         occupancy
         zoningType
@@ -67,7 +68,7 @@ query Listings($slug: String) {
         internet
         lighting
         hasParking
-        parkingSpots
+        parkingDescription
         ${LISTING_AGENT}
         ${COVERIMAGE}
         imageGallery {

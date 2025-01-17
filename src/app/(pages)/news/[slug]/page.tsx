@@ -32,7 +32,7 @@ export default async function News({ params: { slug } }) {
     notFound()
   }
 
-  const { layout, enablePremiumContent } = post
+  const { layout } = post
 
   return (
     <div className="">

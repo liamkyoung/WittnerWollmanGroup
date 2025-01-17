@@ -301,6 +301,7 @@ export interface Page {
         description?: string | null;
         facts?: FactsList;
         bgColor?: ('white' | 'red') | null;
+        bgImage?: number | Media | null;
         id?: string | null;
         blockName?: string | null;
         blockType: 'statBlock';
@@ -761,7 +762,7 @@ export interface Project {
   neighborhood?: string | null;
   latitude?: number | null;
   longitude?: number | null;
-  price: string;
+  price?: string | null;
   agents?: (number | Teammate)[] | null;
   slider?: CardSlider;
   website?: string | null;
@@ -979,6 +980,7 @@ export interface Project {
         description?: string | null;
         facts?: FactsList;
         bgColor?: ('white' | 'red') | null;
+        bgImage?: number | Media | null;
         id?: string | null;
         blockName?: string | null;
         blockType: 'statBlock';
@@ -1050,7 +1052,7 @@ export interface Listing {
   id: number;
   title: string;
   address: string;
-  listingType?: ('forSale' | 'lease') | null;
+  listingType?: ('forSale' | 'lease' | 'forSaleLease') | null;
   streetAddress: string;
   neighborhood?: string | null;
   city: string;
@@ -1122,6 +1124,9 @@ export interface Listing {
   bathroomCount?: number | null;
   overview: string;
   areaOverview?: string | null;
+  fullDescription: {
+    [k: string]: unknown;
+  }[];
   zoningType?: ('C' | 'r' | 'i') | null;
   buildingClass?: ('A' | 'B' | 'C') | null;
   tenancyType?: ('Single Tenant' | 'Multi-Tenant') | null;
@@ -1143,7 +1148,7 @@ export interface Listing {
   internet?: ('n/a' | 'yes' | 'no') | null;
   lighting?: ('n/a' | 'yes' | 'no') | null;
   hasParking?: boolean | null;
-  parkingSpots?: number | null;
+  parkingDescription?: string | null;
   layout: (
     | {
         invertBackground?: boolean | null;
@@ -1342,6 +1347,7 @@ export interface Listing {
         description?: string | null;
         facts?: FactsList;
         bgColor?: ('white' | 'red') | null;
+        bgImage?: number | Media | null;
         id?: string | null;
         blockName?: string | null;
         blockType: 'statBlock';
@@ -1650,6 +1656,7 @@ export interface Service {
         description?: string | null;
         facts?: FactsList;
         bgColor?: ('white' | 'red') | null;
+        bgImage?: number | Media | null;
         id?: string | null;
         blockName?: string | null;
         blockType: 'statBlock';

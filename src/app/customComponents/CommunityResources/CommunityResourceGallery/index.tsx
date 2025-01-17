@@ -81,8 +81,7 @@ export const CommunityResourceGallery = ({ communityResources, displayHeader = '
   ])
 
   const sortedResources = communityResources.sort((a, b) =>
-    a.title?.toLowerCase().localeCompare(b.title?.toLowerCase()),
-  )
+    a.title?.toLowerCase().localeCompare(b.title?.toLowerCase()),)
 
   const findOptionByShorthand = (sh: string) => options.find(o => o.shorthand === sh)
 

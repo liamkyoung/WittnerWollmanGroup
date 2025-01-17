@@ -522,6 +522,7 @@ export const Listings: CollectionConfig = {
             richText({
               name: 'fullDescription',
               label: 'Full Property Description',
+              required: false,
             }),
             {
               name: 'zoningType',

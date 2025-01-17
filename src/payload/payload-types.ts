@@ -1124,9 +1124,11 @@ export interface Listing {
   bathroomCount?: number | null;
   overview: string;
   areaOverview?: string | null;
-  fullDescription: {
-    [k: string]: unknown;
-  }[];
+  fullDescription?:
+    | {
+        [k: string]: unknown;
+      }[]
+    | null;
   zoningType?: ('C' | 'r' | 'i') | null;
   buildingClass?: ('A' | 'B' | 'C') | null;
   tenancyType?: ('Single Tenant' | 'Multi-Tenant') | null;
@@ -1425,7 +1427,7 @@ export interface Company {
 export interface Service {
   id: number;
   title: string;
-  shortDescription: string;
+  shortDescription?: string | null;
   hero: {
     type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact' | 'default' | 'fullscreen' | 'projectHero';
     centeredText: boolean;

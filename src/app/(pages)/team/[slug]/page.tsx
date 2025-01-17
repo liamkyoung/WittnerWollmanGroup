@@ -2,7 +2,6 @@ import React from 'react'
 import { Metadata } from 'next'
 import { draftMode } from 'next/headers'
 import { notFound } from 'next/navigation'
-import payload from 'payload'
 
 import {
   CommunityResource,
@@ -18,6 +17,8 @@ import { generateTeammateMetadata } from '../../../_utilities/generateMeta'
 import ContactAndBio from './ContactAndBio'
 import TeammateHeader from './TeammateHeader'
 
+import { fetchListingsByAgent } from '@/app/_api/fetchListingsByAgent'
+import { fetchProjectsByAgent } from '@/app/_api/fetchProjectsByAgent'
 import { CommunityResourceCard } from '@/app/customComponents/CommunityResources/CommunityResourceCard'
 import { ListingGallery } from '@/app/customComponents/Listings/ListingGallery'
 import { ProjectGallery } from '@/app/customComponents/Projects/ProjectGallery'
@@ -25,8 +26,6 @@ import { ProjectGallery } from '@/app/customComponents/Projects/ProjectGallery'
 export default async function Page({ params: { slug } }) {
   const { isEnabled: isDraftMode } = draftMode()
   let teammate: Teammate | null = null
-  let listings: Listing[] | null = null
-  let projects: Project[] | null = null
 
   try {
     teammate = await fetchDoc<Teammate>({
@@ -38,13 +37,11 @@ export default async function Page({ params: { slug } }) {
     console.error(error) // eslint-disable-line no-console
   }
 
-  if (!teammate) {
-    notFound()
-  } else {
-    console.log('Teammate ID:', teammate.id)
-    listings = await getAgentListings(teammate.id)
-    projects = await getAgentProjects(teammate.id)
-  }
+  if (!teammate) return notFound()
+
+  // console.log('Teammate ID:', teammate.id)
+  const listings = await fetchListingsByAgent<Listing>([teammate.id.toString()])
+  const projects = await fetchProjectsByAgent<Project>([teammate.id.toString()], null, 8)
 
   const {
     title,
@@ -126,17 +123,14 @@ export default async function Page({ params: { slug } }) {
       </div>
     </>
   )
-  // return <div></div>
 }
 
 // TODO: Can Remove? Copied from Listings
 export async function generateStaticParams() {
   try {
     const teammates = await fetchDocs<Teammate>('teammates')
-    // console.log('team Members: ', teammates)
     return teammates?.map(({ slug }) => slug)
   } catch (error) {
-    // console.log("(Couldn't generate teammates)", error)
     return ['/']
   }
 }
@@ -155,48 +149,4 @@ export async function generateMetadata({ params: { slug } }): Promise<Metadata> 
   } catch (error) {}
 
   return generateTeammateMetadata({ doc: teammates })
-}
-
-async function getAgentListings(teammateId: number): Promise<Listing[] | null> {
-  let listings = null
-  // Next, fetch listings that reference the teammate in the 'agents' field
-  try {
-    listings = await payload.find({
-      collection: 'listings',
-      where: {
-        agents: {
-          contains: teammateId, // This filters listings by the agent's ID
-        },
-        _status: { equals: 'published' },
-      },
-    })
-  } catch (error) {
-    console.error('Error fetching listings:', error) // eslint-disable-line no-console
-    return null
-  }
-
-  // console.log('listings', listings) // eslint-disable-line no-console
-
-  return Array.isArray(listings?.docs) ? listings.docs : []
-}
-
-async function getAgentProjects(teammateId: number): Promise<Project[] | null> {
-  let projects = null
-  // Next, fetch listings that reference the teammate in the 'agents' field
-  try {
-    projects = await payload.find({
-      collection: 'projects',
-      where: {
-        agents: {
-          contains: teammateId, // This filters listings by the agent's ID
-        },
-        _status: { equals: 'published' },
-      },
-    })
-  } catch (error) {
-    console.error('Error fetching projects:', error) // eslint-disable-line no-console
-    return null
-  }
-
-  return Array.isArray(projects?.docs) ? projects.docs : []
 }

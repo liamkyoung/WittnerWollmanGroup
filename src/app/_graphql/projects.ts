@@ -66,3 +66,20 @@ export const PROJECT = `
 //   title
 //   ${META}
 // }
+
+// Must have agentId input as an array (ex: { "agentIds": [2] })
+// TODO: ADD BACK ADDRESS
+export const PROJECTS_BY_AGENT = `
+query ListingsByAgents($agentIds: [JSON]!, $limit: Int = 100) {
+  Projects(limit: $limit, where: { agents: { in: $agentIds } }) {
+    docs {
+      id
+      slug
+      title
+      latitude
+      longitude
+      ${META}
+    }
+  }
+}
+`

@@ -4,4 +4,4 @@ Crawl-delay: 5
 
 Allow: /
 Disallow: /admin/
-Sitemap: https://lkycode.com/sitemap.xml
+Sitemap: https://wittnerwollman.com/sitemap.xml

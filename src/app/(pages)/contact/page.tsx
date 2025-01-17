@@ -10,11 +10,6 @@ function Page() {
     <div className="global-margin-x my-24 overflow-hidden">
       <div className="w-full lg:w-3/4 space-y-8 mb-16 text-center lg:text-left">
         <h1>Send Us A Message!</h1>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam porttitor eros vel augue
-          pulvinar ultrices. Orci varius natoque penatibus et magnis dis parturient montes, nascetur
-          ridiculus mus.
-        </p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center justify-center mx-auto">

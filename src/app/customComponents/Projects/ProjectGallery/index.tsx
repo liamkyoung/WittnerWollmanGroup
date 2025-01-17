@@ -18,18 +18,18 @@ export const ProjectGallery = ({ projects, displayHeader = 'yes' }: Props) => {
         <div className="global-margin-x space-y-24 my-40">
           {displayHeader === 'yes' && (
             <div className="flex justify-center md:justify-between items-center">
-              <h2 className="text-center md:text-left">Previous Deals</h2>
+              <h2 className="text-center md:text-left">Featured Deals</h2>
               <div className="hidden md:block">
                 <Link className="btn-primary" href={ProjectLinks.relLink}>
-                  VIEW ALL PROJECTS
+                  VIEW MORE
                 </Link>
               </div>
             </div>
           )}
 
           <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 2xl:gap-16 3xl:gap-32 justify-items-center lg:justify-items-start">
-            {projects.map(p => (
-              <div key={p.id}>
+            {projects.map((p, index) => (
+              <div key={p.id || index}>
                 <ProjectCard doc={p} />
               </div>
             ))}
@@ -37,7 +37,7 @@ export const ProjectGallery = ({ projects, displayHeader = 'yes' }: Props) => {
 
           <div className="md:hidden flex justify-center">
             <Link className="btn-primary" href={ProjectLinks.relLink}>
-              VIEW ALL PROJECTS
+              VIEW MORE
             </Link>
           </div>
         </div>

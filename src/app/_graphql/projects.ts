@@ -18,6 +18,7 @@ export const PROJECTS = `
         title
         latitude
         longitude
+        ${META}
       }
     }
   }

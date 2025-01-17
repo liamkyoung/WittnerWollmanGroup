@@ -3,9 +3,7 @@ import { Metadata } from 'next'
 import { draftMode } from 'next/headers'
 import { notFound } from 'next/navigation'
 
-import { Blocks } from '../../../../app/_components/Blocks'
 import { ListingHero } from '../../../../app/_heros/ListingHero'
-import { formatDollarAmount } from '../../../../app/_utilities/formatDollarAmount'
 import PhotoGallery from '../../../../app/customComponents/Gallery/PhotoGallery'
 import ListingCTA from '../../../../app/customComponents/Listings/ListingCTA'
 import { Listing, Media, Teammate } from '../../../../payload/payload-types'
@@ -14,9 +12,8 @@ import { fetchDocs } from '../../../_api/fetchDocs'
 import { generateListingMetadata } from '../../../_utilities/generateMeta'
 import Features from './Features'
 
-import { CallToActionBlock } from '@/app/_blocks/CallToAction'
 import ProjectBlockLeft from '@/app/_blocks/ProjectBlock/ProjectBlockLeft'
-import { formatPropertyType } from '@/app/_utilities/propertyTypeFormatter'
+import RichText from '@/app/_components/RichText'
 import CTA from '@/app/customComponents/CTA'
 import { GoogleMap } from '@/app/customComponents/GoogleMap/GoogleMap'
 import { ColorScheme, GoogleMapPin } from '@/app/types/viewmodels'
@@ -77,12 +74,13 @@ export default async function Page({ params: { slug } }) {
     sewer,
     internet,
     hasParking,
-    parkingSpots,
+    parkingDescription,
     buildingClass,
     layout,
     listingFlyer,
     zillowLink,
     virtualTourLink,
+    fullDescription,
   } = listing
 
   const agent = agents && agents.length > 0 ? agents[0] : null
@@ -137,6 +135,13 @@ export default async function Page({ params: { slug } }) {
         </div>
       )}
 
+      {fullDescription && (
+        <div className="global-margin-x space-y-16 mb-24">
+          <h2>Property Description</h2>
+          <RichText content={fullDescription} className="" />
+        </div>
+      )}
+
       <div className="global-margin-x">
         <Features
           sqFtLand={sqFtLand}
@@ -164,7 +169,7 @@ export default async function Page({ params: { slug } }) {
           sewer={sewer}
           internet={internet}
           hasParking={hasParking}
-          parkingSpots={parkingSpots}
+          parkingDescription={parkingDescription}
         />
       </div>
 

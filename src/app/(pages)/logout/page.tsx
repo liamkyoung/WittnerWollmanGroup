@@ -1,5 +1,6 @@
 import React from 'react'
 import { Metadata } from 'next'
+import { notFound } from 'next/navigation'
 
 import { Settings } from '../../../payload/payload-types'
 import { fetchSettings } from '../../_api/fetchGlobals'
@@ -10,6 +11,7 @@ import { LogoutPage } from './LogoutPage'
 import classes from './index.module.scss'
 
 export default async function Logout() {
+  if (process.env.NODE_ENV === 'production') return notFound()
   let settings: Settings | null = null
 
   try {

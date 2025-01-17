@@ -1,7 +1,7 @@
 import type { NavGrouping } from '../../../app/types/viewmodels'
 
 export const ProjectLinks: NavGrouping = {
-  title: 'Our Projects',
+  title: 'Featured Deals',
   relLink: '/projects',
 }
 
@@ -16,7 +16,7 @@ export const TheFactoryLink: NavGrouping = {
 }
 
 export const Projects: NavGrouping = {
-  title: 'Projects',
+  title: 'Featured Deals',
   relLink: '/projects',
   subNavigation: [ReflectionLink, TheFactoryLink],
 }

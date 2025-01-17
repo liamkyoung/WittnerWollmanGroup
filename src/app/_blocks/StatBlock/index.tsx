@@ -1,8 +1,11 @@
 import React from 'react'
-import { StaticImageData } from 'next/image'
+import Image, { StaticImageData } from 'next/image'
 
-import { Page } from '../../../payload/payload-types'
+import { Media as MType, Page } from '../../../payload/payload-types'
+import BGImage from '../../assets/images/bg_backdrop.png'
 import { Stat } from '../../customComponents/Stat'
+
+import { Media } from '@/app/_components/Media'
 
 export type StatBlockProps = Extract<Page['layout'][0], { blockType: 'statBlock' }> & {
   staticImage?: StaticImageData
@@ -16,38 +19,75 @@ export type FactStat = {
 }
 
 export const StatBlock: React.FC<StatBlockProps> = props => {
-  const { title, description, facts } = props
+  const { title, description, facts, bgImage } = props
 
   return (
-    <div>
-      <div className="space-y-4 mb-16">
-        <h2>{title}</h2>
-        <p>{description}</p>
-      </div>
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 place-items-center global-space-x global-space-y">
-        {facts &&
-          facts?.map((f, i) => {
-            const bgIndex = i % 4
+    <div className="relative">
+      <div className="absolute z-10 w-full h-screen xl:h-auto mt-16">
+        <div className="global-margin-x py-0 lg:py-16">
+          <div className="flex flex-col xl:flex-row items-center xl:items-start justify-between gap-4 mb-16">
+            <h2 className="flex-1 text-center xl:text-left">{title}</h2>
+            <p className="text-center xl:text-right max-w-3xl">{description}</p>
+          </div>
 
-            switch (bgIndex) {
-              case 0:
-                return <Stat bgColor="bg-wwRed" title={f.factStat} descriptor={f.factDescription} />
-              case 1:
-                return (
-                  <Stat bgColor="bg-wwBlack" title={f.factStat} descriptor={f.factDescription} />
-                )
-              case 2:
-                return (
-                  <Stat bgColor="bg-wwLogoPink" title={f.factStat} descriptor={f.factDescription} />
-                )
-              case 3:
-                return (
-                  <Stat bgColor="bg-wwLogoRed" title={f.factStat} descriptor={f.factDescription} />
-                )
-              default:
-            }
-          })}
+          <div className="grid grid-cols-2 xl:grid-cols-4 gap-4 global-space-x global-space-y">
+            {facts &&
+              facts?.map((f, i) => {
+                const bgIndex = i % 4
+
+                switch (bgIndex) {
+                  case 0:
+                    return (
+                      <Stat bgColor="bg-wwRed" title={f.factStat} descriptor={f.factDescription} />
+                    )
+                  case 1:
+                    return (
+                      <Stat
+                        bgColor="bg-wwBlack"
+                        title={f.factStat}
+                        descriptor={f.factDescription}
+                      />
+                    )
+                  case 2:
+                    return (
+                      <Stat
+                        bgColor="bg-wwLogoPink"
+                        title={f.factStat}
+                        descriptor={f.factDescription}
+                      />
+                    )
+                  case 3:
+                    return (
+                      <Stat
+                        bgColor="bg-wwLogoRed"
+                        title={f.factStat}
+                        descriptor={f.factDescription}
+                      />
+                    )
+                  default:
+                }
+              })}
+          </div>
+        </div>
       </div>
+
+      {!bgImage ? (
+        <>
+          {' '}
+          <Image
+            src={BGImage}
+            alt="stats-video-bg-img"
+            className="w-full min-h-[48rem] xl:h-auto opacity-20 object-cover"
+          />
+        </>
+      ) : (
+        <>
+          <Media
+            resource={bgImage as MType}
+            imgClassName="w-full min-h-[48rem] xl:h-auto opacity-20 object-cover"
+          />
+        </>
+      )}
     </div>
   )
 }

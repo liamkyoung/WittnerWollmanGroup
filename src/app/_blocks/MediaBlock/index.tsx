@@ -20,19 +20,19 @@ export const MediaBlock: React.FC<Props> = props => {
   if (media && typeof media === 'object') caption = media.caption
 
   return (
-    <div className={classes.mediaBlock}>
+    <div>
       {position === 'fullscreen' && (
-        <div className={classes.fullscreen}>
+        <div className={`w-full h-screen`}>
           <Media resource={media as MediaType} src={staticImage} />
         </div>
       )}
       {position === 'default' && (
-        <div className="mx-auto w-1/2">
+        <div className="mx-auto w-1/2 global-margin-y">
           <Media resource={media as MediaType} src={staticImage} />
         </div>
       )}
       {caption && (
-        <Gutter className={classes.caption}>
+        <Gutter className="text-semibold text-wwBlack mt-8">
           <RichText content={caption} />
         </Gutter>
       )}

@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react'
 import { Metadata } from 'next'
 import Link from 'next/link'
+import { notFound } from 'next/navigation'
 
 import { Button } from '../../_components/Button'
 import { Gutter } from '../../_components/Gutter'
@@ -15,7 +16,7 @@ import AccountForm from './AccountForm'
 import classes from './index.module.scss'
 
 export default async function Account() {
-  //if (process.env.NODE_ENV === 'production') return <></> // No Login Page if in Production
+  if (process.env.NODE_ENV === 'production') return notFound() // No Login Page if in Production
 
   const { user } = await getMeUser({
     nullUserRedirect: `/login?error=${encodeURIComponent(

@@ -105,6 +105,8 @@ export function formatListingType(listingType: string): string {
       return 'For Sale'
     case 'lease':
       return 'Lease'
+    case 'forSaleLease':
+      return 'For Sale / Lease'
     default:
       return 'N/A'
   }
@@ -116,13 +118,13 @@ export function formatPaymentFrequency(paymentFreq: string): string {
   if (!paymentFreq) return ''
   switch (paymentFreq) {
     case 'oneTime':
-      return 'One-Time'
+      return ''
     case 'dollarPerSqPerYear':
-      return 'Dollar / Sq Ft / Year'
+      return '/ sqft / yr'
     case 'monthly':
-      return 'Monthly Payment'
+      return '/ month'
     case 'yearly':
-      return 'Yearly Payment'
+      return '/ yr'
     default:
       return 'N/A'
   }

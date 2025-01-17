@@ -177,7 +177,7 @@ export default function ListingFilter({
                             htmlFor={`filter-mobile-${section.id}-${optionIdx}`}
                             className="text-sm text-gray-500"
                           >
-                            {option.value}
+                            {option.label}
                           </label>
                         </div>
                       ))}
@@ -210,7 +210,7 @@ export default function ListingFilter({
 
               <MenuItems
                 transition
-                className="absolute left-0 z-10 mt-2 w-40 origin-top-left rounded-md bg-white shadow-2xl ring-1 ring-black/5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in"
+                className="absolute left-0 z-10 mt-2 w-40 origin-top-left rounded-md bg-white shadow-2xl ring-1 ring-black/5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in "
               >
                 <div className="py-1">
                   {sortOptions.map(option => (
@@ -255,7 +255,7 @@ export default function ListingFilter({
 
                   <PopoverPanel
                     transition
-                    className="absolute right-0 z-10 mt-2 origin-top-right rounded-md bg-white p-4 shadow-2xl ring-1 ring-black/5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in"
+                    className="absolute right-0 z-10 mt-2 origin-top-right rounded-md bg-white p-4 shadow-2xl ring-1 ring-black/5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in max-h-96 overflow-y-scroll"
                   >
                     <form className="space-y-4">
                       {section.options.map((option, optionIdx) => (

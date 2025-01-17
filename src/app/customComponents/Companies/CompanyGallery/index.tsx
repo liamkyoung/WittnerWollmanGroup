@@ -1,8 +1,7 @@
 'use client'
 import React, { useEffect, useRef } from 'react'
-import Image from 'next/image'
+import Marquee from 'react-fast-marquee'
 
-import Logo from '../../../assets/branding/logo.svg'
 import { CompanyComponent } from '../CompanyComponent'
 
 import './style.css'
@@ -46,13 +45,15 @@ export const CompanyGallery = ({ companies, displayHeader = 'no' }: Props) => {
 
   return (
     <div className="global-margin-y">
-      {displayHeader === 'yes' && <h2 className="text-center mb-8">Companies We&apos;ve Helped</h2>}
-      <div className="scroller mx-auto" data-direction="left" data-speed="slow">
-        <div className="scroller__inner h-32">
+      {displayHeader === 'yes' && (
+        <h2 className="text-center mb-12">Companies We&apos;ve Helped</h2>
+      )}
+      <div className="global-margin-x">
+        <Marquee className="" speed={150} gradient gradientColor="#f9fafb">
           {companies?.map((c, i) => (
             <CompanyComponent doc={c} key={i} />
           ))}
-        </div>
+        </Marquee>
       </div>
     </div>
   )

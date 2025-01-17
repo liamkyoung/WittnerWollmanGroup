@@ -1,5 +1,6 @@
 import type { CollectionConfig } from 'payload/types'
 
+import richText from '../../../payload/fields/richText'
 import { slugField } from '../../../payload/fields/slug'
 import { admins } from '../../access/admins'
 import { adminsOrPublished } from '../../access/adminsOrPublished'
@@ -14,7 +15,7 @@ import { populatePublishedAt } from '../../hooks/populatePublishedAt'
 // import AdminAddressSearch from '../../../components/custom/GoogleMap/AdminAddressSearch'
 import { revalidateListing } from './hooks/revalidateListing'
 
-const PropertyTypes = [
+export const PropertyTypes = [
   // Residential
   {
     label: 'Single-Family',
@@ -303,6 +304,10 @@ export const Listings: CollectionConfig = {
                   label: 'Lease',
                   value: 'lease',
                 },
+                {
+                  label: 'For Sale / Lease',
+                  value: 'forSaleLease',
+                },
               ],
             },
             {
@@ -514,6 +519,10 @@ export const Listings: CollectionConfig = {
               label: 'Area Overview',
               type: 'textarea',
             },
+            richText({
+              name: 'fullDescription',
+              label: 'Full Property Description',
+            }),
             {
               name: 'zoningType',
               label: 'Zone',
@@ -654,19 +663,12 @@ export const Listings: CollectionConfig = {
               defaultValue: false,
             },
             {
-              name: 'parkingSpots',
-              label: 'Parking Spots',
-              type: 'number',
-              defaultValue: 1,
+              name: 'parkingDescription',
+              label: 'Parking Spot Description',
+              type: 'textarea',
+              defaultValue: '',
               admin: {
                 condition: (data, siblingData) => siblingData?.hasParking === true, // Only show if price is not-negotiable
-              },
-              validate: value => {
-                if (value < 0) {
-                  return 'Value must be greater than or equal to 1'
-                }
-
-                return true
               },
             },
           ],

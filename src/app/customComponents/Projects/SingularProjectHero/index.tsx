@@ -80,14 +80,12 @@ export const SingularProjectHero: React.FC<{
         <PhotoGallery imageGallery={imgs} />
       ) : (
         <div className="relative">
-          {!metaImage && <div className={`w-full h-full text-center `}>No image</div>}
           {metaImage && typeof metaImage !== 'string' && (
             <Media
               imgClassName={`object-cover w-full max-h-[36rem]`}
               resource={metaImage as MediaType}
             />
           )}
-          <button className="absolute bottom-0 right-0 btn-primary">SEE FULL GALLERY</button>
         </div>
       )}
     </div>

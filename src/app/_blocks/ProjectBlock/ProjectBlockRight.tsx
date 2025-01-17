@@ -57,10 +57,9 @@ function ProjectBlockRight({
     <div className={`grid lg:grid-cols-2 ${bgColor} overflow-x-hidden`}>
       <Media
         resource={image}
-        alt="property image"
         imgClassName="sm:w-full max-h-96 lg:max-h-none lg:h-full object-cover"
       />
-      <div className="p-8 lg:ml-8 2xl:ml-16 2xl:mr-32 my-auto relative">
+      <div className="p-8 ml-8 2xl:ml-16 2xl:mr-32 my-auto relative">
         <div className="relative md:py-10 lg:py-8">
           <h2 className={`${textColor} text-center lg:text-left text-4xl lg:text-5xl`}>{title}</h2>
           <div className="lg:inline-flex flex gap-2 mt-2 justify-center">
@@ -88,7 +87,7 @@ function ProjectBlockRight({
           </div>
         </div>
         {facts && facts.length > 0 && (
-          <div className={`hidden 2xl:flex gap-4 absolute top-48 -left-64 ${bgColor} p-4`}>
+          <div className={`hidden 2xl:flex gap-4  ${bgColor} p-4`}>
             {facts.map((f, i) => (
               <ProjectStat
                 colorScheme={colorScheme}
@@ -102,7 +101,7 @@ function ProjectBlockRight({
 
         <p
           className={`mb-10 pt-8 md:pt-4 ${
-            facts && facts.length > 0 && '2xl:mt-48'
+            facts && facts.length > 0 && '2xl:mt-8'
           } ${textColor} text-center lg:text-left`}
         >
           {description}
@@ -122,12 +121,13 @@ function ProjectBlockRight({
           </div>
         )}
 
-        {links &&
-          links.map((l, i) => (
-            <div className="flex justify-center lg:block py-8" key={i}>
-              <CMSLink className={`${buttonStyle} `} {...l.link} key={i} />
-            </div>
-          ))}
+        {links && (
+          <div className="flex flex-col lg:justify-start justify-center sm:flex-row items-center gap-4 py-8">
+            {links.map((l, i) => (
+              <CMSLink className={`${buttonStyle}`} {...l.link} key={l.id || i} />
+            ))}
+          </div>
+        )}
       </div>
     </div>
   )

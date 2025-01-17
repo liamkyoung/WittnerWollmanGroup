@@ -19,12 +19,8 @@ import ContactAndBio from './ContactAndBio'
 import TeammateHeader from './TeammateHeader'
 
 import { CommunityResourceCard } from '@/app/customComponents/CommunityResources/CommunityResourceCard'
-import { CommunityResourceGallery } from '@/app/customComponents/CommunityResources/CommunityResourceGallery'
-import { GoogleMap } from '@/app/customComponents/GoogleMap/GoogleMap'
-import { ListingCard } from '@/app/customComponents/Listings'
 import { ListingGallery } from '@/app/customComponents/Listings/ListingGallery'
 import { ProjectGallery } from '@/app/customComponents/Projects/ProjectGallery'
-import { GoogleMapPin } from '@/app/types/viewmodels'
 
 export default async function Page({ params: { slug } }) {
   const { isEnabled: isDraftMode } = draftMode()
@@ -41,9 +37,11 @@ export default async function Page({ params: { slug } }) {
   } catch (error) {
     console.error(error) // eslint-disable-line no-console
   }
+
   if (!teammate) {
     notFound()
   } else {
+    console.log('Teammate ID:', teammate.id)
     listings = await getAgentListings(teammate.id)
     projects = await getAgentProjects(teammate.id)
   }
@@ -173,12 +171,13 @@ async function getAgentListings(teammateId: number): Promise<Listing[] | null> {
       },
     })
   } catch (error) {
-    //console.error('Error fetching teammate or listings:', error)
+    console.error('Error fetching listings:', error) // eslint-disable-line no-console
+    return null
   }
 
   // console.log('listings', listings) // eslint-disable-line no-console
 
-  return listings?.docs
+  return Array.isArray(listings?.docs) ? listings.docs : []
 }
 
 async function getAgentProjects(teammateId: number): Promise<Project[] | null> {
@@ -195,10 +194,9 @@ async function getAgentProjects(teammateId: number): Promise<Project[] | null> {
       },
     })
   } catch (error) {
-    // console.error('Error fetching teammate or listings:', error) // eslint-disable-line no-console
+    console.error('Error fetching projects:', error) // eslint-disable-line no-console
+    return null
   }
 
-  //console.log('Projects', projects.docs)
-
-  return projects?.docs
+  return Array.isArray(projects?.docs) ? projects.docs : []
 }

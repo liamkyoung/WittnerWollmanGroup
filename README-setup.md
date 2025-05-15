@@ -117,3 +117,6 @@ server {
 2. Make new local DB
 3. Do local changes /w new migrations
 4. 
+
+
+NOTE: Had issues with 99% CPU usage with a constantly restarting background process in pm2. Do not have that in the background

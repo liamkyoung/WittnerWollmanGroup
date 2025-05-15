@@ -2,7 +2,7 @@ import type { NavGrouping } from '../../../app/types/viewmodels'
 
 export const NewsLink: NavGrouping = {
   title: 'News',
-  relLink: '/news',
+  relLink: 'https://blog.wittnerwollman.com',
 }
 
 export const CommunityResourcesLink: NavGrouping = {
@@ -12,6 +12,6 @@ export const CommunityResourcesLink: NavGrouping = {
 
 export const CommunityLinks: NavGrouping = {
   title: 'Community',
-  relLink: '/news',
+  relLink: 'https://blog.wittnerwollman.com',
   subNavigation: [NewsLink, CommunityResourcesLink],
 }

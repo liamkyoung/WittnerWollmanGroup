@@ -37,9 +37,11 @@
 Prerendering errors
 - DO NOT SET `NODE=development` when building for production!!!!!
 - DO Set `NODE_ENV=development`, can cause csp errors
-- for prod, docker needs to have lkycode.com
+- for prod, docker needs to have wittnerwollman.com
 - use yarn only for building -- npm can cause versioning errors between drizzle orm and payload
 - Make sure env variables are updated across docker, local, prod
+- You need to build in order to see changes on site, for some reason dev does not work properly
+
 
 ### NGINX Configuration
 ```server {
@@ -116,7 +118,6 @@ server {
 1. Download Current DB using PGAdmin
 2. Make new local DB
 3. Do local changes /w new migrations
-4. 
 
 
 NOTE: Had issues with 99% CPU usage with a constantly restarting background process in pm2. Do not have that in the background

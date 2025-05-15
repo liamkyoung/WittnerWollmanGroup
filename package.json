@@ -63,6 +63,7 @@
     "fs": "^0.0.1-security",
     "googleapis": "^144.0.0",
     "lucide-react": "^0.451.0",
+    "motion": "^12.11.3",
     "next": "13.5.2",
     "path-browserify": "^1.0.1",
     "payload": "^2.30.3",

@@ -1,23 +1,25 @@
+/* eslint-disable function-paren-newline */
+
 'use client'
 import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 
-import { GoogleMapPin, SortListingsEnum } from '../../../app/types/viewmodels'
+import { GoogleMapPin, ListingCardDTO,SortListingsEnum  } from '../../../app/types/viewmodels'
 import { PropertyTypes } from '../../../payload/collections/Listings'
 import { Listing, Media, Teammate } from '../../../payload/payload-types'
 import { GoogleMap } from '../GoogleMap/GoogleMap'
-import Loader from '../Loader'
 import { ListingCard } from './index'
 import ListingFilter from './ListingFilter'
 
 import { ListingLinks } from '@/globalData/navigation/listings/listings'
 
 type Props = {
-  listings: Listing[]
+  listings: ListingCardDTO[]
   displayHeader: 'yes' | 'no'
+  isLoading?: boolean
 }
 
-function convertListingsToPins(listings: Listing[]) {
+function convertListingsToPins(listings: ListingCardDTO[]) {
   const pins: GoogleMapPin[] = listings.map(m => {
     return {
       name: m.title,
@@ -34,9 +36,9 @@ function convertListingsToPins(listings: Listing[]) {
 
 // Used to put negotiable listings first
 const sortWithNullsFirst = (
-  a: Listing,
-  b: Listing,
-  comparator: (a: Listing, b: Listing) => number,
+  a: ListingCardDTO,
+  b: ListingCardDTO,
+  comparator: (a: ListingCardDTO, b: ListingCardDTO) => number,
 ) => {
   if (a.price === null && b.price === null) {
     return 0
@@ -50,7 +52,7 @@ const sortWithNullsFirst = (
   return comparator(a, b)
 }
 
-const sortListings = (listings: Listing[], sortType: SortListingsEnum) => {
+const sortListings = (listings: ListingCardDTO[], sortType: SortListingsEnum) => {
   switch (sortType) {
     case SortListingsEnum.NEWEST:
       return listings.sort(
@@ -68,7 +70,10 @@ const sortListings = (listings: Listing[], sortType: SortListingsEnum) => {
   return listings
 }
 
-const filterBySelectedAgents = (listings: Listing[], agents: Map<string, boolean>): Listing[] => {
+const filterBySelectedAgents = (
+  listings: ListingCardDTO[],
+  agents: Map<string, boolean>,
+): ListingCardDTO[] => {
   const filteredListings = listings.filter(listing => {
     if (agents.get('All')) return true
     if (!listing.agents || listing.agents.length === 0) return false // No Agent
@@ -81,9 +86,9 @@ const filterBySelectedAgents = (listings: Listing[], agents: Map<string, boolean
 }
 
 const filterByPropertyType = (
-  listings: Listing[],
+  listings: ListingCardDTO[],
   propertyTypes: Map<string, boolean>,
-): Listing[] => {
+): ListingCardDTO[] => {
   if (propertyTypes.get('All')) return listings
 
   const filteredListings = listings.filter(i => {
@@ -95,7 +100,7 @@ const filterByPropertyType = (
   return filteredListings
 }
 
-export const ListingGallery = ({ listings, displayHeader }: Props) => {
+export const ListingGallery = ({ listings, displayHeader, isLoading = false }: Props) => {
   // Filters being applied
   const [sortType, setSortType] = useState(SortListingsEnum.MOST_EXPENSIVE)
   const [selectedAgents, setSelectedAgents] = useState<Map<string, boolean>>(
@@ -122,7 +127,8 @@ export const ListingGallery = ({ listings, displayHeader }: Props) => {
         ...PropertyTypes,
       ]
         .sort((a, b) =>
-          a.value === 'All' ? -1 : b.value === 'All' ? 1 : a.value.localeCompare(b.value),)
+          a.value === 'All' ? -1 : b.value === 'All' ? 1 : a.value.localeCompare(b.value),
+        )
         .map(({ value }) => [value, value === 'All']), // Map values to entries, setting "All" to true
     ),
   )
@@ -131,7 +137,7 @@ export const ListingGallery = ({ listings, displayHeader }: Props) => {
   const filteredByAgent = filterBySelectedAgents(sorted, selectedAgents)
   const finalList = filterByPropertyType(filteredByAgent, selectedPropertyTypes)
 
-  const [filteredListings, setFilteredListings] = useState<Listing[]>(finalList)
+  const [filteredListings, setFilteredListings] = useState<ListingCardDTO[]>(finalList)
 
   useEffect(() => {
     const sorted = sortListings(listings, sortType)
@@ -141,8 +147,6 @@ export const ListingGallery = ({ listings, displayHeader }: Props) => {
   }, [listings, sortType, selectedAgents, selectedPropertyTypes])
 
   const pins = convertListingsToPins(filteredListings)
-
-  // console.log(filteredListings.length)
 
   return (
     <div className="global-margin-x global-margin-y overflow-x-hidden">
@@ -172,7 +176,7 @@ export const ListingGallery = ({ listings, displayHeader }: Props) => {
           {filteredListings &&
             filteredListings.map((l, i) => (
               <div key={l.id || `${l.title}-${i}`}>
-                <ListingCard doc={l} />
+                <ListingCard doc={l} isLoading={isLoading} />
               </div>
             ))}
         </div>

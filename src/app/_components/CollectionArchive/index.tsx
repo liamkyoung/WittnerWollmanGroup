@@ -29,6 +29,7 @@ import { ProjectGallery } from '@/app/customComponents/Projects/ProjectGallery'
 import { ServiceGallery } from '@/app/customComponents/Services/ServiceGallery'
 import { TeammateGallery } from '@/app/customComponents/Teammates/TeammateGallery'
 import TestimonialGallery from '@/app/customComponents/Testimonials/TestimonialGallery'
+import { toListingCardDTO } from '@/app/types/viewmodels'
 
 import classes from './index.module.scss'
 
@@ -220,7 +221,13 @@ export const CollectionArchive: React.FC<Props> = props => {
           />
         )
       case 'listings':
-        return <ListingGallery listings={results.docs as Listing[]} displayHeader={displayHeader} />
+        return (
+          <ListingGallery
+            listings={(results.docs as Listing[]).map(toListingCardDTO)}
+            displayHeader={displayHeader}
+            isLoading={isLoading}
+          />
+        )
       case 'teammates':
         return (
           <TeammateGallery teammates={results.docs as Teammate[]} displayHeader={displayHeader} />

@@ -1,10 +1,11 @@
 /* eslint-disable function-paren-newline */
 
 'use client'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef,useState  } from 'react'
+import { motion, useInView } from 'framer-motion'
 import Link from 'next/link'
 
-import { GoogleMapPin, ListingCardDTO,SortListingsEnum  } from '../../../app/types/viewmodels'
+import { GoogleMapPin, ListingCardDTO, SortListingsEnum } from '../../../app/types/viewmodels'
 import { PropertyTypes } from '../../../payload/collections/Listings'
 import { Listing, Media, Teammate } from '../../../payload/payload-types'
 import { GoogleMap } from '../GoogleMap/GoogleMap'
@@ -100,6 +101,28 @@ const filterByPropertyType = (
   return filteredListings
 }
 
+const fadeInUpVariants = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
+}
+
+const FadeInOnScroll = ({ children }: { children: React.ReactNode }) => {
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, margin: '0px 0px -100px 0px' })
+
+  return (
+    <motion.div
+      ref={ref}
+      variants={fadeInUpVariants}
+      initial="hidden"
+      animate={isInView ? 'show' : 'hidden'}
+      className="w-full"
+    >
+      {children}
+    </motion.div>
+  )
+}
+
 export const ListingGallery = ({ listings, displayHeader, isLoading = false }: Props) => {
   // Filters being applied
   const [sortType, setSortType] = useState(SortListingsEnum.MOST_EXPENSIVE)
@@ -175,9 +198,9 @@ export const ListingGallery = ({ listings, displayHeader, isLoading = false }: P
         <div className="grid grid-cols-1 md:grid-cols-2 justify-items-center gap-8 overflow-y-scroll h-[44rem]">
           {filteredListings &&
             filteredListings.map((l, i) => (
-              <div key={l.id || `${l.title}-${i}`}>
+              <FadeInOnScroll key={l.id || `${l.title}-${i}`}>
                 <ListingCard doc={l} isLoading={isLoading} />
-              </div>
+              </FadeInOnScroll>
             ))}
         </div>
         <div className="">

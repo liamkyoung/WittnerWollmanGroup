@@ -15,6 +15,7 @@ import { GoogleAnalytics } from '@next/third-parties/google'
 import { Toaster } from '../components/ui/toaster'
 import { MetaKeywords } from '../globalData/general'
 import NewsletterPopup from './customComponents/Newsletter/NewsletterPopup'
+import { PostHogProvider } from './providers'
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -26,20 +27,39 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <link rel="icon" href="/android-chrome-512x512.png" sizes="512x512" />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
       </head>
-      <body className={`${montserrat.className} antialiased bg-gray-50 mx-auto overflow-x-hidden`}>
-        <Providers>
-          <AdminBar />
-          <>
-            <Header />
-            {children}
-            <Footer />
-            <Toaster />
-            <NewsletterPopup />
-          </>
-        </Providers>
-      </body>
-      {process.env.NODE_ENV === 'production' && (
-        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_G_ANALYTICS_ID} />
+      {process.env.NODE_ENV === 'production' ? (
+        <PostHogProvider>
+          <body
+            className={`${montserrat.className} antialiased bg-gray-50 mx-auto overflow-x-hidden`}
+          >
+            <Providers>
+              <AdminBar />
+              <>
+                <Header />
+                {children}
+                <Footer />
+                <Toaster />
+                <NewsletterPopup />
+              </>
+            </Providers>
+          </body>
+          <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_G_ANALYTICS_ID} />
+        </PostHogProvider>
+      ) : (
+        <body
+          className={`${montserrat.className} antialiased bg-gray-50 mx-auto overflow-x-hidden`}
+        >
+          <Providers>
+            <AdminBar />
+            <>
+              <Header />
+              {children}
+              <Footer />
+              <Toaster />
+              <NewsletterPopup />
+            </>
+          </Providers>
+        </body>
       )}
     </html>
   )

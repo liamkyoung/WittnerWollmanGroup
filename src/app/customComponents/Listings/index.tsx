@@ -81,6 +81,8 @@ export const ListingCard: React.FC<{
               <Media
                 imgClassName={`mx-auto rounded-md h-64 object-cover`}
                 resource={coverImage as MediaType}
+                priority={false}
+                imgQuality={30}
               />
             )}
           </div>

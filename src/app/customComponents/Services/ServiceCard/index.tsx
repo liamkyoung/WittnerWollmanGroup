@@ -1,17 +1,19 @@
-import React, { Fragment } from 'react'
-import Image from 'next/image'
+'use client'
+import React, { Fragment, useState } from 'react'
 import Link from 'next/link'
 
 import { Media as MediaType, Service } from '../../../../payload/payload-types'
 import { Media } from '../../../_components/Media'
 
+import { Skeleton } from '@/components/ui/skeleton'
 import { ServiceLinks } from '@/globalData/navigation/services/services'
 
 export const ServiceCard: React.FC<{
   className?: string
   doc?: Service
+  onImageLoad?: () => void
 }> = props => {
-  const { doc, className } = props
+  const { doc, className, onImageLoad } = props
 
   const { title, shortDescription, slug, hero } = doc || {}
 
@@ -83,7 +85,7 @@ export const ServiceCard: React.FC<{
   }
 
   return (
-    <Link href={href}>
+    <Link href={href} className="w-full h-full">
       <div className="flex gap-2 relative group">
         <div className="flex items-center justify-center sm:block w-full h-full lg:h-auto lg:w-64 border-b-4 border-wwSecondary border-opacity-50 bg-gray-50/75 absolute top-0 left-0 px-4 lg:px-8 py-4 z-10">
           <div className="">
@@ -110,7 +112,12 @@ export const ServiceCard: React.FC<{
           </div>
         </div>
         <div className="transition-opacity opacity-0 group-hover:opacity-20 bg-gray-50 w-full h-full absolute top-0 left-0"></div>
-        <Media resource={hero?.media as MediaType} className="w-auto" />
+        <Media
+          resource={hero?.media as MediaType}
+          className={`w-auto`}
+          imgQuality={40}
+          onLoadingComplete={onImageLoad}
+        />
       </div>
     </Link>
   )

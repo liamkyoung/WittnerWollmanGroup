@@ -9,8 +9,9 @@ import { ProjectLinks } from '@/globalData/navigation/projects/projects'
 export const ProjectCard: React.FC<{
   className?: string
   doc?: Project
+  onImageLoad?: () => void
 }> = props => {
-  const { doc } = props
+  const { doc, onImageLoad } = props
 
   const { slug, title, meta, price, description } = doc || {}
   const { image: metaImage } = meta || {}
@@ -25,6 +26,7 @@ export const ProjectCard: React.FC<{
       description={limitedDescription}
       link={href}
       image={metaImage as Media}
+      onImageLoad={onImageLoad}
       squareImage
     />
   )

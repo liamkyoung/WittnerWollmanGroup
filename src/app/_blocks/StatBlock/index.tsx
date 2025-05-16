@@ -1,4 +1,6 @@
+'use client'
 import React from 'react'
+import { motion } from 'framer-motion'
 import Image, { StaticImageData } from 'next/image'
 
 import { Media as MType, Page } from '../../../payload/payload-types'
@@ -18,6 +20,21 @@ export type FactStat = {
   id?: string | null
 }
 
+// Animation Variants
+const containerVariants = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.2,
+    },
+  },
+}
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
+}
+
 export const StatBlock: React.FC<StatBlockProps> = props => {
   const { title, description, facts, bgImage } = props
 
@@ -30,44 +47,28 @@ export const StatBlock: React.FC<StatBlockProps> = props => {
             <p className="text-center xl:text-right max-w-3xl">{description}</p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 2xl:grid-cols-4 gap-4 global-space-x global-space-y">
-            {facts &&
-              facts?.map((f, i) => {
-                const bgIndex = i % 4
+          <motion.div
+            className="grid grid-cols-1 sm:grid-cols-2 2xl:grid-cols-4 gap-4 global-space-x global-space-y"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.2 }}
+          >
+            {facts?.map((f, i) => {
+              const bgIndex = i % 4
+              const bgColors = ['bg-wwRed', 'bg-wwBlack', 'bg-wwLogoPink', 'bg-wwLogoRed']
 
-                switch (bgIndex) {
-                  case 0:
-                    return (
-                      <Stat bgColor="bg-wwRed" title={f.factStat} descriptor={f.factDescription} />
-                    )
-                  case 1:
-                    return (
-                      <Stat
-                        bgColor="bg-wwBlack"
-                        title={f.factStat}
-                        descriptor={f.factDescription}
-                      />
-                    )
-                  case 2:
-                    return (
-                      <Stat
-                        bgColor="bg-wwLogoPink"
-                        title={f.factStat}
-                        descriptor={f.factDescription}
-                      />
-                    )
-                  case 3:
-                    return (
-                      <Stat
-                        bgColor="bg-wwLogoRed"
-                        title={f.factStat}
-                        descriptor={f.factDescription}
-                      />
-                    )
-                  default:
-                }
-              })}
-          </div>
+              return (
+                <motion.div key={f.id ?? i} variants={itemVariants}>
+                  <Stat
+                    bgColor={bgColors[bgIndex]}
+                    title={f.factStat}
+                    descriptor={f.factDescription}
+                  />
+                </motion.div>
+              )
+            })}
+          </motion.div>
         </div>
       </div>
 

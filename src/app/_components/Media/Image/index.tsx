@@ -20,6 +20,8 @@ export const Image: React.FC<MediaProps> = props => {
     fill,
     src: srcFromProps,
     alt: altFromProps,
+    imgQuality = 75,
+    onLoadingComplete,
   } = props
 
   const [isLoading, setIsLoading] = React.useState(true)
@@ -73,11 +75,13 @@ export const Image: React.FC<MediaProps> = props => {
               onLoadFromProps()
             }
           }}
+          onLoadingComplete={onLoadingComplete}
           fill={fill}
           width={!fill ? width : undefined}
           height={!fill ? height : undefined}
           sizes={sizes}
           priority={priority}
+          quality={imgQuality}
         />
       )}
     </>

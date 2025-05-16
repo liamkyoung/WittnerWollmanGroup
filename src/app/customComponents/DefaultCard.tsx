@@ -19,6 +19,7 @@ type Props = {
   textOnRight?: boolean
   squareImage?: boolean
   link?: string
+  onImageLoad?: () => void
 }
 
 function DefaultCard({
@@ -32,6 +33,7 @@ function DefaultCard({
   textOnRight = false,
   squareImage = false,
   link,
+  onImageLoad,
 }: Props) {
   let width = '64' // default size
 
@@ -61,7 +63,11 @@ function DefaultCard({
         {!textOnRight ? (
           <div className={`max-w-${width}`}>
             <div className="relative">
-              <Media resource={image} imgClassName={'size-64 object-cover'} />
+              <Media
+                resource={image}
+                imgClassName={'size-64 object-cover'}
+                onLoadingComplete={onImageLoad}
+              />
               {accentText && (
                 <div className="bg-gray-50 absolute -bottom-1 -left-1 p-3 rounded-md">
                   <p className="text-wwRed font-bold">{accentText}</p>
@@ -80,7 +86,11 @@ function DefaultCard({
         ) : (
           <div className={`flex gap-4`}>
             <div className="relative">
-              <Media resource={image} imgClassName={'size-64 object-contain'} />
+              <Media
+                resource={image}
+                imgClassName={'size-64 object-contain'}
+                onLoadingComplete={onImageLoad}
+              />
               {accentText && (
                 <div className="bg-gray-50 absolute -bottom-1 -left-1 p-3 rounded-md">
                   <p className="text-wwRed font-bold">{accentText}</p>

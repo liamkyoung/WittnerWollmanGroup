@@ -8,11 +8,6 @@ export const InvolvementGroups: CollectionConfig = {
   slug: 'involvementGroups',
   admin: {
     useAsTitle: 'title',
-    // preview: doc => {
-    //   return `${process.env.PAYLOAD_PUBLIC_SERVER_URL}/next/preview?url=${encodeURIComponent(
-    //     `${process.env.PAYLOAD_PUBLIC_SERVER_URL}/listings/${doc?.slug}`,
-    //   )}&secret=${process.env.PAYLOAD_PUBLIC_DRAFT_SECRET}`
-    // },
   },
   versions: {
     drafts: true,

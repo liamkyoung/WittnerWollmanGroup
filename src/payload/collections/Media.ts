@@ -8,7 +8,6 @@ export const Media: CollectionConfig = {
   slug: 'media',
   upload: {
     staticDir: path.resolve(__dirname, '../../../media'),
-    // Add file validation
     mimeTypes: ['image/*', 'video/*', 'application/pdf'],
     staticURL: '/media',
     // Limit file size to 10MB

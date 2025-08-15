@@ -13,11 +13,6 @@ export const Teammates: CollectionConfig = {
   slug: 'teammates',
   admin: {
     useAsTitle: 'title',
-    preview: doc => {
-      return `${process.env.PAYLOAD_PUBLIC_SERVER_URL}/next/preview?url=${encodeURIComponent(
-        `${process.env.PAYLOAD_PUBLIC_SERVER_URL}${TeamLinks.relLink}/${doc?.slug}`,
-      )}&secret=${process.env.PAYLOAD_PUBLIC_DRAFT_SECRET}`
-    },
   },
   versions: {
     drafts: true,

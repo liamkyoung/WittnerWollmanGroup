@@ -5,16 +5,18 @@ import type { PayloadHandler } from 'payload/config'
 
 // const spreadsheetId = process.env.SPREADSHEET_ID // Add your Google Sheets ID to env variables
 export const signUpNewsletter: PayloadHandler = async (req, res) => {
-  return res.status(200).json({ message: 'Example' })
+  return res.status(500).json({ message: 'Path not currently supported' })
 
+  // SECURITY NOTE: Hardcoded credentials removed for security
+  // Use environment variables for sensitive data
   // if (req.method !== 'POST') {
   //   return res.status(405).json({ error: 'Method not allowed' })
   // }
   // try {
-  //   // Authenticate using service account credentials
+  //   // Authenticate using service account credentials from environment
   //   const auth = new google.auth.JWT({
-  //     email: 'ww-webapp-api@decoded-pilot-442622-s9.iam.gserviceaccount.com',
-  //     key: '[REDACTED]',
+  //     email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
+  //     key: process.env.GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY?.replace(/\\n/g, '\n'),
   //     scopes: SCOPES,
   //   })
   //   const sheets = google.sheets({ version: 'v4', auth })

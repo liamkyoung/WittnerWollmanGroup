@@ -13,9 +13,7 @@ export async function GET(request: NextRequest): Promise<Response> {
     typeof collection !== 'string' ||
     typeof slug !== 'string'
   ) {
-    console.log('COULD NOT VALIDATE??? secret: ', secret) // eslint-disable-line no-console
-    // Do not indicate that the revalidation key is incorrect in the response
-    // This will protect this API route from being exploited
+    console.log('Revalidation request failed - invalid parameters') // eslint-disable-line no-console
     return new Response('Invalid request', { status: 400 })
   }
 

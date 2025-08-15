@@ -1,268 +1,378 @@
-# Payload Website Template
+# 🏢 Wittner Wollman Group Website
 
-This is the official [Payload Website Template](https://github.com/payloadcms/payload/blob/main/templates/website). Use it to power websites, blogs, or portfolios from small to enterprise. This repo includes a fully-working backend, enterprise-grade admin panel, and a beautifully designed, production-ready website.
+[![Next.js](https://img.shields.io/badge/Next.js-14-000000?style=flat-square&logo=nextdotjs)](https://nextjs.org/)
+[![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white)](https://docker.com/)
+[![DigitalOcean](https://img.shields.io/badge/DigitalOcean-0080FF?style=flat-square&logo=digitalocean&logoColor=white)](https://digitalocean.com/)
+[![Nginx](https://img.shields.io/badge/Nginx-009639?style=flat-square&logo=nginx&logoColor=white)](https://nginx.org/)
 
-This template is right for you if you are working on:
+> Professional corporate website built with Next.js, featuring secure deployment on DigitalOcean with Docker containerization and SSL encryption.
 
-- A personal or enterprise-grade website, blog, or portfolio
-- A content publishing platform with a fully featured publication workflow
-- A lead generation website with premium content gated behind authentication
+## 🌟 Overview
 
-Core features:
+Corporate website for Wittner Wollman Group, featuring modern web technologies, secure content delivery, and professional presentation. The application is containerized with Docker and deployed on DigitalOcean infrastructure with comprehensive security headers and SSL certification.
 
-- [Pre-configured Payload Config](#how-it-works)
-- [Authentication](#users-authentication)
-- [Access Control](#access-control)
-- [Premium Content](#premium-content)
-- [Comments](#comments)
-- [Layout Builder](#layout-builder)
-- [Draft Preview](#draft-preview)
-- [Redirects](#redirects)
-- [SEO](#seo)
-- [Website](#website)
+## 🛠️ Technology Stack
 
-## Quick Start
+- **Frontend**: Next.js 14 with TypeScript
+- **Content Management**: Payload CMS
+- **Database**: PostgreSQL (DigitalOcean Managed Database)
+- **Storage**: DigitalOcean Spaces (S3-compatible)
+- **Deployment**: Docker containers on DigitalOcean Droplets
+- **Web Server**: Nginx with SSL/TLS encryption
+- **SSL**: Let's Encrypt certificates via Certbot
 
-To spin up this example locally, follow these steps:
+## 🏗️ Infrastructure Architecture
 
-### Clone
+### DigitalOcean Services
+- **Droplet**: Ubuntu/Debian server hosting the application
+- **Managed Database**: PostgreSQL cluster for data persistence
+- **Spaces**: S3-compatible object storage for assets and media files
+- **DNS**: Domain management with A record configuration
 
-If you have not done so already, you need to have standalone copy of this repo on your machine. If you've already cloned this repo, skip to [Development](#development).
+### Security Features
+- SSL/TLS encryption with automatic certificate renewal
+- Content Security Policy (CSP) headers with nonce-based protection
+- CORS configuration for secure cross-origin requests
+- Secure proxy configuration with Nginx
 
-#### Method 1 (recommended)
+## 🚀 Deployment Guide
 
-  Go to Payload Cloud and [clone this template](https://payloadcms.com/new/clone/website). This will create a new repository on your GitHub account with this template's code which you can then clone to your own machine.
+### Initial Infrastructure Setup
 
-#### Method 2
+1. **Create DigitalOcean Resources**
+   ```bash
+   # Create Ubuntu/Debian Droplet
+   # Create PostgreSQL Database Cluster
+   # Create Spaces bucket for asset storage
+   ```
 
-  Use the `create-payload-app` CLI to clone this template directly to your machine:
+2. **DNS Configuration**
+   - Configure A record: `Host: @`, `Type: A`, `IP: [droplet_ip]`
+   - Update domain DNS settings in registrar
 
-    npx create-payload-app@latest my-project -t website
+3. **Server Preparation**
+   ```bash
+   sudo apt-get update
+   sudo apt install nginx
+   ```
 
-#### Method 3
+### SSL Certificate Setup
 
-  Use the `git` CLI to clone this template directly to your machine:
+Follow the [DigitalOcean Let's Encrypt guide](https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-20-04):
 
-    git clone -n --depth=1 --filter=tree:0 https://github.com/payloadcms/payload my-project && cd my-project && git sparse-checkout set --no-cone templates/website && git checkout && rm -rf .git && git init && git add . && git mv -f templates/website/{.,}* . && git add . && git commit -m "Initial commit"
-
-### Development
-
-1. First [clone the repo](#clone) if you have not done so already
-1. `cd my-project && cp .env.example .env` to copy the example environment variables
-1. `yarn && yarn dev` to install dependencies and start the dev server
-1. Open [http://localhost:3000](http://localhost:3000) to open the app in your browser
-
-That's it! Changes made in `./src` will be reflected in your app. Follow the on-screen instructions to login and create your first admin user. Then check out [Production](#production) once you're ready to build and serve your app, and [Deployment](#deployment) when you're ready to go live.
-
-## How it works
-
-The Payload config is tailored specifically to the needs of most websites. It is pre-configured in the following ways:
-
-### Collections
-
-See the [Collections](https://payloadcms.com/docs/configuration/collections) docs for details on how to extend this functionality.
-
-- #### Users (Authentication)
-
-  Users are auth-enabled and encompass both admins and regular users based on the value of their `roles` field. Only `admin` users can access your admin panel to manage your website whereas `user` can authenticate on your front-end to leave [comments](#comments) and read [premium content](#premium-content) but have limited access to the platform. See [Access Control](#access-control) for more details.
-
-  For additional help, see the official [Auth Example](https://github.com/payloadcms/payload/tree/main/examples/auth) or the [Authentication](https://payloadcms.com/docs/authentication/overview#authentication-overview) docs.
-
-- #### Posts
-
-  Posts are used to generated blog posts, news articles, or any other type of content that is published over time. All posts are layout builder enabled so you can generate unique layouts for each post using layout-building blocks, see [Layout Builder](#layout-builder) for more details. Posts are also draft-enabled so you can preview them before publishing them to your website, see [Draft Preview](#draft-preview) for more details.
-
-  Users can also leave comments on posts if they are logged in. Then, editors can log in to review and approve comments before they are published. See [Comments](#comments) for more details.
-
-  Posts can also restrict access to content or digital assets behind authentication, see [Premium Content](#premium-content) for more details.
-
-- ### Comments (Collection)
-
-  Comments are used to allow logged-in users to leave comments on posts. Comments are draft-enabled so admins can review and approve them before they are published to your website, see [Comments](#comments) for more details.
-
-- #### Projects
-
-  Projects are used to showcase your work. All projects are layout builder enabled so you can generate unique layouts for each project using layout-building blocks, see [Layout Builder](#layout-builder) for more details. Projects are also draft-enabled so you can preview them before publishing them to your website, see [Draft Preview](#draft-preview) for more details.
-
-- #### Pages
-
-  All pages are layout builder enabled so you can generate unique layouts for each page using layout-building blocks, see [Layout Builder](#layout-builder) for more details. Pages are also draft-enabled so you can preview them before publishing them to your website, see [Draft Preview](#draft-preview) for more details.
-
-- #### Media
-
-  This is the uploads enabled collection used by pages, posts, and projects to contain media like images, videos, downloads, and other assets.
-
-- #### Categories
-
-  A taxonomy used to group posts or projects together. Categories can be nested inside of one another, for example "News > Technology". See the official [Payload Nested Docs Plugin](https://github.com/payloadcms/plugin-nested-docs) for more details.
-
-### Globals
-
-See the [Globals](https://payloadcms.com/docs/configuration/globals) docs for details on how to extend this functionality.
-
-- `Header`
-
-  The data required by the header on your front-end like nav links.
-
-- `Footer`
-
-  Same as above but for the footer of your site.
-
-## Access control
-
-Basic role-based access control is setup to determine what users can and cannot do based on their roles, which are:
-
-- `admin`: They can access the Payload admin panel to manage your site. They can see all data and make all operations.
-- `user`: They cannot access the Payload admin panel and can perform limited operations based on their user (see below).
-
-This applies to each collection in the following ways:
-
-- `users`: Only admins and the user themselves can access their profile. Anyone can create a user but only admins can delete users.
-- `posts`: Everyone can access published posts, but only admins can create, update, or delete them. Some posts may also have content that is only accessible to users who are logged in. See [Premium Content](#premium-content) for more details.
-- `projects`: Everyone can access published projects, but only admins can create, update, or delete them.
-- `pages`: Everyone can access published pages, but only admins can create, update, or delete them.
-- `comments`: Everyone can access published comments, but only admins can access draft comments. Users can create new comments but they will be saved as drafts until an admin approves them.
-
-For more details on how to extend this functionality, see the [Payload Access Control](https://payloadcms.com/docs/access-control/overview#access-control) docs.
-
-## Premium Content
-
-Posts can optionally restrict access to content or digital assets behind authentication. This will ensure that only members of your site can access the full post data and its resources. To do this, a `premiumContent` field is added to the `posts` collection with `read` access control set to check for an authenticated user on the request. Every time a user requests a post, this will only return data to those who have access to it:
-
-```ts
-{
-  name: 'premiumContent',
-  label: 'Premium Content',
-  type: 'blocks',
-  access: {
-    read: isLoggedIn,
-  },
-  fields: [
-    // content
-  ]
-}
+```bash
+sudo apt install certbot python3-certbot-nginx
+sudo certbot --nginx -d yourdomain.com -d www.yourdomain.com
 ```
 
-## Comments
+### Docker Deployment
 
-Users can leave comments on posts for editors to review and approve before they are published to the website. To do this, a `comments` collection is added with `drafts` set to `true` so that all comments are saved as drafts and inaccessible until an admin approves them. Each comment references a single `user` and a `doc` for cross reference. To leave a comment you must be logged-in, and to publish a comment you must has the role `admin`.
+1. **Install Docker**
+   ```bash
+   # Follow official Docker installation guide
+   curl -fsSL https://get.docker.com -o get-docker.sh
+   sh get-docker.sh
+   ```
 
-## Layout Builder
+2. **Deploy Application**
+   ```bash
+   # Pull latest image
+   docker pull liamyoung/ww-webapp:latest
+   
+   # Run with environment configuration
+   docker run --env-file .env -p '3000:3000' liamyoung/ww-webapp:latest
+   ```
 
-Create unique page, post, or project layouts for any type of content using a powerful layout builder. This template comes pre-configured with the following layout building blocks:
+## 🔧 Development Workflow
 
-- Hero
-- Content
-- Media
-- Call To Action
-- Archive
+### Environment Configuration
 
-Each block is fully designed and built into the front-end website that comes with this template. See [Website](#website) for more details.
+Create `.env` file with production settings:
+```bash
+NEXT_PUBLIC_URL=https://yourdomain.com
+PAYLOAD_PUBLIC_SERVER_URL=https://yourdomain.com
+DATABASE_URI=postgresql://[credentials]
+SPACES_ACCESS_KEY=[digitalocean_spaces_key]
+SPACES_SECRET_KEY=[digitalocean_spaces_secret]
+```
 
-## Draft Preview
+### Building for Production
 
-All posts, projects, and pages are draft-enabled so you can preview them before publishing them to your website. To do this, these collections use [Versions](https://payloadcms.com/docs/configuration/collections#versions) with `drafts` set to `true`. This means that when you create a new post, project, or page, it will be saved as a draft and will not be visible on your website until you publish it. This also means that you can preview your draft before publishing it to your website. To do this, we automatically format a custom URL which redirects to your front-end to securely fetch the draft version of your content.
+```bash
+# Build Docker image for production
+docker build -t liamyoung/ww-webapp:[version] --platform linux/amd64 .
 
-Since the front-end of this template is statically generated, this also means that pages, posts, and projects will need to be regenerated as changes are made to published documents. To do this, we use an `afterChange` hook to regenerate the front-end when a document has changed and its `_status` is `published`.
+# Push to Docker Hub
+docker push liamyoung/ww-webapp:[version]
 
-For more details on how to extend this functionality, see the official [Draft Preview Example](https://github.com/payloadcms/payload/tree/main/examples/draft-preview).
+# Deploy on server
+docker pull liamyoung/ww-webapp:[version]
+docker run --env-file .env -p '3000:3000' liamyoung/ww-webapp:[version]
+```
 
-## SEO
+### Database Migrations
 
-This template comes pre-configured with the official [Payload SEO Plugin](https://github.com/payloadcms/plugin-seo) for complete SEO control from the admin panel. All SEO data is fully integrated into the front-end website that comes with this template. See [Website](#website) for more details.
+```bash
+# For production database updates:
+# 1. Export current production database using pgAdmin
+# 2. Create local development database
+# 3. Apply migrations locally and test
+# 4. Deploy migrations to production during maintenance window
+```
 
-## Redirects
+## ⚙️ Nginx Configuration
 
-If you are migrating an existing site or moving content to a new URL, you can use the `redirects` collection to create a proper redirect from old URLs to new ones. This will ensure that proper request status codes are returned to search engines and that your users are not left with a broken link. This template comes pre-configured with the official [Payload Redirects Plugin](https://github.com/payloadcms/plugin-redirects) for complete redirect control from the admin panel. All redirects are fully integrated into the front-end website that comes with this template. See [Website](#website) for more details.
+The application uses a comprehensive Nginx configuration with security headers:
 
-## Website
+```nginx
+# =================================================================
+# NGINX Configuration for Multi-Domain Setup
+# Supports: Main website, Blog (WordPress), Database Admin
+# Features: SSL/TLS, CSP headers, www→non-www redirects
+# =================================================================
 
-This template includes a beautifully designed, production-ready front-end built with the [Next.js App Router](https://nextjs.org), served right alongside your Payload app in a single Express server. This makes is so that you can deploy both apps simultaneously and host them together. If you prefer a different front-end framework, this pattern works for any framework that supports a custom server. If you prefer to host your website separately from Payload, you can easily [Eject](#eject) the front-end out from this template to swap in your own, or to use it as a standalone CMS. For more details, see the official [Custom Server Example](https://github.com/payloadcms/payload/tree/main/examples/custom-server).
+# =================================================================
+# BLOG SUBDOMAIN (WordPress)
+# =================================================================
 
-Core features:
+# HTTP to HTTPS redirect for blog
+server {
+    listen 80;
+    server_name blog.example.com;
+    return 301 https://blog.example.com$request_uri;
+}
 
-- [Next.js App Router](https://nextjs.org)
-- [GraphQL](https://graphql.org)
-- [TypeScript](https://www.typescriptlang.org)
-- [React Hook Form](https://react-hook-form.com)
-- [Payload Admin Bar](https://github.com/payloadcms/payload-admin-bar)
-- Authentication
-- Fully featured blog
-- Publication workflow
-- Comments
-- Premium content
-- User accounts
-- Dark mode
-- Pre-made layout building blocks
-- SEO
-- Redirects
+# HTTPS blog server
+server {
+    listen 443 ssl http2;
+    server_name blog.example.com;
+    
+    # SSL Configuration
+    ssl_certificate /etc/letsencrypt/live/example.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/example.com/privkey.pem;
+    include /etc/letsencrypt/options-ssl-nginx.conf;
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
+    
+    # Upload limit for WordPress
+    client_max_body_size 64M;
+    
+    # Proxy to WordPress container/service
+    location / {
+        proxy_pass http://127.0.0.1:8080;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Forwarded-Port 443;
+    }
+}
 
-### Cache
+# =================================================================
+# DATABASE ADMIN SUBDOMAIN (phpMyAdmin/Adminer)
+# =================================================================
 
-Although Next.js includes a robust set of caching strategies out of the box, Payload Cloud proxies and caches all files through Cloudflare using the [Official Cloud Plugin](https://github.com/payloadcms/plugin-cloud). This means that Next.js caching is not needed and is disabled by default. If you are hosting your app outside of Payload Cloud, you can easily reenable the Next.js caching mechanisms by removing the `no-store` directive from all fetch requests in `./src/app/_api` and then removing all instances of `export const dynamic = 'force-dynamic'` from pages files, such as `./src/app/(pages)/[slug]/page.tsx`. For more details, see the official [Next.js Caching Docs](https://nextjs.org/docs/app/building-your-application/caching).
+# HTTP to HTTPS redirect for database admin
+server {
+    listen 80;
+    server_name db.example.com;
+    return 301 https://db.example.com$request_uri;
+}
 
-### Eject
+# HTTPS database admin server
+server {
+    listen 443 ssl http2;
+    server_name db.example.com;
+    
+    # SSL Configuration
+    ssl_certificate /etc/letsencrypt/live/example.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/example.com/privkey.pem;
+    include /etc/letsencrypt/options-ssl-nginx.conf;
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
+    
+    # Security: Enable basic auth for database access
+    # Uncomment and configure as needed
+    # auth_basic "Database Administration";
+    # auth_basic_user_file /etc/nginx/.htpasswd;
+    
+    # Additional security headers for admin interface
+    add_header X-Frame-Options DENY;
+    add_header X-Content-Type-Options nosniff;
+    add_header X-XSS-Protection "1; mode=block";
+    
+    location / {
+        proxy_pass http://127.0.0.1:8081/;
+        include proxy_params;
+        
+        # Additional security for admin interface
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}
 
-If you prefer another front-end framework or would like to use Payload as a standalone CMS, you can easily eject the front-end from this template. To eject, simply run `yarn eject`. This will uninstall all Next.js related dependencies and delete all files and folders related to the Next.js front-end. It also removes all custom routing from your `server.ts` file and updates your `eslintrc.js`.
+# =================================================================
+# MAIN WEBSITE
+# =================================================================
 
-> Note: Your eject script may not work as expected if you've made significant modifications to your project. If you run into any issues, compare your project's dependencies and file structure with this template. See [./src/eject](./src/eject) for full details.
+# HTTP to HTTPS redirect (handles both www and non-www)
+server {
+    listen 80;
+    server_name example.com www.example.com;
+    return 301 https://example.com$request_uri;
+}
 
-For more details on how setup a custom server, see the official [Custom Server Example](https://github.com/payloadcms/payload/tree/main/examples/custom-server).
+# HTTPS main server (handles both www and non-www)
+server {
+    listen 443 ssl http2;
+    server_name example.com www.example.com;
+    
+    # SSL Configuration
+    ssl_certificate /etc/letsencrypt/live/example.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/example.com/privkey.pem;
+    include /etc/letsencrypt/options-ssl-nginx.conf;
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
+    
+    # Redirect www to non-www over HTTPS
+    if ($host = www.example.com) {
+        return 301 https://example.com$request_uri;
+    }
+    
+    # Upload limits
+    client_max_body_size 100M;
+    
+    # Security Headers
+    add_header X-Frame-Options SAMEORIGIN;
+    add_header X-Content-Type-Options nosniff;
+    add_header X-XSS-Protection "1; mode=block";
+    add_header Referrer-Policy "strict-origin-when-cross-origin";
+    
+    # Content Security Policy
+    add_header Content-Security-Policy "
+        default-src 'self' https://your-cdn.example.com;
+        script-src 'self' 'unsafe-inline' 'unsafe-eval' https://maps.googleapis.com https://www.googletagmanager.com;
+        style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+        img-src 'self' https://maps.googleapis.com https://maps.gstatic.com https://www.googletagmanager.com https://your-cdn.example.com data:;
+        font-src 'self' https://fonts.gstatic.com;
+        frame-src 'self' https://www.youtube.com;
+        connect-src 'self' https://maps.googleapis.com https://www.googletagmanager.com;
+        script-src-elem 'self' https://www.googletagmanager.com https://maps.googleapis.com;
+        object-src 'none';
+        base-uri 'self';
+        form-action 'self';
+    ";
+    
+    # Main application proxy
+    location / {
+        proxy_pass http://localhost:3000;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_cache_bypass $http_upgrade;
+        
+        # CORS headers (adjust as needed for your application)
+        add_header Access-Control-Allow-Origin *;
+        add_header Access-Control-Allow-Methods 'GET, POST, OPTIONS';
+        add_header Access-Control-Allow-Headers 'Authorization, Content-Type';
+        
+        # Handle preflight requests
+        if ($request_method = OPTIONS) {
+            return 204;
+        }
+    }
+    
+    # Admin interface (if applicable)
+    location /admin {
+        proxy_pass http://localhost:3000/admin;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_cache_bypass $http_upgrade;
+        
+        # Additional security for admin routes
+        # Uncomment to restrict admin access by IP
+        # allow 192.168.1.0/24;
+        # allow 10.0.0.0/8;
+        # deny all;
+    }
+    
+    # Static assets optimization (optional)
+    location ~* \.(js|css|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot)$ {
+        expires 1y;
+        add_header Cache-Control "public, immutable";
+        proxy_pass http://localhost:3000;
+        proxy_set_header Host $host;
+    }
+}
 
-##  Development
+# =================================================================
+# GENERAL SECURITY CONFIGURATIONS
+# =================================================================
 
-To spin up this example locally, follow the [Quick Start](#quick-start). Then [Seed](#seed) the database with a few pages, posts, and projects.
+# Hide nginx version
+server_tokens off;
 
-### Docker
+# Rate limiting (uncomment and adjust as needed)
+# limit_req_zone $binary_remote_addr zone=api:10m rate=10r/s;
+# limit_req_zone $binary_remote_addr zone=login:10m rate=1r/s;
 
-Alternatively, you can use [Docker](https://www.docker.com) to spin up this template locally. To do so, follow these steps:
+# Example rate limiting usage:
+# location /api/ {
+#     limit_req zone=api burst=20 nodelay;
+#     proxy_pass http://localhost:3000;
+# }
 
-1. Follow [steps 1 and 2 from above](#development), the docker-compose file will automatically use the `.env` file in your project root
-1. Next run `docker-compose up`
-1. Follow [steps 4 and 5 from above](#development) to login and create your first admin user
+# Example for login endpoints:
+# location /admin/login {
+#     limit_req zone=login burst=5 nodelay;
+#     proxy_pass http://localhost:3000;
+# }
+```
 
-That's it! The Docker instance will help you get up and running quickly while also standardizing the development environment across your teams.
+## 🐛 Troubleshooting
 
-### Seed
+### Common Issues and Solutions
 
-To seed the database with a few pages, posts, and projects you can run `yarn seed`. This template also comes with a `GET /api/seed` endpoint you can use to seed the database from the admin panel.
+**Prerendering Errors**
+- Ensure `NODE_ENV=production` for production builds
+- Avoid `NODE_ENV=development` in production (causes CSP errors)
+- Use domain name (not localhost) in production environment variables
 
-The seed script will also create two users for demonstration purposes only:
-1. Demo Author
-    - Email: `demo-author@payloadcms.com`
-    - Password: `password`
-    - Role: `admin`
-2. Demo User
-    - Email: `demo-user@payloadcms.com`
-    - Password: `password`
-    - Role: `user`
+**Build Issues**
+- Use `yarn` instead of `npm` to avoid Drizzle ORM/Payload version conflicts
+- Ensure all environment variables are consistent across Docker, local, and production
+- Build is required to see changes in production (dev mode may not work properly)
 
-> NOTICE: seeding the database is destructive because it drops your current database to populate a fresh one from the seed template. Only run this command if you are starting a new project or can afford to lose your current data.
+**Performance Issues**
+- Monitor for high CPU usage with background processes
+- Avoid running unnecessary PM2 processes that may cause resource conflicts
 
+### Environment Variables Checklist
 
-### Conflicting routes
+- [ ] `NEXT_PUBLIC_URL` points to production domain
+- [ ] `PAYLOAD_PUBLIC_SERVER_URL` matches production URL
+- [ ] Database connection strings are correct
+- [ ] DigitalOcean Spaces credentials are set
+- [ ] SSL certificates are valid and auto-renewing
 
-> In a monorepo when routes are bootstrapped to the same host, they can conflict with Payload's own routes if they have the same name. In our template we've named the Nextjs API routes to `next` to avoid this conflict.
->
->This can happen with any other routes conflicting with Payload such as `admin` and we recommend using different names for custom routes.  
->Alternatively you can also rename Payload's own routes via the [configuration](https://payloadcms.com/docs/configuration/overview).
+## 📈 Monitoring and Maintenance
 
-## Production
+- **SSL Certificates**: Automatic renewal via Certbot
+- **Docker Images**: Regular updates with version tagging
+- **Database**: Managed backups through DigitalOcean
+- **Storage**: Asset optimization and CDN delivery via Spaces
+- **Security**: Regular dependency updates and security header validation
 
-To run Payload in production, you need to build and serve the Admin panel. To do so, follow these steps:
+---
 
-1. Invoke the `payload build` script by running `yarn build` or `npm run build` in your project root. This creates a `./build` directory with a production-ready admin bundle.
-1. Finally run `yarn serve` or `npm run serve` to run Node in production and serve Payload from the `./build` directory.
-1. When you're ready to go live, see [Deployment](#deployment) for more details.
-
-### Deployment
-
-Before deploying your app, you need to:
-
-1. Ensure your app builds and serves in production. See [Production](#production) for more details.
-
-The easiest way to deploy your project is to use [Payload Cloud](https://payloadcms.com/new/import), a one-click hosting solution to deploy production-ready instances of your Payload apps directly from your GitHub repo. You can also deploy your app manually, check out the [deployment documentation](https://payloadcms.com/docs/production/deployment) for full details.
-
-## Questions
-
-If you have any issues or questions, reach out to us on [Discord](https://discord.com/invite/payload) or start a [GitHub discussion](https://github.com/payloadcms/payload/discussions).
+**Built for professional corporate presence with enterprise-grade security and performance.**

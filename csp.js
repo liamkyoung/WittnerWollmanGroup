@@ -10,6 +10,7 @@ const policies = {
     'https://maps.googleapis.com',
     'https://maps.gstatic.com',
     'https://ww-group.nyc3.cdn.digitaloceanspaces.com',
+    'https://*.posthog.com',
   ],
   'script-src': [
     "'self'",
@@ -24,8 +25,8 @@ const policies = {
   ],
   'child-src': ["'self'", 'blob:'],
   'style-src': [
-    "'self'", 
-    'https://fonts.googleapis.com', 
+    "'self'",
+    'https://fonts.googleapis.com',
     `'nonce-${nonce}'`, // Use nonce for inline styles instead of unsafe-inline
     // "'unsafe-inline'" // Remove this for better security
   ],
@@ -48,6 +49,7 @@ const policies = {
     'https://*.googletagmanager.com',
     'https://*.google-analytics.com',
     'https://*.analytics.google.com',
+    'https://*.posthog.com',
   ],
 }
 
@@ -61,7 +63,7 @@ const cspString = Object.entries(policies)
   })
   .join('; ')
 
-module.exports = cspString
-
-// Also export nonce for use in React components
-module.exports.nonce = nonce
+module.exports = {
+  csp: cspString,
+  nonce,
+}

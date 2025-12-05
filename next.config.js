@@ -2,7 +2,8 @@
 /** @type {import('next').NextConfig} */
 const path = require('path')
 const { withPayload } = require('@payloadcms/next-payload')
-const ContentSecurityPolicy = require('./csp')
+// Destructure the CSP string (and nonce if you want it later)
+const { csp: ContentSecurityPolicy /*, nonce: CSP_NONCE */ } = require('./csp')
 const redirects = require('./redirects')
 
 const prodCfg = withPayload(
@@ -23,9 +24,6 @@ const prodCfg = withPayload(
       const headers = []
 
       // Prevent search engines from indexing the site if it is not live
-      // This is useful for staging environments before they are ready to go live
-      // To allow robots to crawl the site, use the `NEXT_PUBLIC_IS_LIVE` env variable
-      // You may want to also use this variable to conditionally render any tracking scripts
       if (!process.env.NEXT_PUBLIC_IS_LIVE) {
         headers.push({
           headers: [
@@ -38,9 +36,7 @@ const prodCfg = withPayload(
         })
       }
 
-      // Set the `Content-Security-Policy` header as a security measure to prevent XSS attacks
-      // It works by explicitly whitelisting trusted sources of content for your website
-      // This will block all inline scripts and styles except for those that are allowed
+      // Content Security Policy
       headers.push({
         source: '/(.*)',
         headers: [
@@ -63,7 +59,6 @@ const prodCfg = withPayload(
     configPath: path.resolve(__dirname, process.env.PAYLOAD_CONFIG_PATH),
 
     // Set a custom Payload admin route (optional, default is `/admin`)
-    // NOTE: Read the "Set a custom admin route" section in the payload/next-payload README.
     adminRoute: '/admin',
   },
 )
@@ -85,9 +80,6 @@ const devCfg = {
     const headers = []
 
     // Prevent search engines from indexing the site if it is not live
-    // This is useful for staging environments before they are ready to go live
-    // To allow robots to crawl the site, use the `NEXT_PUBLIC_IS_LIVE` env variable
-    // You may want to also use this variable to conditionally render any tracking scripts
     if (!process.env.NEXT_PUBLIC_IS_LIVE) {
       headers.push({
         headers: [
@@ -100,9 +92,7 @@ const devCfg = {
       })
     }
 
-    // Set the `Content-Security-Policy` header as a security measure to prevent XSS attacks
-    // It works by explicitly whitelisting trusted sources of content for your website
-    // This will block all inline scripts and styles except for those that are allowed
+    // Content Security Policy
     headers.push({
       source: '/(.*)',
       headers: [

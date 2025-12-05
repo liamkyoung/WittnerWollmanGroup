@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-implicit-any-catch */
+/* eslint-disable no-console */
 import type { RequestCookie } from 'next/dist/compiled/@edge-runtime/cookies'
 
 import type { Config } from '../../payload/payload-types'
@@ -60,7 +63,7 @@ export const fetchDocs = async <T>(
   const cfg = queryMap[collection as keyof typeof queryMap]
 
   if (!cfg) {
-    console.error('fetchDocs: unknown collection', { collection })
+    console.error('fetchDocs: unknown collection', { collection }) // eslint-disable-line no-console
     throw new Error(`Collection ${String(collection)} not found`)
   }
 
@@ -75,7 +78,7 @@ export const fetchDocs = async <T>(
       console.warn('fetchDocs: failed to read draft token from cookies', {
         collection,
         error: (err as any)?.message ?? String(err),
-      })
+      }) // eslint-disable-line no-console
     }
   }
 

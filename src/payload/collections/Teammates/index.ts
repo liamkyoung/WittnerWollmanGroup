@@ -1,6 +1,5 @@
 import type { CollectionConfig } from 'payload/types'
 
-import { TeamLinks } from '../../../globalData/navigation/about/about'
 import richText from '../../../payload/fields/richText'
 import { slugField } from '../../../payload/fields/slug'
 // import { formatSocialMediaHandle } from '../../../payload/hooks/formatSocialMediaHandle'

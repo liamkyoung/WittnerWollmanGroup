@@ -3,11 +3,11 @@ import { Resend } from 'resend'
 
 import { EmailTemplate } from '../../app/emailTemplates/basicEmail'
 import {
-  validateAndSanitize,
-  emailSchema,
   checkRateLimit,
+  emailSchema,
   getClientIP,
   RATE_LIMITS,
+  validateAndSanitize,
 } from '../utils/validation'
 
 const resend = new Resend(process.env.PAYLOAD_PUBLIC_RESEND_API_KEY)

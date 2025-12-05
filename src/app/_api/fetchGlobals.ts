@@ -1,10 +1,13 @@
+/* eslint-disable no-console */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-implicit-any-catch */
 import type { Settings } from '../../payload/payload-types'
 import { SETTINGS_QUERY } from '../_graphql/globals'
 import { GRAPHQL_API_URL } from './shared'
 
 export async function fetchSettings(): Promise<Settings | null> {
   if (!GRAPHQL_API_URL) {
-    console.error('fetchSettings: GRAPHQL_API_URL / NEXT_PUBLIC_SERVER_URL not found')
+    console.error('fetchSettings: GRAPHQL_API_URL / NEXT_PUBLIC_SERVER_URL not found') // eslint-disable-line no-console
     throw new Error('GRAPHQL_API_URL not configured')
   }
 
@@ -20,9 +23,10 @@ export async function fetchSettings(): Promise<Settings | null> {
       }),
     })
   } catch (err) {
+    // eslint-disable-line no-console
     console.error('fetchSettings: network error while calling GraphQL API', {
       error: (err as any)?.message ?? String(err),
-    })
+    }) // eslint-disable-line no-console
     throw new Error('Failed to fetch settings from GraphQL API')
   }
 
@@ -38,7 +42,7 @@ export async function fetchSettings(): Promise<Settings | null> {
       status: res.status,
       statusText: res.statusText,
       body: bodyText?.slice(0, 1000),
-    })
+    }) // eslint-disable-line no-console
 
     throw new Error(
       `GraphQL request failed when fetching settings: ${res.status} ${res.statusText}`,
@@ -53,7 +57,7 @@ export async function fetchSettings(): Promise<Settings | null> {
       status: res.status,
       statusText: res.statusText,
       error: (err as any)?.message ?? String(err),
-    })
+    }) // eslint-disable-line no-console
     throw new Error('Invalid JSON response when fetching settings')
   }
 
@@ -61,7 +65,7 @@ export async function fetchSettings(): Promise<Settings | null> {
   if (errors.length > 0) {
     console.error('fetchSettings: GraphQL returned errors', {
       errors,
-    })
+    }) // eslint-disable-line no-console
 
     const firstMessage = errors[0]?.message ?? errors[0]?.toString?.() ?? 'Error fetching settings'
 
@@ -73,7 +77,7 @@ export async function fetchSettings(): Promise<Settings | null> {
   if (!settings) {
     console.warn('fetchSettings: Settings missing or null in GraphQL response', {
       receivedData: json?.data,
-    })
+    }) // eslint-disable-line no-console
     return null
   }
 

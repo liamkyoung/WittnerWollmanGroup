@@ -4,11 +4,11 @@ import { Resend } from 'resend'
 import { formatDateTime } from '../../app/_utilities/formatDateTime'
 import { EmailTemplate } from '../../app/emailTemplates/listingEmail'
 import {
-  validateAndSanitize,
-  listingEmailSchema,
   checkRateLimit,
   getClientIP,
+  listingEmailSchema,
   RATE_LIMITS,
+  validateAndSanitize,
 } from '../utils/validation'
 
 const resend = new Resend(process.env.PAYLOAD_PUBLIC_RESEND_API_KEY)

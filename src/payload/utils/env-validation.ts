@@ -292,38 +292,38 @@ function checkForUnexpectedSecrets(result: ValidationResult): void {
  * Print environment validation results
  */
 export function printValidationResults(result: ValidationResult): void {
-  console.log('\n🔒 Environment Variable Validation Results:')
+  console.log('\n🔒 Environment Variable Validation Results:') // eslint-disable-line no-console
 
   if (result.valid) {
-    console.log('✅ All required environment variables are present and valid')
+    console.log('✅ All required environment variables are present and valid') // eslint-disable-line no-console
   } else {
-    console.log('❌ Environment validation failed')
+    console.log('❌ Environment validation failed') // eslint-disable-line no-console
   }
 
   if (result.errors.length > 0) {
-    console.log('\n🚨 Errors:')
-    result.errors.forEach(error => console.log(`  • ${error}`))
+    console.log('\n🚨 Errors:') // eslint-disable-line no-console
+    result.errors.forEach(error => console.log(`  • ${error}`)) // eslint-disable-line no-console
   }
 
   if (result.warnings.length > 0) {
-    console.log('\n⚠️  Warnings:')
-    result.warnings.forEach(warning => console.log(`  • ${warning}`))
+    console.log('\n⚠️  Warnings:') // eslint-disable-line no-console
+    result.warnings.forEach(warning => console.log(`  • ${warning}`)) // eslint-disable-line no-console
   }
 
   if (result.missingRequired.length > 0) {
-    console.log('\n📝 Missing Required Variables:')
+    console.log('\n📝 Missing Required Variables:') // eslint-disable-line no-console
     result.missingRequired.forEach(name => {
       const config = ENV_VARIABLES.find(c => c.name === name)
-      console.log(`  • ${name}: ${config?.description || 'No description'}`)
+      console.log(`  • ${name}: ${config?.description || 'No description'}`) // eslint-disable-line no-console
     })
   }
 
   if (result.insecureValues.length > 0) {
-    console.log('\n🔓 Potentially Insecure Values:')
-    result.insecureValues.forEach(name => console.log(`  • ${name}`))
+    console.log('\n🔓 Potentially Insecure Values:') // eslint-disable-line no-console
+    result.insecureValues.forEach(name => console.log(`  • ${name}`)) // eslint-disable-line no-console
   }
 
-  console.log('')
+  console.log('') // eslint-disable-line no-console
 }
 
 /**
@@ -334,7 +334,7 @@ export function validateEnvironmentOrExit(): void {
   printValidationResults(result)
 
   if (!result.valid) {
-    console.error('❌ Environment validation failed. Application cannot start safely.')
+    console.error('❌ Environment validation failed. Application cannot start safely.') // eslint-disable-line no-console
     process.exit(1)
   }
 }

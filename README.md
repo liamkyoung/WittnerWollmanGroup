@@ -20,6 +20,7 @@ Corporate website for Wittner Wollman Group, featuring modern web technologies, 
 - **Deployment**: Docker containers on DigitalOcean Droplets
 - **Web Server**: Nginx with SSL/TLS encryption
 - **SSL**: Let's Encrypt certificates via Certbot
+- **WP Blog**: Wordpress Blog in Seperate Container (Not provided in repo)
 
 ## 🏗️ Infrastructure Architecture
 

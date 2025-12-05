@@ -46,7 +46,8 @@ export const fetchDoc = async <T>(args: {
 }): Promise<T> => {
   const { collection, slug, draft } = args || {}
 
-  if (!queryMap[collection]) throw new Error(`Collection ${collection} not found`)
+  const cfg = queryMap[collection]
+  if (!cfg) throw new Error(`Collection ${collection as string} not found`)
 
   let token: RequestCookie | undefined
 
@@ -55,7 +56,7 @@ export const fetchDoc = async <T>(args: {
     token = cookies().get(payloadToken)
   }
 
-  const doc: T = await fetch(`${GRAPHQL_API_URL}/api/graphql`, {
+  const res = await fetch(`${GRAPHQL_API_URL}/api/graphql`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -63,18 +64,29 @@ export const fetchDoc = async <T>(args: {
     },
     next: { tags: [`${collection}_${slug}`] },
     body: JSON.stringify({
-      query: queryMap[collection].query,
+      query: cfg.query,
       variables: {
         slug,
         draft,
       },
     }),
   })
-    ?.then(res => res.json())
-    ?.then(res => {
-      if (res.errors) throw new Error(res?.errors?.[0]?.message ?? 'Error fetching doc')
-      return res?.data?.[queryMap[collection].key]?.docs?.[0]
-    })
 
-  return doc
+  let json: any
+  try {
+    json = await res.json()
+  } catch (e) {
+    throw new Error(`Failed to parse GraphQL JSON for ${collection}: ${String(e)}`)
+  }
+
+  if (Array.isArray(json?.errors) && json.errors.length > 0) {
+    throw new Error(json.errors[0]?.message ?? `Error fetching ${collection}`)
+  }
+
+  const root = json?.data?.[cfg.key]
+  if (!root || !Array.isArray(root.docs) || !root.docs[0]) {
+    throw new Error(`Document not found for collection "${collection}" slug="${slug}"`)
+  }
+
+  return root.docs[0] as T
 }

@@ -2,28 +2,82 @@ import type { Settings } from '../../payload/payload-types'
 import { SETTINGS_QUERY } from '../_graphql/globals'
 import { GRAPHQL_API_URL } from './shared'
 
-export async function fetchSettings(): Promise<Settings> {
-  if (!GRAPHQL_API_URL) throw new Error('NEXT_PUBLIC_SERVER_URL not found')
+export async function fetchSettings(): Promise<Settings | null> {
+  if (!GRAPHQL_API_URL) {
+    console.error('fetchSettings: GRAPHQL_API_URL / NEXT_PUBLIC_SERVER_URL not found')
+    throw new Error('GRAPHQL_API_URL not configured')
+  }
 
-  const settings = await fetch(`${GRAPHQL_API_URL}/api/graphql`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      query: SETTINGS_QUERY,
-    }),
-  })
-    ?.then(res => {
-      if (!res.ok) throw new Error('Error fetching doc')
-      return res.json()
+  let res: Response
+  try {
+    res = await fetch(`${GRAPHQL_API_URL}/api/graphql`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        query: SETTINGS_QUERY,
+      }),
     })
-    ?.then(res => {
-      if (res?.errors) throw new Error(res?.errors[0]?.message || 'Error fetching settings')
-      return res.data?.Settings
+  } catch (err) {
+    console.error('fetchSettings: network error while calling GraphQL API', {
+      error: (err as any)?.message ?? String(err),
+    })
+    throw new Error('Failed to fetch settings from GraphQL API')
+  }
+
+  if (!res.ok) {
+    let bodyText = ''
+    try {
+      bodyText = await res.text()
+    } catch {
+      // ignore body parse issues
+    }
+
+    console.error('fetchSettings: non-OK HTTP response from GraphQL API', {
+      status: res.status,
+      statusText: res.statusText,
+      body: bodyText?.slice(0, 1000),
     })
 
-  return settings
+    throw new Error(
+      `GraphQL request failed when fetching settings: ${res.status} ${res.statusText}`,
+    )
+  }
+
+  let json: any
+  try {
+    json = await res.json()
+  } catch (err) {
+    console.error('fetchSettings: failed to parse JSON from GraphQL API', {
+      status: res.status,
+      statusText: res.statusText,
+      error: (err as any)?.message ?? String(err),
+    })
+    throw new Error('Invalid JSON response when fetching settings')
+  }
+
+  const errors = Array.isArray(json?.errors) ? json.errors : []
+  if (errors.length > 0) {
+    console.error('fetchSettings: GraphQL returned errors', {
+      errors,
+    })
+
+    const firstMessage = errors[0]?.message ?? errors[0]?.toString?.() ?? 'Error fetching settings'
+
+    throw new Error(firstMessage)
+  }
+
+  const settings = json?.data?.Settings ?? null
+
+  if (!settings) {
+    console.warn('fetchSettings: Settings missing or null in GraphQL response', {
+      receivedData: json?.data,
+    })
+    return null
+  }
+
+  return settings as Settings
 }
 
 // export async function fetchHeader(): Promise<Header> {

@@ -9,6 +9,10 @@ dotenv.config({
   path: path.resolve(__dirname, '../.env'),
 })
 
+// Validate environment variables before starting server
+import { validateEnvironmentOrExit } from './payload/utils/env-validation'
+validateEnvironmentOrExit()
+
 import express from 'express'
 import payload from 'payload'
 

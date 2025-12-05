@@ -1,4 +1,7 @@
-// const nonce = Buffer.from(crypto.randomUUID()).toString('base64')
+const crypto = require('crypto')
+
+// Generate nonce for inline scripts - this should be passed to templates
+const nonce = Buffer.from(crypto.randomUUID()).toString('base64')
 
 const policies = {
   'default-src': [
@@ -10,14 +13,22 @@ const policies = {
   ],
   'script-src': [
     "'self'",
-    "'unsafe-inline'",
-    "'unsafe-eval'",
+    // Remove unsafe-inline and unsafe-eval for better security
+    // Use nonce or hash for required inline scripts
+    `'nonce-${nonce}'`,
     'https://maps.googleapis.com',
     'https://maps.gstatic.com',
     'https://*.googletagmanager.com',
+    // Allow specific script hashes if needed
+    "'sha256-xyz123...'", // Replace with actual script hashes
   ],
   'child-src': ["'self'", 'blob:'],
-  'style-src': ["'self'", 'https://fonts.googleapis.com', "'unsafe-inline'"],
+  'style-src': [
+    "'self'", 
+    'https://fonts.googleapis.com', 
+    `'nonce-${nonce}'`, // Use nonce for inline styles instead of unsafe-inline
+    // "'unsafe-inline'" // Remove this for better security
+  ],
   'img-src': [
     "'self'",
     'https://maps.googleapis.com',
@@ -40,7 +51,8 @@ const policies = {
   ],
 }
 
-module.exports = Object.entries(policies)
+// Export both the CSP string and nonce for use in templates
+const cspString = Object.entries(policies)
   .map(([key, value]) => {
     if (Array.isArray(value)) {
       return `${key} ${value.join(' ')}`
@@ -48,3 +60,8 @@ module.exports = Object.entries(policies)
     return ''
   })
   .join('; ')
+
+module.exports = cspString
+
+// Also export nonce for use in React components
+module.exports.nonce = nonce

@@ -9,4 +9,11 @@ node_modules
 .next
 .vercel
 *.crt
+<<<<<<< HEAD
 google-sheets-creds.json
+=======
+google-sheets-creds.json
+SECURITY*.md
+security*.json
+dependency-audit-report.json
+>>>>>>> 6d7ee33a6cd58a46ec660572eea4414e6bfedb17

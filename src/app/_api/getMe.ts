@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 
@@ -12,6 +13,7 @@ export const getMe = async (args?: {
   user: User
   token: string
 }> => {
+  console.log('getMe')
   const { nullUserRedirect, userRedirect } = args || {}
   const cookieStore = cookies()
   const token = cookieStore.get('payload-token')?.value

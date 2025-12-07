@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-implicit-any-catch */
-
+/* eslint-disable no-console */
 import type { RequestCookie } from 'next/dist/compiled/@edge-runtime/cookies'
 
 import type { Config } from '../../payload/payload-types'
@@ -47,10 +47,12 @@ export const fetchDoc = async <T>(args: {
   id?: string
   draft?: boolean
 }): Promise<T> => {
+  console.log('fetchDoc')
   const { collection, slug, draft } = args || {}
 
-  const cfg = queryMap[collection]
-  if (!cfg) throw new Error(`Collection ${collection as string} not found`)
+  if (!queryMap[collection]) throw new Error(`Collection ${collection} not found`)
+
+  console.log(`fetchDocs::${collection}`)
 
   let token: RequestCookie | undefined
 
@@ -59,7 +61,7 @@ export const fetchDoc = async <T>(args: {
     token = cookies().get(payloadToken)
   }
 
-  const res = await fetch(`${GRAPHQL_API_URL}/api/graphql`, {
+  const doc: T = await fetch(`${GRAPHQL_API_URL}/api/graphql`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -67,29 +69,19 @@ export const fetchDoc = async <T>(args: {
     },
     next: { tags: [`${collection}_${slug}`] },
     body: JSON.stringify({
-      query: cfg.query,
+      query: queryMap[collection].query,
       variables: {
         slug,
         draft,
       },
     }),
   })
+    ?.then(res => res.json())
+    ?.then(res => {
+      console.log('fetchDoc.then().then()')
+      if (res.errors) throw new Error(res?.errors?.[0]?.message ?? 'Error fetching doc')
+      return res?.data?.[queryMap[collection].key]?.docs?.[0]
+    })
 
-  let json: any
-  try {
-    json = await res.json()
-  } catch (e) {
-    throw new Error(`Failed to parse GraphQL JSON for ${collection}: ${String(e)}`)
-  }
-
-  if (Array.isArray(json?.errors) && json.errors.length > 0) {
-    throw new Error(json.errors[0]?.message ?? `Error fetching ${collection}`)
-  }
-
-  const root = json?.data?.[cfg.key]
-  if (!root || !Array.isArray(root.docs) || !root.docs[0]) {
-    throw new Error(`Document not found for collection "${collection}" slug="${slug}"`)
-  }
-
-  return root.docs[0] as T
+  return doc
 }

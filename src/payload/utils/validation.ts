@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-implicit-any-catch */
+/* eslint-disable no-console */
 import DOMPurify from 'isomorphic-dompurify'
 import { z } from 'zod'
 
@@ -99,6 +100,7 @@ export function validateAndSanitize<T>(
   schema: z.ZodSchema<T>,
   data: unknown,
 ): { success: true; data: T } | { success: false; errors: string[] } {
+  console.log('Validation::validateAndSanitize')
   try {
     // First validate the structure
     const parsed = schema.parse(data)
@@ -108,6 +110,7 @@ export function validateAndSanitize<T>(
 
     return { success: true, data: sanitized as T }
   } catch (error) {
+    console.error('Validate Error Caught')
     if (error instanceof z.ZodError) {
       return {
         success: false,
